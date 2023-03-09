@@ -9,25 +9,31 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     setSize(500, 400);
 
     addAndMakeVisible(kickDrumButton);
-    kickDrumButton.setButtonText("Kick Drum (57)");
-    kickDrumButton.onClick = [this] { playMidiNote(57); };
+    kickDrumButton.setButtonText("Kick Drum");
+    kickDrumButton.onClick = [this] { playMidiNote(kickNoteMenu.getSelectedId()); };
+    addAndMakeVisible(&kickNoteMenu);
+    kickNoteMenu.setJustificationType(juce::Justification::centred);
+    for (int i = 1; i < 128; i++)
+        kickNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
+    kickNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    kickNoteMenu.setSelectedId(57);    // default MIDI note for snare
 
     addAndMakeVisible(snareDrumButton);
     snareDrumButton.setButtonText("Snare Drum");
     snareDrumButton.onClick = [this] { playMidiNote(snareNoteMenu.getSelectedId()); };
     addAndMakeVisible(&snareNoteMenu);
     snareNoteMenu.setJustificationType(juce::Justification::centred);
-    for (int i = 0; i < 128; i++)
-        snareNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i+1);
+    for (int i = 1; i < 128; i++)
+        snareNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
     snareNoteMenu.onChange = [this] { samplePackMenuChanged(); };
-    snareNoteMenu.setSelectedId(61);    // default MIDI note for snare (+1, because of the ID)
+    snareNoteMenu.setSelectedId(60);    // default MIDI note for snare
 
     addAndMakeVisible(floorTomButton);
     floorTomButton.setButtonText("Floor Tom close (67)");
     floorTomButton.onClick = [this] { playMidiNote(67); };
     addAndMakeVisible(floorTomButton2);
-    floorTomButton2.setButtonText("Floor Tom OH (69)");
-    floorTomButton2.onClick = [this] { playMidiNote(69); };
+    floorTomButton2.setButtonText("Floor Tom OH (67)");
+    floorTomButton2.onClick = [this] { playMidiNote(67); };
 
     //addAndMakeVisible(&openButton);
     //openButton.onClick = [this] { loadDirectory(); };
@@ -115,8 +121,8 @@ void HDrumsAudioProcessorEditor::resized()
 {
     auto halfWidth = getWidth() / 2;
     auto qWidth = getWidth() / 4;
-    //auto buttonsBounds = getLocalBounds().withWidth(halfWidth).reduced(10);
-    kickDrumButton.setBounds(10, 40, halfWidth - 15, 20);
+    kickDrumButton.setBounds(10, 40, qWidth - 12.5, 20);
+    kickNoteMenu.setBounds(qWidth + 2.5, 40, qWidth - 7.5, 20);
 
     snareDrumButton.setBounds(10, 70, qWidth - 12.5, 20);
     snareNoteMenu.setBounds(qWidth + 2.5, 70, qWidth - 7.5, 20);
@@ -135,17 +141,12 @@ void HDrumsAudioProcessorEditor::resized()
 void HDrumsAudioProcessorEditor::samplePackMenuChanged()
 {
     audioProcessor.loadSamples(samplePackMenu.getSelectedId(), curveMenu.getSelectedId(),
-                                snareNoteMenu.getSelectedId());
+                                kickNoteMenu.getSelectedId(), snareNoteMenu.getSelectedId());
 }
 
 void HDrumsAudioProcessorEditor::playMidiNote(int noteNumber)
 {
-    juce::MidiMessage message = juce::MidiMessage::noteOn(1, noteNumber, 0.85f);
+    juce::MidiMessage message = juce::MidiMessage::noteOn(1, noteNumber, 0.92f);
     message.setTimeStamp(juce::Time::getMillisecondCounterHiRes() * 0.001 - 0.0);
     audioProcessor.getMidiMessageCollector().addMessageToQueue(message);
-}
-
-void HDrumsAudioProcessorEditor::sliderValueChanged(juce::Slider* slider)
-{
-    audioProcessor.procA = gainSlider.getValue();
 }

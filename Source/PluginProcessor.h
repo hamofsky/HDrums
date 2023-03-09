@@ -54,8 +54,8 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-    void addSample(string sampleName, string destination, int midiNote, int lowestVelocity, int highestVelocity, double release, double maxLength, int bus);
-    void loadSamples(int samplePackID, int curveMenuID, int snareNoteID);
+    void addSample(string sampleName, string destination, int midiNote, int lowestVelocity, int highestVelocity, double release, double maxLength, string bus);
+    void loadSamples(int samplePackID, int curveMenuID, int kickNoteID, int snareNoteID);
 
     juce::MidiMessageCollector& getMidiMessageCollector() noexcept { return midiMessageCollector; }
 
@@ -68,8 +68,6 @@ public:
     MidiProcessor midiProcessor;
 
     juce::MidiKeyboardState keyboardState;
-
-    float procA;//
 
 private:
     

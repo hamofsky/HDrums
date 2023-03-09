@@ -2,7 +2,7 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 
-class HDrumsAudioProcessorEditor  : public juce::AudioProcessorEditor, private juce::Slider::Listener
+class HDrumsAudioProcessorEditor  : public juce::AudioProcessorEditor
 {
 public:
     HDrumsAudioProcessorEditor (HDrumsAudioProcessor&);
@@ -13,11 +13,10 @@ public:
     juce::ComboBox curveMenu;
 
     juce::ComboBox snareNoteMenu;
+    juce::ComboBox kickNoteMenu;
 
     void paint (juce::Graphics&) override;
     void resized() override;
-
-    void sliderValueChanged(juce::Slider* slider) override;//
 
     HDrumsAudioProcessor& audioProcessor;
 
