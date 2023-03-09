@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="dEbnsJ" name="HDrums" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" companyWebsite="https://hamofsky.web.app/"
-              pluginFormats="buildStandalone,buildVST,buildVST3" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
+              pluginFormats="buildStandalone,buildVST3" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginManufacturer="HDPlugins" aaxIdentifier="com.HDPlugins.HDrums"
               pluginName="HDrums" pluginDesc="A realistic drum sampler made by HD Plugins"
               bundleIdentifier="com.HDPlugins.HDrums">

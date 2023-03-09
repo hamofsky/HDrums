@@ -260,27 +260,16 @@ void HDrumsAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i) {
         buffer.clear(i, 0, buffer.getNumSamples());
     }
-    auto bufferClose = getBusBuffer(buffer, false, 0);
-    auto bufferOH = getBusBuffer(buffer, false, 0);
 
-    //juce::AudioBuffer<float> bufferClose;
-    //juce::AudioBuffer<float> bufferOH;
-    //bufferOH.makeCopyOf(buffer);
-    //bufferOH.copyFrom(0, 0, buffer, 0, 0, buffer.getNumSamples());
+    juce::AudioBuffer<float> bufferOH;
+    bufferOH.makeCopyOf(buffer);
 
     sampler.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
     buffer.applyGain(juce::Decibels::decibelsToGain<float>(*sliderValue));
 
-    //[1]
-    samplerOH.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
-    buffer.applyGain(juce::Decibels::decibelsToGain<float>(*OHsliderValue));
-    //[1]
-
-    //[2]
-    //samplerOH.renderNextBlock(bufferOH, midiMessages, 0, bufferOH.getNumSamples());
-    //bufferOH.applyGain(juce::Decibels::decibelsToGain<float>(*OHsliderValue));
-    //buffer.addFrom(0, 0, bufferOH, 0, 0, juce::Decibels::decibelsToGain<float>(*OHsliderValue));
-    //[2]
+    samplerOH.renderNextBlock(bufferOH, midiMessages, 0, bufferOH.getNumSamples());
+    buffer.addFrom(0, 0, bufferOH, 0, 0, bufferOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*OHsliderValue));
+    buffer.addFrom(1, 0, bufferOH, 1, 0, bufferOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*OHsliderValue));
 
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
@@ -288,9 +277,7 @@ void HDrumsAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
 
         for (int sample = 0; sample < buffer.getNumSamples(); ++sample)
         {
-            //buffer.setSample(channel, sample, audioBusBuffer.getSample(channel, sample) + OHaudioBusBuffer.getSample(channel, sample));
-            //channelData [sample] = buffer.getSample(channel, sample)
-            //    + bufferOH.getSample(channel, sample) * juce::Decibels::decibelsToGain<float>(*OHsliderValue);
+            
         }
     }
 

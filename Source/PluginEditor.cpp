@@ -20,7 +20,7 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     for (int i = 0; i < 128; i++)
         snareNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i+1);
     snareNoteMenu.onChange = [this] { samplePackMenuChanged(); };
-    snareNoteMenu.setSelectedId(60);    // default MIDI note for snare
+    snareNoteMenu.setSelectedId(61);    // default MIDI note for snare (+1, because of the ID)
 
     addAndMakeVisible(floorTomButton);
     floorTomButton.setButtonText("Floor Tom close (67)");
