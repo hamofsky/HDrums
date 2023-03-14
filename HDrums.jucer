@@ -28,8 +28,6 @@
             file="Source/SamplerSoundLayer.h"/>
       <FILE id="qiglKm" name="SnareSlidersPage.h" compile="0" resource="0"
             file="Source/SnareSlidersPage.h"/>
-      <FILE id="vQ9Rv4" name="SnareSlidersPage.cpp" compile="1" resource="0"
-            file="Source/SnareSlidersPage.cpp"/>
       <FILE id="wuHdCy" name="KickSlidersPage.h" compile="0" resource="0"
             file="Source/KickSlidersPage.h"/>
     </GROUP>

@@ -2,21 +2,30 @@
 #include "PluginEditor.h"
 #include "JuceHeader.h"
 #include "MidiProcessor.h"
-#include "SnareSlidersPage.h"
 #include "KickSlidersPage.h"
+#include "SnareSlidersPage.h"
 
 HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
-    : AudioProcessorEditor(&p), audioProcessor(p), myTabbedComponent(juce::TabbedButtonBar::Orientation::TabsAtTop), kickSlidersPage()//, openButton("Browse for directory")
+    : AudioProcessorEditor(&p), audioProcessor(p), myTabbedComponent(juce::TabbedButtonBar::Orientation::TabsAtTop), kickSlidersPage(), snareSlidersPage()//, openButton("Browse for directory")
 {
     setSize(1000, 400);
 
     addAndMakeVisible(&myTabbedComponent);
     myTabbedComponent.addTab("Kick", juce::Colours::pink.withAlpha(0.9f), &kickSlidersPage, true);
-    myTabbedComponent.addTab("Snare", juce::Colours::red.withAlpha(0.6f), new Component(), true);
+    myTabbedComponent.addTab("Snare", juce::Colours::red.withAlpha(0.6f), &snareSlidersPage, true);
     myTabbedComponent.addTab("is", juce::Colours::green.withAlpha(0.5f), new Component(), true);
     myTabbedComponent.addTab("lovely", juce::Colours::blue.withAlpha(0.5f), new Component(), true);
 
     kickCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, KICK_CLOSE_GAIN_ID, kickSlidersPage.kickCloseSlider);
+    kickOHSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, KICK_OH_GAIN_ID, kickSlidersPage.kickOHSlider);
+    kickRoomSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, KICK_ROOM_GAIN_ID, kickSlidersPage.kickRoomSlider);
+    kickBleedSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, KICK_BLEED_GAIN_ID, kickSlidersPage.kickBleedSlider);
+
+    snareTopCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, SNARE_TOP_CLOSE_GAIN_ID, snareSlidersPage.snareTopCloseSlider);
+    snareBotCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, SNARE_BOT_CLOSE_GAIN_ID, snareSlidersPage.snareBotCloseSlider);
+    snareOHSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, SNARE_OH_GAIN_ID, snareSlidersPage.snareOHSlider);
+    snareRoomSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, SNARE_ROOM_GAIN_ID, snareSlidersPage.snareRoomSlider);
+    snareBleedSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, SNARE_BLEED_GAIN_ID, snareSlidersPage.snareBleedSlider);
 
 
     // Buttons for triggering samples internally ========================================
@@ -165,9 +174,7 @@ void HDrumsAudioProcessorEditor::resized()
     samplePackMenu.setBounds(10, 10, halfWidth - 15, 20);
     curveMenu.setBounds(halfWidth + 5, 10, halfWidth - 15, 20);
 
-
     myTabbedComponent.setBounds(getWidth() / 2, 0, getWidth() / 2, getHeight());
-    //kickSlidersPage.setBounds(getWidth() / 2, 0, getWidth() / 2, getHeight());
 }
 
 void HDrumsAudioProcessorEditor::samplePackMenuChanged()
@@ -182,11 +189,3 @@ void HDrumsAudioProcessorEditor::playMidiNote(int noteNumber)
     message.setTimeStamp(juce::Time::getMillisecondCounterHiRes() * 0.001 - 0.0);
     audioProcessor.getMidiMessageCollector().addMessageToQueue(message);
 }
-
-//HDrumsAudioProcessorEditor::MyTabbedComponent::MyTabbedComponent()
-//    : TabbedComponent(juce::TabbedButtonBar::TabsAtTop)
-//{
-//    /*addTab("Snare", juce::Colours::red.withAlpha(0.9f), new SnareSlidersPage(&p), true);
-//    addTab("is", juce::Colours::green.withAlpha(0.5f), new Component(), true);
-//    addTab("lovely", juce::Colours::blue.withAlpha(0.5f), new Component(), true);*/
-//}

@@ -2,6 +2,7 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 #include "KickSlidersPage.h"
+#include "SnareSlidersPage.h"
 
 class HDrumsAudioProcessorEditor  : public juce::AudioProcessorEditor
 {
@@ -10,8 +11,8 @@ public:
     ~HDrumsAudioProcessorEditor() override;
 
     juce::TabbedComponent myTabbedComponent;
-
     KickSlidersPage kickSlidersPage;
+    SnareSlidersPage snareSlidersPage;
 
     juce::Font textFont{ 12.0f };
     juce::ComboBox samplePackMenu;
@@ -29,13 +30,22 @@ public:
     juce::TextButton kickDrumButton;
     juce::TextButton floorTomButton;
     juce::TextButton floorTomButton2;
+
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> sliderValue;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> OHsliderValue;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> RoomSliderValue;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> BleedSliderValue;
 
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> kickCloseSliderValue;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> kickOHSliderValue;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> kickRoomSliderValue;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> kickBleedSliderValue;
+
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> snareTopCloseSliderValue;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> snareBotCloseSliderValue;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> snareOHSliderValue;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> snareRoomSliderValue;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> snareBleedSliderValue;
 
 private:
     
@@ -56,6 +66,7 @@ private:
     juce::Label BleedGainLabel;
 
     void samplePackMenuChanged();
+    void playMidiNote(int noteNumber);
 
     juce::String midiNotes[128] = {"C0", "C#0", "D0", "D#0", "E0", "F0", "F#0", "G0", "G#0", "A0", "A#0", "B0",
                                     "C1", "C#1", "D1", "D#1", "E1", "F1", "F#1", "G1", "G#1", "A1", "A#1", "B1",
@@ -68,8 +79,6 @@ private:
                                     "C8", "C#8", "D8", "D#8", "E8", "F8", "F#8", "G8", "G#8", "A8", "A#8", "B8",
                                     "C9", "C#9", "D9", "D#9", "E9", "F9", "F#9", "G9", "G#9", "A9", "A#9", "B9",
                                     "C10", "C#10", "D10", "D#10", "E10", "F10", "F#10", "G10"};
-
-    void playMidiNote(int noteNumber);
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (HDrumsAudioProcessorEditor)
 };

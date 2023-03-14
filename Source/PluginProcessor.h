@@ -3,6 +3,9 @@
 #include <JuceHeader.h>
 #include "MidiProcessor.h"
 #include "Sampler.h"
+#define SAMPLE_PACK_ID "samplePack"
+#define SAMPLE_PACK "SamplePack"
+
 #define GAIN_ID "gain"
 #define GAIN_NAME "Gain"
 #define OH_GAIN_ID "OHgain"
@@ -11,12 +14,26 @@
 #define ROOM_GAIN_NAME "RoomGain"
 #define BLEED_GAIN_ID "bleedGain"
 #define BLEED_GAIN_NAME "BleedGain"
-#define SAMPLE_PACK_ID "samplePack"
-#define SAMPLE_PACK "SamplePack"
+
 #define KICK_CLOSE_GAIN_ID "kickCloseGain"
 #define KICK_CLOSE_GAIN_NAME "KickCloseGain"
+#define KICK_OH_GAIN_ID "kickOHGain"
+#define KICK_OH_GAIN_NAME "KickOHGain"
+#define KICK_ROOM_GAIN_ID "kickRoomGain"
+#define KICK_ROOM_GAIN_NAME "KickRoomGain"
+#define KICK_BLEED_GAIN_ID "kickBleedGain"
+#define KICK_BLEED_GAIN_NAME "KickBleedGain"
+
 #define SNARE_TOP_CLOSE_GAIN_ID "snareTopCloseGain"
 #define SNARE_TOP_CLOSE_GAIN_NAME "SnareTopCloseGain"
+#define SNARE_BOT_CLOSE_GAIN_ID "snareBotCloseGain"
+#define SNARE_BOT_CLOSE_GAIN_NAME "SnareBotCloseGain"
+#define SNARE_OH_GAIN_ID "snareOHGain"
+#define SNARE_OH_GAIN_NAME "SnareOHGain"
+#define SNARE_ROOM_GAIN_ID "snareRoomGain"
+#define SNARE_ROOM_GAIN_NAME "SnareRoomGain"
+#define SNARE_BLEED_GAIN_ID "snareBleedGain"
+#define SNARE_BLEED_GAIN_NAME "SnareBleedGain"
 
 using namespace std;
 
@@ -76,6 +93,7 @@ private:
     Sampler samplerOH;
     Sampler samplerRoom;
     Sampler samplerBleed;
+
     juce::AudioFormatManager formatManager;
 
     float linCurve[5] = {40, 60, 80, 110, 124};

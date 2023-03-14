@@ -3,7 +3,6 @@
 #include "PluginEditor.cpp"
 #include <JuceHeader.h>
 #include "SamplerSoundLayer.h"
-#include "KickSlidersPage.h"
 
 HDrumsAudioProcessor::HDrumsAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -52,6 +51,23 @@ juce::AudioProcessorValueTreeState::ParameterLayout HDrumsAudioProcessor::create
 
     auto KickCloseGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_CLOSE_GAIN_ID, KICK_CLOSE_GAIN_NAME, -48.0f, 10.0f, 0.0f);
     params.push_back(std::move(KickCloseGainParam));
+    auto KickOHGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_OH_GAIN_ID, KICK_OH_GAIN_NAME, -48.0f, 10.0f, 0.0f);
+    params.push_back(std::move(KickOHGainParam));
+    auto KickRoomGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_ROOM_GAIN_ID, KICK_ROOM_GAIN_NAME, -48.0f, 10.0f, 0.0f);
+    params.push_back(std::move(KickRoomGainParam));
+    auto KickBleedGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_BLEED_GAIN_ID, KICK_BLEED_GAIN_NAME, -48.0f, 10.0f, 0.0f);
+    params.push_back(std::move(KickBleedGainParam));
+
+    auto SnareTopCloseGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_TOP_CLOSE_GAIN_ID, SNARE_TOP_CLOSE_GAIN_NAME, -48.0f, 10.0f, 0.0f);
+    params.push_back(std::move(SnareTopCloseGainParam));
+    auto SnareBotCloseGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_BOT_CLOSE_GAIN_ID, SNARE_BOT_CLOSE_GAIN_NAME, -48.0f, 10.0f, 0.0f);
+    params.push_back(std::move(SnareBotCloseGainParam));
+    auto SnareOHGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_OH_GAIN_ID, SNARE_OH_GAIN_NAME, -48.0f, 10.0f, 0.0f);
+    params.push_back(std::move(SnareOHGainParam));
+    auto SnareRoomGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_ROOM_GAIN_ID, SNARE_ROOM_GAIN_NAME, -48.0f, 10.0f, 0.0f);
+    params.push_back(std::move(SnareRoomGainParam));
+    auto SnareBleedGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_BLEED_GAIN_ID, SNARE_BLEED_GAIN_NAME, -48.0f, 10.0f, 0.0f);
+    params.push_back(std::move(SnareBleedGainParam));
 
     //auto samplePack = std::make_unique<juce::ComboBoxParameterAttachment>(SAMPLE_PACK_ID, SAMPLE_PACK, 0, 1, 1);
     //params.push_back(std::move(samplePack));
@@ -281,16 +297,26 @@ void HDrumsAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
     midiMessageCollector.removeNextBlockOfMessages(midiMessages, buffer.getNumSamples());
 
     midiProcessor.process(midiMessages);    //narazie nic sie tam nie dzieje
+    
+    for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i) {
+        buffer.clear(i, 0, buffer.getNumSamples());
+    }
+
     auto sliderValue = treeState.getRawParameterValue(GAIN_ID);
     auto OHsliderValue = treeState.getRawParameterValue(OH_GAIN_ID);
     auto RoomSliderValue = treeState.getRawParameterValue(ROOM_GAIN_ID);
     auto BleedSliderValue = treeState.getRawParameterValue(BLEED_GAIN_ID);
 
     auto kickCloseSliderValue = treeState.getRawParameterValue(KICK_CLOSE_GAIN_ID);
+    auto kickOHSliderValue = treeState.getRawParameterValue(KICK_OH_GAIN_ID);
+    auto kickRoomSliderValue = treeState.getRawParameterValue(KICK_ROOM_GAIN_ID);
+    auto kickBleedSliderValue = treeState.getRawParameterValue(KICK_BLEED_GAIN_ID);
 
-    for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i) {
-        buffer.clear(i, 0, buffer.getNumSamples());
-    }
+    auto snareTopCloseSliderValue = treeState.getRawParameterValue(SNARE_TOP_CLOSE_GAIN_ID);
+    auto snareBotCloseSliderValue = treeState.getRawParameterValue(SNARE_BOT_CLOSE_GAIN_ID);
+    auto snareOHSliderValue = treeState.getRawParameterValue(SNARE_OH_GAIN_ID);
+    auto snareRoomSliderValue = treeState.getRawParameterValue(SNARE_ROOM_GAIN_ID);
+    auto snareBleedSliderValue = treeState.getRawParameterValue(SNARE_BLEED_GAIN_ID);
 
     juce::AudioBuffer<float> bufferClose;
     juce::AudioBuffer<float> bufferOH;
@@ -348,6 +374,23 @@ void HDrumsAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
 
     auto kickCloseSliderValue = treeState.getRawParameterValue(KICK_CLOSE_GAIN_ID);
     juce::MemoryOutputStream(destData, true).writeFloat(*kickCloseSliderValue);
+    auto kickOHSliderValue = treeState.getRawParameterValue(KICK_OH_GAIN_ID);
+    juce::MemoryOutputStream(destData, true).writeFloat(*kickOHSliderValue);
+    auto kickRoomSliderValue = treeState.getRawParameterValue(KICK_ROOM_GAIN_ID);
+    juce::MemoryOutputStream(destData, true).writeFloat(*kickRoomSliderValue);
+    auto kickBleedSliderValue = treeState.getRawParameterValue(KICK_BLEED_GAIN_ID);
+    juce::MemoryOutputStream(destData, true).writeFloat(*kickBleedSliderValue);
+
+    auto snareTopCloseSliderValue = treeState.getRawParameterValue(SNARE_TOP_CLOSE_GAIN_ID);
+    juce::MemoryOutputStream(destData, true).writeFloat(*snareTopCloseSliderValue);
+    auto snareBotCloseSliderValue = treeState.getRawParameterValue(SNARE_BOT_CLOSE_GAIN_ID);
+    juce::MemoryOutputStream(destData, true).writeFloat(*snareBotCloseSliderValue);
+    auto snareOHSliderValue = treeState.getRawParameterValue(SNARE_OH_GAIN_ID);
+    juce::MemoryOutputStream(destData, true).writeFloat(*snareOHSliderValue);
+    auto snareRoomSliderValue = treeState.getRawParameterValue(SNARE_ROOM_GAIN_ID);
+    juce::MemoryOutputStream(destData, true).writeFloat(*snareRoomSliderValue);
+    auto snareBleedSliderValue = treeState.getRawParameterValue(SNARE_BLEED_GAIN_ID);
+    juce::MemoryOutputStream(destData, true).writeFloat(*snareBleedSliderValue);
 }
 
 void HDrumsAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
