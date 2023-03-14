@@ -1,12 +1,17 @@
 #pragma once
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "KickSlidersPage.h"
 
 class HDrumsAudioProcessorEditor  : public juce::AudioProcessorEditor
 {
 public:
     HDrumsAudioProcessorEditor(HDrumsAudioProcessor&);
     ~HDrumsAudioProcessorEditor() override;
+
+    juce::TabbedComponent myTabbedComponent;
+
+    KickSlidersPage kickSlidersPage;
 
     juce::Font textFont{ 12.0f };
     juce::ComboBox samplePackMenu;
@@ -27,14 +32,19 @@ public:
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> sliderValue;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> OHsliderValue;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> RoomSliderValue;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> BleedSliderValue;
 
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> kickCloseSliderValue;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> snareTopCloseSliderValue;
 
 private:
     
+    juce::AudioFormatManager formatManager;
+
     juce::TextButton openButton;
     //juce::String loadDirectory();
-    juce::AudioFormatManager formatManager;
+
+    juce::Image background;
 
     juce::Slider gainSlider;
     juce::Label gainLabel;
@@ -42,6 +52,8 @@ private:
     juce::Label OHgainLabel;
     juce::Slider RoomGainSlider;
     juce::Label RoomGainLabel;
+    juce::Slider BleedGainSlider;
+    juce::Label BleedGainLabel;
 
     void samplePackMenuChanged();
 
@@ -58,18 +70,6 @@ private:
                                     "C10", "C#10", "D10", "D#10", "E10", "F10", "F#10", "G10"};
 
     void playMidiNote(int noteNumber);
-    
-    juce::Image background;
-
-
-    /*class MyTabbedComponent : public juce::TabbedComponent
-    {
-        public:
-            MyTabbedComponent();
-        private:
-            JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MyTabbedComponent)
-    };*/
-    juce::TabbedComponent myTabbedComponent;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (HDrumsAudioProcessorEditor)
 };

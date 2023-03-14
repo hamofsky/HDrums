@@ -4,9 +4,9 @@
 #include "SnareSlidersPage.h"
 
 SnareSlidersPage::SnareSlidersPage(HDrumsAudioProcessor& p)
-	: HDrumsAudioProcessorEditor(p), audioProcessor(p)
+	: HDrumsAudioProcessorEditor(p), audioProcessor2(p)
 {
-	snareTopCloseSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
+	/*snareTopCloseSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 	snareTopCloseSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
 	snareTopCloseSlider.setRange(-48.0f, 10.0f);
 	snareTopCloseSlider.setDoubleClickReturnValue(true, 0.0f);
@@ -15,7 +15,7 @@ SnareSlidersPage::SnareSlidersPage(HDrumsAudioProcessor& p)
 	addAndMakeVisible(snareTopCloseSliderLabel);
 	snareTopCloseSliderLabel.setText("SD Top", juce::dontSendNotification);
 	snareTopCloseSliderLabel.setJustificationType(juce::Justification::centred);
-	snareTopCloseSliderLabel.attachToComponent(&snareTopCloseSlider, false);
+	snareTopCloseSliderLabel.attachToComponent(&snareTopCloseSlider, false);*/
 }
 
 SnareSlidersPage::~SnareSlidersPage()
@@ -32,5 +32,5 @@ void SnareSlidersPage::paint(juce::Graphics& g)
 
 void SnareSlidersPage::resized()
 {
-	snareTopCloseSlider.setBounds(30, 100, 80, getHeight() - 200);
+	//snareTopCloseSlider.setBounds(30, 100, 80, getHeight() - 200);
 }

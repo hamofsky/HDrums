@@ -3,6 +3,7 @@
 #include "PluginEditor.cpp"
 #include <JuceHeader.h>
 #include "SamplerSoundLayer.h"
+#include "KickSlidersPage.h"
 
 HDrumsAudioProcessor::HDrumsAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -15,9 +16,6 @@ HDrumsAudioProcessor::HDrumsAudioProcessor()
     #endif
     ),
     treeState(*this, nullptr, "PARAMETER", { createParameterLayout()})
-    //treeState(*this, nullptr, "PARAMETER", {std::make_unique<juce::ComboBoxParameterAttachment>(SAMPLE_PACK_ID, SAMPLE_PACK),
-    //                                        std::make_unique<juce::AudioParameterFloat>(GAIN_ID, GAIN_NAME, -48.0f, 10.0f, 0.0f),
-    //                                        std::make_unique<juce::AudioParameterFloat>(OH_GAIN_ID, OH_GAIN_NAME, -48.0f, 10.0f, 0.0f) })
 #endif
 {
 
@@ -27,6 +25,7 @@ HDrumsAudioProcessor::HDrumsAudioProcessor()
         sampler.addVoice(new juce::SamplerVoice());
         samplerOH.addVoice(new juce::SamplerVoice());
         samplerRoom.addVoice(new juce::SamplerVoice());
+        samplerBleed.addVoice(new juce::SamplerVoice());
     }
 
     loadSamples(1, 1, 57, 60);  // default settings for samples
@@ -48,9 +47,11 @@ juce::AudioProcessorValueTreeState::ParameterLayout HDrumsAudioProcessor::create
     params.push_back(std::move(OHgainParam));
     auto RoomGainParam = std::make_unique<juce::AudioParameterFloat>(ROOM_GAIN_ID, ROOM_GAIN_NAME, -48.0f, 10.0f, 0.0f);
     params.push_back(std::move(RoomGainParam));
+    auto BleedGainParam = std::make_unique<juce::AudioParameterFloat>(BLEED_GAIN_ID, BLEED_GAIN_NAME, -48.0f, 10.0f, 0.0f);
+    params.push_back(std::move(BleedGainParam));
 
-    auto SnareTopCloseGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_TOP_CLOSE_GAIN_ID, SNARE_TOP_CLOSE_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    params.push_back(std::move(SnareTopCloseGainParam));
+    auto KickCloseGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_CLOSE_GAIN_ID, KICK_CLOSE_GAIN_NAME, -48.0f, 10.0f, 0.0f);
+    params.push_back(std::move(KickCloseGainParam));
 
     //auto samplePack = std::make_unique<juce::ComboBoxParameterAttachment>(SAMPLE_PACK_ID, SAMPLE_PACK, 0, 1, 1);
     //params.push_back(std::move(samplePack));
@@ -72,6 +73,8 @@ void HDrumsAudioProcessor::addSample(string sampleName, string destination, int 
             samplerOH.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
         else if (bus == "Room")
             samplerRoom.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+        else if (bus == "Bleed")
+            samplerBleed.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
     }
     else {
         loadDirectory();
@@ -97,54 +100,73 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
     }
 
     if (samplePackID == 1) {
-        sampler.clearSounds();
-        samplerOH.clearSounds();
-        samplerRoom.clearSounds();
+        clearSoundsFromAllSamplers();
         float snareRelease = 0.5;
         float snareMaxLen = 2.0;
 
         string destinationP = destinationAll + "Perkusja/";
         // sampleName, File destination, midiNote, lowestVelocity, highestVelocity, release in s, maxLength in s, bus select (0 - Close Mics, 1 - OH, 2 - Room)
-        HDrumsAudioProcessor::addSample("Ride Hard", destinationP + "Ride Hard.wav", 65, curve[0], 127, 5.0, 8.0, "Close");
-        HDrumsAudioProcessor::addSample("Ride Smooth", destinationP + "Ride Smooth.wav", 65, 1, curve[0] - 1, 0.5, 8.0, "Close");
+        addSample("Ride Hard", destinationP + "Ride Hard.wav", 65, curve[0], 127, 5.0, 8.0, "Close");
+        addSample("Ride Smooth", destinationP + "Ride Smooth.wav", 65, 1, curve[0] - 1, 0.5, 8.0, "Close");
         string GGDdestination = destinationP + "GGD/";
-        HDrumsAudioProcessor::addSample("HH open", GGDdestination + "HH open.wav", 64, 1, 127, 0.12, 6.5, "Close");
-        HDrumsAudioProcessor::addSample("HH closed", GGDdestination + "HH closed.wav", 62, 1, 127, 0.1, 2.0, "Close");
+        addSample("HH open", GGDdestination + "HH open.wav", 64, 1, 127, 0.12, 6.5, "Close");
+        addSample("HH closed", GGDdestination + "HH closed.wav", 62, 1, 127, 0.1, 2.0, "Close");
 
         string snareDestination = destinationP + "Konrad1/Snare/";
-        HDrumsAudioProcessor::addSample("Snare 1_1", snareDestination + "Snare 1_1.wav", snareNoteID, curve[4], 127, snareRelease, snareMaxLen, "Close");
-        HDrumsAudioProcessor::addSample("Snare 2_1", snareDestination + "Snare 2_1.wav", snareNoteID, curve[3], curve[4] - 1, snareRelease, snareMaxLen, "Close");
-        HDrumsAudioProcessor::addSample("Snare 3_1", snareDestination + "Snare 3_1.wav", snareNoteID, curve[2], curve[3] - 1, snareRelease, snareMaxLen, "Close");
-        HDrumsAudioProcessor::addSample("Snare 4_1", snareDestination + "Snare 4_1.wav", snareNoteID, curve[1], curve[2] - 1, snareRelease, snareMaxLen, "Close");
-        HDrumsAudioProcessor::addSample("Snare 5_1", snareDestination + "Snare 5_1.wav", snareNoteID, curve[0], curve[1] - 1, snareRelease, snareMaxLen, "Close");
-        HDrumsAudioProcessor::addSample("Snare 6_1", snareDestination + "Snare 6_1.wav", snareNoteID, 1, curve[0] - 1, snareRelease, snareMaxLen, "Close");
+        addSample("Snare 1_1", snareDestination + "Snare 1_1.wav", snareNoteID, curve[4], 127, snareRelease, snareMaxLen, "Close");
+        addSample("Snare 2_1", snareDestination + "Snare 2_1.wav", snareNoteID, curve[3], curve[4] - 1, snareRelease, snareMaxLen, "Close");
+        addSample("Snare 3_1", snareDestination + "Snare 3_1.wav", snareNoteID, curve[2], curve[3] - 1, snareRelease, snareMaxLen, "Close");
+        addSample("Snare 4_1", snareDestination + "Snare 4_1.wav", snareNoteID, curve[1], curve[2] - 1, snareRelease, snareMaxLen, "Close");
+        addSample("Snare 5_1", snareDestination + "Snare 5_1.wav", snareNoteID, curve[0], curve[1] - 1, snareRelease, snareMaxLen, "Close");
+        addSample("Snare 6_1", snareDestination + "Snare 6_1.wav", snareNoteID, 1, curve[0] - 1, snareRelease, snareMaxLen, "Close");
         string kickDestination = destinationP + "Konrad1/Kick/";
-        HDrumsAudioProcessor::addSample("Kick 0_1", kickDestination + "Kick 0_1.wav", kickNoteID, 126, 127, 0.6, 2.0, "Close");
-        HDrumsAudioProcessor::addSample("Kick 1_1", kickDestination + "Kick 1_1.wav", kickNoteID, 114, 125, 0.6, 2.0, "Close");
-        HDrumsAudioProcessor::addSample("Kick 2_1", kickDestination + "Kick 2_1.wav", kickNoteID, 100, 113, 0.6, 2.0, "Close");
-        HDrumsAudioProcessor::addSample("Kick 3_1", kickDestination + "Kick 3_1.wav", kickNoteID, 85, 99, 0.6, 2.0, "Close");
-        HDrumsAudioProcessor::addSample("Kick 4_1", kickDestination + "Kick 4_1.wav", kickNoteID, 75, 84, 0.6, 2.0, "Close");
-        HDrumsAudioProcessor::addSample("Kick 5_1", kickDestination + "Kick 5_1.wav", kickNoteID, 66, 74, 0.6, 2.0, "Close");
-        HDrumsAudioProcessor::addSample("Kick 6_1", kickDestination + "Kick 6_1.wav", kickNoteID, curve[0], curve[1] - 1, 0.6, 2.0, "Close");
-        HDrumsAudioProcessor::addSample("Kick 7_1", kickDestination + "Kick 7_1.wav", kickNoteID, 1, curve[0] - 1, 0.6, 2.0, "Close");
+        addSample("Kick 0_1", kickDestination + "Kick 0_1.wav", kickNoteID, 126, 127, 0.6, 2.0, "Close");
+        addSample("Kick 1_1", kickDestination + "Kick 1_1.wav", kickNoteID, 114, 125, 0.6, 2.0, "Close");
+        addSample("Kick 2_1", kickDestination + "Kick 2_1.wav", kickNoteID, 100, 113, 0.6, 2.0, "Close");
+        addSample("Kick 3_1", kickDestination + "Kick 3_1.wav", kickNoteID, 85, 99, 0.6, 2.0, "Close");
+        addSample("Kick 4_1", kickDestination + "Kick 4_1.wav", kickNoteID, 75, 84, 0.6, 2.0, "Close");
+        addSample("Kick 5_1", kickDestination + "Kick 5_1.wav", kickNoteID, 66, 74, 0.6, 2.0, "Close");
+        addSample("Kick 6_1", kickDestination + "Kick 6_1.wav", kickNoteID, curve[0], curve[1] - 1, 0.6, 2.0, "Close");
+        addSample("Kick 7_1", kickDestination + "Kick 7_1.wav", kickNoteID, 1, curve[0] - 1, 0.6, 2.0, "Close");
         string FTCloseDestination = destinationP + "Konrad1/FT/Close/";
-        HDrumsAudioProcessor::addSample("FT Close 1_1", FTCloseDestination + "FT Close 1_1.wav", 67, 1, 127, 0.7, 1.5, "Close");
+        addSample("FT Close 1_1", FTCloseDestination + "FT Close 1_1.wav", 67, 1, 127, 0.7, 1.5, "Close");
         string FTOHDestination = destinationP + "Konrad1/FT/OH/";
-        HDrumsAudioProcessor::addSample("FT OH 1_1", FTOHDestination + "FT OH 1_1.wav", 67, 1, 127, 0.7, 1.5, "OH");
+        addSample("FT OH 1_1", FTOHDestination + "FT OH 1_1.wav", 67, 1, 127, 0.7, 1.5, "OH");
     }
     else if (samplePackID == 2) {
-        sampler.clearSounds();
-        samplerOH.clearSounds();
-        samplerRoom.clearSounds();
+        clearSoundsFromAllSamplers();
         
         string LeafDestination = destinationAll + "Fall of the Leaf/";
         // sampleName, File destination, midiNote, lowestVelocity, highestVelocity, release in s, maxLength in s, bus select (0 - Close Mics, 1 - OH, 2 - Room)
-        HDrumsAudioProcessor::addSample("Leaf Kick + Crash", LeafDestination + "Leaf Kick + Crash.wav", 65, 1, 127, 5.0, 8.0, "Close");
-        HDrumsAudioProcessor::addSample("Leaf Kick", LeafDestination + "Leaf Kick.wav", kickNoteID, 1, 127, 0.6, 2.0, "Close");
-        HDrumsAudioProcessor::addSample("Leaf Snare", LeafDestination + "Leaf Snare.wav", snareNoteID, 1, 127, 0.5, 2.0, "Close");
-        HDrumsAudioProcessor::addSample("Leaf Trap Hat", LeafDestination + "Leaf Trap Hat.wav", 64, 1, 127, 0.12, 6.5, "Close");
-        HDrumsAudioProcessor::addSample("Leaf Hat", LeafDestination + "Leaf Hat.wav", 62, 1, 127, 0.1, 2.0, "Close");
+        addSample("Leaf Kick + Crash", LeafDestination + "Leaf Kick + Crash.wav", 65, 1, 127, 5.0, 8.0, "Close");
+        addSample("Leaf Kick", LeafDestination + "Leaf Kick.wav", kickNoteID, 1, 127, 0.6, 2.0, "Close");
+        addSample("Leaf Snare", LeafDestination + "Leaf Snare.wav", snareNoteID, 1, 127, 0.5, 2.0, "Close");
+        addSample("Leaf Trap Hat", LeafDestination + "Leaf Trap Hat.wav", 64, 1, 127, 0.12, 6.5, "Close");
+        addSample("Leaf Hat", LeafDestination + "Leaf Hat.wav", 62, 1, 127, 0.1, 2.0, "Close");
     }
+    else if (samplePackID == 3) {
+        clearSoundsFromAllSamplers();
+        float snareRelease = 0.5;
+        float snareMaxLen = 2.0;
+
+        string dryDestination = destinationAll + "drySamples/";
+        // sampleName, File destination, midiNote, lowestVelocity, highestVelocity, release in s, maxLength in s, bus select (0 - Close Mics, 1 - OH, 2 - Room)
+        string snareAllDestination = dryDestination + "snareAll/";
+        string snareDestination = snareAllDestination + "snare/";
+        addSample("Snare 6 Top", snareDestination + "snare_6_top.wav", snareNoteID, 1, 127, snareRelease, snareMaxLen, "Close");
+        addSample("Snare 6 Bot", snareDestination + "snare_6_bot.wav", snareNoteID, 1, 127, snareRelease, snareMaxLen, "Close");
+        addSample("Snare 6 OH", snareDestination + "snare_6_OH.wav", snareNoteID, 1, 127, snareRelease, snareMaxLen, "OH");
+        addSample("Snare 6 room", snareDestination + "snare_6_room.wav", snareNoteID, 1, 127, snareRelease, snareMaxLen, "Room");
+        addSample("Snare 6 bleed", snareDestination + "snare_6_bleed.wav", snareNoteID, 1, 127, snareRelease, snareMaxLen, "Bleed");
+    }
+}
+
+void HDrumsAudioProcessor::clearSoundsFromAllSamplers()
+{
+    sampler.clearSounds();
+    samplerOH.clearSounds();
+    samplerRoom.clearSounds();
+    samplerBleed.clearSounds();
 }
 
 const juce::String HDrumsAudioProcessor::getName() const
@@ -214,6 +236,7 @@ void HDrumsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock
     sampler.setCurrentPlaybackSampleRate(sampleRate);
     samplerOH.setCurrentPlaybackSampleRate(sampleRate);
     samplerRoom.setCurrentPlaybackSampleRate(sampleRate);
+    samplerBleed.setCurrentPlaybackSampleRate(sampleRate);
     midiMessageCollector.reset(sampleRate);
 }
 
@@ -261,32 +284,38 @@ void HDrumsAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
     auto sliderValue = treeState.getRawParameterValue(GAIN_ID);
     auto OHsliderValue = treeState.getRawParameterValue(OH_GAIN_ID);
     auto RoomSliderValue = treeState.getRawParameterValue(ROOM_GAIN_ID);
+    auto BleedSliderValue = treeState.getRawParameterValue(BLEED_GAIN_ID);
+
+    auto kickCloseSliderValue = treeState.getRawParameterValue(KICK_CLOSE_GAIN_ID);
 
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i) {
         buffer.clear(i, 0, buffer.getNumSamples());
     }
 
+    juce::AudioBuffer<float> bufferClose;
     juce::AudioBuffer<float> bufferOH;
     juce::AudioBuffer<float> bufferRoom;
+    juce::AudioBuffer<float> bufferBleed;
+    bufferClose.makeCopyOf(buffer);
     bufferOH.makeCopyOf(buffer);
     bufferRoom.makeCopyOf(buffer);
+    bufferBleed.makeCopyOf(buffer);
 
     sampler.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
     buffer.applyGain(juce::Decibels::decibelsToGain<float>(*sliderValue));
+    buffer.applyGain(juce::Decibels::decibelsToGain<float>(*kickCloseSliderValue));
 
     samplerOH.renderNextBlock(bufferOH, midiMessages, 0, bufferOH.getNumSamples());
     buffer.addFrom(0, 0, bufferOH, 0, 0, bufferOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*OHsliderValue));
     buffer.addFrom(1, 0, bufferOH, 1, 0, bufferOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*OHsliderValue));
 
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
-    {
-        auto* channelData = buffer.getWritePointer (channel);
+    samplerRoom.renderNextBlock(bufferRoom, midiMessages, 0, bufferRoom.getNumSamples());
+    buffer.addFrom(0, 0, bufferRoom, 0, 0, bufferRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*RoomSliderValue));
+    buffer.addFrom(1, 0, bufferRoom, 1, 0, bufferRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*RoomSliderValue));
 
-        for (int sample = 0; sample < buffer.getNumSamples(); ++sample)
-        {
-            
-        }
-    }
+    samplerBleed.renderNextBlock(bufferBleed, midiMessages, 0, bufferBleed.getNumSamples());
+    buffer.addFrom(0, 0, bufferBleed, 0, 0, bufferBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*BleedSliderValue));
+    buffer.addFrom(1, 0, bufferBleed, 1, 0, bufferBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*BleedSliderValue));
 
 }
 
@@ -314,6 +343,11 @@ void HDrumsAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
     juce::MemoryOutputStream(destData, true).writeFloat(*OHsliderValue);
     auto RoomSliderValue = treeState.getRawParameterValue(ROOM_GAIN_ID);
     juce::MemoryOutputStream(destData, true).writeFloat(*RoomSliderValue);
+    auto BleedSliderValue = treeState.getRawParameterValue(BLEED_GAIN_ID);
+    juce::MemoryOutputStream(destData, true).writeFloat(*BleedSliderValue);
+
+    auto kickCloseSliderValue = treeState.getRawParameterValue(KICK_CLOSE_GAIN_ID);
+    juce::MemoryOutputStream(destData, true).writeFloat(*kickCloseSliderValue);
 }
 
 void HDrumsAudioProcessor::setStateInformation (const void* data, int sizeInBytes)

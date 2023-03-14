@@ -3,12 +3,23 @@
 #include "JuceHeader.h"
 #include "MidiProcessor.h"
 #include "SnareSlidersPage.h"
+#include "KickSlidersPage.h"
 
 HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
-    : AudioProcessorEditor(&p), audioProcessor(p), myTabbedComponent(juce::TabbedButtonBar::Orientation::TabsAtTop)//, openButton("Browse for directory")
+    : AudioProcessorEditor(&p), audioProcessor(p), myTabbedComponent(juce::TabbedButtonBar::Orientation::TabsAtTop), kickSlidersPage()//, openButton("Browse for directory")
 {
     setSize(1000, 400);
 
+    addAndMakeVisible(&myTabbedComponent);
+    myTabbedComponent.addTab("Kick", juce::Colours::pink.withAlpha(0.9f), &kickSlidersPage, true);
+    myTabbedComponent.addTab("Snare", juce::Colours::red.withAlpha(0.6f), new Component(), true);
+    myTabbedComponent.addTab("is", juce::Colours::green.withAlpha(0.5f), new Component(), true);
+    myTabbedComponent.addTab("lovely", juce::Colours::blue.withAlpha(0.5f), new Component(), true);
+
+    kickCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, KICK_CLOSE_GAIN_ID, kickSlidersPage.kickCloseSlider);
+
+
+    // Buttons for triggering samples internally ========================================
     addAndMakeVisible(kickDrumButton);
     kickDrumButton.setButtonText("Kick Drum");
     kickDrumButton.onClick = [this] { playMidiNote(kickNoteMenu.getSelectedId()); };
@@ -17,7 +28,7 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     for (int i = 1; i < 128; i++)
         kickNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
     kickNoteMenu.onChange = [this] { samplePackMenuChanged(); };
-    kickNoteMenu.setSelectedId(57);    // default MIDI note for snare
+    kickNoteMenu.setSelectedId(57);    // default MIDI note for kick
 
     addAndMakeVisible(snareDrumButton);
     snareDrumButton.setButtonText("Snare Drum");
@@ -42,7 +53,9 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     sliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, GAIN_ID, gainSlider);
     OHsliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, OH_GAIN_ID, OHgainSlider);
     RoomSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, ROOM_GAIN_ID, RoomGainSlider);
+    BleedSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, BLEED_GAIN_ID, BleedGainSlider);
 
+    // Main sliders =======================================================
     gainSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
     gainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
     gainSlider.setRange(-48.0f, 10.0f);
@@ -50,7 +63,7 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     gainSlider.setValue(gainSlider.getValue());
     addAndMakeVisible(&gainSlider);
     addAndMakeVisible(gainLabel);
-    gainLabel.setText("Volume", juce::dontSendNotification);
+    gainLabel.setText("Close", juce::dontSendNotification);
     gainLabel.setJustificationType(juce::Justification::centred);
     gainLabel.attachToComponent(&gainSlider, false);
 
@@ -76,10 +89,23 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     RoomGainLabel.setJustificationType(juce::Justification::centred);
     RoomGainLabel.attachToComponent(&RoomGainSlider, false);
 
+    BleedGainSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
+    BleedGainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
+    BleedGainSlider.setRange(-48.0f, 10.0f);
+    BleedGainSlider.setDoubleClickReturnValue(true, 0.0f);
+    BleedGainSlider.setValue(BleedGainSlider.getValue());
+    addAndMakeVisible(&BleedGainSlider);
+    addAndMakeVisible(BleedGainLabel);
+    BleedGainLabel.setText("Bleed", juce::dontSendNotification);
+    BleedGainLabel.setJustificationType(juce::Justification::centred);
+    BleedGainLabel.attachToComponent(&BleedGainSlider, false);
+
+    // Menu ===========================================================
     addAndMakeVisible(&samplePackMenu);
     samplePackMenu.setJustificationType(juce::Justification::centred);
     samplePackMenu.addItem("Acoustic Drum Kit", 1);
     samplePackMenu.addItem("Electronic Drum Kit", 2);
+    samplePackMenu.addItem("Dry Drum Kit", 3);
     samplePackMenu.onChange = [this] { samplePackMenuChanged(); };
     samplePackMenu.setSelectedId(1);
     
@@ -90,15 +116,6 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     curveMenu.onChange = [this] { samplePackMenuChanged(); };
     curveMenu.setSelectedId(1);
 
-
-
-    addAndMakeVisible(&myTabbedComponent);
-    myTabbedComponent.setAlwaysOnTop(true);
-    //myTabbedComponent.addTab("Snare", juce::Colours::red.withAlpha(0.9f), new SnareSlidersPage(p), true);
-    myTabbedComponent.addTab("Snare", juce::Colours::red.withAlpha(0.9f), new Component(), true);
-    myTabbedComponent.addTab("is", juce::Colours::green.withAlpha(0.5f), new Component(), true);
-    myTabbedComponent.addTab("lovely", juce::Colours::blue.withAlpha(0.5f), new Component(), true);
-
 }
 
 HDrumsAudioProcessorEditor::~HDrumsAudioProcessorEditor()
@@ -106,7 +123,7 @@ HDrumsAudioProcessorEditor::~HDrumsAudioProcessorEditor()
 
 }
 
-//juce::String NewProjectAudioProcessorEditor::loadDirectory()
+//juce::String HDrumsAudioProcessorEditor::loadDirectory()
 //{
 //    juce::FileChooser myChooser("Select directory");
 //    if (myChooser.browseForDirectory())
@@ -124,10 +141,6 @@ void HDrumsAudioProcessorEditor::paint (juce::Graphics& g)
 
     background = juce::ImageCache::getFromMemory(BinaryData::blue_400x400_png, BinaryData::blue_400x400_pngSize);
     g.drawImageWithin(background, 0, 0, getWidth(), getHeight(), juce::RectanglePlacement::stretchToFit);
-
-    /*g.setColour (juce::Colours::white);
-    g.setFont (15.0f);
-    g.drawFittedText("Hello World!", getLocalBounds(), juce::Justification::centred, 1);*/
 }
 
 void HDrumsAudioProcessorEditor::resized()
@@ -147,11 +160,14 @@ void HDrumsAudioProcessorEditor::resized()
     gainSlider.setBounds(30, 140, 80, getHeight() - 200);
     OHgainSlider.setBounds(120, 140, 80, getHeight() - 200);
     RoomGainSlider.setBounds(210, 140, 80, getHeight() - 200);
+    BleedGainSlider.setBounds(300, 140, 80, getHeight() - 200);
+
     samplePackMenu.setBounds(10, 10, halfWidth - 15, 20);
     curveMenu.setBounds(halfWidth + 5, 10, halfWidth - 15, 20);
 
 
     myTabbedComponent.setBounds(getWidth() / 2, 0, getWidth() / 2, getHeight());
+    //kickSlidersPage.setBounds(getWidth() / 2, 0, getWidth() / 2, getHeight());
 }
 
 void HDrumsAudioProcessorEditor::samplePackMenuChanged()

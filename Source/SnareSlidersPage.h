@@ -10,11 +10,11 @@ public:
 	SnareSlidersPage(HDrumsAudioProcessor&);
 	~SnareSlidersPage() override;
 
-	HDrumsAudioProcessor& audioProcessor;
+	HDrumsAudioProcessor& audioProcessor2;
 
-	juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> snareTopCloseSliderValue;
+	/*juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> snareTopCloseSliderValue;
 	juce::Slider snareTopCloseSlider;
-	juce::Label snareTopCloseSliderLabel;
+	juce::Label snareTopCloseSliderLabel;*/
 
 	void paint(juce::Graphics& g) override;
 
