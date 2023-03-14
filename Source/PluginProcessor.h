@@ -11,6 +11,9 @@
 #define ROOM_GAIN_NAME "RoomGain"
 #define SAMPLE_PACK_ID "samplePack"
 #define SAMPLE_PACK "SamplePack"
+#define SNARE_TOP_CLOSE_GAIN_ID "snareTopCloseGain"
+#define SNARE_TOP_CLOSE_GAIN_NAME "SnareTopCloseGain"
+
 using namespace std;
 
 class HDrumsAudioProcessor  : public juce::AudioProcessor
@@ -61,7 +64,6 @@ public:
 
     juce::MidiBuffer processedBuffer;
 
-    float rawGainValue;
     juce::AudioProcessorValueTreeState treeState;
     juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
 

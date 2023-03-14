@@ -2,11 +2,12 @@
 #include "PluginEditor.h"
 #include "JuceHeader.h"
 #include "MidiProcessor.h"
+#include "SnareSlidersPage.h"
 
 HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
-    : AudioProcessorEditor(&p), audioProcessor(p)//, openButton("Browse for directory")
+    : AudioProcessorEditor(&p), audioProcessor(p), myTabbedComponent(juce::TabbedButtonBar::Orientation::TabsAtTop)//, openButton("Browse for directory")
 {
-    setSize(500, 400);
+    setSize(1000, 400);
 
     addAndMakeVisible(kickDrumButton);
     kickDrumButton.setButtonText("Kick Drum");
@@ -45,6 +46,7 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     gainSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
     gainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
     gainSlider.setRange(-48.0f, 10.0f);
+    gainSlider.setDoubleClickReturnValue(true, 0.0f);
     gainSlider.setValue(gainSlider.getValue());
     addAndMakeVisible(&gainSlider);
     addAndMakeVisible(gainLabel);
@@ -55,6 +57,7 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     OHgainSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
     OHgainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
     OHgainSlider.setRange(-48.0f, 10.0f);
+    OHgainSlider.setDoubleClickReturnValue(true, 0.0f);
     OHgainSlider.setValue(OHgainSlider.getValue());
     addAndMakeVisible(&OHgainSlider);
     addAndMakeVisible(OHgainLabel);
@@ -65,6 +68,7 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     RoomGainSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
     RoomGainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
     RoomGainSlider.setRange(-48.0f, 10.0f);
+    RoomGainSlider.setDoubleClickReturnValue(true, 0.0f);
     RoomGainSlider.setValue(RoomGainSlider.getValue());
     addAndMakeVisible(&RoomGainSlider);
     addAndMakeVisible(RoomGainLabel);
@@ -85,6 +89,15 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     curveMenu.addItem("Logarhytmic", 2);
     curveMenu.onChange = [this] { samplePackMenuChanged(); };
     curveMenu.setSelectedId(1);
+
+
+
+    addAndMakeVisible(&myTabbedComponent);
+    myTabbedComponent.setAlwaysOnTop(true);
+    //myTabbedComponent.addTab("Snare", juce::Colours::red.withAlpha(0.9f), new SnareSlidersPage(p), true);
+    myTabbedComponent.addTab("Snare", juce::Colours::red.withAlpha(0.9f), new Component(), true);
+    myTabbedComponent.addTab("is", juce::Colours::green.withAlpha(0.5f), new Component(), true);
+    myTabbedComponent.addTab("lovely", juce::Colours::blue.withAlpha(0.5f), new Component(), true);
 
 }
 
@@ -119,8 +132,8 @@ void HDrumsAudioProcessorEditor::paint (juce::Graphics& g)
 
 void HDrumsAudioProcessorEditor::resized()
 {
-    auto halfWidth = getWidth() / 2;
-    auto qWidth = getWidth() / 4;
+    auto halfWidth = getWidth() / 4;
+    auto qWidth = getWidth() / 8;
     kickDrumButton.setBounds(10, 40, qWidth - 12.5, 20);
     kickNoteMenu.setBounds(qWidth + 2.5, 40, qWidth - 7.5, 20);
 
@@ -136,6 +149,9 @@ void HDrumsAudioProcessorEditor::resized()
     RoomGainSlider.setBounds(210, 140, 80, getHeight() - 200);
     samplePackMenu.setBounds(10, 10, halfWidth - 15, 20);
     curveMenu.setBounds(halfWidth + 5, 10, halfWidth - 15, 20);
+
+
+    myTabbedComponent.setBounds(getWidth() / 2, 0, getWidth() / 2, getHeight());
 }
 
 void HDrumsAudioProcessorEditor::samplePackMenuChanged()
@@ -150,3 +166,11 @@ void HDrumsAudioProcessorEditor::playMidiNote(int noteNumber)
     message.setTimeStamp(juce::Time::getMillisecondCounterHiRes() * 0.001 - 0.0);
     audioProcessor.getMidiMessageCollector().addMessageToQueue(message);
 }
+
+//HDrumsAudioProcessorEditor::MyTabbedComponent::MyTabbedComponent()
+//    : TabbedComponent(juce::TabbedButtonBar::TabsAtTop)
+//{
+//    /*addTab("Snare", juce::Colours::red.withAlpha(0.9f), new SnareSlidersPage(&p), true);
+//    addTab("is", juce::Colours::green.withAlpha(0.5f), new Component(), true);
+//    addTab("lovely", juce::Colours::blue.withAlpha(0.5f), new Component(), true);*/
+//}

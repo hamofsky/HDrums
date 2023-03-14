@@ -5,7 +5,7 @@
 class HDrumsAudioProcessorEditor  : public juce::AudioProcessorEditor
 {
 public:
-    HDrumsAudioProcessorEditor (HDrumsAudioProcessor&);
+    HDrumsAudioProcessorEditor(HDrumsAudioProcessor&);
     ~HDrumsAudioProcessorEditor() override;
 
     juce::Font textFont{ 12.0f };
@@ -27,6 +27,8 @@ public:
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> sliderValue;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> OHsliderValue;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> RoomSliderValue;
+
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> snareTopCloseSliderValue;
 
 private:
     
@@ -58,6 +60,16 @@ private:
     void playMidiNote(int noteNumber);
     
     juce::Image background;
+
+
+    /*class MyTabbedComponent : public juce::TabbedComponent
+    {
+        public:
+            MyTabbedComponent();
+        private:
+            JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MyTabbedComponent)
+    };*/
+    juce::TabbedComponent myTabbedComponent;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (HDrumsAudioProcessorEditor)
 };

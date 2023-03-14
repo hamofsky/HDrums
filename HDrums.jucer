@@ -26,6 +26,10 @@
             file="Source/SamplerSoundLayer.cpp"/>
       <FILE id="taB5th" name="SamplerSoundLayer.h" compile="0" resource="0"
             file="Source/SamplerSoundLayer.h"/>
+      <FILE id="qiglKm" name="SnareSlidersPage.h" compile="0" resource="0"
+            file="Source/SnareSlidersPage.h"/>
+      <FILE id="vQ9Rv4" name="SnareSlidersPage.cpp" compile="1" resource="0"
+            file="Source/SnareSlidersPage.cpp"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
