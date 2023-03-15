@@ -30,6 +30,13 @@
             file="Source/SnareSlidersPage.h"/>
       <FILE id="wuHdCy" name="KickSlidersPage.h" compile="0" resource="0"
             file="Source/KickSlidersPage.h"/>
+      <FILE id="exwMxc" name="FTomSlidersPage.h" compile="0" resource="0"
+            file="Source/FTomSlidersPage.h"/>
+      <FILE id="l6eS5h" name="HHSlidersPage.h" compile="0" resource="0" file="Source/HHSlidersPage.h"/>
+      <FILE id="GdShUr" name="TomSlidersPage.h" compile="0" resource="0"
+            file="Source/TomSlidersPage.h"/>
+      <FILE id="MBP1An" name="CymbalsSlidersPage.h" compile="0" resource="0"
+            file="Source/CymbalsSlidersPage.h"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>

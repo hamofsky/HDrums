@@ -3,6 +3,9 @@
 #include "PluginProcessor.h"
 #include "KickSlidersPage.h"
 #include "SnareSlidersPage.h"
+#include "TomsSlidersPage.h"
+#include "HHSlidersPage.h"
+#include "CymbalsSlidersPage.h"
 
 class HDrumsAudioProcessorEditor  : public juce::AudioProcessorEditor
 {
@@ -13,6 +16,9 @@ public:
     juce::TabbedComponent myTabbedComponent;
     KickSlidersPage kickSlidersPage;
     SnareSlidersPage snareSlidersPage;
+    TomsSlidersPage tomsSlidersPage;
+    HHSlidersPage hhSlidersPage;
+    CymbalsSlidersPage cymbalsSlidersPage;
 
     juce::Font textFont{ 12.0f };
     juce::ComboBox samplePackMenu;
@@ -47,6 +53,24 @@ public:
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> snareRoomSliderValue;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> snareBleedSliderValue;
 
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> tomCloseSliderValue;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> ftomCloseSliderValue;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> tomsOHSliderValue;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> tomsRoomSliderValue;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> tomsBleedSliderValue;
+
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> hhCloseSliderValue;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> tambCloseSliderValue;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> hhOHSliderValue;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> hhRoomSliderValue;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> hhBleedSliderValue;
+
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> crashCloseSliderValue;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> rideCloseSliderValue;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> cymbalsOHSliderValue;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> cymbalsRoomSliderValue;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> cymbalsBleedSliderValue;
+
 private:
     
     juce::AudioFormatManager formatManager;
@@ -57,12 +81,12 @@ private:
     juce::Image background;
 
     juce::Slider gainSlider;
-    juce::Label gainLabel;
     juce::Slider OHgainSlider;
-    juce::Label OHgainLabel;
     juce::Slider RoomGainSlider;
-    juce::Label RoomGainLabel;
     juce::Slider BleedGainSlider;
+    juce::Label gainLabel;
+    juce::Label OHgainLabel;
+    juce::Label RoomGainLabel;
     juce::Label BleedGainLabel;
 
     void samplePackMenuChanged();

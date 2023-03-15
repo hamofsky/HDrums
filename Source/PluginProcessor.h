@@ -35,6 +35,39 @@
 #define SNARE_BLEED_GAIN_ID "snareBleedGain"
 #define SNARE_BLEED_GAIN_NAME "SnareBleedGain"
 
+#define TOM_CLOSE_GAIN_ID "tomCloseGain"
+#define TOM_CLOSE_GAIN_NAME "TomCloseGain"
+#define FTOM_CLOSE_GAIN_ID "ftomCloseGain"
+#define FTOM_CLOSE_GAIN_NAME "FTomCloseGain"
+#define TOMS_OH_GAIN_ID "tomsOHGain"
+#define TOMS_OH_GAIN_NAME "TomsOHGain"
+#define TOMS_ROOM_GAIN_ID "tomsRoomGain"
+#define TOMS_ROOM_GAIN_NAME "TomsRoomGain"
+#define TOMS_BLEED_GAIN_ID "tomsBleedGain"
+#define TOMS_BLEED_GAIN_NAME "TomsBleedGain"
+
+#define HH_CLOSE_GAIN_ID "hhCloseGain"
+#define HH_CLOSE_GAIN_NAME "HHCloseGain"
+#define TAMB_CLOSE_GAIN_ID "tambCloseGain"
+#define TAMB_CLOSE_GAIN_NAME "TambCloseGain"
+#define HH_OH_GAIN_ID "hhOHGain"
+#define HH_OH_GAIN_NAME "HHOHGain"
+#define HH_ROOM_GAIN_ID "hhRoomGain"
+#define HH_ROOM_GAIN_NAME "HHRoomGain"
+#define HH_BLEED_GAIN_ID "hhBleedGain"
+#define HH_BLEED_GAIN_NAME "HHBleedGain"
+
+#define CRASH_CLOSE_GAIN_ID "crashCloseGain"
+#define CRASH_CLOSE_GAIN_NAME "CrashCloseGain"
+#define RIDE_CLOSE_GAIN_ID "rideCloseGain"
+#define RIDE_CLOSE_GAIN_NAME "RideCloseGain"
+#define CYMBALS_OH_GAIN_ID "cymbalsOHGain"
+#define CYMBALS_OH_GAIN_NAME "CymbalsOHGain"
+#define CYMBALS_ROOM_GAIN_ID "cymbalsRoomGain"
+#define CYMBALS_ROOM_GAIN_NAME "CymbalsRoomGain"
+#define CYMBALS_BLEED_GAIN_ID "cymbalsBleedGain"
+#define CYMBALS_BLEED_GAIN_NAME "CymbalsBleedGain"
+
 using namespace std;
 
 class HDrumsAudioProcessor  : public juce::AudioProcessor
