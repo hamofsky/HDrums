@@ -127,10 +127,22 @@ private:
     Sampler samplerRoom;
     Sampler samplerBleed;
 
+    Sampler samplerKickClose;
+    Sampler samplerKickOH;
+    Sampler samplerKickRoom;
+    Sampler samplerKickBleed;
+
     juce::AudioFormatManager formatManager;
 
-    float linCurve[5] = {40, 60, 80, 110, 124};
-    float logCurve[5] = {80, 100, 115, 122, 126};
+    float linCurveFor3[2] = {40, 60};
+    float linCurveFor4[3] = { 40, 60, 80};
+    float linCurveFor5[4] = { 40, 60, 80, 110};
+    float linCurveFor6[5] = { 40, 60, 80, 110, 124 };
+
+    float logCurveFor3[2] = {80, 100};
+    float logCurveFor4[3] = { 80, 100, 115};
+    float logCurveFor5[4] = { 80, 100, 115, 122};
+    float logCurveFor6[5] = { 80, 100, 115, 122, 126 };
 
     void loadDirectory();
     void clearSoundsFromAllSamplers();

@@ -116,6 +116,7 @@ void HDrumsAudioProcessor::addSample(string sampleName, string destination, int 
         juce::BigInteger midiNotes;
         midiNotes.setRange(midiNote, 1, true);
         juce::Range<float> velocities(1.f / 127 * lowestVelocity, 1.f / 127 * highestVelocity);
+
         if (bus == "Close")
             sampler.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
         else if (bus == "OH")
@@ -124,6 +125,27 @@ void HDrumsAudioProcessor::addSample(string sampleName, string destination, int 
             samplerRoom.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
         else if (bus == "Bleed")
             samplerBleed.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+
+        else if (bus == "KickClose")
+            samplerKickClose.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+        else if (bus == "KickOH")
+            samplerKickOH.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+        else if (bus == "KickRoom")
+            samplerKickRoom.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+        else if (bus == "KickBleed")
+            samplerKickBleed.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+
+        /*else if (bus == "SnareTop")
+            samplerKickClose.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+        else if (bus == "SnareBot")
+            samplerKickOH.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+        else if (bus == "SnareOH")
+            samplerKickOH.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+        else if (bus == "SnareRoom")
+            samplerKickRoom.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+        else if (bus == "SnareBleed")
+            samplerKickBleed.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));*/
+
     }
     else {
         loadDirectory();
@@ -140,12 +162,21 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
 {
     string destinationAll = "C:/Users/damia/Desktop/Sampelki/";
 
-    auto curve = linCurve;
+    auto curveFor3 = linCurveFor3;
+    auto curveFor4 = linCurveFor4;
+    auto curveFor5 = linCurveFor5;
+    auto curveFor6 = linCurveFor6;
     if (curveMenuID == 1) {
-        curve = linCurve;
+        curveFor3 = linCurveFor3;
+        curveFor4 = linCurveFor4;
+        curveFor5 = linCurveFor5;
+        curveFor6 = linCurveFor6;
     }
     else if (curveMenuID == 2) {
-        curve = logCurve;
+        curveFor3 = logCurveFor3;
+        curveFor4 = logCurveFor4;
+        curveFor5 = logCurveFor5;
+        curveFor6 = logCurveFor6;
     }
 
     if (samplePackID == 1) {
@@ -155,19 +186,19 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
 
         string destinationP = destinationAll + "Perkusja/";
         // sampleName, File destination, midiNote, lowestVelocity, highestVelocity, release in s, maxLength in s, bus select (0 - Close Mics, 1 - OH, 2 - Room)
-        addSample("Ride Hard", destinationP + "Ride Hard.wav", 65, curve[0], 127, 5.0, 8.0, "Close");
-        addSample("Ride Smooth", destinationP + "Ride Smooth.wav", 65, 1, curve[0] - 1, 0.5, 8.0, "Close");
+        addSample("Ride Hard", destinationP + "Ride Hard.wav", 65, curveFor6[0], 127, 5.0, 8.0, "Close");
+        addSample("Ride Smooth", destinationP + "Ride Smooth.wav", 65, 1, curveFor6[0] - 1, 0.5, 8.0, "Close");
         string GGDdestination = destinationP + "GGD/";
         addSample("HH open", GGDdestination + "HH open.wav", 64, 1, 127, 0.12, 6.5, "Close");
         addSample("HH closed", GGDdestination + "HH closed.wav", 62, 1, 127, 0.1, 2.0, "Close");
 
         string snareDestination = destinationP + "Konrad1/Snare/";
-        addSample("Snare 1_1", snareDestination + "Snare 1_1.wav", snareNoteID, curve[4], 127, snareRelease, snareMaxLen, "Close");
-        addSample("Snare 2_1", snareDestination + "Snare 2_1.wav", snareNoteID, curve[3], curve[4] - 1, snareRelease, snareMaxLen, "Close");
-        addSample("Snare 3_1", snareDestination + "Snare 3_1.wav", snareNoteID, curve[2], curve[3] - 1, snareRelease, snareMaxLen, "Close");
-        addSample("Snare 4_1", snareDestination + "Snare 4_1.wav", snareNoteID, curve[1], curve[2] - 1, snareRelease, snareMaxLen, "Close");
-        addSample("Snare 5_1", snareDestination + "Snare 5_1.wav", snareNoteID, curve[0], curve[1] - 1, snareRelease, snareMaxLen, "Close");
-        addSample("Snare 6_1", snareDestination + "Snare 6_1.wav", snareNoteID, 1, curve[0] - 1, snareRelease, snareMaxLen, "Close");
+        addSample("Snare 1_1", snareDestination + "Snare 1_1.wav", snareNoteID, curveFor6[4], 127, snareRelease, snareMaxLen, "Close");
+        addSample("Snare 2_1", snareDestination + "Snare 2_1.wav", snareNoteID, curveFor6[3], curveFor6[4] - 1, snareRelease, snareMaxLen, "Close");
+        addSample("Snare 3_1", snareDestination + "Snare 3_1.wav", snareNoteID, curveFor6[2], curveFor6[3] - 1, snareRelease, snareMaxLen, "Close");
+        addSample("Snare 4_1", snareDestination + "Snare 4_1.wav", snareNoteID, curveFor6[1], curveFor6[2] - 1, snareRelease, snareMaxLen, "Close");
+        addSample("Snare 5_1", snareDestination + "Snare 5_1.wav", snareNoteID, curveFor6[0], curveFor6[1] - 1, snareRelease, snareMaxLen, "Close");
+        addSample("Snare 6_1", snareDestination + "Snare 6_1.wav", snareNoteID, 1, curveFor6[0] - 1, snareRelease, snareMaxLen, "Close");
         string kickDestination = destinationP + "Konrad1/Kick/";
         addSample("Kick 0_1", kickDestination + "Kick 0_1.wav", kickNoteID, 126, 127, 0.6, 2.0, "Close");
         addSample("Kick 1_1", kickDestination + "Kick 1_1.wav", kickNoteID, 114, 125, 0.6, 2.0, "Close");
@@ -175,8 +206,8 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         addSample("Kick 3_1", kickDestination + "Kick 3_1.wav", kickNoteID, 85, 99, 0.6, 2.0, "Close");
         addSample("Kick 4_1", kickDestination + "Kick 4_1.wav", kickNoteID, 75, 84, 0.6, 2.0, "Close");
         addSample("Kick 5_1", kickDestination + "Kick 5_1.wav", kickNoteID, 66, 74, 0.6, 2.0, "Close");
-        addSample("Kick 6_1", kickDestination + "Kick 6_1.wav", kickNoteID, curve[0], curve[1] - 1, 0.6, 2.0, "Close");
-        addSample("Kick 7_1", kickDestination + "Kick 7_1.wav", kickNoteID, 1, curve[0] - 1, 0.6, 2.0, "Close");
+        addSample("Kick 6_1", kickDestination + "Kick 6_1.wav", kickNoteID, curveFor6[0], curveFor6[1] - 1, 0.6, 2.0, "Close");
+        addSample("Kick 7_1", kickDestination + "Kick 7_1.wav", kickNoteID, 1, curveFor6[0] - 1, 0.6, 2.0, "Close");
         string FTCloseDestination = destinationP + "Konrad1/FT/Close/";
         addSample("FT Close 1_1", FTCloseDestination + "FT Close 1_1.wav", 67, 1, 127, 0.7, 1.5, "Close");
         string FTOHDestination = destinationP + "Konrad1/FT/OH/";
@@ -195,18 +226,52 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
     }
     else if (samplePackID == 3) {
         clearSoundsFromAllSamplers();
-        float snareRelease = 0.5;
-        float snareMaxLen = 2.0;
 
+        float kickRelease = 0.6;
+        float kickMaxLen = 2.0;
         string dryDestination = destinationAll + "drySamples/";
         // sampleName, File destination, midiNote, lowestVelocity, highestVelocity, release in s, maxLength in s, bus select (0 - Close Mics, 1 - OH, 2 - Room)
+        string kickDestination = dryDestination + "kick/";
+        addSample("Kick 1 Close", kickDestination + "kick_1_close.wav", kickNoteID, 1, curveFor6[0] - 1, kickRelease, kickMaxLen, "KickClose");
+        addSample("Kick 1 OH", kickDestination + "kick_1_OH.wav", kickNoteID, 1, curveFor6[0] - 1, kickRelease, kickMaxLen, "KickOH");
+        addSample("Kick 1 Room", kickDestination + "kick_1_room.wav", kickNoteID, 1, curveFor6[0] - 1, kickRelease, kickMaxLen, "KickRoom");
+        addSample("Kick 1 Bleed", kickDestination + "kick_1_bleed.wav", kickNoteID, 1, curveFor6[0] - 1, kickRelease, kickMaxLen, "KickBleed");
+
+        addSample("Kick 2 Close", kickDestination + "kick_2_close.wav", kickNoteID, curveFor6[0], curveFor6[1] - 1, kickRelease, kickMaxLen, "KickClose");
+        addSample("Kick 2 OH", kickDestination + "kick_2_OH.wav", kickNoteID, curveFor6[0], curveFor6[1] - 1, kickRelease, kickMaxLen, "KickOH");
+        addSample("Kick 2 Room", kickDestination + "kick_2_room.wav", kickNoteID, curveFor6[0], curveFor6[1] - 1, kickRelease, kickMaxLen, "KickRoom");
+        addSample("Kick 2 Bleed", kickDestination + "kick_2_bleed.wav", kickNoteID, curveFor6[0], curveFor6[1] - 1, kickRelease, kickMaxLen, "KickBleed");
+
+        addSample("Kick 3 Close", kickDestination + "kick_3_close.wav", kickNoteID, curveFor6[1], curveFor6[2] - 1, kickRelease, kickMaxLen, "KickClose");
+        addSample("Kick 3 OH", kickDestination + "kick_3_OH.wav", kickNoteID, curveFor6[1], curveFor6[2] - 1, kickRelease, kickMaxLen, "KickOH");
+        addSample("Kick 3 Room", kickDestination + "kick_3_room.wav", kickNoteID, curveFor6[1], curveFor6[2] - 1, kickRelease, kickMaxLen, "KickRoom");
+        addSample("Kick 3 Bleed", kickDestination + "kick_3_bleed.wav", kickNoteID, curveFor6[1], curveFor6[2] - 1, kickRelease, kickMaxLen, "KickBleed");
+
+        addSample("Kick 4 Close", kickDestination + "kick_4_close.wav", kickNoteID, curveFor6[2], curveFor6[3] - 1, kickRelease, kickMaxLen, "KickClose");
+        addSample("Kick 4 OH", kickDestination + "kick_4_OH.wav", kickNoteID, curveFor6[2], curveFor6[3] - 1, kickRelease, kickMaxLen, "KickOH");
+        addSample("Kick 4 Room", kickDestination + "kick_4_room.wav", kickNoteID, curveFor6[2], curveFor6[3] - 1, kickRelease, kickMaxLen, "KickRoom");
+        addSample("Kick 4 Bleed", kickDestination + "kick_4_bleed.wav", kickNoteID, curveFor6[2], curveFor6[3] - 1, kickRelease, kickMaxLen, "KickBleed");
+
+        addSample("Kick 5 Close", kickDestination + "kick_5_close.wav", kickNoteID, curveFor6[3], curveFor6[4] - 1, kickRelease, kickMaxLen, "KickClose");
+        addSample("Kick 5 OH", kickDestination + "kick_5_OH.wav", kickNoteID, curveFor6[3], curveFor6[4] - 1, kickRelease, kickMaxLen, "KickOH");
+        addSample("Kick 5 Room", kickDestination + "kick_5_room.wav", kickNoteID, curveFor6[3], curveFor6[4] - 1, kickRelease, kickMaxLen, "KickRoom");
+        addSample("Kick 5 Bleed", kickDestination + "kick_5_bleed.wav", kickNoteID, curveFor6[3], curveFor6[4] - 1, kickRelease, kickMaxLen, "KickBleed");
+
+        addSample("Kick 6 Close", kickDestination + "kick_6_close.wav", kickNoteID, curveFor6[4], 127, kickRelease, kickMaxLen, "KickClose");
+        addSample("Kick 6 OH", kickDestination + "kick_6_OH.wav", kickNoteID, curveFor6[4], 127, kickRelease, kickMaxLen, "KickOH");
+        addSample("Kick 6 Room", kickDestination + "kick_6_room.wav", kickNoteID, curveFor6[4], 127, kickRelease, kickMaxLen, "KickRoom");
+        addSample("Kick 6 Bleed", kickDestination + "kick_6_bleed.wav", kickNoteID, curveFor6[4], 127, kickRelease, kickMaxLen, "KickBleed");
+
+
+        float snareRelease = 0.5;
+        float snareMaxLen = 2.0;
         string snareAllDestination = dryDestination + "snareAll/";
         string snareDestination = snareAllDestination + "snare/";
         addSample("Snare 6 Top", snareDestination + "snare_6_top.wav", snareNoteID, 1, 127, snareRelease, snareMaxLen, "Close");
         addSample("Snare 6 Bot", snareDestination + "snare_6_bot.wav", snareNoteID, 1, 127, snareRelease, snareMaxLen, "Close");
         addSample("Snare 6 OH", snareDestination + "snare_6_OH.wav", snareNoteID, 1, 127, snareRelease, snareMaxLen, "OH");
-        addSample("Snare 6 room", snareDestination + "snare_6_room.wav", snareNoteID, 1, 127, snareRelease, snareMaxLen, "Room");
-        addSample("Snare 6 bleed", snareDestination + "snare_6_bleed.wav", snareNoteID, 1, 127, snareRelease, snareMaxLen, "Bleed");
+        addSample("Snare 6 Room", snareDestination + "snare_6_room.wav", snareNoteID, 1, 127, snareRelease, snareMaxLen, "Room");
+        addSample("Snare 6 Bleed", snareDestination + "snare_6_bleed.wav", snareNoteID, 1, 127, snareRelease, snareMaxLen, "Bleed");
     }
 }
 
@@ -216,6 +281,12 @@ void HDrumsAudioProcessor::clearSoundsFromAllSamplers()
     samplerOH.clearSounds();
     samplerRoom.clearSounds();
     samplerBleed.clearSounds();
+
+    samplerKickClose.clearSounds();
+    samplerKickOH.clearSounds();
+    samplerKickRoom.clearSounds();
+    samplerKickBleed.clearSounds();
+
 }
 
 const juce::String HDrumsAudioProcessor::getName() const
@@ -282,11 +353,18 @@ void HDrumsAudioProcessor::changeProgramName (int index, const juce::String& new
 //==============================================================================
 void HDrumsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
+    midiMessageCollector.reset(sampleRate);
+
     sampler.setCurrentPlaybackSampleRate(sampleRate);
     samplerOH.setCurrentPlaybackSampleRate(sampleRate);
     samplerRoom.setCurrentPlaybackSampleRate(sampleRate);
     samplerBleed.setCurrentPlaybackSampleRate(sampleRate);
-    midiMessageCollector.reset(sampleRate);
+
+    samplerKickClose.setCurrentPlaybackSampleRate(sampleRate);
+    samplerKickOH.setCurrentPlaybackSampleRate(sampleRate);
+    samplerKickRoom.setCurrentPlaybackSampleRate(sampleRate);
+    samplerKickBleed.setCurrentPlaybackSampleRate(sampleRate);
+
 }
 
 void HDrumsAudioProcessor::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill)
