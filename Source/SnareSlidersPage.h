@@ -8,14 +8,14 @@ class SnareSlidersPage : public juce::Component
 {
 public:
 	juce::Slider snareTopCloseSlider;
-	juce::Label snareTopCloseSliderLabel;
 	juce::Slider snareBotCloseSlider;
-	juce::Label snareBotCloseSliderLabel;
 	juce::Slider snareOHSlider;
-	juce::Label snareOHSliderLabel;
 	juce::Slider snareRoomSlider;
-	juce::Label snareRoomSliderLabel;
 	juce::Slider snareBleedSlider;
+	juce::Label snareTopCloseSliderLabel;
+	juce::Label snareBotCloseSliderLabel;
+	juce::Label snareOHSliderLabel;
+	juce::Label snareRoomSliderLabel;
 	juce::Label snareBleedSliderLabel;
 
 	SnareSlidersPage()
