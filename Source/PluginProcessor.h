@@ -132,17 +132,41 @@ private:
     Sampler samplerKickRoom;
     Sampler samplerKickBleed;
 
+    Sampler samplerSnareTop;
+    Sampler samplerSnareBot;
+    Sampler samplerSnareOH;
+    Sampler samplerSnareRoom;
+    Sampler samplerSnareBleed;
+
+    Sampler samplerTomClose;
+    Sampler samplerFTomClose;
+    Sampler samplerTomsOH;
+    Sampler samplerTomsRoom;
+    Sampler samplerTomsBleed;
+
+    Sampler samplerHHClose;
+    Sampler samplerTambClose;
+    Sampler samplerHHOH;
+    Sampler samplerHHRoom;
+    Sampler samplerHHBleed;
+
+    Sampler samplerCrashClose;
+    Sampler samplerRideClose;
+    Sampler samplerCymbalsOH;
+    Sampler samplerCymbalsRoom;
+    Sampler samplerCymbalsBleed;
+
     juce::AudioFormatManager formatManager;
 
-    float linCurveFor3[2] = {40, 60};
-    float linCurveFor4[3] = { 40, 60, 80};
-    float linCurveFor5[4] = { 40, 60, 80, 110};
-    float linCurveFor6[5] = { 40, 60, 80, 110, 124 };
+    float linCurveFor3[4] = { 1, 40, 60, 128 };
+    float linCurveFor4[5] = { 1, 40, 60, 80, 128 };
+    float linCurveFor5[6] = { 1, 40, 60, 80, 110, 128 };
+    float linCurveFor6[7] = { 1, 40, 60, 80, 110, 124, 128 };
 
-    float logCurveFor3[2] = {80, 100};
-    float logCurveFor4[3] = { 80, 100, 115};
-    float logCurveFor5[4] = { 80, 100, 115, 122};
-    float logCurveFor6[5] = { 80, 100, 115, 122, 126 };
+    float logCurveFor3[4] = { 1, 80, 100, 128 };
+    float logCurveFor4[5] = { 1, 80, 100, 115, 128 };
+    float logCurveFor5[6] = { 1, 80, 100, 115, 122, 128 };
+    float logCurveFor6[7] = { 1, 80, 100, 115, 122, 126, 128 };
 
     void loadDirectory();
     void clearSoundsFromAllSamplers();

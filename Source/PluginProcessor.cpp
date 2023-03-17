@@ -19,12 +19,41 @@ HDrumsAudioProcessor::HDrumsAudioProcessor()
 {
 
     formatManager.registerBasicFormats();
-    for (auto i = 0; i < 30; i++)    // i < x+1 defines how many sounds can play at the same time
+    for (auto i = 0; i < 10; i++)    // i < x+1 defines how many sounds can play at the same time
     {
         sampler.addVoice(new juce::SamplerVoice());
         samplerOH.addVoice(new juce::SamplerVoice());
         samplerRoom.addVoice(new juce::SamplerVoice());
         samplerBleed.addVoice(new juce::SamplerVoice());
+
+        samplerKickClose.addVoice(new juce::SamplerVoice());
+        samplerKickOH.addVoice(new juce::SamplerVoice());
+        samplerKickRoom.addVoice(new juce::SamplerVoice());
+        samplerKickBleed.addVoice(new juce::SamplerVoice());
+
+        samplerSnareTop.addVoice(new juce::SamplerVoice());
+        samplerSnareBot.addVoice(new juce::SamplerVoice());
+        samplerSnareOH.addVoice(new juce::SamplerVoice());
+        samplerSnareRoom.addVoice(new juce::SamplerVoice());
+        samplerSnareBleed.addVoice(new juce::SamplerVoice());
+
+        samplerTomClose.addVoice(new juce::SamplerVoice());
+        samplerFTomClose.addVoice(new juce::SamplerVoice());
+        samplerTomsOH.addVoice(new juce::SamplerVoice());
+        samplerTomsRoom.addVoice(new juce::SamplerVoice());
+        samplerTomsBleed.addVoice(new juce::SamplerVoice());
+
+        samplerHHClose.addVoice(new juce::SamplerVoice());
+        samplerTambClose.addVoice(new juce::SamplerVoice());
+        samplerHHOH.addVoice(new juce::SamplerVoice());
+        samplerHHRoom.addVoice(new juce::SamplerVoice());
+        samplerHHBleed.addVoice(new juce::SamplerVoice());
+
+        samplerCrashClose.addVoice(new juce::SamplerVoice());
+        samplerRideClose.addVoice(new juce::SamplerVoice());
+        samplerCymbalsOH.addVoice(new juce::SamplerVoice());
+        samplerCymbalsRoom.addVoice(new juce::SamplerVoice());
+        samplerCymbalsBleed.addVoice(new juce::SamplerVoice());
     }
 
     loadSamples(1, 1, 57, 60);  // default settings for samples
@@ -135,16 +164,16 @@ void HDrumsAudioProcessor::addSample(string sampleName, string destination, int 
         else if (bus == "KickBleed")
             samplerKickBleed.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
 
-        /*else if (bus == "SnareTop")
-            samplerKickClose.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+        else if (bus == "SnareTop")
+            samplerSnareTop.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
         else if (bus == "SnareBot")
-            samplerKickOH.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+            samplerSnareBot.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
         else if (bus == "SnareOH")
-            samplerKickOH.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+            samplerSnareOH.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
         else if (bus == "SnareRoom")
-            samplerKickRoom.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+            samplerSnareRoom.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
         else if (bus == "SnareBleed")
-            samplerKickBleed.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));*/
+            samplerSnareBleed.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
 
     }
     else {
@@ -232,46 +261,68 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         string dryDestination = destinationAll + "drySamples/";
         // sampleName, File destination, midiNote, lowestVelocity, highestVelocity, release in s, maxLength in s, bus select (0 - Close Mics, 1 - OH, 2 - Room)
         string kickDestination = dryDestination + "kick/";
-        addSample("Kick 1 Close", kickDestination + "kick_1_close.wav", kickNoteID, 1, curveFor6[0] - 1, kickRelease, kickMaxLen, "KickClose");
-        addSample("Kick 1 OH", kickDestination + "kick_1_OH.wav", kickNoteID, 1, curveFor6[0] - 1, kickRelease, kickMaxLen, "KickOH");
-        addSample("Kick 1 Room", kickDestination + "kick_1_room.wav", kickNoteID, 1, curveFor6[0] - 1, kickRelease, kickMaxLen, "KickRoom");
-        addSample("Kick 1 Bleed", kickDestination + "kick_1_bleed.wav", kickNoteID, 1, curveFor6[0] - 1, kickRelease, kickMaxLen, "KickBleed");
-
-        addSample("Kick 2 Close", kickDestination + "kick_2_close.wav", kickNoteID, curveFor6[0], curveFor6[1] - 1, kickRelease, kickMaxLen, "KickClose");
-        addSample("Kick 2 OH", kickDestination + "kick_2_OH.wav", kickNoteID, curveFor6[0], curveFor6[1] - 1, kickRelease, kickMaxLen, "KickOH");
-        addSample("Kick 2 Room", kickDestination + "kick_2_room.wav", kickNoteID, curveFor6[0], curveFor6[1] - 1, kickRelease, kickMaxLen, "KickRoom");
-        addSample("Kick 2 Bleed", kickDestination + "kick_2_bleed.wav", kickNoteID, curveFor6[0], curveFor6[1] - 1, kickRelease, kickMaxLen, "KickBleed");
-
-        addSample("Kick 3 Close", kickDestination + "kick_3_close.wav", kickNoteID, curveFor6[1], curveFor6[2] - 1, kickRelease, kickMaxLen, "KickClose");
-        addSample("Kick 3 OH", kickDestination + "kick_3_OH.wav", kickNoteID, curveFor6[1], curveFor6[2] - 1, kickRelease, kickMaxLen, "KickOH");
-        addSample("Kick 3 Room", kickDestination + "kick_3_room.wav", kickNoteID, curveFor6[1], curveFor6[2] - 1, kickRelease, kickMaxLen, "KickRoom");
-        addSample("Kick 3 Bleed", kickDestination + "kick_3_bleed.wav", kickNoteID, curveFor6[1], curveFor6[2] - 1, kickRelease, kickMaxLen, "KickBleed");
-
-        addSample("Kick 4 Close", kickDestination + "kick_4_close.wav", kickNoteID, curveFor6[2], curveFor6[3] - 1, kickRelease, kickMaxLen, "KickClose");
-        addSample("Kick 4 OH", kickDestination + "kick_4_OH.wav", kickNoteID, curveFor6[2], curveFor6[3] - 1, kickRelease, kickMaxLen, "KickOH");
-        addSample("Kick 4 Room", kickDestination + "kick_4_room.wav", kickNoteID, curveFor6[2], curveFor6[3] - 1, kickRelease, kickMaxLen, "KickRoom");
-        addSample("Kick 4 Bleed", kickDestination + "kick_4_bleed.wav", kickNoteID, curveFor6[2], curveFor6[3] - 1, kickRelease, kickMaxLen, "KickBleed");
-
-        addSample("Kick 5 Close", kickDestination + "kick_5_close.wav", kickNoteID, curveFor6[3], curveFor6[4] - 1, kickRelease, kickMaxLen, "KickClose");
-        addSample("Kick 5 OH", kickDestination + "kick_5_OH.wav", kickNoteID, curveFor6[3], curveFor6[4] - 1, kickRelease, kickMaxLen, "KickOH");
-        addSample("Kick 5 Room", kickDestination + "kick_5_room.wav", kickNoteID, curveFor6[3], curveFor6[4] - 1, kickRelease, kickMaxLen, "KickRoom");
-        addSample("Kick 5 Bleed", kickDestination + "kick_5_bleed.wav", kickNoteID, curveFor6[3], curveFor6[4] - 1, kickRelease, kickMaxLen, "KickBleed");
-
-        addSample("Kick 6 Close", kickDestination + "kick_6_close.wav", kickNoteID, curveFor6[4], 127, kickRelease, kickMaxLen, "KickClose");
-        addSample("Kick 6 OH", kickDestination + "kick_6_OH.wav", kickNoteID, curveFor6[4], 127, kickRelease, kickMaxLen, "KickOH");
-        addSample("Kick 6 Room", kickDestination + "kick_6_room.wav", kickNoteID, curveFor6[4], 127, kickRelease, kickMaxLen, "KickRoom");
-        addSample("Kick 6 Bleed", kickDestination + "kick_6_bleed.wav", kickNoteID, curveFor6[4], 127, kickRelease, kickMaxLen, "KickBleed");
+        addSample("Kick 1 Close", kickDestination + "kick_1_close.wav", kickNoteID, curveFor6[0], curveFor6[1] - 1, kickRelease, kickMaxLen, "KickClose");
+        addSample("Kick 2 Close", kickDestination + "kick_2_close.wav", kickNoteID, curveFor6[1], curveFor6[2] - 1, kickRelease, kickMaxLen, "KickClose");
+        addSample("Kick 3 Close", kickDestination + "kick_3_close.wav", kickNoteID, curveFor6[2], curveFor6[3] - 1, kickRelease, kickMaxLen, "KickClose");
+        addSample("Kick 4 Close", kickDestination + "kick_4_close.wav", kickNoteID, curveFor6[3], curveFor6[4] - 1, kickRelease, kickMaxLen, "KickClose");
+        addSample("Kick 5 Close", kickDestination + "kick_5_close.wav", kickNoteID, curveFor6[4], curveFor6[5] - 1, kickRelease, kickMaxLen, "KickClose");
+        addSample("Kick 6 Close", kickDestination + "kick_6_close.wav", kickNoteID, curveFor6[5], curveFor6[6] - 1, kickRelease, kickMaxLen, "KickClose");
+        addSample("Kick 1 OH", kickDestination + "kick_1_OH.wav", kickNoteID, curveFor6[0], curveFor6[1] - 1, kickRelease, kickMaxLen, "KickOH");
+        addSample("Kick 2 OH", kickDestination + "kick_2_OH.wav", kickNoteID, curveFor6[1], curveFor6[2] - 1, kickRelease, kickMaxLen, "KickOH");
+        addSample("Kick 3 OH", kickDestination + "kick_3_OH.wav", kickNoteID, curveFor6[2], curveFor6[3] - 1, kickRelease, kickMaxLen, "KickOH");
+        addSample("Kick 4 OH", kickDestination + "kick_4_OH.wav", kickNoteID, curveFor6[3], curveFor6[4] - 1, kickRelease, kickMaxLen, "KickOH");
+        addSample("Kick 5 OH", kickDestination + "kick_5_OH.wav", kickNoteID, curveFor6[4], curveFor6[5] - 1, kickRelease, kickMaxLen, "KickOH");
+        addSample("Kick 6 OH", kickDestination + "kick_6_OH.wav", kickNoteID, curveFor6[5], curveFor6[6] - 1, kickRelease, kickMaxLen, "KickOH");
+        addSample("Kick 1 Room", kickDestination + "kick_1_room.wav", kickNoteID, curveFor6[0], curveFor6[1] - 1, kickRelease, kickMaxLen, "KickRoom");
+        addSample("Kick 2 Room", kickDestination + "kick_2_room.wav", kickNoteID, curveFor6[1], curveFor6[2] - 1, kickRelease, kickMaxLen, "KickRoom");
+        addSample("Kick 3 Room", kickDestination + "kick_3_room.wav", kickNoteID, curveFor6[2], curveFor6[3] - 1, kickRelease, kickMaxLen, "KickRoom");
+        addSample("Kick 4 Room", kickDestination + "kick_4_room.wav", kickNoteID, curveFor6[3], curveFor6[4] - 1, kickRelease, kickMaxLen, "KickRoom");
+        addSample("Kick 5 Room", kickDestination + "kick_5_room.wav", kickNoteID, curveFor6[4], curveFor6[5] - 1, kickRelease, kickMaxLen, "KickRoom");
+        addSample("Kick 6 Room", kickDestination + "kick_6_room.wav", kickNoteID, curveFor6[5], curveFor6[6] - 1, kickRelease, kickMaxLen, "KickRoom");
+        addSample("Kick 1 Bleed", kickDestination + "kick_1_bleed.wav", kickNoteID, curveFor6[0], curveFor6[1] - 1, kickRelease, kickMaxLen, "KickBleed");
+        addSample("Kick 2 Bleed", kickDestination + "kick_2_bleed.wav", kickNoteID, curveFor6[1], curveFor6[2] - 1, kickRelease, kickMaxLen, "KickBleed");
+        addSample("Kick 3 Bleed", kickDestination + "kick_3_bleed.wav", kickNoteID, curveFor6[2], curveFor6[3] - 1, kickRelease, kickMaxLen, "KickBleed");
+        addSample("Kick 4 Bleed", kickDestination + "kick_4_bleed.wav", kickNoteID, curveFor6[3], curveFor6[4] - 1, kickRelease, kickMaxLen, "KickBleed");
+        addSample("Kick 5 Bleed", kickDestination + "kick_5_bleed.wav", kickNoteID, curveFor6[4], curveFor6[5] - 1, kickRelease, kickMaxLen, "KickBleed");
+        addSample("Kick 6 Bleed", kickDestination + "kick_6_bleed.wav", kickNoteID, curveFor6[5], curveFor6[6] - 1, kickRelease, kickMaxLen, "KickBleed");
 
 
         float snareRelease = 0.5;
         float snareMaxLen = 2.0;
         string snareAllDestination = dryDestination + "snareAll/";
         string snareDestination = snareAllDestination + "snare/";
-        addSample("Snare 6 Top", snareDestination + "snare_6_top.wav", snareNoteID, 1, 127, snareRelease, snareMaxLen, "Close");
-        addSample("Snare 6 Bot", snareDestination + "snare_6_bot.wav", snareNoteID, 1, 127, snareRelease, snareMaxLen, "Close");
-        addSample("Snare 6 OH", snareDestination + "snare_6_OH.wav", snareNoteID, 1, 127, snareRelease, snareMaxLen, "OH");
-        addSample("Snare 6 Room", snareDestination + "snare_6_room.wav", snareNoteID, 1, 127, snareRelease, snareMaxLen, "Room");
-        addSample("Snare 6 Bleed", snareDestination + "snare_6_bleed.wav", snareNoteID, 1, 127, snareRelease, snareMaxLen, "Bleed");
+        addSample("Snare 1 Top", snareDestination + "snare_1_top.wav", snareNoteID, curveFor6[0], curveFor6[1] - 1, snareRelease, snareMaxLen, "SnareTop");
+        addSample("Snare 2 Top", snareDestination + "snare_2_top.wav", snareNoteID, curveFor6[1], curveFor6[2] - 1, snareRelease, snareMaxLen, "SnareTop");
+        addSample("Snare 3 Top", snareDestination + "snare_3_top.wav", snareNoteID, curveFor6[2], curveFor6[3] - 1, snareRelease, snareMaxLen, "SnareTop");
+        addSample("Snare 4 Top", snareDestination + "snare_4_top.wav", snareNoteID, curveFor6[3], curveFor6[4] - 1, snareRelease, snareMaxLen, "SnareTop");
+        addSample("Snare 5 Top", snareDestination + "snare_5_top.wav", snareNoteID, curveFor6[4], curveFor6[5] - 1, snareRelease, snareMaxLen, "SnareTop");
+        addSample("Snare 6 Top", snareDestination + "snare_6_top.wav", snareNoteID, curveFor6[5], curveFor6[6] - 1, snareRelease, snareMaxLen, "SnareTop");
+        addSample("Snare 1 Bot", snareDestination + "snare_1_bot.wav", snareNoteID, curveFor6[0], curveFor6[1] - 1, snareRelease, snareMaxLen, "SnareBot");
+        addSample("Snare 2 Bot", snareDestination + "snare_2_bot.wav", snareNoteID, curveFor6[1], curveFor6[2] - 1, snareRelease, snareMaxLen, "SnareBot");
+        addSample("Snare 3 Bot", snareDestination + "snare_3_bot.wav", snareNoteID, curveFor6[2], curveFor6[3] - 1, snareRelease, snareMaxLen, "SnareBot");
+        addSample("Snare 4 Bot", snareDestination + "snare_4_bot.wav", snareNoteID, curveFor6[3], curveFor6[4] - 1, snareRelease, snareMaxLen, "SnareBot");
+        addSample("Snare 5 Bot", snareDestination + "snare_5_bot.wav", snareNoteID, curveFor6[4], curveFor6[5] - 1, snareRelease, snareMaxLen, "SnareBot");
+        addSample("Snare 6 Bot", snareDestination + "snare_6_bot.wav", snareNoteID, curveFor6[5], curveFor6[6] - 1, snareRelease, snareMaxLen, "SnareBot");
+        addSample("Snare 1 OH", snareDestination + "snare_1_OH.wav", snareNoteID, curveFor6[0], curveFor6[1] - 1, snareRelease, snareMaxLen, "SnareOH");
+        addSample("Snare 2 OH", snareDestination + "snare_2_OH.wav", snareNoteID, curveFor6[1], curveFor6[2] - 1, snareRelease, snareMaxLen, "SnareOH");
+        addSample("Snare 3 OH", snareDestination + "snare_3_OH.wav", snareNoteID, curveFor6[2], curveFor6[3] - 1, snareRelease, snareMaxLen, "SnareOH");
+        addSample("Snare 4 OH", snareDestination + "snare_4_OH.wav", snareNoteID, curveFor6[3], curveFor6[4] - 1, snareRelease, snareMaxLen, "SnareOH");
+        addSample("Snare 5 OH", snareDestination + "snare_5_OH.wav", snareNoteID, curveFor6[4], curveFor6[5] - 1, snareRelease, snareMaxLen, "SnareOH");
+        addSample("Snare 6 OH", snareDestination + "snare_6_OH.wav", snareNoteID, curveFor6[5], curveFor6[6] - 1, snareRelease, snareMaxLen, "SnareOH");
+        addSample("Snare 1 Room", snareDestination + "snare_1_room.wav", snareNoteID, curveFor6[0], curveFor6[1] - 1, snareRelease, snareMaxLen, "SnareRoom");
+        addSample("Snare 2 Room", snareDestination + "snare_2_room.wav", snareNoteID, curveFor6[1], curveFor6[2] - 1, snareRelease, snareMaxLen, "SnareRoom");
+        addSample("Snare 3 Room", snareDestination + "snare_3_room.wav", snareNoteID, curveFor6[2], curveFor6[3] - 1, snareRelease, snareMaxLen, "SnareRoom");
+        addSample("Snare 4 Room", snareDestination + "snare_4_room.wav", snareNoteID, curveFor6[3], curveFor6[4] - 1, snareRelease, snareMaxLen, "SnareRoom");
+        addSample("Snare 5 Room", snareDestination + "snare_5_room.wav", snareNoteID, curveFor6[4], curveFor6[5] - 1, snareRelease, snareMaxLen, "SnareRoom");
+        addSample("Snare 6 Room", snareDestination + "snare_6_room.wav", snareNoteID, curveFor6[5], curveFor6[6] - 1, snareRelease, snareMaxLen, "SnareRoom");
+        addSample("Snare 1 Bleed", snareDestination + "snare_1_bleed.wav", snareNoteID, curveFor6[0], curveFor6[1] - 1, snareRelease, snareMaxLen, "SnareBleed");
+        addSample("Snare 2 Bleed", snareDestination + "snare_2_bleed.wav", snareNoteID, curveFor6[1], curveFor6[2] - 1, snareRelease, snareMaxLen, "SnareBleed");
+        addSample("Snare 3 Bleed", snareDestination + "snare_3_bleed.wav", snareNoteID, curveFor6[2], curveFor6[3] - 1, snareRelease, snareMaxLen, "SnareBleed");
+        addSample("Snare 4 Bleed", snareDestination + "snare_4_bleed.wav", snareNoteID, curveFor6[3], curveFor6[4] - 1, snareRelease, snareMaxLen, "SnareBleed");
+        addSample("Snare 5 Bleed", snareDestination + "snare_5_bleed.wav", snareNoteID, curveFor6[4], curveFor6[5] - 1, snareRelease, snareMaxLen, "SnareBleed");
+        addSample("Snare 6 Bleed", snareDestination + "snare_6_bleed.wav", snareNoteID, curveFor6[5], curveFor6[6] - 1, snareRelease, snareMaxLen, "SnareBleed");
+
+
     }
 }
 
@@ -286,6 +337,30 @@ void HDrumsAudioProcessor::clearSoundsFromAllSamplers()
     samplerKickOH.clearSounds();
     samplerKickRoom.clearSounds();
     samplerKickBleed.clearSounds();
+
+    samplerSnareTop.clearSounds();
+    samplerSnareBot.clearSounds();
+    samplerSnareOH.clearSounds();
+    samplerSnareRoom.clearSounds();
+    samplerSnareBleed.clearSounds();
+
+    samplerTomClose.clearSounds();
+    samplerFTomClose.clearSounds();
+    samplerTomsOH.clearSounds();
+    samplerTomsRoom.clearSounds();
+    samplerTomsBleed.clearSounds();
+
+    samplerHHClose.clearSounds();
+    samplerTambClose.clearSounds();
+    samplerHHOH.clearSounds();
+    samplerHHRoom.clearSounds();
+    samplerHHBleed.clearSounds();
+
+    samplerCrashClose.clearSounds();
+    samplerRideClose.clearSounds();
+    samplerCymbalsOH.clearSounds();
+    samplerCymbalsRoom.clearSounds();
+    samplerCymbalsBleed.clearSounds();
 
 }
 
@@ -365,6 +440,30 @@ void HDrumsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock
     samplerKickRoom.setCurrentPlaybackSampleRate(sampleRate);
     samplerKickBleed.setCurrentPlaybackSampleRate(sampleRate);
 
+    samplerSnareTop.setCurrentPlaybackSampleRate(sampleRate);
+    samplerSnareBot.setCurrentPlaybackSampleRate(sampleRate);
+    samplerSnareOH.setCurrentPlaybackSampleRate(sampleRate);
+    samplerSnareRoom.setCurrentPlaybackSampleRate(sampleRate);
+    samplerSnareBleed.setCurrentPlaybackSampleRate(sampleRate);
+
+    samplerTomClose.setCurrentPlaybackSampleRate(sampleRate);
+    samplerFTomClose.setCurrentPlaybackSampleRate(sampleRate);
+    samplerTomsOH.setCurrentPlaybackSampleRate(sampleRate);
+    samplerTomsRoom.setCurrentPlaybackSampleRate(sampleRate);
+    samplerTomsBleed.setCurrentPlaybackSampleRate(sampleRate);
+    
+    samplerHHClose.setCurrentPlaybackSampleRate(sampleRate);
+    samplerTambClose.setCurrentPlaybackSampleRate(sampleRate);
+    samplerHHOH.setCurrentPlaybackSampleRate(sampleRate);
+    samplerHHRoom.setCurrentPlaybackSampleRate(sampleRate);
+    samplerHHBleed.setCurrentPlaybackSampleRate(sampleRate);
+    
+    samplerCrashClose.setCurrentPlaybackSampleRate(sampleRate);
+    samplerRideClose.setCurrentPlaybackSampleRate(sampleRate);
+    samplerCymbalsOH.setCurrentPlaybackSampleRate(sampleRate);
+    samplerCymbalsRoom.setCurrentPlaybackSampleRate(sampleRate);
+    samplerCymbalsBleed.setCurrentPlaybackSampleRate(sampleRate);
+
 }
 
 void HDrumsAudioProcessor::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill)
@@ -423,8 +522,8 @@ void HDrumsAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
     auto kickRoomSliderValue = treeState.getRawParameterValue(KICK_ROOM_GAIN_ID);
     auto kickBleedSliderValue = treeState.getRawParameterValue(KICK_BLEED_GAIN_ID);
 
-    auto snareTopCloseSliderValue = treeState.getRawParameterValue(SNARE_TOP_CLOSE_GAIN_ID);
-    auto snareBotCloseSliderValue = treeState.getRawParameterValue(SNARE_BOT_CLOSE_GAIN_ID);
+    auto snareTopSliderValue = treeState.getRawParameterValue(SNARE_TOP_CLOSE_GAIN_ID);
+    auto snareBotSliderValue = treeState.getRawParameterValue(SNARE_BOT_CLOSE_GAIN_ID);
     auto snareOHSliderValue = treeState.getRawParameterValue(SNARE_OH_GAIN_ID);
     auto snareRoomSliderValue = treeState.getRawParameterValue(SNARE_ROOM_GAIN_ID);
     auto snareBleedSliderValue = treeState.getRawParameterValue(SNARE_BLEED_GAIN_ID);
@@ -436,29 +535,171 @@ void HDrumsAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
     auto tomsBleedSliderValue = treeState.getRawParameterValue(TOMS_BLEED_GAIN_ID);
 
     auto hhCloseSliderValue = treeState.getRawParameterValue(HH_CLOSE_GAIN_ID);
+    auto tambCloseSliderValue = treeState.getRawParameterValue(TAMB_CLOSE_GAIN_ID);
     auto hhOHSliderValue = treeState.getRawParameterValue(HH_OH_GAIN_ID);
     auto hhRoomSliderValue = treeState.getRawParameterValue(HH_ROOM_GAIN_ID);
     auto hhBleedSliderValue = treeState.getRawParameterValue(HH_BLEED_GAIN_ID);
 
-    auto CrashCloseSliderValue = treeState.getRawParameterValue(CRASH_CLOSE_GAIN_ID);
-    auto RideCloseSliderValue = treeState.getRawParameterValue(RIDE_CLOSE_GAIN_ID);
-    auto TambCloseSliderValue = treeState.getRawParameterValue(TAMB_CLOSE_GAIN_ID);
-    auto CymbalsOHSliderValue = treeState.getRawParameterValue(CYMBALS_OH_GAIN_ID);
-    auto CymbalsRoomSliderValue = treeState.getRawParameterValue(CYMBALS_ROOM_GAIN_ID);
-    auto CymbalsBleedSliderValue = treeState.getRawParameterValue(CYMBALS_BLEED_GAIN_ID);
+    auto crashCloseSliderValue = treeState.getRawParameterValue(CRASH_CLOSE_GAIN_ID);
+    auto rideCloseSliderValue = treeState.getRawParameterValue(RIDE_CLOSE_GAIN_ID);
+    auto cymbalsOHSliderValue = treeState.getRawParameterValue(CYMBALS_OH_GAIN_ID);
+    auto cymbalsRoomSliderValue = treeState.getRawParameterValue(CYMBALS_ROOM_GAIN_ID);
+    auto cymbalsBleedSliderValue = treeState.getRawParameterValue(CYMBALS_BLEED_GAIN_ID);
 
     juce::AudioBuffer<float> bufferClose;
     juce::AudioBuffer<float> bufferOH;
     juce::AudioBuffer<float> bufferRoom;
     juce::AudioBuffer<float> bufferBleed;
+
+    juce::AudioBuffer<float> bufferKickClose;
+    juce::AudioBuffer<float> bufferKickOH;
+    juce::AudioBuffer<float> bufferKickRoom;
+    juce::AudioBuffer<float> bufferKickBleed;
+
+    juce::AudioBuffer<float> bufferSnareTop;
+    juce::AudioBuffer<float> bufferSnareBot;
+    juce::AudioBuffer<float> bufferSnareOH;
+    juce::AudioBuffer<float> bufferSnareRoom;
+    juce::AudioBuffer<float> bufferSnareBleed;
+    
+    juce::AudioBuffer<float> bufferTomClose;
+    juce::AudioBuffer<float> bufferFTomClose;
+    juce::AudioBuffer<float> bufferTomsOH;
+    juce::AudioBuffer<float> bufferTomsRoom;
+    juce::AudioBuffer<float> bufferTomsBleed;
+    
+    juce::AudioBuffer<float> bufferHHClose;
+    juce::AudioBuffer<float> bufferTambClose;
+    juce::AudioBuffer<float> bufferHHOH;
+    juce::AudioBuffer<float> bufferHHRoom;
+    juce::AudioBuffer<float> bufferHHBleed;
+    
+    juce::AudioBuffer<float> bufferCrashClose;
+    juce::AudioBuffer<float> bufferRideClose;
+    juce::AudioBuffer<float> bufferCymbalsOH;
+    juce::AudioBuffer<float> bufferCymbalsRoom;
+    juce::AudioBuffer<float> bufferCymbalsBleed;
+
     bufferClose.makeCopyOf(buffer);
     bufferOH.makeCopyOf(buffer);
     bufferRoom.makeCopyOf(buffer);
     bufferBleed.makeCopyOf(buffer);
 
+    bufferKickClose.makeCopyOf(buffer);
+    bufferKickOH.makeCopyOf(buffer);
+    bufferKickRoom.makeCopyOf(buffer);
+    bufferKickBleed.makeCopyOf(buffer);
+    
+    bufferSnareTop.makeCopyOf(buffer);
+    bufferSnareBot.makeCopyOf(buffer);
+    bufferSnareOH.makeCopyOf(buffer);
+    bufferSnareRoom.makeCopyOf(buffer);
+    bufferSnareBleed.makeCopyOf(buffer);
+    
+    bufferTomClose.makeCopyOf(buffer);
+    bufferFTomClose.makeCopyOf(buffer);
+    bufferTomsOH.makeCopyOf(buffer);
+    bufferTomsRoom.makeCopyOf(buffer);
+    bufferTomsBleed.makeCopyOf(buffer);
+    
+    bufferHHClose.makeCopyOf(buffer);
+    bufferTambClose.makeCopyOf(buffer);
+    bufferHHOH.makeCopyOf(buffer);
+    bufferHHRoom.makeCopyOf(buffer);
+    bufferHHBleed.makeCopyOf(buffer);
+    
+    bufferCrashClose.makeCopyOf(buffer);
+    bufferRideClose.makeCopyOf(buffer);
+    bufferCymbalsOH.makeCopyOf(buffer);
+    bufferCymbalsRoom.makeCopyOf(buffer);
+    bufferCymbalsBleed.makeCopyOf(buffer);
+
     sampler.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
     buffer.applyGain(juce::Decibels::decibelsToGain<float>(*sliderValue));
-    buffer.applyGain(juce::Decibels::decibelsToGain<float>(*kickCloseSliderValue));
+
+    samplerKickClose.renderNextBlock(bufferKickClose, midiMessages, 0, bufferKickClose.getNumSamples());
+    samplerSnareTop.renderNextBlock(bufferSnareTop, midiMessages, 0, bufferSnareTop.getNumSamples());
+    samplerSnareBot.renderNextBlock(bufferSnareBot, midiMessages, 0, bufferSnareBot.getNumSamples());
+    samplerTomClose.renderNextBlock(bufferTomClose, midiMessages, 0, bufferTomClose.getNumSamples());
+    samplerFTomClose.renderNextBlock(bufferFTomClose, midiMessages, 0, bufferFTomClose.getNumSamples());
+    samplerHHClose.renderNextBlock(bufferHHClose, midiMessages, 0, bufferHHClose.getNumSamples());
+    samplerTambClose.renderNextBlock(bufferTambClose, midiMessages, 0, bufferTambClose.getNumSamples());
+    samplerCrashClose.renderNextBlock(bufferCrashClose, midiMessages, 0, bufferCrashClose.getNumSamples());
+    samplerRideClose.renderNextBlock(bufferRideClose, midiMessages, 0, bufferRideClose.getNumSamples());
+
+    bufferClose.addFrom(0, 0, bufferKickClose, 0, 0, bufferKickClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickCloseSliderValue));
+    bufferClose.addFrom(1, 0, bufferKickClose, 1, 0, bufferKickClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickCloseSliderValue));
+    bufferClose.addFrom(0, 0, bufferSnareTop, 0, 0, bufferSnareTop.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareTopSliderValue));
+    bufferClose.addFrom(1, 0, bufferSnareTop, 1, 0, bufferSnareTop.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareTopSliderValue));
+    bufferClose.addFrom(0, 0, bufferSnareBot, 0, 0, bufferSnareBot.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareBotSliderValue));
+    bufferClose.addFrom(1, 0, bufferSnareBot, 1, 0, bufferSnareBot.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareBotSliderValue));
+    bufferClose.addFrom(0, 0, bufferTomClose, 0, 0, bufferTomClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomCloseSliderValue));
+    bufferClose.addFrom(1, 0, bufferTomClose, 1, 0, bufferTomClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomCloseSliderValue));
+    bufferClose.addFrom(0, 0, bufferFTomClose, 0, 0, bufferFTomClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*ftomCloseSliderValue));
+    bufferClose.addFrom(1, 0, bufferFTomClose, 1, 0, bufferFTomClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*ftomCloseSliderValue));
+    bufferClose.addFrom(0, 0, bufferHHClose, 0, 0, bufferHHClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*hhCloseSliderValue));
+    bufferClose.addFrom(1, 0, bufferHHClose, 1, 0, bufferHHClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*hhCloseSliderValue));
+    bufferClose.addFrom(0, 0, bufferTambClose, 0, 0, bufferTambClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tambCloseSliderValue));
+    bufferClose.addFrom(1, 0, bufferTambClose, 1, 0, bufferTambClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tambCloseSliderValue));
+    bufferClose.addFrom(0, 0, bufferCrashClose, 0, 0, bufferCrashClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*crashCloseSliderValue));
+    bufferClose.addFrom(1, 0, bufferCrashClose, 1, 0, bufferCrashClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*crashCloseSliderValue));
+    bufferClose.addFrom(0, 0, bufferRideClose, 0, 0, bufferRideClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*rideCloseSliderValue));
+    bufferClose.addFrom(1, 0, bufferRideClose, 1, 0, bufferRideClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*rideCloseSliderValue));
+    
+    samplerKickOH.renderNextBlock(bufferKickOH, midiMessages, 0, bufferKickOH.getNumSamples());
+    samplerSnareOH.renderNextBlock(bufferSnareOH, midiMessages, 0, bufferSnareOH.getNumSamples());
+    samplerTomsOH.renderNextBlock(bufferTomsOH, midiMessages, 0, bufferTomsOH.getNumSamples());
+    samplerHHOH.renderNextBlock(bufferHHOH, midiMessages, 0, bufferHHOH.getNumSamples());
+    samplerCymbalsOH.renderNextBlock(bufferCymbalsOH, midiMessages, 0, bufferCymbalsOH.getNumSamples());
+
+    bufferOH.addFrom(0, 0, bufferKickOH, 0, 0, bufferKickOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickOHSliderValue));
+    bufferOH.addFrom(1, 0, bufferKickOH, 1, 0, bufferKickOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickOHSliderValue));
+    bufferOH.addFrom(0, 0, bufferSnareOH, 0, 0, bufferSnareOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareOHSliderValue));
+    bufferOH.addFrom(1, 0, bufferSnareOH, 1, 0, bufferSnareOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareOHSliderValue));
+    bufferOH.addFrom(0, 0, bufferTomsOH, 0, 0, bufferTomsOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsOHSliderValue));
+    bufferOH.addFrom(1, 0, bufferTomsOH, 1, 0, bufferTomsOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsOHSliderValue));
+    bufferOH.addFrom(0, 0, bufferHHOH, 0, 0, bufferHHOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*hhOHSliderValue));
+    bufferOH.addFrom(1, 0, bufferHHOH, 1, 0, bufferHHOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*hhOHSliderValue));
+    bufferOH.addFrom(0, 0, bufferCymbalsOH, 0, 0, bufferCymbalsOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsOHSliderValue));
+    bufferOH.addFrom(1, 0, bufferCymbalsOH, 1, 0, bufferCymbalsOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsOHSliderValue));
+
+    samplerKickRoom.renderNextBlock(bufferKickRoom, midiMessages, 0, bufferKickRoom.getNumSamples());
+    samplerSnareRoom.renderNextBlock(bufferSnareRoom, midiMessages, 0, bufferSnareRoom.getNumSamples());
+    samplerTomsRoom.renderNextBlock(bufferTomsRoom, midiMessages, 0, bufferTomsRoom.getNumSamples());
+    samplerHHRoom.renderNextBlock(bufferHHRoom, midiMessages, 0, bufferHHRoom.getNumSamples());
+    samplerCymbalsRoom.renderNextBlock(bufferCymbalsRoom, midiMessages, 0, bufferCymbalsRoom.getNumSamples());
+
+    bufferRoom.addFrom(0, 0, bufferKickRoom, 0, 0, bufferKickRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickRoomSliderValue));
+    bufferRoom.addFrom(1, 0, bufferKickRoom, 1, 0, bufferKickRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickRoomSliderValue));
+    bufferRoom.addFrom(0, 0, bufferSnareRoom, 0, 0, bufferSnareRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareRoomSliderValue));
+    bufferRoom.addFrom(1, 0, bufferSnareRoom, 1, 0, bufferSnareRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareRoomSliderValue));
+    bufferRoom.addFrom(0, 0, bufferTomsRoom, 0, 0, bufferTomsRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsRoomSliderValue));
+    bufferRoom.addFrom(1, 0, bufferTomsRoom, 1, 0, bufferTomsRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsRoomSliderValue));
+    bufferRoom.addFrom(0, 0, bufferHHRoom, 0, 0, bufferHHRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*hhRoomSliderValue));
+    bufferRoom.addFrom(1, 0, bufferHHRoom, 1, 0, bufferHHRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*hhRoomSliderValue));
+    bufferRoom.addFrom(0, 0, bufferCymbalsRoom, 0, 0, bufferCymbalsRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsRoomSliderValue));
+    bufferRoom.addFrom(1, 0, bufferCymbalsRoom, 1, 0, bufferCymbalsRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsRoomSliderValue));
+
+    samplerKickBleed.renderNextBlock(bufferKickBleed, midiMessages, 0, bufferKickBleed.getNumSamples());
+    samplerSnareBleed.renderNextBlock(bufferSnareBleed, midiMessages, 0, bufferSnareBleed.getNumSamples());
+    samplerTomsBleed.renderNextBlock(bufferTomsBleed, midiMessages, 0, bufferTomsBleed.getNumSamples());
+    samplerHHBleed.renderNextBlock(bufferHHBleed, midiMessages, 0, bufferHHBleed.getNumSamples());
+    samplerCymbalsBleed.renderNextBlock(bufferCymbalsBleed, midiMessages, 0, bufferCymbalsBleed.getNumSamples());
+
+    bufferBleed.addFrom(0, 0, bufferKickBleed, 0, 0, bufferKickBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickBleedSliderValue));
+    bufferBleed.addFrom(1, 0, bufferKickBleed, 1, 0, bufferKickBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickBleedSliderValue));
+    bufferBleed.addFrom(0, 0, bufferSnareBleed, 0, 0, bufferSnareBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareBleedSliderValue));
+    bufferBleed.addFrom(1, 0, bufferSnareBleed, 1, 0, bufferSnareBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareBleedSliderValue));
+    bufferBleed.addFrom(0, 0, bufferTomsBleed, 0, 0, bufferTomsBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsBleedSliderValue));
+    bufferBleed.addFrom(1, 0, bufferTomsBleed, 1, 0, bufferTomsBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsBleedSliderValue));
+    bufferBleed.addFrom(0, 0, bufferHHBleed, 0, 0, bufferHHBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*hhBleedSliderValue));
+    bufferBleed.addFrom(1, 0, bufferHHBleed, 1, 0, bufferHHBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*hhBleedSliderValue));
+    bufferBleed.addFrom(0, 0, bufferCymbalsBleed, 0, 0, bufferCymbalsBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsBleedSliderValue));
+    bufferBleed.addFrom(1, 0, bufferCymbalsBleed, 1, 0, bufferCymbalsBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsBleedSliderValue));
+
+
+    buffer.addFrom(0, 0, bufferClose, 0, 0, bufferClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*sliderValue));
+    buffer.addFrom(1, 0, bufferClose, 1, 0, bufferClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*sliderValue));
 
     samplerOH.renderNextBlock(bufferOH, midiMessages, 0, bufferOH.getNumSamples());
     buffer.addFrom(0, 0, bufferOH, 0, 0, bufferOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*OHsliderValue));
@@ -533,23 +774,23 @@ void HDrumsAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
     juce::MemoryOutputStream(destData, true).writeFloat(*tomsBleedSliderValue);
 
     auto hhCloseSliderValue = treeState.getRawParameterValue(HH_CLOSE_GAIN_ID);
+    auto tambCloseSliderValue = treeState.getRawParameterValue(TAMB_CLOSE_GAIN_ID);
     auto hhOHSliderValue = treeState.getRawParameterValue(HH_OH_GAIN_ID);
     auto hhRoomSliderValue = treeState.getRawParameterValue(HH_ROOM_GAIN_ID);
     auto hhBleedSliderValue = treeState.getRawParameterValue(HH_BLEED_GAIN_ID);
     juce::MemoryOutputStream(destData, true).writeFloat(*hhCloseSliderValue);
+    juce::MemoryOutputStream(destData, true).writeFloat(*tambCloseSliderValue);
     juce::MemoryOutputStream(destData, true).writeFloat(*hhOHSliderValue);
     juce::MemoryOutputStream(destData, true).writeFloat(*hhRoomSliderValue);
     juce::MemoryOutputStream(destData, true).writeFloat(*hhBleedSliderValue);
 
     auto crashCloseSliderValue = treeState.getRawParameterValue(CRASH_CLOSE_GAIN_ID);
     auto rideCloseSliderValue = treeState.getRawParameterValue(RIDE_CLOSE_GAIN_ID);
-    auto tambCloseSliderValue = treeState.getRawParameterValue(TAMB_CLOSE_GAIN_ID);
     auto cymbalsOHSliderValue = treeState.getRawParameterValue(HH_OH_GAIN_ID);
     auto cymbalsRoomSliderValue = treeState.getRawParameterValue(HH_ROOM_GAIN_ID);
     auto cymbalsBleedSliderValue = treeState.getRawParameterValue(HH_BLEED_GAIN_ID);
     juce::MemoryOutputStream(destData, true).writeFloat(*crashCloseSliderValue);
     juce::MemoryOutputStream(destData, true).writeFloat(*rideCloseSliderValue);
-    juce::MemoryOutputStream(destData, true).writeFloat(*tambCloseSliderValue);
     juce::MemoryOutputStream(destData, true).writeFloat(*cymbalsOHSliderValue);
     juce::MemoryOutputStream(destData, true).writeFloat(*cymbalsRoomSliderValue);
     juce::MemoryOutputStream(destData, true).writeFloat(*cymbalsBleedSliderValue);
