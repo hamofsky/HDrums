@@ -56,7 +56,7 @@ HDrumsAudioProcessor::HDrumsAudioProcessor()
         samplerCymbalsBleed.addVoice(new juce::SamplerVoice());
     }
 
-    loadSamples(1, 1, 57, 60);  // default settings for samples
+    loadSamples(1, 1, 57, 60, 61);  // default settings for samples (samplePackMenuId, curveMenuId, kick, snare, snareFlam)
 
 }
 
@@ -187,7 +187,7 @@ void HDrumsAudioProcessor::loadDirectory()
     DBG("Source was a nullptr, so you will have to choose a correct directory");
 }
 
-void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int kickNoteID, int snareNoteID)
+void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int kickNoteID, int snareNoteID, int snareFlamNoteID)
 {
     string destinationAll = "C:/Users/damia/Desktop/Sampelki/";
 
@@ -322,6 +322,32 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         addSample("Snare 5 Bleed", snareDestination + "snare_5_bleed.wav", snareNoteID, curveFor6[4], curveFor6[5] - 1, snareRelease, snareMaxLen, "SnareBleed");
         addSample("Snare 6 Bleed", snareDestination + "snare_6_bleed.wav", snareNoteID, curveFor6[5], curveFor6[6] - 1, snareRelease, snareMaxLen, "SnareBleed");
 
+        string snareFlamDestination = snareAllDestination + "snareFlam/";
+        addSample("SnareFlam 1 Top", snareFlamDestination + "snareFlam_1_top.wav", snareFlamNoteID, curveFor5[0], curveFor5[1] - 1, snareRelease, snareMaxLen, "SnareTop");
+        addSample("SnareFlam 2 Top", snareFlamDestination + "snareFlam_2_top.wav", snareFlamNoteID, curveFor5[1], curveFor5[2] - 1, snareRelease, snareMaxLen, "SnareTop");
+        addSample("SnareFlam 3 Top", snareFlamDestination + "snareFlam_3_top.wav", snareFlamNoteID, curveFor5[2], curveFor5[3] - 1, snareRelease, snareMaxLen, "SnareTop");
+        addSample("SnareFlam 4 Top", snareFlamDestination + "snareFlam_4_top.wav", snareFlamNoteID, curveFor5[3], curveFor5[4] - 1, snareRelease, snareMaxLen, "SnareTop");
+        addSample("SnareFlam 5 Top", snareFlamDestination + "snareFlam_5_top.wav", snareFlamNoteID, curveFor5[4], curveFor5[5] - 1, snareRelease, snareMaxLen, "SnareTop");
+        addSample("SnareFlam 1 Bot", snareFlamDestination + "snareFlam_1_bot.wav", snareFlamNoteID, curveFor5[0], curveFor5[1] - 1, snareRelease, snareMaxLen, "SnareBot");
+        addSample("SnareFlam 2 Bot", snareFlamDestination + "snareFlam_2_bot.wav", snareFlamNoteID, curveFor5[1], curveFor5[2] - 1, snareRelease, snareMaxLen, "SnareBot");
+        addSample("SnareFlam 3 Bot", snareFlamDestination + "snareFlam_3_bot.wav", snareFlamNoteID, curveFor5[2], curveFor5[3] - 1, snareRelease, snareMaxLen, "SnareBot");
+        addSample("SnareFlam 4 Bot", snareFlamDestination + "snareFlam_4_bot.wav", snareFlamNoteID, curveFor5[3], curveFor5[4] - 1, snareRelease, snareMaxLen, "SnareBot");
+        addSample("SnareFlam 5 Bot", snareFlamDestination + "snareFlam_5_bot.wav", snareFlamNoteID, curveFor5[4], curveFor5[5] - 1, snareRelease, snareMaxLen, "SnareBot");
+        addSample("SnareFlam 1 OH", snareFlamDestination + "snareFlam_1_OH.wav", snareFlamNoteID, curveFor5[0], curveFor5[1] - 1, snareRelease, snareMaxLen, "SnareOH");
+        addSample("SnareFlam 2 OH", snareFlamDestination + "snareFlam_2_OH.wav", snareFlamNoteID, curveFor5[1], curveFor5[2] - 1, snareRelease, snareMaxLen, "SnareOH");
+        addSample("SnareFlam 3 OH", snareFlamDestination + "snareFlam_3_OH.wav", snareFlamNoteID, curveFor5[2], curveFor5[3] - 1, snareRelease, snareMaxLen, "SnareOH");
+        addSample("SnareFlam 4 OH", snareFlamDestination + "snareFlam_4_OH.wav", snareFlamNoteID, curveFor5[3], curveFor5[4] - 1, snareRelease, snareMaxLen, "SnareOH");
+        addSample("SnareFlam 5 OH", snareFlamDestination + "snareFlam_5_OH.wav", snareFlamNoteID, curveFor5[4], curveFor5[5] - 1, snareRelease, snareMaxLen, "SnareOH");
+        addSample("SnareFlam 1 Room", snareFlamDestination + "snareFlam_1_room.wav", snareFlamNoteID, curveFor5[0], curveFor5[1] - 1, snareRelease, snareMaxLen, "SnareRoom");
+        addSample("SnareFlam 2 Room", snareFlamDestination + "snareFlam_2_room.wav", snareFlamNoteID, curveFor5[1], curveFor5[2] - 1, snareRelease, snareMaxLen, "SnareRoom");
+        addSample("SnareFlam 3 Room", snareFlamDestination + "snareFlam_3_room.wav", snareFlamNoteID, curveFor5[2], curveFor5[3] - 1, snareRelease, snareMaxLen, "SnareRoom");
+        addSample("SnareFlam 4 Room", snareFlamDestination + "snareFlam_4_room.wav", snareFlamNoteID, curveFor5[3], curveFor5[4] - 1, snareRelease, snareMaxLen, "SnareRoom");
+        addSample("SnareFlam 5 Room", snareFlamDestination + "snareFlam_5_room.wav", snareFlamNoteID, curveFor5[4], curveFor5[5] - 1, snareRelease, snareMaxLen, "SnareRoom");
+        addSample("SnareFlam 1 Bleed", snareFlamDestination + "snareFlam_1_bleed.wav", snareFlamNoteID, curveFor5[0], curveFor5[1] - 1, snareRelease, snareMaxLen, "SnareBleed");
+        addSample("SnareFlam 2 Bleed", snareFlamDestination + "snareFlam_2_bleed.wav", snareFlamNoteID, curveFor5[1], curveFor5[2] - 1, snareRelease, snareMaxLen, "SnareBleed");
+        addSample("SnareFlam 3 Bleed", snareFlamDestination + "snareFlam_3_bleed.wav", snareFlamNoteID, curveFor5[2], curveFor5[3] - 1, snareRelease, snareMaxLen, "SnareBleed");
+        addSample("SnareFlam 4 Bleed", snareFlamDestination + "snareFlam_4_bleed.wav", snareFlamNoteID, curveFor5[3], curveFor5[4] - 1, snareRelease, snareMaxLen, "SnareBleed");
+        addSample("SnareFlam 5 Bleed", snareFlamDestination + "snareFlam_5_bleed.wav", snareFlamNoteID, curveFor5[4], curveFor5[5] - 1, snareRelease, snareMaxLen, "SnareBleed");
 
     }
 }

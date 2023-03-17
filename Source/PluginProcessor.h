@@ -107,7 +107,7 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
     void addSample(string sampleName, string destination, int midiNote, int lowestVelocity, int highestVelocity, double release, double maxLength, string bus);
-    void loadSamples(int samplePackID, int curveMenuID, int kickNoteID, int snareNoteID);
+    void loadSamples(int samplePackID, int curveMenuID, int kickNoteID, int snareNoteID, int snareFlamNoteID);
 
     juce::MidiMessageCollector& getMidiMessageCollector() noexcept { return midiMessageCollector; }
 

@@ -7,10 +7,11 @@
 #include "TomsSlidersPage.h"
 #include "HHSlidersPage.h"
 #include "CymbalsSlidersPage.h"
+#include "MidiNoteChoosingPage.h"
 
 HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     : AudioProcessorEditor(&p), audioProcessor(p), myTabbedComponent(juce::TabbedButtonBar::Orientation::TabsAtTop),
-    kickSlidersPage(), snareSlidersPage(), tomsSlidersPage(), hhSlidersPage(), cymbalsSlidersPage()//, openButton("Browse for directory")
+    kickSlidersPage(), snareSlidersPage(), tomsSlidersPage(), hhSlidersPage(), cymbalsSlidersPage(), midiNotesChoosingPage()//, openButton("Browse for directory")
 {
     setSize(1000, 400);
 
@@ -20,6 +21,7 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     myTabbedComponent.addTab("Toms", juce::Colours::green.withAlpha(0.5f), &tomsSlidersPage, true);
     myTabbedComponent.addTab("HH", juce::Colours::blue.withAlpha(0.5f), &hhSlidersPage, true);
     myTabbedComponent.addTab("Cymbals", juce::Colours::blue.withAlpha(0.5f), &cymbalsSlidersPage, true);
+    myTabbedComponent.addTab("MIDI", juce::Colours::red.withAlpha(0.6f), &midiNotesChoosingPage, true);
 
     kickCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, KICK_CLOSE_GAIN_ID, kickSlidersPage.kickCloseSlider);
     kickOHSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, KICK_OH_GAIN_ID, kickSlidersPage.kickOHSlider);
@@ -50,33 +52,14 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     cymbalsRoomSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, CYMBALS_ROOM_GAIN_ID, cymbalsSlidersPage.cymbalsRoomSlider);
     cymbalsBleedSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, CYMBALS_BLEED_GAIN_ID, cymbalsSlidersPage.cymbalsBleedSlider);
 
-    // Buttons for triggering samples internally ========================================
-    addAndMakeVisible(kickDrumButton);
-    kickDrumButton.setButtonText("Kick Drum");
-    kickDrumButton.onClick = [this] { playMidiNote(kickNoteMenu.getSelectedId()); };
-    addAndMakeVisible(&kickNoteMenu);
-    kickNoteMenu.setJustificationType(juce::Justification::centred);
-    for (int i = 1; i < 128; i++)
-        kickNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-    kickNoteMenu.onChange = [this] { samplePackMenuChanged(); };
-    kickNoteMenu.setSelectedId(57);    // default MIDI note for kick
+    // buttons from MidiNoteChoosingPage
+    midiNotesChoosingPage.kickNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.kickButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.kickNoteMenu.getSelectedId()); };
+    midiNotesChoosingPage.snareNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.snareButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.snareNoteMenu.getSelectedId()); };
+    midiNotesChoosingPage.snareFlamNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.snareFlamButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.snareFlamNoteMenu.getSelectedId()); };
 
-    addAndMakeVisible(snareDrumButton);
-    snareDrumButton.setButtonText("Snare Drum");
-    snareDrumButton.onClick = [this] { playMidiNote(snareNoteMenu.getSelectedId()); };
-    addAndMakeVisible(&snareNoteMenu);
-    snareNoteMenu.setJustificationType(juce::Justification::centred);
-    for (int i = 1; i < 128; i++)
-        snareNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-    snareNoteMenu.onChange = [this] { samplePackMenuChanged(); };
-    snareNoteMenu.setSelectedId(60);    // default MIDI note for snare
-
-    addAndMakeVisible(floorTomButton);
-    floorTomButton.setButtonText("Floor Tom close (67)");
-    floorTomButton.onClick = [this] { playMidiNote(67); };
-    addAndMakeVisible(floorTomButton2);
-    floorTomButton2.setButtonText("Floor Tom OH (67)");
-    floorTomButton2.onClick = [this] { playMidiNote(67); };
 
     //addAndMakeVisible(&openButton);
     //openButton.onClick = [this] { loadDirectory(); };
@@ -177,17 +160,8 @@ void HDrumsAudioProcessorEditor::paint (juce::Graphics& g)
 void HDrumsAudioProcessorEditor::resized()
 {
     auto halfWidth = getWidth() / 4;
-    auto qWidth = getWidth() / 8;
-    kickDrumButton.setBounds(10, 40, qWidth - 12.5, 20);
-    kickNoteMenu.setBounds(qWidth + 2.5, 40, qWidth - 7.5, 20);
-
-    snareDrumButton.setBounds(10, 70, qWidth - 12.5, 20);
-    snareNoteMenu.setBounds(qWidth + 2.5, 70, qWidth - 7.5, 20);
-
-    floorTomButton.setBounds(halfWidth + 5, 40, halfWidth - 15, 20);
-    floorTomButton2.setBounds(halfWidth + 5, 70, halfWidth - 15, 20);
     
-    openButton.setBounds(10, 10, getWidth() - 20, 30);
+    //openButton.setBounds(10, 10, getWidth() - 20, 30);
     gainSlider.setBounds(30, 140, 80, getHeight() - 200);
     OHgainSlider.setBounds(120, 140, 80, getHeight() - 200);
     RoomGainSlider.setBounds(210, 140, 80, getHeight() - 200);
@@ -202,7 +176,8 @@ void HDrumsAudioProcessorEditor::resized()
 void HDrumsAudioProcessorEditor::samplePackMenuChanged()
 {
     audioProcessor.loadSamples(samplePackMenu.getSelectedId(), curveMenu.getSelectedId(),
-                                kickNoteMenu.getSelectedId(), snareNoteMenu.getSelectedId());
+                    midiNotesChoosingPage.kickNoteMenu.getSelectedId(), midiNotesChoosingPage.snareNoteMenu.getSelectedId(),
+                    midiNotesChoosingPage.snareFlamNoteMenu.getSelectedId());
 }
 
 void HDrumsAudioProcessorEditor::playMidiNote(int noteNumber)
