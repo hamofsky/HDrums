@@ -11,6 +11,8 @@
       <GROUP id="{34A5BC56-8EE7-1812-62BF-8139C531F8EE}" name="Assets">
         <FILE id="wMuQf6" name="blue_400x400.png" compile="0" resource="1"
               file="Source/Assets/blue_400x400.png"/>
+        <FILE id="sNSF4u" name="grey_400x400.png" compile="0" resource="1"
+              file="Source/Assets/grey_400x400.png"/>
       </GROUP>
       <FILE id="OWcBnF" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>

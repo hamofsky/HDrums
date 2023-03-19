@@ -154,7 +154,13 @@ void HDrumsAudioProcessorEditor::paint (juce::Graphics& g)
     g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
 
     background = juce::ImageCache::getFromMemory(BinaryData::blue_400x400_png, BinaryData::blue_400x400_pngSize);
-    g.drawImageWithin(background, 0, 0, getWidth(), getHeight(), juce::RectanglePlacement::stretchToFit);
+    background2 = juce::ImageCache::getFromMemory(BinaryData::grey_400x400_png, BinaryData::grey_400x400_pngSize);
+
+    if (samplePackMenu.getSelectedId() == 2)
+        g.drawImageWithin(background, 0, 0, getWidth(), getHeight(), juce::RectanglePlacement::stretchToFit);
+    else
+        g.drawImageWithin(background2, 0, 0, getWidth(), getHeight(), juce::RectanglePlacement::stretchToFit);
+
 }
 
 void HDrumsAudioProcessorEditor::resized()
@@ -176,8 +182,17 @@ void HDrumsAudioProcessorEditor::resized()
 void HDrumsAudioProcessorEditor::samplePackMenuChanged()
 {
     audioProcessor.loadSamples(samplePackMenu.getSelectedId(), curveMenu.getSelectedId(),
-                    midiNotesChoosingPage.kickNoteMenu.getSelectedId(), midiNotesChoosingPage.snareNoteMenu.getSelectedId(),
-                    midiNotesChoosingPage.snareFlamNoteMenu.getSelectedId());
+        midiNotesChoosingPage.kickNoteMenu.getSelectedId(), midiNotesChoosingPage.snareNoteMenu.getSelectedId(),
+        midiNotesChoosingPage.snareFlamNoteMenu.getSelectedId(), midiNotesChoosingPage.snareWirelessNoteMenu.getSelectedId(),
+        midiNotesChoosingPage.snareRoundNoteMenu.getSelectedId(), midiNotesChoosingPage.snareWirelessRoundNoteMenu.getSelectedId(),
+        midiNotesChoosingPage.tomNoteMenu.getSelectedId(), midiNotesChoosingPage.tomFlamNoteMenu.getSelectedId(),
+        midiNotesChoosingPage.ftomNoteMenu.getSelectedId(), midiNotesChoosingPage.ftomFlamNoteMenu.getSelectedId(),
+        midiNotesChoosingPage.hhBellNoteMenu.getSelectedId(), midiNotesChoosingPage.hhClosedNoteMenu.getSelectedId(),
+        midiNotesChoosingPage.hhHalfNoteMenu.getSelectedId(), midiNotesChoosingPage.hhOpenNoteMenu.getSelectedId(),
+        midiNotesChoosingPage.tambNoteMenu.getSelectedId(), midiNotesChoosingPage.ridePointNoteMenu.getSelectedId(),
+        midiNotesChoosingPage.rideHalfNoteMenu.getSelectedId(), midiNotesChoosingPage.rideBellNoteMenu.getSelectedId(),
+        midiNotesChoosingPage.rideOpenNoteMenu.getSelectedId(), midiNotesChoosingPage.crashPointNoteMenu.getSelectedId(),
+        midiNotesChoosingPage.crashBellNoteMenu.getSelectedId(), midiNotesChoosingPage.crashOpenNoteMenu.getSelectedId());
 }
 
 void HDrumsAudioProcessorEditor::playMidiNote(int noteNumber)

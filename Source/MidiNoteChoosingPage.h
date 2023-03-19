@@ -174,10 +174,10 @@ public:
 		tambNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			tambNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		tambNoteMenu.setSelectedId(90);    // default MIDI note for tamb
+		tambNoteMenu.setSelectedId(85);    // default MIDI note for tamb
 
 		addAndMakeVisible(ridePointButton);
-		ridePointButton.setButtonText("Ride Piont");
+		ridePointButton.setButtonText("Ride Point");
 		addAndMakeVisible(&ridePointNoteMenu);
 		ridePointNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)

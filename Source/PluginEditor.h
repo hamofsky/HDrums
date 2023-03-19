@@ -73,6 +73,7 @@ private:
     //juce::String loadDirectory();
 
     juce::Image background;
+    juce::Image background2;
 
     juce::Slider gainSlider;
     juce::Slider OHgainSlider;
