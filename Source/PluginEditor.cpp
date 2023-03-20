@@ -55,11 +55,53 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     // buttons from MidiNoteChoosingPage
     midiNotesChoosingPage.kickNoteMenu.onChange = [this] { samplePackMenuChanged(); };
     midiNotesChoosingPage.kickButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.kickNoteMenu.getSelectedId()); };
+
     midiNotesChoosingPage.snareNoteMenu.onChange = [this] { samplePackMenuChanged(); };
     midiNotesChoosingPage.snareButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.snareNoteMenu.getSelectedId()); };
     midiNotesChoosingPage.snareFlamNoteMenu.onChange = [this] { samplePackMenuChanged(); };
     midiNotesChoosingPage.snareFlamButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.snareFlamNoteMenu.getSelectedId()); };
+    midiNotesChoosingPage.snareWirelessNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.snareWirelessButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.snareWirelessNoteMenu.getSelectedId()); };
+    midiNotesChoosingPage.snareRoundNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.snareRoundButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.snareRoundNoteMenu.getSelectedId()); };
+    midiNotesChoosingPage.snareWirelessRoundNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.snareWirelessRoundButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.snareWirelessRoundNoteMenu.getSelectedId()); };
 
+    midiNotesChoosingPage.tomNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.tomButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.tomNoteMenu.getSelectedId()); };
+    midiNotesChoosingPage.tomFlamNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.tomFlamButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.tomFlamNoteMenu.getSelectedId()); };
+    midiNotesChoosingPage.ftomNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.ftomButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.ftomNoteMenu.getSelectedId()); };
+    midiNotesChoosingPage.ftomFlamNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.ftomFlamButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.ftomFlamNoteMenu.getSelectedId()); };
+
+    midiNotesChoosingPage.tambNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.tambButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.tambNoteMenu.getSelectedId()); };
+    midiNotesChoosingPage.hhBellNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.hhBellButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.hhBellNoteMenu.getSelectedId()); };
+    midiNotesChoosingPage.hhClosedNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.hhClosedButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.hhClosedNoteMenu.getSelectedId()); };
+    midiNotesChoosingPage.hhHalfNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.hhHalfButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.hhHalfNoteMenu.getSelectedId()); };
+    midiNotesChoosingPage.hhOpenNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.hhOpenButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.hhOpenNoteMenu.getSelectedId()); };
+
+    midiNotesChoosingPage.ridePointNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.ridePointButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.ridePointNoteMenu.getSelectedId()); };
+    midiNotesChoosingPage.rideHalfNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.rideHalfButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.rideHalfNoteMenu.getSelectedId()); };
+    midiNotesChoosingPage.rideBellNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.rideBellButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.rideBellNoteMenu.getSelectedId()); };
+    midiNotesChoosingPage.rideOpenNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.rideOpenButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.rideOpenNoteMenu.getSelectedId()); };
+    
+    midiNotesChoosingPage.crashPointNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.crashPointButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.crashPointNoteMenu.getSelectedId()); };
+    midiNotesChoosingPage.crashBellNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.crashBellButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.crashBellNoteMenu.getSelectedId()); };
+    midiNotesChoosingPage.crashOpenNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.crashOpenButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.crashOpenNoteMenu.getSelectedId()); };
 
     //addAndMakeVisible(&openButton);
     //openButton.onClick = [this] { loadDirectory(); };

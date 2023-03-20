@@ -201,11 +201,11 @@ void HDrumsAudioProcessor::addSample(string sampleName, string destination, int 
             samplerCrashClose.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
         else if (bus == "RideClose")
             samplerRideClose.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
-        else if (bus == "HHOH")
+        else if (bus == "CymbalsOH")
             samplerCymbalsOH.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
-        else if (bus == "HHRoom")
+        else if (bus == "CymbalsRoom")
             samplerCymbalsRoom.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
-        else if (bus == "HHBleed")
+        else if (bus == "CymbalsBleed")
             samplerCymbalsBleed.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
 
     }
@@ -250,7 +250,7 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         float snareMaxLen = 2.0;
 
         string destinationP = destinationAll + "Perkusja/";
-        // sampleName, File destination, midiNote, lowestVelocity, highestVelocity, release in s, maxLength in s, bus select (0 - Close Mics, 1 - OH, 2 - Room)
+        // sampleName, File destination, midiNote, lowestVelocity, highestVelocity, release in s, maxLength in s, bus select
         addSample("Ride Hard", destinationP + "Ride Hard.wav", 65, curveFor6[0], 127, 5.0, 8.0, "Close");
         addSample("Ride Smooth", destinationP + "Ride Smooth.wav", 65, 1, curveFor6[0] - 1, 0.5, 8.0, "Close");
         string GGDdestination = destinationP + "GGD/";
@@ -451,42 +451,15 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         addSample("SnareWirelessRound 3 Bleed", snareWirelessRoundDestination + "snareWirelessRound_3_bleed.wav", snareWirelessRoundNoteID, curveFor4[2], curveFor4[3] - 1, snareRelease, snareMaxLen, "SnareBleed");
         addSample("SnareWirelessRound 4 Bleed", snareWirelessRoundDestination + "snareWirelessRound_4_bleed.wav", snareWirelessRoundNoteID, curveFor4[3], curveFor4[4] - 1, snareRelease, snareMaxLen, "SnareBleed");
 
-        string snareWirelessDestination = snareAllDestination + "snareWireless/";
-        addSample("SnareWireless 1 Top", snareWirelessDestination + "snareWireless_1_top.wav", snareWirelessNoteID, curveFor4[0], curveFor4[1] - 1, snareRelease, snareMaxLen, "SnareTop");
-        addSample("SnareWireless 2 Top", snareWirelessDestination + "snareWireless_2_top.wav", snareWirelessNoteID, curveFor4[1], curveFor4[2] - 1, snareRelease, snareMaxLen, "SnareTop");
-        addSample("SnareWireless 3 Top", snareWirelessDestination + "snareWireless_3_top.wav", snareWirelessNoteID, curveFor4[2], curveFor4[3] - 1, snareRelease, snareMaxLen, "SnareTop");
-        addSample("SnareWireless 4 Top", snareWirelessDestination + "snareWireless_4_top.wav", snareWirelessNoteID, curveFor4[3], curveFor4[4] - 1, snareRelease, snareMaxLen, "SnareTop");
-        addSample("SnareWireless 1 Bot", snareWirelessDestination + "snareWireless_1_bot.wav", snareWirelessNoteID, curveFor4[0], curveFor4[1] - 1, snareRelease, snareMaxLen, "SnareBot");
-        addSample("SnareWireless 2 Bot", snareWirelessDestination + "snareWireless_2_bot.wav", snareWirelessNoteID, curveFor4[1], curveFor4[2] - 1, snareRelease, snareMaxLen, "SnareBot");
-        addSample("SnareWireless 3 Bot", snareWirelessDestination + "snareWireless_3_bot.wav", snareWirelessNoteID, curveFor4[2], curveFor4[3] - 1, snareRelease, snareMaxLen, "SnareBot");
-        addSample("SnareWireless 4 Bot", snareWirelessDestination + "snareWireless_4_bot.wav", snareWirelessNoteID, curveFor4[3], curveFor4[4] - 1, snareRelease, snareMaxLen, "SnareBot");
-        addSample("SnareWireless 1 OH", snareWirelessDestination + "snareWireless_1_OH.wav", snareWirelessNoteID, curveFor4[0], curveFor4[1] - 1, snareRelease, snareMaxLen, "SnareOH");
-        addSample("SnareWireless 2 OH", snareWirelessDestination + "snareWireless_2_OH.wav", snareWirelessNoteID, curveFor4[1], curveFor4[2] - 1, snareRelease, snareMaxLen, "SnareOH");
-        addSample("SnareWireless 3 OH", snareWirelessDestination + "snareWireless_3_OH.wav", snareWirelessNoteID, curveFor4[2], curveFor4[3] - 1, snareRelease, snareMaxLen, "SnareOH");
-        addSample("SnareWireless 4 OH", snareWirelessDestination + "snareWireless_4_OH.wav", snareWirelessNoteID, curveFor4[3], curveFor4[4] - 1, snareRelease, snareMaxLen, "SnareOH");
-        addSample("SnareWireless 1 Room", snareWirelessDestination + "snareWireless_1_room.wav", snareWirelessNoteID, curveFor4[0], curveFor4[1] - 1, snareRelease, snareMaxLen, "SnareRoom");
-        addSample("SnareWireless 2 Room", snareWirelessDestination + "snareWireless_2_room.wav", snareWirelessNoteID, curveFor4[1], curveFor4[2] - 1, snareRelease, snareMaxLen, "SnareRoom");
-        addSample("SnareWireless 3 Room", snareWirelessDestination + "snareWireless_3_room.wav", snareWirelessNoteID, curveFor4[2], curveFor4[3] - 1, snareRelease, snareMaxLen, "SnareRoom");
-        addSample("SnareWireless 4 Room", snareWirelessDestination + "snareWireless_4_room.wav", snareWirelessNoteID, curveFor4[3], curveFor4[4] - 1, snareRelease, snareMaxLen, "SnareRoom");
-        addSample("SnareWireless 1 Bleed", snareWirelessDestination + "snareWireless_1_bleed.wav", snareWirelessNoteID, curveFor4[0], curveFor4[1] - 1, snareRelease, snareMaxLen, "SnareBleed");
-        addSample("SnareWireless 2 Bleed", snareWirelessDestination + "snareWireless_2_bleed.wav", snareWirelessNoteID, curveFor4[1], curveFor4[2] - 1, snareRelease, snareMaxLen, "SnareBleed");
-        addSample("SnareWireless 3 Bleed", snareWirelessDestination + "snareWireless_3_bleed.wav", snareWirelessNoteID, curveFor4[2], curveFor4[3] - 1, snareRelease, snareMaxLen, "SnareBleed");
-        addSample("SnareWireless 4 Bleed", snareWirelessDestination + "snareWireless_4_bleed.wav", snareWirelessNoteID, curveFor4[3], curveFor4[4] - 1, snareRelease, snareMaxLen, "SnareBleed");
-
         float tomRelease = 0.6;
         float tomMaxLen = 2.2;
         string tomAllDestination = dryDestination + "tomAll/";
         string tomDestination = tomAllDestination + "tom/";
-        addSample("Tom 1 Top", tomDestination + "tom_1_top.wav", tomNoteID, curveFor5[0], curveFor5[1] - 1, tomRelease, tomMaxLen, "TomClose");
-        addSample("Tom 2 Top", tomDestination + "tom_2_top.wav", tomNoteID, curveFor5[1], curveFor5[2] - 1, tomRelease, tomMaxLen, "TomClose");
-        addSample("Tom 3 Top", tomDestination + "tom_3_top.wav", tomNoteID, curveFor5[2], curveFor5[3] - 1, tomRelease, tomMaxLen, "TomClose");
-        addSample("Tom 4 Top", tomDestination + "tom_4_top.wav", tomNoteID, curveFor5[3], curveFor5[4] - 1, tomRelease, tomMaxLen, "TomClose");
-        addSample("Tom 5 Top", tomDestination + "tom_5_top.wav", tomNoteID, curveFor5[4], curveFor5[5] - 1, tomRelease, tomMaxLen, "TomClose");
-        addSample("Tom 1 Bot", tomDestination + "tom_1_bot.wav", tomNoteID, curveFor5[0], curveFor5[1] - 1, tomRelease, tomMaxLen, "TomClose");
-        addSample("Tom 2 Bot", tomDestination + "tom_2_bot.wav", tomNoteID, curveFor5[1], curveFor5[2] - 1, tomRelease, tomMaxLen, "TomClose");
-        addSample("Tom 3 Bot", tomDestination + "tom_3_bot.wav", tomNoteID, curveFor5[2], curveFor5[3] - 1, tomRelease, tomMaxLen, "TomClose");
-        addSample("Tom 4 Bot", tomDestination + "tom_4_bot.wav", tomNoteID, curveFor5[3], curveFor5[4] - 1, tomRelease, tomMaxLen, "TomClose");
-        addSample("Tom 5 Bot", tomDestination + "tom_5_bot.wav", tomNoteID, curveFor5[4], curveFor5[5] - 1, tomRelease, tomMaxLen, "TomClose");
+        addSample("Tom 1 Close", tomDestination + "tom_1_close.wav", tomNoteID, curveFor5[0], curveFor5[1] - 1, tomRelease, tomMaxLen, "TomClose");
+        addSample("Tom 2 Close", tomDestination + "tom_2_close.wav", tomNoteID, curveFor5[1], curveFor5[2] - 1, tomRelease, tomMaxLen, "TomClose");
+        addSample("Tom 3 Close", tomDestination + "tom_3_close.wav", tomNoteID, curveFor5[2], curveFor5[3] - 1, tomRelease, tomMaxLen, "TomClose");
+        addSample("Tom 4 Close", tomDestination + "tom_4_close.wav", tomNoteID, curveFor5[3], curveFor5[4] - 1, tomRelease, tomMaxLen, "TomClose");
+        addSample("Tom 5 Close", tomDestination + "tom_5_close.wav", tomNoteID, curveFor5[4], curveFor5[5] - 1, tomRelease, tomMaxLen, "TomClose");
         addSample("Tom 1 OH", tomDestination + "tom_1_OH.wav", tomNoteID, curveFor5[0], curveFor5[1] - 1, tomRelease, tomMaxLen, "TomsOH");
         addSample("Tom 2 OH", tomDestination + "tom_2_OH.wav", tomNoteID, curveFor5[1], curveFor5[2] - 1, tomRelease, tomMaxLen, "TomsOH");
         addSample("Tom 3 OH", tomDestination + "tom_3_OH.wav", tomNoteID, curveFor5[2], curveFor5[3] - 1, tomRelease, tomMaxLen, "TomsOH");
@@ -504,12 +477,9 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         addSample("Tom 5 Bleed", tomDestination + "tom_5_bleed.wav", tomNoteID, curveFor5[4], curveFor5[5] - 1, tomRelease, tomMaxLen, "TomsBleed");
 
         string tomFlamDestination = tomAllDestination + "tomFlam/";
-        addSample("TomFlam 1 Top", tomFlamDestination + "tomFlam_1_top.wav", tomFlamNoteID, curveFor3[0], curveFor3[1] - 1, tomRelease, tomMaxLen, "TomClose");
-        addSample("TomFlam 2 Top", tomFlamDestination + "tomFlam_2_top.wav", tomFlamNoteID, curveFor3[1], curveFor3[2] - 1, tomRelease, tomMaxLen, "TomClose");
-        addSample("TomFlam 3 Top", tomFlamDestination + "tomFlam_3_top.wav", tomFlamNoteID, curveFor3[2], curveFor3[3] - 1, tomRelease, tomMaxLen, "TomClose");
-        addSample("TomFlam 1 Bot", tomFlamDestination + "tomFlam_1_bot.wav", tomFlamNoteID, curveFor3[0], curveFor3[1] - 1, tomRelease, tomMaxLen, "TomClose");
-        addSample("TomFlam 2 Bot", tomFlamDestination + "tomFlam_2_bot.wav", tomFlamNoteID, curveFor3[1], curveFor3[2] - 1, tomRelease, tomMaxLen, "TomClose");
-        addSample("TomFlam 3 Bot", tomFlamDestination + "tomFlam_3_bot.wav", tomFlamNoteID, curveFor3[2], curveFor3[3] - 1, tomRelease, tomMaxLen, "TomClose");
+        addSample("TomFlam 1 Close", tomFlamDestination + "tomFlam_1_close.wav", tomFlamNoteID, curveFor3[0], curveFor3[1] - 1, tomRelease, tomMaxLen, "TomClose");
+        addSample("TomFlam 2 Close", tomFlamDestination + "tomFlam_2_close.wav", tomFlamNoteID, curveFor3[1], curveFor3[2] - 1, tomRelease, tomMaxLen, "TomClose");
+        addSample("TomFlam 3 Close", tomFlamDestination + "tomFlam_3_close.wav", tomFlamNoteID, curveFor3[2], curveFor3[3] - 1, tomRelease, tomMaxLen, "TomClose");
         addSample("TomFlam 1 OH", tomFlamDestination + "tomFlam_1_OH.wav", tomFlamNoteID, curveFor3[0], curveFor3[1] - 1, tomRelease, tomMaxLen, "TomsOH");
         addSample("TomFlam 2 OH", tomFlamDestination + "tomFlam_2_OH.wav", tomFlamNoteID, curveFor3[1], curveFor3[2] - 1, tomRelease, tomMaxLen, "TomsOH");
         addSample("TomFlam 3 OH", tomFlamDestination + "tomFlam_3_OH.wav", tomFlamNoteID, curveFor3[2], curveFor3[3] - 1, tomRelease, tomMaxLen, "TomsOH");
@@ -524,16 +494,11 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         float ftomMaxLen = 2.5;
         string ftomAllDestination = dryDestination + "ftomAll/";
         string ftomDestination = ftomAllDestination + "ftom/";
-        addSample("FTom 1 Top", ftomDestination + "ftom_1_top.wav", ftomNoteID, curveFor5[0], curveFor5[1] - 1, ftomRelease, ftomMaxLen, "FTomClose");
-        addSample("FTom 2 Top", ftomDestination + "ftom_2_top.wav", ftomNoteID, curveFor5[1], curveFor5[2] - 1, ftomRelease, ftomMaxLen, "FTomClose");
-        addSample("FTom 3 Top", ftomDestination + "ftom_3_top.wav", ftomNoteID, curveFor5[2], curveFor5[3] - 1, ftomRelease, ftomMaxLen, "FTomClose");
-        addSample("FTom 4 Top", ftomDestination + "ftom_4_top.wav", ftomNoteID, curveFor5[3], curveFor5[4] - 1, ftomRelease, ftomMaxLen, "FTomClose");
-        addSample("FTom 5 Top", ftomDestination + "ftom_5_top.wav", ftomNoteID, curveFor5[4], curveFor5[5] - 1, ftomRelease, ftomMaxLen, "FTomClose");
-        addSample("FTom 1 Bot", ftomDestination + "ftom_1_bot.wav", ftomNoteID, curveFor5[0], curveFor5[1] - 1, ftomRelease, ftomMaxLen, "FTomClose");
-        addSample("FTom 2 Bot", ftomDestination + "ftom_2_bot.wav", ftomNoteID, curveFor5[1], curveFor5[2] - 1, ftomRelease, ftomMaxLen, "FTomClose");
-        addSample("FTom 3 Bot", ftomDestination + "ftom_3_bot.wav", ftomNoteID, curveFor5[2], curveFor5[3] - 1, ftomRelease, ftomMaxLen, "FTomClose");
-        addSample("FTom 4 Bot", ftomDestination + "ftom_4_bot.wav", ftomNoteID, curveFor5[3], curveFor5[4] - 1, ftomRelease, ftomMaxLen, "FTomClose");
-        addSample("FTom 5 Bot", ftomDestination + "ftom_5_bot.wav", ftomNoteID, curveFor5[4], curveFor5[5] - 1, ftomRelease, ftomMaxLen, "FTomClose");
+        addSample("FTom 1 Close", ftomDestination + "ftom_1_close.wav", ftomNoteID, curveFor5[0], curveFor5[1] - 1, ftomRelease, ftomMaxLen, "FTomClose");
+        addSample("FTom 2 Close", ftomDestination + "ftom_2_close.wav", ftomNoteID, curveFor5[1], curveFor5[2] - 1, ftomRelease, ftomMaxLen, "FTomClose");
+        addSample("FTom 3 Close", ftomDestination + "ftom_3_close.wav", ftomNoteID, curveFor5[2], curveFor5[3] - 1, ftomRelease, ftomMaxLen, "FTomClose");
+        addSample("FTom 4 Close", ftomDestination + "ftom_4_close.wav", ftomNoteID, curveFor5[3], curveFor5[4] - 1, ftomRelease, ftomMaxLen, "FTomClose");
+        addSample("FTom 5 Close", ftomDestination + "ftom_5_close.wav", ftomNoteID, curveFor5[4], curveFor5[5] - 1, ftomRelease, ftomMaxLen, "FTomClose");
         addSample("FTom 1 OH", ftomDestination + "ftom_1_OH.wav", ftomNoteID, curveFor5[0], curveFor5[1] - 1, ftomRelease, ftomMaxLen, "TomsOH");
         addSample("FTom 2 OH", ftomDestination + "ftom_2_OH.wav", ftomNoteID, curveFor5[1], curveFor5[2] - 1, ftomRelease, ftomMaxLen, "TomsOH");
         addSample("FTom 3 OH", ftomDestination + "ftom_3_OH.wav", ftomNoteID, curveFor5[2], curveFor5[3] - 1, ftomRelease, ftomMaxLen, "TomsOH");
@@ -551,12 +516,9 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         addSample("FTom 5 Bleed", ftomDestination + "ftom_5_bleed.wav", ftomNoteID, curveFor5[4], curveFor5[5] - 1, tomRelease, ftomMaxLen, "TomsBleed");
 
         string ftomFlamDestination = ftomAllDestination + "ftomFlam/";
-        addSample("FTomFlam 1 Top", ftomFlamDestination + "ftomFlam_1_top.wav", ftomFlamNoteID, curveFor3[0], curveFor3[1] - 1, ftomRelease, ftomMaxLen, "FTomClose");
-        addSample("FTomFlam 2 Top", ftomFlamDestination + "ftomFlam_2_top.wav", ftomFlamNoteID, curveFor3[1], curveFor3[2] - 1, ftomRelease, ftomMaxLen, "FTomClose");
-        addSample("FTomFlam 3 Top", ftomFlamDestination + "ftomFlam_3_top.wav", ftomFlamNoteID, curveFor3[2], curveFor3[3] - 1, ftomRelease, ftomMaxLen, "FTomClose");
-        addSample("FTomFlam 1 Bot", ftomFlamDestination + "ftomFlam_1_bot.wav", ftomFlamNoteID, curveFor3[0], curveFor3[1] - 1, ftomRelease, ftomMaxLen, "FTomClose");
-        addSample("FTomFlam 2 Bot", ftomFlamDestination + "ftomFlam_2_bot.wav", ftomFlamNoteID, curveFor3[1], curveFor3[2] - 1, ftomRelease, ftomMaxLen, "FTomClose");
-        addSample("FTomFlam 3 Bot", ftomFlamDestination + "ftomFlam_3_bot.wav", ftomFlamNoteID, curveFor3[2], curveFor3[3] - 1, ftomRelease, ftomMaxLen, "FTomClose");
+        addSample("FTomFlam 1 Close", ftomFlamDestination + "ftomFlam_1_close.wav", ftomFlamNoteID, curveFor3[0], curveFor3[1] - 1, ftomRelease, ftomMaxLen, "FTomClose");
+        addSample("FTomFlam 2 Close", ftomFlamDestination + "ftomFlam_2_close.wav", ftomFlamNoteID, curveFor3[1], curveFor3[2] - 1, ftomRelease, ftomMaxLen, "FTomClose");
+        addSample("FTomFlam 3 Close", ftomFlamDestination + "ftomFlam_3_close.wav", ftomFlamNoteID, curveFor3[2], curveFor3[3] - 1, ftomRelease, ftomMaxLen, "FTomClose");
         addSample("FTomFlam 1 OH", ftomFlamDestination + "ftomFlam_1_OH.wav", ftomFlamNoteID, curveFor3[0], curveFor3[1] - 1, ftomRelease, ftomMaxLen, "TomsOH");
         addSample("FTomFlam 2 OH", ftomFlamDestination + "ftomFlam_2_OH.wav", ftomFlamNoteID, curveFor3[1], curveFor3[2] - 1, ftomRelease, ftomMaxLen, "TomsOH");
         addSample("FTomFlam 3 OH", ftomFlamDestination + "ftomFlam_3_OH.wav", ftomFlamNoteID, curveFor3[2], curveFor3[3] - 1, ftomRelease, ftomMaxLen, "TomsOH");
@@ -566,6 +528,195 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         addSample("FTomFlam 1 Bleed", ftomFlamDestination + "ftomFlam_1_bleed.wav", ftomFlamNoteID, curveFor3[0], curveFor3[1] - 1, ftomRelease, ftomMaxLen, "TomsBleed");
         addSample("FTomFlam 2 Bleed", ftomFlamDestination + "ftomFlam_2_bleed.wav", ftomFlamNoteID, curveFor3[1], curveFor3[2] - 1, ftomRelease, ftomMaxLen, "TomsBleed");
         addSample("FTomFlam 3 Bleed", ftomFlamDestination + "ftomFlam_3_bleed.wav", ftomFlamNoteID, curveFor3[2], curveFor3[3] - 1, ftomRelease, ftomMaxLen, "TomsBleed");
+
+        float hhRelease = 0.12;
+        float hhMaxLen = 2.0;
+        string tambDestination = dryDestination + "tambourine/";
+        addSample("Tambourine 1 Close", tambDestination + "tambourine_1_bleed.wav", tambourineNoteID, curveFor3[0], curveFor3[1] - 1, hhRelease, hhMaxLen, "TambClose");
+        addSample("Tambourine 2 Close", tambDestination + "tambourine_2_bleed.wav", tambourineNoteID, curveFor3[1], curveFor3[2] - 1, hhRelease, hhMaxLen, "TambClose");
+        addSample("Tambourine 3 Close", tambDestination + "tambourine_3_bleed.wav", tambourineNoteID, curveFor3[2], curveFor3[3] - 1, hhRelease, hhMaxLen, "TambClose");
+        addSample("Tambourine 1 OH", tambDestination + "tambourine_1_OH.wav", tambourineNoteID, curveFor3[0], curveFor3[1] - 1, hhRelease, hhMaxLen, "HHOH");
+        addSample("Tambourine 2 OH", tambDestination + "tambourine_2_OH.wav", tambourineNoteID, curveFor3[1], curveFor3[2] - 1, hhRelease, hhMaxLen, "HHOH");
+        addSample("Tambourine 3 OH", tambDestination + "tambourine_3_OH.wav", tambourineNoteID, curveFor3[2], curveFor3[3] - 1, hhRelease, hhMaxLen, "HHOH");
+        addSample("Tambourine 1 Room", tambDestination + "tambourine_1_room.wav", tambourineNoteID, curveFor3[0], curveFor3[1] - 1, hhRelease, hhMaxLen, "HHRoom");
+        addSample("Tambourine 2 Room", tambDestination + "tambourine_2_room.wav", tambourineNoteID, curveFor3[1], curveFor3[2] - 1, hhRelease, hhMaxLen, "HHRoom");
+        addSample("Tambourine 3 Room", tambDestination + "tambourine_3_room.wav", tambourineNoteID, curveFor3[2], curveFor3[3] - 1, hhRelease, hhMaxLen, "HHRoom");
+        addSample("Tambourine 1 Bleed", tambDestination + "tambourine_1_bleed.wav", tambourineNoteID, curveFor3[0], curveFor3[1] - 1, hhRelease, hhMaxLen, "HHBleed");
+        addSample("Tambourine 2 Bleed", tambDestination + "tambourine_2_bleed.wav", tambourineNoteID, curveFor3[1], curveFor3[2] - 1, hhRelease, hhMaxLen, "HHBleed");
+        addSample("Tambourine 3 Bleed", tambDestination + "tambourine_3_bleed.wav", tambourineNoteID, curveFor3[2], curveFor3[3] - 1, hhRelease, hhMaxLen, "HHBleed");
+
+
+        string HHAllDestination = dryDestination + "HHAll/";
+        string HHBellDestination = HHAllDestination + "HHBell/";
+        addSample("HHBell 1 Close", HHBellDestination + "HHBell_1_close.wav", hhBellNoteID, curveFor3[0], curveFor3[1] - 1, hhRelease, hhMaxLen, "HHClose");
+        addSample("HHBell 2 Close", HHBellDestination + "HHBell_2_close.wav", hhBellNoteID, curveFor3[1], curveFor3[2] - 1, hhRelease, hhMaxLen, "HHClose");
+        addSample("HHBell 3 Close", HHBellDestination + "HHBell_3_close.wav", hhBellNoteID, curveFor3[2], curveFor3[3] - 1, hhRelease, hhMaxLen, "HHClose");
+        addSample("HHBell 1 OH", HHBellDestination + "HHBell_1_OH.wav", hhBellNoteID, curveFor3[0], curveFor3[1] - 1, hhRelease, hhMaxLen, "HHOH");
+        addSample("HHBell 2 OH", HHBellDestination + "HHBell_2_OH.wav", hhBellNoteID, curveFor3[1], curveFor3[2] - 1, hhRelease, hhMaxLen, "HHOH");
+        addSample("HHBell 3 OH", HHBellDestination + "HHBell_3_OH.wav", hhBellNoteID, curveFor3[2], curveFor3[3] - 1, hhRelease, hhMaxLen, "HHOH");
+        addSample("HHBell 1 Room", HHBellDestination + "HHBell_1_room.wav", hhBellNoteID, curveFor3[0], curveFor3[1] - 1, hhRelease, hhMaxLen, "HHRoom");
+        addSample("HHBell 2 Room", HHBellDestination + "HHBell_2_room.wav", hhBellNoteID, curveFor3[1], curveFor3[2] - 1, hhRelease, hhMaxLen, "HHRoom");
+        addSample("HHBell 3 Room", HHBellDestination + "HHBell_3_room.wav", hhBellNoteID, curveFor3[2], curveFor3[3] - 1, hhRelease, hhMaxLen, "HHRoom");
+        addSample("HHBell 1 Bleed", HHBellDestination + "HHBell_1_bleed.wav", hhBellNoteID, curveFor3[0], curveFor3[1] - 1, hhRelease, hhMaxLen, "HHBleed");
+        addSample("HHBell 2 Bleed", HHBellDestination + "HHBell_2_bleed.wav", hhBellNoteID, curveFor3[1], curveFor3[2] - 1, hhRelease, hhMaxLen, "HHBleed");
+        addSample("HHBell 3 Bleed", HHBellDestination + "HHBell_3_bleed.wav", hhBellNoteID, curveFor3[2], curveFor3[3] - 1, hhRelease, hhMaxLen, "HHBleed");
+
+        string HHClosedDestination = HHAllDestination + "HHClosed/";
+        addSample("HHClosed 1 Close", HHClosedDestination + "HHClosed_1_close.wav", hhClosedNoteID, curveFor6[0], curveFor6[1] - 1, hhRelease, hhMaxLen, "HHClose");
+        addSample("HHClosed 2 Close", HHClosedDestination + "HHClosed_2_close.wav", hhClosedNoteID, curveFor6[1], curveFor6[2] - 1, hhRelease, hhMaxLen, "HHClose");
+        addSample("HHClosed 3 Close", HHClosedDestination + "HHClosed_3_close.wav", hhClosedNoteID, curveFor6[2], curveFor6[3] - 1, hhRelease, hhMaxLen, "HHClose");
+        addSample("HHClosed 4 Close", HHClosedDestination + "HHClosed_4_close.wav", hhClosedNoteID, curveFor6[3], curveFor6[4] - 1, hhRelease, hhMaxLen, "HHClose");
+        addSample("HHClosed 5 Close", HHClosedDestination + "HHClosed_5_close.wav", hhClosedNoteID, curveFor6[4], curveFor6[5] - 1, hhRelease, hhMaxLen, "HHClose");
+        addSample("HHClosed 6 Close", HHClosedDestination + "HHClosed_6_close.wav", hhClosedNoteID, curveFor6[5], curveFor6[6] - 1, hhRelease, hhMaxLen, "HHClose");
+        addSample("HHClosed 1 OH", HHClosedDestination + "HHClosed_1_OH.wav", hhClosedNoteID, curveFor6[0], curveFor6[1] - 1, hhRelease, hhMaxLen, "HHOH");
+        addSample("HHClosed 2 OH", HHClosedDestination + "HHClosed_2_OH.wav", hhClosedNoteID, curveFor6[1], curveFor6[2] - 1, hhRelease, hhMaxLen, "HHOH");
+        addSample("HHClosed 3 OH", HHClosedDestination + "HHClosed_3_OH.wav", hhClosedNoteID, curveFor6[2], curveFor6[3] - 1, hhRelease, hhMaxLen, "HHOH");
+        addSample("HHClosed 4 OH", HHClosedDestination + "HHClosed_4_OH.wav", hhClosedNoteID, curveFor6[3], curveFor6[4] - 1, hhRelease, hhMaxLen, "HHOH");
+        addSample("HHClosed 5 OH", HHClosedDestination + "HHClosed_5_OH.wav", hhClosedNoteID, curveFor6[4], curveFor6[5] - 1, hhRelease, hhMaxLen, "HHOH");
+        addSample("HHClosed 6 OH", HHClosedDestination + "HHClosed_6_OH.wav", hhClosedNoteID, curveFor6[5], curveFor6[6] - 1, hhRelease, hhMaxLen, "HHOH");
+        addSample("HHClosed 1 Room", HHClosedDestination + "HHClosed_1_room.wav", hhClosedNoteID, curveFor6[0], curveFor6[1] - 1, hhRelease, hhMaxLen, "HHRoom");
+        addSample("HHClosed 2 Room", HHClosedDestination + "HHClosed_2_room.wav", hhClosedNoteID, curveFor6[1], curveFor6[2] - 1, hhRelease, hhMaxLen, "HHRoom");
+        addSample("HHClosed 3 Room", HHClosedDestination + "HHClosed_3_room.wav", hhClosedNoteID, curveFor6[2], curveFor6[3] - 1, hhRelease, hhMaxLen, "HHRoom");
+        addSample("HHClosed 4 Room", HHClosedDestination + "HHClosed_4_room.wav", hhClosedNoteID, curveFor6[3], curveFor6[4] - 1, hhRelease, hhMaxLen, "HHRoom");
+        addSample("HHClosed 5 Room", HHClosedDestination + "HHClosed_5_room.wav", hhClosedNoteID, curveFor6[4], curveFor6[5] - 1, hhRelease, hhMaxLen, "HHRoom");
+        addSample("HHClosed 6 Room", HHClosedDestination + "HHClosed_6_room.wav", hhClosedNoteID, curveFor6[5], curveFor6[6] - 1, hhRelease, hhMaxLen, "HHRoom");
+        addSample("HHClosed 1 Bleed", HHClosedDestination + "HHClosed_1_bleed.wav", hhClosedNoteID, curveFor6[0], curveFor6[1] - 1, hhRelease, hhMaxLen, "HHBleed");
+        addSample("HHClosed 2 Bleed", HHClosedDestination + "HHClosed_2_bleed.wav", hhClosedNoteID, curveFor6[1], curveFor6[2] - 1, hhRelease, hhMaxLen, "HHBleed");
+        addSample("HHClosed 3 Bleed", HHClosedDestination + "HHClosed_3_bleed.wav", hhClosedNoteID, curveFor6[2], curveFor6[3] - 1, hhRelease, hhMaxLen, "HHBleed");
+        addSample("HHClosed 4 Bleed", HHClosedDestination + "HHClosed_4_bleed.wav", hhClosedNoteID, curveFor6[3], curveFor6[4] - 1, hhRelease, hhMaxLen, "HHBleed");
+        addSample("HHClosed 5 Bleed", HHClosedDestination + "HHClosed_5_bleed.wav", hhClosedNoteID, curveFor6[4], curveFor6[5] - 1, hhRelease, hhMaxLen, "HHBleed");
+        addSample("HHClosed 6 Bleed", HHClosedDestination + "HHClosed_6_bleed.wav", hhClosedNoteID, curveFor6[5], curveFor6[6] - 1, hhRelease, hhMaxLen, "HHBleed");
+
+        string HHHalfDestination = HHAllDestination + "HHHalf/";
+        addSample("HHHalf 1 Close", HHHalfDestination + "HHHalf_1_close.wav", hhHalfNoteID, curveFor4[0], curveFor4[1] - 1, hhRelease, hhMaxLen, "HHClose");
+        addSample("HHHalf 2 Close", HHHalfDestination + "HHHalf_2_close.wav", hhHalfNoteID, curveFor4[1], curveFor4[2] - 1, hhRelease, hhMaxLen, "HHClose");
+        addSample("HHHalf 3 Close", HHHalfDestination + "HHHalf_3_close.wav", hhHalfNoteID, curveFor4[2], curveFor4[3] - 1, hhRelease, hhMaxLen, "HHClose");
+        addSample("HHHalf 4 Close", HHHalfDestination + "HHHalf_4_close.wav", hhHalfNoteID, curveFor4[3], curveFor4[4] - 1, hhRelease, hhMaxLen, "HHClose");
+        addSample("HHHalf 1 OH", HHHalfDestination + "HHHalf_1_OH.wav", hhHalfNoteID, curveFor4[0], curveFor4[1] - 1, hhRelease, hhMaxLen, "HHOH");
+        addSample("HHHalf 2 OH", HHHalfDestination + "HHHalf_2_OH.wav", hhHalfNoteID, curveFor4[1], curveFor4[2] - 1, hhRelease, hhMaxLen, "HHOH");
+        addSample("HHHalf 3 OH", HHHalfDestination + "HHHalf_3_OH.wav", hhHalfNoteID, curveFor4[2], curveFor4[3] - 1, hhRelease, hhMaxLen, "HHOH");
+        addSample("HHHalf 4 OH", HHHalfDestination + "HHHalf_4_OH.wav", hhHalfNoteID, curveFor4[3], curveFor4[4] - 1, hhRelease, hhMaxLen, "HHOH");
+        addSample("HHHalf 1 Room", HHHalfDestination + "HHHalf_1_room.wav", hhHalfNoteID, curveFor4[0], curveFor4[1] - 1, hhRelease, hhMaxLen, "HHRoom");
+        addSample("HHHalf 2 Room", HHHalfDestination + "HHHalf_2_room.wav", hhHalfNoteID, curveFor4[1], curveFor4[2] - 1, hhRelease, hhMaxLen, "HHRoom");
+        addSample("HHHalf 3 Room", HHHalfDestination + "HHHalf_3_room.wav", hhHalfNoteID, curveFor4[2], curveFor4[3] - 1, hhRelease, hhMaxLen, "HHRoom");
+        addSample("HHHalf 4 Room", HHHalfDestination + "HHHalf_4_room.wav", hhHalfNoteID, curveFor4[3], curveFor4[4] - 1, hhRelease, hhMaxLen, "HHRoom");
+        addSample("HHHalf 1 Bleed", HHHalfDestination + "HHHalf_1_bleed.wav", hhHalfNoteID, curveFor4[0], curveFor4[1] - 1, hhRelease, hhMaxLen, "HHBleed");
+        addSample("HHHalf 2 Bleed", HHHalfDestination + "HHHalf_2_bleed.wav", hhHalfNoteID, curveFor4[1], curveFor4[2] - 1, hhRelease, hhMaxLen, "HHBleed");
+        addSample("HHHalf 3 Bleed", HHHalfDestination + "HHHalf_3_bleed.wav", hhHalfNoteID, curveFor4[2], curveFor4[3] - 1, hhRelease, hhMaxLen, "HHBleed");
+        addSample("HHHalf 4 Bleed", HHHalfDestination + "HHHalf_4_bleed.wav", hhHalfNoteID, curveFor4[3], curveFor4[4] - 1, hhRelease, hhMaxLen, "HHBleed");
+
+        float hhOpenMaxLen = 5.0;
+        string HHOpenDestination = HHAllDestination + "HHOpen/";
+        addSample("HHOpen 1 Close", HHOpenDestination + "HHOpen_1_close.wav", hhOpenNoteID, curveFor5[0], curveFor5[1] - 1, hhRelease, hhOpenMaxLen, "HHClose");
+        addSample("HHOpen 2 Close", HHOpenDestination + "HHOpen_2_close.wav", hhOpenNoteID, curveFor5[1], curveFor5[2] - 1, hhRelease, hhOpenMaxLen, "HHClose");
+        addSample("HHOpen 3 Close", HHOpenDestination + "HHOpen_3_close.wav", hhOpenNoteID, curveFor5[2], curveFor5[3] - 1, hhRelease, hhOpenMaxLen, "HHClose");
+        addSample("HHOpen 4 Close", HHOpenDestination + "HHOpen_4_close.wav", hhOpenNoteID, curveFor5[3], curveFor5[4] - 1, hhRelease, hhOpenMaxLen, "HHClose");
+        addSample("HHOpen 5 Close", HHOpenDestination + "HHOpen_5_close.wav", hhOpenNoteID, curveFor5[4], curveFor5[5] - 1, hhRelease, hhOpenMaxLen, "HHClose");
+        addSample("HHOpen 1 OH", HHOpenDestination + "HHOpen_1_OH.wav", hhOpenNoteID, curveFor5[0], curveFor5[1] - 1, hhRelease, hhOpenMaxLen, "HHOH");
+        addSample("HHOpen 2 OH", HHOpenDestination + "HHOpen_2_OH.wav", hhOpenNoteID, curveFor5[1], curveFor5[2] - 1, hhRelease, hhOpenMaxLen, "HHOH");
+        addSample("HHOpen 3 OH", HHOpenDestination + "HHOpen_3_OH.wav", hhOpenNoteID, curveFor5[2], curveFor5[3] - 1, hhRelease, hhOpenMaxLen, "HHOH");
+        addSample("HHOpen 4 OH", HHOpenDestination + "HHOpen_4_OH.wav", hhOpenNoteID, curveFor5[3], curveFor5[4] - 1, hhRelease, hhOpenMaxLen, "HHOH");
+        addSample("HHOpen 5 OH", HHOpenDestination + "HHOpen_5_OH.wav", hhOpenNoteID, curveFor5[4], curveFor5[5] - 1, hhRelease, hhOpenMaxLen, "HHOH");
+        addSample("HHOpen 1 Room", HHOpenDestination + "HHOpen_1_room.wav", hhOpenNoteID, curveFor5[0], curveFor5[1] - 1, hhRelease, hhOpenMaxLen, "HHRoom");
+        addSample("HHOpen 2 Room", HHOpenDestination + "HHOpen_2_room.wav", hhOpenNoteID, curveFor5[1], curveFor5[2] - 1, hhRelease, hhOpenMaxLen, "HHRoom");
+        addSample("HHOpen 3 Room", HHOpenDestination + "HHOpen_3_room.wav", hhOpenNoteID, curveFor5[2], curveFor5[3] - 1, hhRelease, hhOpenMaxLen, "HHRoom");
+        addSample("HHOpen 4 Room", HHOpenDestination + "HHOpen_4_room.wav", hhOpenNoteID, curveFor5[3], curveFor5[4] - 1, hhRelease, hhOpenMaxLen, "HHRoom");
+        addSample("HHOpen 5 Room", HHOpenDestination + "HHOpen_5_room.wav", hhOpenNoteID, curveFor5[4], curveFor5[5] - 1, hhRelease, hhOpenMaxLen, "HHRoom");
+        addSample("HHOpen 1 Bleed", HHOpenDestination + "HHOpen_1_bleed.wav", hhOpenNoteID, curveFor5[0], curveFor5[1] - 1, hhRelease, hhOpenMaxLen, "HHBleed");
+        addSample("HHOpen 2 Bleed", HHOpenDestination + "HHOpen_2_bleed.wav", hhOpenNoteID, curveFor5[1], curveFor5[2] - 1, hhRelease, hhOpenMaxLen, "HHBleed");
+        addSample("HHOpen 3 Bleed", HHOpenDestination + "HHOpen_3_bleed.wav", hhOpenNoteID, curveFor5[2], curveFor5[3] - 1, hhRelease, hhOpenMaxLen, "HHBleed");
+        addSample("HHOpen 4 Bleed", HHOpenDestination + "HHOpen_4_bleed.wav", hhOpenNoteID, curveFor5[3], curveFor5[4] - 1, hhRelease, hhOpenMaxLen, "HHBleed");
+        addSample("HHOpen 5 Bleed", HHOpenDestination + "HHOpen_5_bleed.wav", hhOpenNoteID, curveFor5[4], curveFor5[5] - 1, hhRelease, hhOpenMaxLen, "HHBleed");
+
+        float RideRelease = 0.7;
+        float RideMaxLen = 12.0;
+        string RideAllDestination = dryDestination + "rideAll/";
+        string RidePointDestination = RideAllDestination + "ridePoint/";
+        addSample("RidePoint 1 Close", RidePointDestination + "ridePoint_1_bleed.wav", ridePointNoteID, curveFor5[0], curveFor5[1] - 1, RideRelease, RideMaxLen, "RideClose");
+        addSample("RidePoint 2 Close", RidePointDestination + "ridePoint_2_bleed.wav", ridePointNoteID, curveFor5[1], curveFor5[2] - 1, RideRelease, RideMaxLen, "RideClose");
+        addSample("RidePoint 3 Close", RidePointDestination + "ridePoint_3_bleed.wav", ridePointNoteID, curveFor5[2], curveFor5[3] - 1, RideRelease, RideMaxLen, "RideClose");
+        addSample("RidePoint 4 Close", RidePointDestination + "ridePoint_4_bleed.wav", ridePointNoteID, curveFor5[3], curveFor5[4] - 1, RideRelease, RideMaxLen, "RideClose");
+        addSample("RidePoint 5 Close", RidePointDestination + "ridePoint_5_bleed.wav", ridePointNoteID, curveFor5[4], curveFor5[5] - 1, RideRelease, RideMaxLen, "RideClose");
+        addSample("RidePoint 1 OH", RidePointDestination + "ridePoint_1_OH.wav", ridePointNoteID, curveFor5[0], curveFor5[1] - 1, RideRelease, RideMaxLen, "CymbalsOH");
+        addSample("RidePoint 2 OH", RidePointDestination + "ridePoint_2_OH.wav", ridePointNoteID, curveFor5[1], curveFor5[2] - 1, RideRelease, RideMaxLen, "CymbalsOH");
+        addSample("RidePoint 3 OH", RidePointDestination + "ridePoint_3_OH.wav", ridePointNoteID, curveFor5[2], curveFor5[3] - 1, RideRelease, RideMaxLen, "CymbalsOH");
+        addSample("RidePoint 4 OH", RidePointDestination + "ridePoint_4_OH.wav", ridePointNoteID, curveFor5[3], curveFor5[4] - 1, RideRelease, RideMaxLen, "CymbalsOH");
+        addSample("RidePoint 5 OH", RidePointDestination + "ridePoint_5_OH.wav", ridePointNoteID, curveFor5[4], curveFor5[5] - 1, RideRelease, RideMaxLen, "CymbalsOH");
+        addSample("RidePoint 1 Room", RidePointDestination + "ridePoint_1_room.wav", ridePointNoteID, curveFor5[0], curveFor5[1] - 1, RideRelease, RideMaxLen, "CymbalsRoom");
+        addSample("RidePoint 2 Room", RidePointDestination + "ridePoint_2_room.wav", ridePointNoteID, curveFor5[1], curveFor5[2] - 1, RideRelease, RideMaxLen, "CymbalsRoom");
+        addSample("RidePoint 3 Room", RidePointDestination + "ridePoint_3_room.wav", ridePointNoteID, curveFor5[2], curveFor5[3] - 1, RideRelease, RideMaxLen, "CymbalsRoom");
+        addSample("RidePoint 4 Room", RidePointDestination + "ridePoint_4_room.wav", ridePointNoteID, curveFor5[3], curveFor5[4] - 1, RideRelease, RideMaxLen, "CymbalsRoom");
+        addSample("RidePoint 5 Room", RidePointDestination + "ridePoint_5_room.wav", ridePointNoteID, curveFor5[4], curveFor5[5] - 1, RideRelease, RideMaxLen, "CymbalsRoom");
+        addSample("RidePoint 1 Bleed", RidePointDestination + "ridePoint_1_bleed.wav", ridePointNoteID, curveFor5[0], curveFor5[1] - 1, RideRelease, RideMaxLen, "CymbalsBleed");
+        addSample("RidePoint 2 Bleed", RidePointDestination + "ridePoint_2_bleed.wav", ridePointNoteID, curveFor5[1], curveFor5[2] - 1, RideRelease, RideMaxLen, "CymbalsBleed");
+        addSample("RidePoint 3 Bleed", RidePointDestination + "ridePoint_3_bleed.wav", ridePointNoteID, curveFor5[2], curveFor5[3] - 1, RideRelease, RideMaxLen, "CymbalsBleed");
+        addSample("RidePoint 4 Bleed", RidePointDestination + "ridePoint_4_bleed.wav", ridePointNoteID, curveFor5[3], curveFor5[4] - 1, RideRelease, RideMaxLen, "CymbalsBleed");
+        addSample("RidePoint 5 Bleed", RidePointDestination + "ridePoint_5_bleed.wav", ridePointNoteID, curveFor5[4], curveFor5[5] - 1, RideRelease, RideMaxLen, "CymbalsBleed");
+
+        string RideHalfDestination = RideAllDestination + "rideHalf/";
+        addSample("RideHalf 1 Close", RideHalfDestination + "rideHalf_1_bleed.wav", rideHalfNoteID, curveFor3[0], curveFor3[1] - 1, RideRelease, RideMaxLen, "RideClose");
+        addSample("RideHalf 2 Close", RideHalfDestination + "rideHalf_2_bleed.wav", rideHalfNoteID, curveFor3[1], curveFor3[2] - 1, RideRelease, RideMaxLen, "RideClose");
+        addSample("RideHalf 3 Close", RideHalfDestination + "rideHalf_3_bleed.wav", rideHalfNoteID, curveFor3[2], curveFor3[3] - 1, RideRelease, RideMaxLen, "RideClose");
+        addSample("RideHalf 1 OH", RideHalfDestination + "rideHalf_1_OH.wav", rideHalfNoteID, curveFor3[0], curveFor3[1] - 1, RideRelease, RideMaxLen, "CymbalsOH");
+        addSample("RideHalf 2 OH", RideHalfDestination + "rideHalf_2_OH.wav", rideHalfNoteID, curveFor3[1], curveFor3[2] - 1, RideRelease, RideMaxLen, "CymbalsOH");
+        addSample("RideHalf 3 OH", RideHalfDestination + "rideHalf_3_OH.wav", rideHalfNoteID, curveFor3[2], curveFor3[3] - 1, RideRelease, RideMaxLen, "CymbalsOH");
+        addSample("RideHalf 1 Room", RideHalfDestination + "rideHalf_1_room.wav", rideHalfNoteID, curveFor3[0], curveFor3[1] - 1, RideRelease, RideMaxLen, "CymbalsRoom");
+        addSample("RideHalf 2 Room", RideHalfDestination + "rideHalf_2_room.wav", rideHalfNoteID, curveFor3[1], curveFor3[2] - 1, RideRelease, RideMaxLen, "CymbalsRoom");
+        addSample("RideHalf 3 Room", RideHalfDestination + "rideHalf_3_room.wav", rideHalfNoteID, curveFor3[2], curveFor3[3] - 1, RideRelease, RideMaxLen, "CymbalsRoom");
+        addSample("RideHalf 1 Bleed", RideHalfDestination + "rideHalf_1_bleed.wav", rideHalfNoteID, curveFor3[0], curveFor3[1] - 1, RideRelease, RideMaxLen, "CymbalsBleed");
+        addSample("RideHalf 2 Bleed", RideHalfDestination + "rideHalf_2_bleed.wav", rideHalfNoteID, curveFor3[1], curveFor3[2] - 1, RideRelease, RideMaxLen, "CymbalsBleed");
+        addSample("RideHalf 3 Bleed", RideHalfDestination + "rideHalf_3_bleed.wav", rideHalfNoteID, curveFor3[2], curveFor3[3] - 1, RideRelease, RideMaxLen, "CymbalsBleed");
+
+        string RideBellDestination = RideAllDestination + "rideBell/";
+        addSample("RideBell 1 Close", RideBellDestination + "rideBell_1_bleed.wav", rideBellNoteID, curveFor5[0], curveFor5[1] - 1, RideRelease, RideMaxLen, "RideClose");
+        addSample("RideBell 2 Close", RideBellDestination + "rideBell_2_bleed.wav", rideBellNoteID, curveFor5[1], curveFor5[2] - 1, RideRelease, RideMaxLen, "RideClose");
+        addSample("RideBell 3 Close", RideBellDestination + "rideBell_3_bleed.wav", rideBellNoteID, curveFor5[2], curveFor5[3] - 1, RideRelease, RideMaxLen, "RideClose");
+        addSample("RideBell 4 Close", RideBellDestination + "rideBell_4_bleed.wav", rideBellNoteID, curveFor5[3], curveFor5[4] - 1, RideRelease, RideMaxLen, "RideClose");
+        addSample("RideBell 5 Close", RideBellDestination + "rideBell_5_bleed.wav", rideBellNoteID, curveFor5[4], curveFor5[5] - 1, RideRelease, RideMaxLen, "RideClose");
+        addSample("RideBell 1 OH", RideBellDestination + "rideBell_1_OH.wav", rideBellNoteID, curveFor5[0], curveFor5[1] - 1, RideRelease, RideMaxLen, "CymbalsOH");
+        addSample("RideBell 2 OH", RideBellDestination + "rideBell_2_OH.wav", rideBellNoteID, curveFor5[1], curveFor5[2] - 1, RideRelease, RideMaxLen, "CymbalsOH");
+        addSample("RideBell 3 OH", RideBellDestination + "rideBell_3_OH.wav", rideBellNoteID, curveFor5[2], curveFor5[3] - 1, RideRelease, RideMaxLen, "CymbalsOH");
+        addSample("RideBell 4 OH", RideBellDestination + "rideBell_4_OH.wav", rideBellNoteID, curveFor5[3], curveFor5[4] - 1, RideRelease, RideMaxLen, "CymbalsOH");
+        addSample("RideBell 5 OH", RideBellDestination + "rideBell_5_OH.wav", rideBellNoteID, curveFor5[4], curveFor5[5] - 1, RideRelease, RideMaxLen, "CymbalsOH");
+        addSample("RideBell 1 Room", RideBellDestination + "rideBell_1_room.wav", rideBellNoteID, curveFor5[0], curveFor5[1] - 1, RideRelease, RideMaxLen, "CymbalsRoom");
+        addSample("RideBell 2 Room", RideBellDestination + "rideBell_2_room.wav", rideBellNoteID, curveFor5[1], curveFor5[2] - 1, RideRelease, RideMaxLen, "CymbalsRoom");
+        addSample("RideBell 3 Room", RideBellDestination + "rideBell_3_room.wav", rideBellNoteID, curveFor5[2], curveFor5[3] - 1, RideRelease, RideMaxLen, "CymbalsRoom");
+        addSample("RideBell 4 Room", RideBellDestination + "rideBell_4_room.wav", rideBellNoteID, curveFor5[3], curveFor5[4] - 1, RideRelease, RideMaxLen, "CymbalsRoom");
+        addSample("RideBell 5 Room", RideBellDestination + "rideBell_5_room.wav", rideBellNoteID, curveFor5[4], curveFor5[5] - 1, RideRelease, RideMaxLen, "CymbalsRoom");
+        addSample("RideBell 1 Bleed", RideBellDestination + "rideBell_1_bleed.wav", rideBellNoteID, curveFor5[0], curveFor5[1] - 1, RideRelease, RideMaxLen, "CymbalsBleed");
+        addSample("RideBell 2 Bleed", RideBellDestination + "rideBell_2_bleed.wav", rideBellNoteID, curveFor5[1], curveFor5[2] - 1, RideRelease, RideMaxLen, "CymbalsBleed");
+        addSample("RideBell 3 Bleed", RideBellDestination + "rideBell_3_bleed.wav", rideBellNoteID, curveFor5[2], curveFor5[3] - 1, RideRelease, RideMaxLen, "CymbalsBleed");
+        addSample("RideBell 4 Bleed", RideBellDestination + "rideBell_4_bleed.wav", rideBellNoteID, curveFor5[3], curveFor5[4] - 1, RideRelease, RideMaxLen, "CymbalsBleed");
+        addSample("RideBell 5 Bleed", RideBellDestination + "rideBell_5_bleed.wav", rideBellNoteID, curveFor5[4], curveFor5[5] - 1, RideRelease, RideMaxLen, "CymbalsBleed");
+
+        float RideOpenRelease = 4.5;
+        string RideOpenDestination = RideAllDestination + "rideOpen/";
+        addSample("RideOpen 1 Close", RideOpenDestination + "rideOpen_1_bleed.wav", rideOpenNoteID, curveFor5[0], curveFor5[1] - 1, RideOpenRelease, RideMaxLen, "RideClose");
+        addSample("RideOpen 2 Close", RideOpenDestination + "rideOpen_2_bleed.wav", rideOpenNoteID, curveFor5[1], curveFor5[2] - 1, RideOpenRelease, RideMaxLen, "RideClose");
+        addSample("RideOpen 3 Close", RideOpenDestination + "rideOpen_3_bleed.wav", rideOpenNoteID, curveFor5[2], curveFor5[3] - 1, RideOpenRelease, RideMaxLen, "RideClose");
+        addSample("RideOpen 4 Close", RideOpenDestination + "rideOpen_4_bleed.wav", rideOpenNoteID, curveFor5[3], curveFor5[4] - 1, RideOpenRelease, RideMaxLen, "RideClose");
+        addSample("RideOpen 5 Close", RideOpenDestination + "rideOpen_5_bleed.wav", rideOpenNoteID, curveFor5[4], curveFor5[5] - 1, RideOpenRelease, RideMaxLen, "RideClose");
+        addSample("RideOpen 1 OH", RideOpenDestination + "rideOpen_1_OH.wav", rideOpenNoteID, curveFor5[0], curveFor5[1] - 1, RideOpenRelease, RideMaxLen, "CymbalsOH");
+        addSample("RideOpen 2 OH", RideOpenDestination + "rideOpen_2_OH.wav", rideOpenNoteID, curveFor5[1], curveFor5[2] - 1, RideOpenRelease, RideMaxLen, "CymbalsOH");
+        addSample("RideOpen 3 OH", RideOpenDestination + "rideOpen_3_OH.wav", rideOpenNoteID, curveFor5[2], curveFor5[3] - 1, RideOpenRelease, RideMaxLen, "CymbalsOH");
+        addSample("RideOpen 4 OH", RideOpenDestination + "rideOpen_4_OH.wav", rideOpenNoteID, curveFor5[3], curveFor5[4] - 1, RideOpenRelease, RideMaxLen, "CymbalsOH");
+        addSample("RideOpen 5 OH", RideOpenDestination + "rideOpen_5_OH.wav", rideOpenNoteID, curveFor5[4], curveFor5[5] - 1, RideOpenRelease, RideMaxLen, "CymbalsOH");
+        addSample("RideOpen 1 Room", RideOpenDestination + "rideOpen_1_room.wav", rideOpenNoteID, curveFor5[0], curveFor5[1] - 1, RideOpenRelease, RideMaxLen, "CymbalsRoom");
+        addSample("RideOpen 2 Room", RideOpenDestination + "rideOpen_2_room.wav", rideOpenNoteID, curveFor5[1], curveFor5[2] - 1, RideOpenRelease, RideMaxLen, "CymbalsRoom");
+        addSample("RideOpen 3 Room", RideOpenDestination + "rideOpen_3_room.wav", rideOpenNoteID, curveFor5[2], curveFor5[3] - 1, RideOpenRelease, RideMaxLen, "CymbalsRoom");
+        addSample("RideOpen 4 Room", RideOpenDestination + "rideOpen_4_room.wav", rideOpenNoteID, curveFor5[3], curveFor5[4] - 1, RideOpenRelease, RideMaxLen, "CymbalsRoom");
+        addSample("RideOpen 5 Room", RideOpenDestination + "rideOpen_5_room.wav", rideOpenNoteID, curveFor5[4], curveFor5[5] - 1, RideOpenRelease, RideMaxLen, "CymbalsRoom");
+        addSample("RideOpen 1 Bleed", RideOpenDestination + "rideOpen_1_bleed.wav", rideOpenNoteID, curveFor5[0], curveFor5[1] - 1, RideOpenRelease, RideMaxLen, "CymbalsBleed");
+        addSample("RideOpen 2 Bleed", RideOpenDestination + "rideOpen_2_bleed.wav", rideOpenNoteID, curveFor5[1], curveFor5[2] - 1, RideOpenRelease, RideMaxLen, "CymbalsBleed");
+        addSample("RideOpen 3 Bleed", RideOpenDestination + "rideOpen_3_bleed.wav", rideOpenNoteID, curveFor5[2], curveFor5[3] - 1, RideOpenRelease, RideMaxLen, "CymbalsBleed");
+        addSample("RideOpen 4 Bleed", RideOpenDestination + "rideOpen_4_bleed.wav", rideOpenNoteID, curveFor5[3], curveFor5[4] - 1, RideOpenRelease, RideMaxLen, "CymbalsBleed");
+        addSample("RideOpen 5 Bleed", RideOpenDestination + "rideOpen_5_bleed.wav", rideOpenNoteID, curveFor5[4], curveFor5[5] - 1, RideOpenRelease, RideMaxLen, "CymbalsBleed");
+
+
+        float CrashRelease = 0.12;
+        float CrashMaxLen = 6.0;
+        string CrashAllDestination = dryDestination + "crashAll/";
+
 
     }
 }
