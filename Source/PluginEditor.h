@@ -31,6 +31,32 @@ public:
 
     HDrumsAudioProcessor& audioProcessor;
 
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> samplePackAttachment;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> curveMenuAttachment;
+
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> kickNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> snareNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> snareFlamNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> snareRoundNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> snareWirelessNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> snareWirelessRoundNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> tomNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> tomFlamNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> ftomNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> ftomFlamNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> hhBellNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> hhClosedNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> hhHalfNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> hhOpenNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> tambNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> ridePointNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> rideHalfNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> rideBellNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> rideOpenNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> crashPointNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> crashBellNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> crashOpenNote;
+
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> sliderValue;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> OHsliderValue;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> RoomSliderValue;

@@ -60,10 +60,10 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     midiNotesChoosingPage.snareButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.snareNoteMenu.getSelectedId()); };
     midiNotesChoosingPage.snareFlamNoteMenu.onChange = [this] { samplePackMenuChanged(); };
     midiNotesChoosingPage.snareFlamButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.snareFlamNoteMenu.getSelectedId()); };
-    midiNotesChoosingPage.snareWirelessNoteMenu.onChange = [this] { samplePackMenuChanged(); };
-    midiNotesChoosingPage.snareWirelessButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.snareWirelessNoteMenu.getSelectedId()); };
     midiNotesChoosingPage.snareRoundNoteMenu.onChange = [this] { samplePackMenuChanged(); };
     midiNotesChoosingPage.snareRoundButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.snareRoundNoteMenu.getSelectedId()); };
+    midiNotesChoosingPage.snareWirelessNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.snareWirelessButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.snareWirelessNoteMenu.getSelectedId()); };
     midiNotesChoosingPage.snareWirelessRoundNoteMenu.onChange = [this] { samplePackMenuChanged(); };
     midiNotesChoosingPage.snareWirelessRoundButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.snareWirelessRoundNoteMenu.getSelectedId()); };
 
@@ -105,6 +105,38 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
 
     //addAndMakeVisible(&openButton);
     //openButton.onClick = [this] { loadDirectory(); };
+
+    samplePackAttachment = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, SAMPLE_PACK_ID, samplePackMenu);
+    curveMenuAttachment = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, CURVE_MENU_ID, curveMenu);
+
+    kickNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, KICK_MIDI_NOTE_ID, midiNotesChoosingPage.kickNoteMenu);
+    snareNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, SNARE_MIDI_NOTE_ID, midiNotesChoosingPage.snareNoteMenu);
+    snareFlamNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, SNARE_FLAM_MIDI_NOTE_ID, midiNotesChoosingPage.snareFlamNoteMenu);
+    snareRoundNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, SNARE_ROUND_MIDI_NOTE_ID, midiNotesChoosingPage.snareRoundNoteMenu);
+    snareWirelessNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, SNARE_WIRELESS_MIDI_NOTE_ID, midiNotesChoosingPage.snareWirelessNoteMenu);
+    snareWirelessRoundNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, SNARE_WIRELESS_ROUND_MIDI_NOTE_ID, midiNotesChoosingPage.snareWirelessRoundNoteMenu);
+
+    tomNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, TOM_MIDI_NOTE_ID, midiNotesChoosingPage.tomNoteMenu);
+    tomFlamNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, TOM_FLAM_MIDI_NOTE_ID, midiNotesChoosingPage.tomFlamNoteMenu);
+    ftomNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, FTOM_MIDI_NOTE_ID, midiNotesChoosingPage.ftomNoteMenu);
+    ftomFlamNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, FTOM_FLAM_MIDI_NOTE_ID, midiNotesChoosingPage.ftomFlamNoteMenu);
+
+    hhBellNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, HH_BELL_MIDI_NOTE_ID, midiNotesChoosingPage.hhBellNoteMenu);
+    hhClosedNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, HH_CLOSED_MIDI_NOTE_ID, midiNotesChoosingPage.hhClosedNoteMenu);
+    hhHalfNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, HH_HALF_MIDI_NOTE_ID, midiNotesChoosingPage.hhHalfNoteMenu);
+    hhOpenNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, HH_OPEN_MIDI_NOTE_ID, midiNotesChoosingPage.hhOpenNoteMenu);
+    tambNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, TAMB_MIDI_NOTE_ID, midiNotesChoosingPage.tambNoteMenu);
+
+    ridePointNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, RIDE_POINT_MIDI_NOTE_ID, midiNotesChoosingPage.ridePointNoteMenu);
+    rideHalfNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, RIDE_HALF_MIDI_NOTE_ID, midiNotesChoosingPage.rideHalfNoteMenu);
+    rideBellNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, RIDE_BELL_MIDI_NOTE_ID, midiNotesChoosingPage.rideBellNoteMenu);
+    rideOpenNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, RIDE_OPEN_MIDI_NOTE_ID, midiNotesChoosingPage.rideOpenNoteMenu);
+
+    crashPointNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, CRASH_POINT_MIDI_NOTE_ID, midiNotesChoosingPage.crashPointNoteMenu);
+    crashBellNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, CRASH_BELL_MIDI_NOTE_ID, midiNotesChoosingPage.crashBellNoteMenu);
+    crashOpenNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, CRASH_OPEN_MIDI_NOTE_ID, midiNotesChoosingPage.crashOpenNoteMenu);
+
+    
 
     sliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, GAIN_ID, gainSlider);
     OHsliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, OH_GAIN_ID, OHgainSlider);
@@ -163,14 +195,62 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     samplePackMenu.addItem("Electronic Drum Kit", 2);
     samplePackMenu.addItem("Dry Drum Kit", 3);
     samplePackMenu.onChange = [this] { samplePackMenuChanged(); };
-    samplePackMenu.setSelectedId(1);
+    auto samplePackMenuValue = audioProcessor.treeState.getRawParameterValue(SAMPLE_PACK_ID);
+    samplePackMenu.setSelectedId(*samplePackMenuValue);
     
     addAndMakeVisible(&curveMenu);
     curveMenu.setJustificationType(juce::Justification::centred);
     curveMenu.addItem("Linear", 1);
     curveMenu.addItem("Logarhytmic", 2);
     curveMenu.onChange = [this] { samplePackMenuChanged(); };
-    curveMenu.setSelectedId(1);
+    auto curveMenuValue = audioProcessor.treeState.getRawParameterValue(CURVE_MENU_ID);
+    curveMenu.setSelectedId(*curveMenuValue);
+
+    // MIDI Menus =============================================
+    auto kickNoteMenuValue = audioProcessor.treeState.getRawParameterValue(KICK_MIDI_NOTE_ID);
+    midiNotesChoosingPage.kickNoteMenu.setSelectedId(*kickNoteMenuValue);
+    /*auto snareNoteMenuValue = audioProcessor.treeState.getRawParameterValue(SNARE_MIDI_NOTE_ID);
+    auto snareFlamNoteMenuValue = audioProcessor.treeState.getRawParameterValue(SNARE_FLAM_MIDI_NOTE_ID);
+    auto snareRoundNoteMenuValue = audioProcessor.treeState.getRawParameterValue(SNARE_ROUND_MIDI_NOTE_ID);
+    auto snareWirelessNoteMenuValue = audioProcessor.treeState.getRawParameterValue(SNARE_WIRELESS_MIDI_NOTE_ID);
+    auto snareWirelessRoundNoteMenuValue = audioProcessor.treeState.getRawParameterValue(SNARE_WIRELESS_ROUND_MIDI_NOTE_ID);
+    auto tomNoteMenuValue = audioProcessor.treeState.getRawParameterValue(TOM_MIDI_NOTE_ID);
+    auto tomFlamNoteMenuValue = audioProcessor.treeState.getRawParameterValue(TOM_FLAM_MIDI_NOTE_ID);
+    auto ftomNoteMenuValue = audioProcessor.treeState.getRawParameterValue(FTOM_MIDI_NOTE_ID);
+    auto ftomFlamNoteMenuValue = audioProcessor.treeState.getRawParameterValue(FTOM_FLAM_MIDI_NOTE_ID);
+    auto tambNoteMenuValue = audioProcessor.treeState.getRawParameterValue(TAMB_MIDI_NOTE_ID);
+    auto hhBellNoteMenuValue = audioProcessor.treeState.getRawParameterValue(HH_BELL_MIDI_NOTE_ID);
+    auto hhClosedNoteMenuValue = audioProcessor.treeState.getRawParameterValue(HH_CLOSED_MIDI_NOTE_ID);
+    auto hhHalfNoteMenuValue = audioProcessor.treeState.getRawParameterValue(HH_HALF_MIDI_NOTE_ID);
+    auto hhOpenNoteMenuValue = audioProcessor.treeState.getRawParameterValue(HH_OPEN_MIDI_NOTE_ID);
+    auto ridePointNoteMenuValue = audioProcessor.treeState.getRawParameterValue(RIDE_POINT_MIDI_NOTE_ID);
+    auto rideHalfNoteMenuValue = audioProcessor.treeState.getRawParameterValue(RIDE_HALF_MIDI_NOTE_ID);
+    auto rideBellNoteMenuValue = audioProcessor.treeState.getRawParameterValue(RIDE_BELL_MIDI_NOTE_ID);
+    auto rideOpenNoteMenuValue = audioProcessor.treeState.getRawParameterValue(RIDE_OPEN_MIDI_NOTE_ID);
+    auto crashPointNoteMenuValue = audioProcessor.treeState.getRawParameterValue(CRASH_POINT_MIDI_NOTE_ID);
+    auto crashBellNoteMenuValue = audioProcessor.treeState.getRawParameterValue(CRASH_BELL_MIDI_NOTE_ID);
+    auto crashOpenNoteMenuValue = audioProcessor.treeState.getRawParameterValue(CRASH_OPEN_MIDI_NOTE_ID);
+    midiNotesChoosingPage.snareNoteMenu.setSelectedId(*snareNoteMenuValue);
+    midiNotesChoosingPage.snareFlamNoteMenu.setSelectedId(*snareFlamNoteMenuValue);
+    midiNotesChoosingPage.snareRoundNoteMenu.setSelectedId(*snareRoundNoteMenuValue);
+    midiNotesChoosingPage.snareWirelessNoteMenu.setSelectedId(*snareWirelessNoteMenuValue);
+    midiNotesChoosingPage.snareWirelessRoundNoteMenu.setSelectedId(*snareWirelessRoundNoteMenuValue);
+    midiNotesChoosingPage.tomNoteMenu.setSelectedId(*tomNoteMenuValue);
+    midiNotesChoosingPage.tomFlamNoteMenu.setSelectedId(*tomFlamNoteMenuValue);
+    midiNotesChoosingPage.ftomNoteMenu.setSelectedId(*ftomNoteMenuValue);
+    midiNotesChoosingPage.ftomFlamNoteMenu.setSelectedId(*ftomFlamNoteMenuValue);
+    midiNotesChoosingPage.tambNoteMenu.setSelectedId(*tambNoteMenuValue);
+    midiNotesChoosingPage.hhBellNoteMenu.setSelectedId(*hhBellNoteMenuValue);
+    midiNotesChoosingPage.hhClosedNoteMenu.setSelectedId(*hhClosedNoteMenuValue);
+    midiNotesChoosingPage.hhHalfNoteMenu.setSelectedId(*hhHalfNoteMenuValue);
+    midiNotesChoosingPage.hhOpenNoteMenu.setSelectedId(*hhOpenNoteMenuValue);
+    midiNotesChoosingPage.ridePointNoteMenu.setSelectedId(*ridePointNoteMenuValue);
+    midiNotesChoosingPage.rideHalfNoteMenu.setSelectedId(*rideHalfNoteMenuValue);
+    midiNotesChoosingPage.rideBellNoteMenu.setSelectedId(*rideBellNoteMenuValue);
+    midiNotesChoosingPage.rideOpenNoteMenu.setSelectedId(*rideOpenNoteMenuValue);
+    midiNotesChoosingPage.crashPointNoteMenu.setSelectedId(*crashPointNoteMenuValue);
+    midiNotesChoosingPage.crashBellNoteMenu.setSelectedId(*crashBellNoteMenuValue);
+    midiNotesChoosingPage.crashOpenNoteMenu.setSelectedId(*crashOpenNoteMenuValue);*/
 
 }
 
@@ -235,6 +315,7 @@ void HDrumsAudioProcessorEditor::samplePackMenuChanged()
         midiNotesChoosingPage.rideHalfNoteMenu.getSelectedId(), midiNotesChoosingPage.rideBellNoteMenu.getSelectedId(),
         midiNotesChoosingPage.rideOpenNoteMenu.getSelectedId(), midiNotesChoosingPage.crashPointNoteMenu.getSelectedId(),
         midiNotesChoosingPage.crashBellNoteMenu.getSelectedId(), midiNotesChoosingPage.crashOpenNoteMenu.getSelectedId());
+        repaint();
 }
 
 void HDrumsAudioProcessorEditor::playMidiNote(int noteNumber)

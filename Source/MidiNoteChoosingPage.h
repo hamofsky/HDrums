@@ -62,15 +62,15 @@ public:
 		kickNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			kickNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		kickNoteMenu.setSelectedId(57);    // default MIDI note for kick
-		
+		//kickNoteMenu.setSelectedId(57);    // default MIDI note for kick
+
 		addAndMakeVisible(snareButton);
 		snareButton.setButtonText("Snare");
 		addAndMakeVisible(&snareNoteMenu);
 		snareNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			snareNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		snareNoteMenu.setSelectedId(60);    // default MIDI note for snare
+		//snareNoteMenu.setSelectedId(60);    // default MIDI note for snare
 
 		addAndMakeVisible(snareFlamButton);
 		snareFlamButton.setButtonText("Snare Flam");
@@ -78,15 +78,7 @@ public:
 		snareFlamNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			snareFlamNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		snareFlamNoteMenu.setSelectedId(61);    // default MIDI note for snareFlam
-
-		addAndMakeVisible(snareWirelessButton);
-		snareWirelessButton.setButtonText("Snare Wireless");
-		addAndMakeVisible(&snareWirelessNoteMenu);
-		snareWirelessNoteMenu.setJustificationType(juce::Justification::centred);
-		for (int i = 1; i < 128; i++)
-			snareWirelessNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		snareWirelessNoteMenu.setSelectedId(62);    // default MIDI note for snareWireless
+		//snareFlamNoteMenu.setSelectedId(61);    // default MIDI note for snareFlam
 
 		addAndMakeVisible(snareRoundButton);
 		snareRoundButton.setButtonText("Snare Round");
@@ -94,7 +86,15 @@ public:
 		snareRoundNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			snareRoundNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		snareRoundNoteMenu.setSelectedId(63);    // default MIDI note for snareRound
+		//snareRoundNoteMenu.setSelectedId(62);    // default MIDI note for snareRound
+
+		addAndMakeVisible(snareWirelessButton);
+		snareWirelessButton.setButtonText("Snare Wireless");
+		addAndMakeVisible(&snareWirelessNoteMenu);
+		snareWirelessNoteMenu.setJustificationType(juce::Justification::centred);
+		for (int i = 1; i < 128; i++)
+			snareWirelessNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
+		//snareWirelessNoteMenu.setSelectedId(63);    // default MIDI note for snareWireless
 
 		addAndMakeVisible(snareWirelessRoundButton);
 		snareWirelessRoundButton.setButtonText("Snare Round Wireless");
@@ -102,7 +102,7 @@ public:
 		snareWirelessRoundNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			snareWirelessRoundNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		snareWirelessRoundNoteMenu.setSelectedId(64);    // default MIDI note for snareWirelessRound
+		//snareWirelessRoundNoteMenu.setSelectedId(64);    // default MIDI note for snareWirelessRound
 
 		addAndMakeVisible(tomButton);
 		tomButton.setButtonText("Tom");
@@ -110,7 +110,7 @@ public:
 		tomNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			tomNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		tomNoteMenu.setSelectedId(66);    // default MIDI note for tom
+		//tomNoteMenu.setSelectedId(66);    // default MIDI note for tom
 
 		addAndMakeVisible(tomFlamButton);
 		tomFlamButton.setButtonText("Tom Flam");
@@ -118,7 +118,7 @@ public:
 		tomFlamNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			tomFlamNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		tomFlamNoteMenu.setSelectedId(67);    // default MIDI note for tomFlam
+		//tomFlamNoteMenu.setSelectedId(67);    // default MIDI note for tomFlam
 
 		addAndMakeVisible(ftomButton);
 		ftomButton.setButtonText("FTom");
@@ -126,7 +126,7 @@ public:
 		ftomNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			ftomNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		ftomNoteMenu.setSelectedId(68);    // default MIDI note for ftom
+		//ftomNoteMenu.setSelectedId(68);    // default MIDI note for ftom
 
 		addAndMakeVisible(ftomFlamButton);
 		ftomFlamButton.setButtonText("FTom Flam");
@@ -134,7 +134,7 @@ public:
 		ftomFlamNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			ftomFlamNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		ftomFlamNoteMenu.setSelectedId(69);    // default MIDI note for ftomFlam
+		//ftomFlamNoteMenu.setSelectedId(69);    // default MIDI note for ftomFlam
 
 		addAndMakeVisible(hhBellButton);
 		hhBellButton.setButtonText("HH Bell");
@@ -142,7 +142,7 @@ public:
 		hhBellNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			hhBellNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		hhBellNoteMenu.setSelectedId(71);    // default MIDI note for hhBell
+		//hhBellNoteMenu.setSelectedId(71);    // default MIDI note for hhBell
 
 		addAndMakeVisible(hhClosedButton);
 		hhClosedButton.setButtonText("HH Closed");
@@ -150,7 +150,7 @@ public:
 		hhClosedNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			hhClosedNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		hhClosedNoteMenu.setSelectedId(72);    // default MIDI note for hhClosed
+		//hhClosedNoteMenu.setSelectedId(72);    // default MIDI note for hhClosed
 
 		addAndMakeVisible(hhHalfButton);
 		hhHalfButton.setButtonText("HH Half");
@@ -158,7 +158,7 @@ public:
 		hhHalfNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			hhHalfNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		hhHalfNoteMenu.setSelectedId(73);    // default MIDI note for hhHalf
+		//hhHalfNoteMenu.setSelectedId(73);    // default MIDI note for hhHalf
 
 		addAndMakeVisible(hhOpenButton);
 		hhOpenButton.setButtonText("HH Open");
@@ -166,7 +166,7 @@ public:
 		hhOpenNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			hhOpenNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		hhOpenNoteMenu.setSelectedId(74);    // default MIDI note for hhOpen
+		//hhOpenNoteMenu.setSelectedId(74);    // default MIDI note for hhOpen
 
 		addAndMakeVisible(tambButton);
 		tambButton.setButtonText("Tambourine");
@@ -174,7 +174,7 @@ public:
 		tambNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			tambNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		tambNoteMenu.setSelectedId(85);    // default MIDI note for tamb
+		//tambNoteMenu.setSelectedId(85);    // default MIDI note for tamb
 
 		addAndMakeVisible(ridePointButton);
 		ridePointButton.setButtonText("Ride Point");
@@ -182,7 +182,7 @@ public:
 		ridePointNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			ridePointNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		ridePointNoteMenu.setSelectedId(76);    // default MIDI note for ridePoint
+		//ridePointNoteMenu.setSelectedId(76);    // default MIDI note for ridePoint
 
 		addAndMakeVisible(rideHalfButton);
 		rideHalfButton.setButtonText("Ride Half");
@@ -190,7 +190,7 @@ public:
 		rideHalfNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			rideHalfNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		rideHalfNoteMenu.setSelectedId(77);    // default MIDI note for rideHalf
+		//rideHalfNoteMenu.setSelectedId(77);    // default MIDI note for rideHalf
 
 		addAndMakeVisible(rideBellButton);
 		rideBellButton.setButtonText("Ride Bell");
@@ -198,7 +198,7 @@ public:
 		rideBellNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			rideBellNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		rideBellNoteMenu.setSelectedId(78);    // default MIDI note for rideBell
+		//rideBellNoteMenu.setSelectedId(78);    // default MIDI note for rideBell
 
 		addAndMakeVisible(rideOpenButton);
 		rideOpenButton.setButtonText("Ride Open");
@@ -206,7 +206,7 @@ public:
 		rideOpenNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			rideOpenNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		rideOpenNoteMenu.setSelectedId(79);    // default MIDI note for rideOpen
+		//rideOpenNoteMenu.setSelectedId(79);    // default MIDI note for rideOpen
 
 		addAndMakeVisible(crashPointButton);
 		crashPointButton.setButtonText("Crash Point");
@@ -214,7 +214,7 @@ public:
 		crashPointNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			crashPointNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		crashPointNoteMenu.setSelectedId(81);    // default MIDI note for crashPoint
+		//crashPointNoteMenu.setSelectedId(81);    // default MIDI note for crashPoint
 
 		addAndMakeVisible(crashBellButton);
 		crashBellButton.setButtonText("Crash Bell");
@@ -222,7 +222,7 @@ public:
 		crashBellNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			crashBellNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		crashBellNoteMenu.setSelectedId(82);    // default MIDI note for crashBell
+		//crashBellNoteMenu.setSelectedId(82);    // default MIDI note for crashBell
 
 		addAndMakeVisible(crashOpenButton);
 		crashOpenButton.setButtonText("Crash Open");
@@ -230,7 +230,7 @@ public:
 		crashOpenNoteMenu.setJustificationType(juce::Justification::centred);
 		for (int i = 1; i < 128; i++)
 			crashOpenNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		crashOpenNoteMenu.setSelectedId(83);    // default MIDI note for crashOpen
+		//crashOpenNoteMenu.setSelectedId(83);    // default MIDI note for crashOpen
 
 	}
 
@@ -250,10 +250,10 @@ public:
 		snareNoteMenu.setBounds(qWidth + 2.5, 40, qWidth - 7.5, 20);
 		snareFlamButton.setBounds(10, 70, qWidth - 12.5, 20);
 		snareFlamNoteMenu.setBounds(qWidth + 2.5, 70, qWidth - 7.5, 20);
-		snareWirelessButton.setBounds(10, 100, qWidth - 12.5, 20);
-		snareWirelessNoteMenu.setBounds(qWidth + 2.5, 100, qWidth - 7.5, 20);
-		snareRoundButton.setBounds(10, 130, qWidth - 12.5, 20);
-		snareRoundNoteMenu.setBounds(qWidth + 2.5, 130, qWidth - 7.5, 20);
+		snareRoundButton.setBounds(10, 100, qWidth - 12.5, 20);
+		snareRoundNoteMenu.setBounds(qWidth + 2.5, 100, qWidth - 7.5, 20);
+		snareWirelessButton.setBounds(10, 130, qWidth - 12.5, 20);
+		snareWirelessNoteMenu.setBounds(qWidth + 2.5, 130, qWidth - 7.5, 20);
 		snareWirelessRoundButton.setBounds(10, 160, qWidth - 12.5, 20);
 		snareWirelessRoundNoteMenu.setBounds(qWidth + 2.5, 160, qWidth - 7.5, 20);
 		tomButton.setBounds(10, 190, qWidth - 12.5, 20);

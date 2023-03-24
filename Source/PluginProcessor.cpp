@@ -131,8 +131,57 @@ juce::AudioProcessorValueTreeState::ParameterLayout HDrumsAudioProcessor::create
     params.push_back(std::move(CymbalsRoomGainParam));
     params.push_back(std::move(CymbalsBleedGainParam));
 
-    //auto samplePack = std::make_unique<juce::ComboBoxParameterAttachment>(SAMPLE_PACK_ID, SAMPLE_PACK, 0, 1, 1);
-    //params.push_back(std::move(samplePack));
+    auto SamplePackParam = std::make_unique<juce::AudioParameterChoice>(SAMPLE_PACK_ID, SAMPLE_PACK_NAME, juce::StringArray("Acoustic", "Electronic", "Dry"), 1);
+    auto CurveMenuParam = std::make_unique<juce::AudioParameterChoice>(CURVE_MENU_ID, CURVE_MENU_NAME, juce::StringArray("Linear", "Logarhytmic"), 1);
+    params.push_back(std::move(SamplePackParam));
+    params.push_back(std::move(CurveMenuParam));
+    //57, 60, 61, 62, 63, 64, 66, 67, 68, 69, 71, 72, 73, 74, 85, 76, 77, 78, 79, 81, 82, 83
+    auto kickNoteParam = std::make_unique<juce::AudioParameterChoice>(KICK_MIDI_NOTE_ID, KICK_MIDI_NOTE_NAME, processorMidiNotes, 57); //57
+    params.push_back(std::move(kickNoteParam));
+    /*auto snareNoteParam = std::make_unique<juce::AudioParameterChoice>(SNARE_MIDI_NOTE_ID, SNARE_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 60);
+    auto snareFlamNoteParam = std::make_unique<juce::AudioParameterChoice>(SNARE_FLAM_MIDI_NOTE_ID, SNARE_FLAM_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 61);
+    auto snareWirelessNoteParam = std::make_unique<juce::AudioParameterChoice>(SNARE_WIRELESS_MIDI_NOTE_ID, SNARE_WIRELESS_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 62);
+    auto snareRoundNoteParam = std::make_unique<juce::AudioParameterChoice>(SNARE_ROUND_MIDI_NOTE_ID, SNARE_ROUND_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 63);
+    auto snareWirelessRoundNoteParam = std::make_unique<juce::AudioParameterChoice>(SNARE_WIRELESS_ROUND_MIDI_NOTE_ID, SNARE_WIRELESS_ROUND_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 64);
+    auto tomNoteParam = std::make_unique<juce::AudioParameterChoice>(TOM_MIDI_NOTE_ID, TOM_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 66);
+    auto tomFlamNoteParam = std::make_unique<juce::AudioParameterChoice>(TOM_FLAM_MIDI_NOTE_ID, TOM_FLAM_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 67);
+    auto ftomNoteParam = std::make_unique<juce::AudioParameterChoice>(FTOM_MIDI_NOTE_ID, FTOM_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 68);
+    auto ftomFlamNoteParam = std::make_unique<juce::AudioParameterChoice>(FTOM_FLAM_MIDI_NOTE_ID, FTOM_FLAM_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 69);
+    auto hhBellNoteParam = std::make_unique<juce::AudioParameterChoice>(HH_BELL_MIDI_NOTE_ID, HH_BELL_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 71);
+    auto hhClosedNoteParam = std::make_unique<juce::AudioParameterChoice>(HH_CLOSED_MIDI_NOTE_ID, HH_CLOSED_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 72);
+    auto hhHalfNoteParam = std::make_unique<juce::AudioParameterChoice>(HH_HALF_MIDI_NOTE_ID, HH_HALF_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 73);
+    auto hhOpenNoteParam = std::make_unique<juce::AudioParameterChoice>(HH_OPEN_MIDI_NOTE_ID, HH_OPEN_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 74);
+    auto tambNoteParam = std::make_unique<juce::AudioParameterChoice>(TAMB_MIDI_NOTE_ID, TAMB_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 85);
+    auto ridePointNoteParam = std::make_unique<juce::AudioParameterChoice>(RIDE_POINT_MIDI_NOTE_ID, RIDE_POINT_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 76);
+    auto rideHalfNoteParam = std::make_unique<juce::AudioParameterChoice>(RIDE_HALF_MIDI_NOTE_ID, RIDE_HALF_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 77);
+    auto rideBellNoteParam = std::make_unique<juce::AudioParameterChoice>(RIDE_BELL_MIDI_NOTE_ID, RIDE_BELL_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 78);
+    auto rideOpenNoteParam = std::make_unique<juce::AudioParameterChoice>(RIDE_OPEN_MIDI_NOTE_ID, RIDE_OPEN_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 79);
+    auto crashPointNoteParam = std::make_unique<juce::AudioParameterChoice>(CRASH_POINT_MIDI_NOTE_ID, CRASH_POINT_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 81);
+    auto crashBellNoteParam = std::make_unique<juce::AudioParameterChoice>(CRASH_BELL_MIDI_NOTE_ID, CRASH_BELL_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 82);
+    auto crashOpenNoteParam = std::make_unique<juce::AudioParameterChoice>(CRASH_OPEN_MIDI_NOTE_ID, CRASH_OPEN_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 83);
+    params.push_back(std::move(kickNoteParam));
+    params.push_back(std::move(snareNoteParam));
+    params.push_back(std::move(snareFlamNoteParam));
+    params.push_back(std::move(snareWirelessNoteParam));
+    params.push_back(std::move(snareRoundNoteParam));
+    params.push_back(std::move(snareWirelessRoundNoteParam));
+    params.push_back(std::move(tomNoteParam));
+    params.push_back(std::move(tomFlamNoteParam));
+    params.push_back(std::move(ftomNoteParam));
+    params.push_back(std::move(ftomFlamNoteParam));
+    params.push_back(std::move(hhBellNoteParam));
+    params.push_back(std::move(hhClosedNoteParam));
+    params.push_back(std::move(hhHalfNoteParam));
+    params.push_back(std::move(hhOpenNoteParam));
+    params.push_back(std::move(tambNoteParam));
+    params.push_back(std::move(ridePointNoteParam));
+    params.push_back(std::move(rideHalfNoteParam));
+    params.push_back(std::move(rideBellNoteParam));
+    params.push_back(std::move(rideOpenNoteParam));
+    params.push_back(std::move(crashPointNoteParam));
+    params.push_back(std::move(crashBellNoteParam));
+    params.push_back(std::move(crashOpenNoteParam));*/
+
     return { params.begin(), params.end() };
 }
 //==============================================================================
@@ -220,8 +269,8 @@ void HDrumsAudioProcessor::loadDirectory()
     DBG("Source was a nullptr, so you will have to choose a correct directory");
 }
 
-void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int kickNoteID, int snareNoteID, int snareFlamNoteID, int snareWirelessNoteID,
-                                        int snareRoundNoteID, int snareWirelessRoundNoteID, int tomNoteID, int tomFlamNoteID, int ftomNoteID, int ftomFlamNoteID,
+void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int kickNoteID, int snareNoteID, int snareFlamNoteID, int snareRoundNoteID,
+                                        int snareWirelessNoteID, int snareWirelessRoundNoteID, int tomNoteID, int tomFlamNoteID, int ftomNoteID, int ftomFlamNoteID,
                                         int hhBellNoteID, int hhClosedNoteID, int hhHalfNoteID, int hhOpenNoteID, int tambourineNoteID, int ridePointNoteID,
                                         int rideHalfNoteID, int rideBellNoteID, int rideOpenNoteID, int crashPointNoteID, int crashBellNoteID, int crashOpenNoteID)
 {
@@ -246,8 +295,8 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
 
     if (samplePackID == 1) {
         clearSoundsFromAllSamplers();
-        float snareRelease = 0.5;
-        float snareMaxLen = 2.0;
+        double snareRelease = 0.5;
+        double snareMaxLen = 2.0;
 
         string destinationP = destinationAll + "Perkusja/";
         // sampleName, File destination, midiNote, lowestVelocity, highestVelocity, release in s, maxLength in s, bus select
@@ -292,8 +341,8 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
     else if (samplePackID == 3) {
         clearSoundsFromAllSamplers();
 
-        float kickRelease = 0.5;
-        float kickMaxLen = 2.0;
+        double kickRelease = 0.5;
+        double kickMaxLen = 2.0;
         string dryDestination = destinationAll + "drySamples/";
         // sampleName, File destination, midiNote, lowestVelocity, highestVelocity, release in s, maxLength in s, bus select (0 - Close Mics, 1 - OH, 2 - Room)
         string kickDestination = dryDestination + "kick/";
@@ -323,8 +372,8 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         addSample("Kick 6 Bleed", kickDestination + "kick_6_bleed.wav", kickNoteID, curveFor6[5], curveFor6[6] - 1, kickRelease, kickMaxLen, "KickBleed");
 
 
-        float snareRelease = 0.5;
-        float snareMaxLen = 2.0;
+        double snareRelease = 0.5;
+        double snareMaxLen = 2.0;
         string snareAllDestination = dryDestination + "snareAll/";
         string snareDestination = snareAllDestination + "snare/";
         addSample("Snare 1 Top", snareDestination + "snare_1_top.wav", snareNoteID, curveFor6[0], curveFor6[1] - 1, snareRelease, 1.0, "SnareTop");
@@ -385,6 +434,29 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         addSample("SnareFlam 4 Bleed", snareFlamDestination + "snareFlam_4_bleed.wav", snareFlamNoteID, curveFor5[3], curveFor5[4] - 1, snareRelease, 1.4, "SnareBleed");
         addSample("SnareFlam 5 Bleed", snareFlamDestination + "snareFlam_5_bleed.wav", snareFlamNoteID, curveFor5[4], curveFor5[5] - 1, snareRelease, 1.0, "SnareBleed");
 
+        double snareMaxLen2 = 1.1;
+        string snareRoundDestination = snareAllDestination + "snareRound/";
+        addSample("SnareRound 1 Top", snareRoundDestination + "snareRound_1_top.wav", snareRoundNoteID, curveFor4[0], curveFor4[1] - 1, snareRelease, snareMaxLen2, "SnareTop");
+        addSample("SnareRound 2 Top", snareRoundDestination + "snareRound_2_top.wav", snareRoundNoteID, curveFor4[1], curveFor4[2] - 1, snareRelease, snareMaxLen2, "SnareTop");
+        addSample("SnareRound 3 Top", snareRoundDestination + "snareRound_3_top.wav", snareRoundNoteID, curveFor4[2], curveFor4[3] - 1, snareRelease, snareMaxLen2, "SnareTop");
+        addSample("SnareRound 4 Top", snareRoundDestination + "snareRound_4_top.wav", snareRoundNoteID, curveFor4[3], curveFor4[4] - 1, snareRelease, snareMaxLen2, "SnareTop");
+        addSample("SnareRound 1 Bot", snareRoundDestination + "snareRound_1_bot.wav", snareRoundNoteID, curveFor4[0], curveFor4[1] - 1, snareRelease, snareMaxLen2, "SnareBot");
+        addSample("SnareRound 2 Bot", snareRoundDestination + "snareRound_2_bot.wav", snareRoundNoteID, curveFor4[1], curveFor4[2] - 1, snareRelease, snareMaxLen2, "SnareBot");
+        addSample("SnareRound 3 Bot", snareRoundDestination + "snareRound_3_bot.wav", snareRoundNoteID, curveFor4[2], curveFor4[3] - 1, snareRelease, snareMaxLen2, "SnareBot");
+        addSample("SnareRound 4 Bot", snareRoundDestination + "snareRound_4_bot.wav", snareRoundNoteID, curveFor4[3], curveFor4[4] - 1, snareRelease, snareMaxLen2, "SnareBot");
+        addSample("SnareRound 1 OH", snareRoundDestination + "snareRound_1_OH.wav", snareRoundNoteID, curveFor4[0], curveFor4[1] - 1, snareRelease, snareMaxLen2, "SnareOH");
+        addSample("SnareRound 2 OH", snareRoundDestination + "snareRound_2_OH.wav", snareRoundNoteID, curveFor4[1], curveFor4[2] - 1, snareRelease, snareMaxLen2, "SnareOH");
+        addSample("SnareRound 3 OH", snareRoundDestination + "snareRound_3_OH.wav", snareRoundNoteID, curveFor4[2], curveFor4[3] - 1, snareRelease, snareMaxLen2, "SnareOH");
+        addSample("SnareRound 4 OH", snareRoundDestination + "snareRound_4_OH.wav", snareRoundNoteID, curveFor4[3], curveFor4[4] - 1, snareRelease, snareMaxLen2, "SnareOH");
+        addSample("SnareRound 1 Room", snareRoundDestination + "snareRound_1_room.wav", snareRoundNoteID, curveFor4[0], curveFor4[1] - 1, snareRelease, snareMaxLen2, "SnareRoom");
+        addSample("SnareRound 2 Room", snareRoundDestination + "snareRound_2_room.wav", snareRoundNoteID, curveFor4[1], curveFor4[2] - 1, snareRelease, snareMaxLen2, "SnareRoom");
+        addSample("SnareRound 3 Room", snareRoundDestination + "snareRound_3_room.wav", snareRoundNoteID, curveFor4[2], curveFor4[3] - 1, snareRelease, snareMaxLen2, "SnareRoom");
+        addSample("SnareRound 4 Room", snareRoundDestination + "snareRound_4_room.wav", snareRoundNoteID, curveFor4[3], curveFor4[4] - 1, snareRelease, snareMaxLen2, "SnareRoom");
+        addSample("SnareRound 1 Bleed", snareRoundDestination + "snareRound_1_bleed.wav", snareRoundNoteID, curveFor4[0], curveFor4[1] - 1, snareRelease, snareMaxLen2, "SnareBleed");
+        addSample("SnareRound 2 Bleed", snareRoundDestination + "snareRound_2_bleed.wav", snareRoundNoteID, curveFor4[1], curveFor4[2] - 1, snareRelease, snareMaxLen2, "SnareBleed");
+        addSample("SnareRound 3 Bleed", snareRoundDestination + "snareRound_3_bleed.wav", snareRoundNoteID, curveFor4[2], curveFor4[3] - 1, snareRelease, snareMaxLen2, "SnareBleed");
+        addSample("SnareRound 4 Bleed", snareRoundDestination + "snareRound_4_bleed.wav", snareRoundNoteID, curveFor4[3], curveFor4[4] - 1, snareRelease, snareMaxLen2, "SnareBleed");
+
         string snareWirelessDestination = snareAllDestination + "snareWireless/";
         addSample("SnareWireless 1 Top", snareWirelessDestination + "snareWireless_1_top.wav", snareWirelessNoteID, curveFor4[0], curveFor4[1] - 1, snareRelease, 0.75, "SnareTop");
         addSample("SnareWireless 2 Top", snareWirelessDestination + "snareWireless_2_top.wav", snareWirelessNoteID, curveFor4[1], curveFor4[2] - 1, snareRelease, 0.75, "SnareTop");
@@ -406,29 +478,6 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         addSample("SnareWireless 2 Bleed", snareWirelessDestination + "snareWireless_2_bleed.wav", snareWirelessNoteID, curveFor4[1], curveFor4[2] - 1, snareRelease, 0.75, "SnareBleed");
         addSample("SnareWireless 3 Bleed", snareWirelessDestination + "snareWireless_3_bleed.wav", snareWirelessNoteID, curveFor4[2], curveFor4[3] - 1, snareRelease, 0.99, "SnareBleed");
         addSample("SnareWireless 4 Bleed", snareWirelessDestination + "snareWireless_4_bleed.wav", snareWirelessNoteID, curveFor4[3], curveFor4[4] - 1, snareRelease, 0.99, "SnareBleed");
-        
-        float snareMaxLen = 1.1;
-        string snareRoundDestination = snareAllDestination + "snareRound/";
-        addSample("SnareRound 1 Top", snareRoundDestination + "snareRound_1_top.wav", snareRoundNoteID, curveFor4[0], curveFor4[1] - 1, snareRelease, snareMaxLen, "SnareTop");
-        addSample("SnareRound 2 Top", snareRoundDestination + "snareRound_2_top.wav", snareRoundNoteID, curveFor4[1], curveFor4[2] - 1, snareRelease, snareMaxLen, "SnareTop");
-        addSample("SnareRound 3 Top", snareRoundDestination + "snareRound_3_top.wav", snareRoundNoteID, curveFor4[2], curveFor4[3] - 1, snareRelease, snareMaxLen, "SnareTop");
-        addSample("SnareRound 4 Top", snareRoundDestination + "snareRound_4_top.wav", snareRoundNoteID, curveFor4[3], curveFor4[4] - 1, snareRelease, snareMaxLen, "SnareTop");
-        addSample("SnareRound 1 Bot", snareRoundDestination + "snareRound_1_bot.wav", snareRoundNoteID, curveFor4[0], curveFor4[1] - 1, snareRelease, snareMaxLen, "SnareBot");
-        addSample("SnareRound 2 Bot", snareRoundDestination + "snareRound_2_bot.wav", snareRoundNoteID, curveFor4[1], curveFor4[2] - 1, snareRelease, snareMaxLen, "SnareBot");
-        addSample("SnareRound 3 Bot", snareRoundDestination + "snareRound_3_bot.wav", snareRoundNoteID, curveFor4[2], curveFor4[3] - 1, snareRelease, snareMaxLen, "SnareBot");
-        addSample("SnareRound 4 Bot", snareRoundDestination + "snareRound_4_bot.wav", snareRoundNoteID, curveFor4[3], curveFor4[4] - 1, snareRelease, snareMaxLen, "SnareBot");
-        addSample("SnareRound 1 OH", snareRoundDestination + "snareRound_1_OH.wav", snareRoundNoteID, curveFor4[0], curveFor4[1] - 1, snareRelease, snareMaxLen, "SnareOH");
-        addSample("SnareRound 2 OH", snareRoundDestination + "snareRound_2_OH.wav", snareRoundNoteID, curveFor4[1], curveFor4[2] - 1, snareRelease, snareMaxLen, "SnareOH");
-        addSample("SnareRound 3 OH", snareRoundDestination + "snareRound_3_OH.wav", snareRoundNoteID, curveFor4[2], curveFor4[3] - 1, snareRelease, snareMaxLen, "SnareOH");
-        addSample("SnareRound 4 OH", snareRoundDestination + "snareRound_4_OH.wav", snareRoundNoteID, curveFor4[3], curveFor4[4] - 1, snareRelease, snareMaxLen, "SnareOH");
-        addSample("SnareRound 1 Room", snareRoundDestination + "snareRound_1_room.wav", snareRoundNoteID, curveFor4[0], curveFor4[1] - 1, snareRelease, snareMaxLen, "SnareRoom");
-        addSample("SnareRound 2 Room", snareRoundDestination + "snareRound_2_room.wav", snareRoundNoteID, curveFor4[1], curveFor4[2] - 1, snareRelease, snareMaxLen, "SnareRoom");
-        addSample("SnareRound 3 Room", snareRoundDestination + "snareRound_3_room.wav", snareRoundNoteID, curveFor4[2], curveFor4[3] - 1, snareRelease, snareMaxLen, "SnareRoom");
-        addSample("SnareRound 4 Room", snareRoundDestination + "snareRound_4_room.wav", snareRoundNoteID, curveFor4[3], curveFor4[4] - 1, snareRelease, snareMaxLen, "SnareRoom");
-        addSample("SnareRound 1 Bleed", snareRoundDestination + "snareRound_1_bleed.wav", snareRoundNoteID, curveFor4[0], curveFor4[1] - 1, snareRelease, snareMaxLen, "SnareBleed");
-        addSample("SnareRound 2 Bleed", snareRoundDestination + "snareRound_2_bleed.wav", snareRoundNoteID, curveFor4[1], curveFor4[2] - 1, snareRelease, snareMaxLen, "SnareBleed");
-        addSample("SnareRound 3 Bleed", snareRoundDestination + "snareRound_3_bleed.wav", snareRoundNoteID, curveFor4[2], curveFor4[3] - 1, snareRelease, snareMaxLen, "SnareBleed");
-        addSample("SnareRound 4 Bleed", snareRoundDestination + "snareRound_4_bleed.wav", snareRoundNoteID, curveFor4[3], curveFor4[4] - 1, snareRelease, snareMaxLen, "SnareBleed");
 
         string snareWirelessRoundDestination = snareAllDestination + "snareWirelessRound/";
         addSample("SnareWirelessRound 1 Top", snareWirelessRoundDestination + "snareWirelessRound_1_top.wav", snareWirelessRoundNoteID, curveFor4[0], curveFor4[1] - 1, snareRelease, 0.5, "SnareTop");
@@ -452,8 +501,8 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         addSample("SnareWirelessRound 3 Bleed", snareWirelessRoundDestination + "snareWirelessRound_3_bleed.wav", snareWirelessRoundNoteID, curveFor4[2], curveFor4[3] - 1, snareRelease, 0.5, "SnareBleed");
         addSample("SnareWirelessRound 4 Bleed", snareWirelessRoundDestination + "snareWirelessRound_4_bleed.wav", snareWirelessRoundNoteID, curveFor4[3], curveFor4[4] - 1, snareRelease, 0.6, "SnareBleed");
 
-        float tomRelease = 0.6;
-        float tomMaxLen = 2.2;
+        double tomRelease = 0.6;
+        double tomMaxLen = 2.2;
         string tomAllDestination = dryDestination + "tomAll/";
         string tomDestination = tomAllDestination + "tom/";
         addSample("Tom 1 Close", tomDestination + "tom_1_close.wav", tomNoteID, curveFor5[0], curveFor5[1] - 1, tomRelease, 0.7, "TomClose");
@@ -491,8 +540,8 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         addSample("TomFlam 2 Bleed", tomFlamDestination + "tomFlam_2_bleed.wav", tomFlamNoteID, curveFor3[1], curveFor3[2] - 1, tomRelease, 1.0, "TomsBleed");
         addSample("TomFlam 3 Bleed", tomFlamDestination + "tomFlam_3_bleed.wav", tomFlamNoteID, curveFor3[2], curveFor3[3] - 1, tomRelease, 1.1, "TomsBleed");
 
-        float ftomRelease = 0.7;
-        float ftomMaxLen = 2.5;
+        double ftomRelease = 0.7;
+        double ftomMaxLen = 2.5;
         string ftomAllDestination = dryDestination + "ftomAll/";
         string ftomDestination = ftomAllDestination + "ftom/";
         addSample("FTom 1 Close", ftomDestination + "ftom_1_close.wav", ftomNoteID, curveFor5[0], curveFor5[1] - 1, ftomRelease, 0.4, "FTomClose");
@@ -530,7 +579,7 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         addSample("FTomFlam 2 Bleed", ftomFlamDestination + "ftomFlam_2_bleed.wav", ftomFlamNoteID, curveFor3[1], curveFor3[2] - 1, ftomRelease, 1.0, "TomsBleed");
         addSample("FTomFlam 3 Bleed", ftomFlamDestination + "ftomFlam_3_bleed.wav", ftomFlamNoteID, curveFor3[2], curveFor3[3] - 1, ftomRelease, 1.1, "TomsBleed");
 
-        float hhRelease = 0.12;
+        double hhRelease = 0.12;
         string tambDestination = dryDestination + "tambourine/";
         /*addSample("Tambourine 1 Close", tambDestination + "tambourine_1_bleed.wav", tambourineNoteID, curveFor3[0], curveFor3[1] - 1, hhRelease, 0.5, "TambClose");
         addSample("Tambourine 2 Close", tambDestination + "tambourine_2_bleed.wav", tambourineNoteID, curveFor3[1], curveFor3[2] - 1, hhRelease, 0.9, "TambClose");
@@ -545,7 +594,7 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         addSample("Tambourine 2 Bleed", tambDestination + "tambourine_2_bleed.wav", tambourineNoteID, curveFor3[1], curveFor3[2] - 1, hhRelease, 0.9, "HHBleed");
         addSample("Tambourine 3 Bleed", tambDestination + "tambourine_3_bleed.wav", tambourineNoteID, curveFor3[2], curveFor3[3] - 1, hhRelease, 0.8, "HHBleed");
 
-        float hhMaxLen = 1.0;
+        double hhMaxLen = 1.0;
         string HHAllDestination = dryDestination + "HHAll/";
         string HHBellDestination = HHAllDestination + "HHBell/";
         addSample("HHBell 1 Close", HHBellDestination + "HHBell_1_close.wav", hhBellNoteID, curveFor3[0], curveFor3[1] - 1, hhRelease, hhMaxLen, "HHClose");
@@ -587,7 +636,7 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         addSample("HHClosed 5 Bleed", HHClosedDestination + "HHClosed_5_bleed.wav", hhClosedNoteID, curveFor6[4], curveFor6[5] - 1, hhRelease, 1.0, "HHBleed");
         addSample("HHClosed 6 Bleed", HHClosedDestination + "HHClosed_6_bleed.wav", hhClosedNoteID, curveFor6[5], curveFor6[6] - 1, hhRelease, 1.0, "HHBleed");
 
-        float hhHalfMaxLen = 1.4;
+        double hhHalfMaxLen = 1.4;
         string HHHalfDestination = HHAllDestination + "HHHalf/";
         addSample("HHHalf 1 Close", HHHalfDestination + "HHHalf_1_close.wav", hhHalfNoteID, curveFor4[0], curveFor4[1] - 1, hhRelease, hhHalfMaxLen, "HHClose");
         addSample("HHHalf 2 Close", HHHalfDestination + "HHHalf_2_close.wav", hhHalfNoteID, curveFor4[1], curveFor4[2] - 1, hhRelease, hhHalfMaxLen, "HHClose");
@@ -606,7 +655,7 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         addSample("HHHalf 3 Bleed", HHHalfDestination + "HHHalf_3_bleed.wav", hhHalfNoteID, curveFor4[2], curveFor4[3] - 1, hhRelease, hhHalfMaxLen, "HHBleed");
         addSample("HHHalf 4 Bleed", HHHalfDestination + "HHHalf_4_bleed.wav", hhHalfNoteID, curveFor4[3], curveFor4[4] - 1, hhRelease, hhHalfMaxLen, "HHBleed");
 
-        float hhOpenMaxLen = 5.0;
+        double hhOpenMaxLen = 5.0;
         string HHOpenDestination = HHAllDestination + "HHOpen/";
         addSample("HHOpen 1 Close", HHOpenDestination + "HHOpen_1_close.wav", hhOpenNoteID, curveFor5[0], curveFor5[1] - 1, hhRelease, 2.0, "HHClose");
         addSample("HHOpen 2 Close", HHOpenDestination + "HHOpen_2_close.wav", hhOpenNoteID, curveFor5[1], curveFor5[2] - 1, hhRelease, 3.2, "HHClose");
@@ -629,7 +678,7 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         addSample("HHOpen 4 Bleed", HHOpenDestination + "HHOpen_4_bleed.wav", hhOpenNoteID, curveFor5[3], curveFor5[4] - 1, hhRelease, 4.2, "HHBleed");
         addSample("HHOpen 5 Bleed", HHOpenDestination + "HHOpen_5_bleed.wav", hhOpenNoteID, curveFor5[4], curveFor5[5] - 1, hhRelease, 4.8, "HHBleed");
 
-        float RideRelease = 0.7;
+        double RideRelease = 0.7;
         string RideAllDestination = dryDestination + "rideAll/";
         string RidePointDestination = RideAllDestination + "ridePoint/";
         /*addSample("RidePoint 1 Close", RidePointDestination + "ridePoint_1_bleed.wav", ridePointNoteID, curveFor5[0], curveFor5[1] - 1, RideRelease, 3.5, "RideClose");
@@ -689,7 +738,7 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         addSample("RideBell 4 Bleed", RideBellDestination + "rideBell_4_bleed.wav", rideBellNoteID, curveFor5[3], curveFor5[4] - 1, RideRelease, 4.30, "CymbalsBleed");
         addSample("RideBell 5 Bleed", RideBellDestination + "rideBell_5_bleed.wav", rideBellNoteID, curveFor5[4], curveFor5[5] - 1, RideRelease, 5.25, "CymbalsBleed");
 
-        float RideOpenRelease = 4.5;
+        double RideOpenRelease = 4.5;
         string RideOpenDestination = RideAllDestination + "rideOpen/";
         /*addSample("RideOpen 1 Close", RideOpenDestination + "rideOpen_1_bleed.wav", rideOpenNoteID, curveFor5[0], curveFor5[1] - 1, RideOpenRelease, 5.80, "RideClose");
         addSample("RideOpen 2 Close", RideOpenDestination + "rideOpen_2_bleed.wav", rideOpenNoteID, curveFor5[1], curveFor5[2] - 1, RideOpenRelease, 5.30, "RideClose");
@@ -713,7 +762,7 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         addSample("RideOpen 5 Bleed", RideOpenDestination + "rideOpen_5_bleed.wav", rideOpenNoteID, curveFor5[4], curveFor5[5] - 1, RideOpenRelease, 10.0, "CymbalsBleed");
 
 
-        float CrashRelease = 0.12;
+        double CrashRelease = 0.12;
         string CrashAllDestination = dryDestination + "crashAll/";
         string CrashPointDestination = CrashAllDestination + "crashPoint/";
         /*addSample("CrashPoint 1 Close", CrashPointDestination + "crashPoint_1_bleed.wav", crashPointNoteID, curveFor4[0], curveFor4[1] - 1, CrashRelease, 2.08, "CrashClose");
@@ -755,8 +804,8 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int curveMenuID, int ki
         addSample("CrashBell 4 Bleed", CrashBellDestination + "crashBell_4_bleed.wav", crashBellNoteID, curveFor5[3], curveFor5[4] - 1, CrashRelease, 3.00, "CymbalsBleed");
         addSample("CrashBell 5 Bleed", CrashBellDestination + "crashBell_5_bleed.wav", crashBellNoteID, curveFor5[4], curveFor5[5] - 1, CrashRelease, 3.70, "CymbalsBleed");
 
-        float CrashOpenRelease = 0.14;
-        float CrashOpenMaxLen = 6.0;
+        double CrashOpenRelease = 0.14;
+        double CrashOpenMaxLen = 6.0;
         string CrashOpenDestination = CrashAllDestination + "crashOpen/";
         /*addSample("CrashOpen 1 Close", CrashOpenDestination + "crashOpen_1_bleed.wav", crashOpenNoteID, curveFor4[0], curveFor4[1] - 1, CrashOpenRelease, 2.45, "CrashClose");
         addSample("CrashOpen 2 Close", CrashOpenDestination + "crashOpen_2_bleed.wav", crashOpenNoteID, curveFor4[1], curveFor4[2] - 1, CrashOpenRelease, 3.30, "CrashClose");
@@ -1247,6 +1296,57 @@ void HDrumsAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
     juce::MemoryOutputStream(destData, true).writeFloat(*cymbalsRoomSliderValue);
     juce::MemoryOutputStream(destData, true).writeFloat(*cymbalsBleedSliderValue);
 
+    auto samplePackMenu = treeState.getRawParameterValue(SAMPLE_PACK_ID);
+    auto curveMenu = treeState.getRawParameterValue(CURVE_MENU_ID);
+    juce::MemoryOutputStream(destData, true).writeFloat(*samplePackMenu);
+    juce::MemoryOutputStream(destData, true).writeFloat(*curveMenu);
+
+    auto kickNote = treeState.getRawParameterValue(KICK_MIDI_NOTE_ID);
+    auto snareNote = treeState.getRawParameterValue(SNARE_MIDI_NOTE_ID);
+    auto snareFlamNote = treeState.getRawParameterValue(SNARE_FLAM_MIDI_NOTE_ID);
+    auto snareWirelessNote = treeState.getRawParameterValue(SNARE_WIRELESS_MIDI_NOTE_ID);
+    auto snareRoundNote = treeState.getRawParameterValue(SNARE_ROUND_MIDI_NOTE_ID);
+    auto snareWirelessRoundNote = treeState.getRawParameterValue(SNARE_WIRELESS_ROUND_MIDI_NOTE_ID);
+    auto tomNote = treeState.getRawParameterValue(TOM_MIDI_NOTE_ID);
+    auto tomFlamNote = treeState.getRawParameterValue(TOM_FLAM_MIDI_NOTE_ID);
+    auto ftomNote = treeState.getRawParameterValue(FTOM_MIDI_NOTE_ID);
+    auto ftomFlamNote = treeState.getRawParameterValue(FTOM_FLAM_MIDI_NOTE_ID);
+    auto hhBellNote = treeState.getRawParameterValue(HH_BELL_MIDI_NOTE_ID);
+    auto hhClosedNote = treeState.getRawParameterValue(HH_CLOSED_MIDI_NOTE_ID);
+    auto hhHalfNote = treeState.getRawParameterValue(HH_HALF_MIDI_NOTE_ID);
+    auto hhOpenNote = treeState.getRawParameterValue(HH_OPEN_MIDI_NOTE_ID);
+    auto tambNote = treeState.getRawParameterValue(TAMB_MIDI_NOTE_ID);
+    auto ridePointNote = treeState.getRawParameterValue(RIDE_POINT_MIDI_NOTE_ID);
+    auto rideHalfNote = treeState.getRawParameterValue(RIDE_HALF_MIDI_NOTE_ID);
+    auto rideBellNote = treeState.getRawParameterValue(RIDE_BELL_MIDI_NOTE_ID);
+    auto rideOpenNote = treeState.getRawParameterValue(RIDE_OPEN_MIDI_NOTE_ID);
+    auto crashPointNote = treeState.getRawParameterValue(CRASH_POINT_MIDI_NOTE_ID);
+    auto crashBellNote = treeState.getRawParameterValue(CRASH_BELL_MIDI_NOTE_ID);
+    auto crashOpenNote = treeState.getRawParameterValue(CRASH_OPEN_MIDI_NOTE_ID);
+    juce::MemoryOutputStream(destData, true).writeFloat(*kickNote);
+    juce::MemoryOutputStream(destData, true).writeFloat(*snareNote);
+    juce::MemoryOutputStream(destData, true).writeFloat(*snareFlamNote);
+    juce::MemoryOutputStream(destData, true).writeFloat(*snareWirelessNote);
+    juce::MemoryOutputStream(destData, true).writeFloat(*snareRoundNote);
+    juce::MemoryOutputStream(destData, true).writeFloat(*snareWirelessRoundNote);
+    juce::MemoryOutputStream(destData, true).writeFloat(*tomNote);
+    juce::MemoryOutputStream(destData, true).writeFloat(*tomFlamNote);
+    juce::MemoryOutputStream(destData, true).writeFloat(*ftomNote);
+    juce::MemoryOutputStream(destData, true).writeFloat(*ftomFlamNote);
+    juce::MemoryOutputStream(destData, true).writeFloat(*hhBellNote);
+    juce::MemoryOutputStream(destData, true).writeFloat(*hhClosedNote);
+    juce::MemoryOutputStream(destData, true).writeFloat(*hhHalfNote);
+    juce::MemoryOutputStream(destData, true).writeFloat(*hhOpenNote);
+    juce::MemoryOutputStream(destData, true).writeFloat(*tambNote);
+    juce::MemoryOutputStream(destData, true).writeFloat(*ridePointNote);
+    juce::MemoryOutputStream(destData, true).writeFloat(*rideHalfNote);
+    juce::MemoryOutputStream(destData, true).writeFloat(*rideBellNote);
+    juce::MemoryOutputStream(destData, true).writeFloat(*rideOpenNote);
+    juce::MemoryOutputStream(destData, true).writeFloat(*crashPointNote);
+    juce::MemoryOutputStream(destData, true).writeFloat(*crashBellNote);
+    juce::MemoryOutputStream(destData, true).writeFloat(*crashOpenNote);
+
+
 }
 
 void HDrumsAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
@@ -1261,6 +1361,14 @@ void HDrumsAudioProcessor::setStateInformation (const void* data, int sizeInByte
     //*sliderValue = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
     //auto OHsliderValue = treeState.getRawParameterValue(OH_GAIN_ID);
     //*OHsliderValue = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
+    
+    auto kickNote = treeState.getRawParameterValue(KICK_MIDI_NOTE_ID);
+    *kickNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
+
+    auto samplePackMenu = treeState.getRawParameterValue(SAMPLE_PACK_ID);
+    *samplePackMenu = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
+    /*auto curveMenu = treeState.getRawParameterValue(CURVE_MENU_ID);
+    *curveMenu = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();*/
 }
 
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
