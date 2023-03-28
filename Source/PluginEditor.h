@@ -110,6 +110,7 @@ private:
     juce::Label RoomGainLabel;
     juce::Label BleedGainLabel;
 
+    void velocityCurveChanged();
     void samplePackMenuChanged();
     void playMidiNote(int noteNumber);
     

@@ -4,6 +4,9 @@
 
 class MidiProcessor {
 public:
+    bool logarhytmic = false;
+    float maxValueOfLogCurve = log10(128);
+
     void process(juce::MidiBuffer& midiMessages)
     {
         processedBuffer.clear();
@@ -12,14 +15,16 @@ public:
         juce::MidiMessage currentMessage;
         int samplePos;
 
-        //processedBuffer.addEvent(currentMessage, samplePos);
 
         while (it.getNextEvent(currentMessage, samplePos))
         {
             DBG(currentMessage.getDescription());
             if (currentMessage.isNoteOn())
             {
-                //currentMessage.setNoteNumber(60);
+                if (logarhytmic)
+                {
+                    currentMessage.setVelocity(log10(currentMessage.getVelocity()) / maxValueOfLogCurve);    // setVelocity takes velocity values from 0 to 1
+                }
                 processedBuffer.addEvent(currentMessage, samplePos);
 
             }
