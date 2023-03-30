@@ -9,6 +9,8 @@
   <MAINGROUP id="mSYpO8" name="HDrums">
     <GROUP id="{00C7BD7B-4C86-BBC5-915B-CD78D6A9A402}" name="Source">
       <GROUP id="{34A5BC56-8EE7-1812-62BF-8139C531F8EE}" name="Assets">
+        <FILE id="UZK3wF" name="dryDrumsImage.png" compile="0" resource="1"
+              file="Source/Assets/dryDrumsImage.png"/>
         <FILE id="wMuQf6" name="blue_400x400.png" compile="0" resource="1"
               file="Source/Assets/blue_400x400.png"/>
         <FILE id="sNSF4u" name="grey_400x400.png" compile="0" resource="1"

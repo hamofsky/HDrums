@@ -7,20 +7,22 @@
 class CymbalsSlidersPage : public juce::Component
 {
 public:
-	juce::Slider crashCloseSlider;
-	juce::Slider rideCloseSlider;
+	/*juce::Slider crashCloseSlider;
+	juce::Slider rideCloseSlider;*/
+	juce::Slider hhCloseSlider;
 	juce::Slider cymbalsOHSlider;
 	juce::Slider cymbalsRoomSlider;
 	juce::Slider cymbalsBleedSlider;
-	juce::Label crashCloseSliderLabel;
-	juce::Label rideCloseSliderLabel;
+	/*juce::Label crashCloseSliderLabel;
+	juce::Label rideCloseSliderLabel;*/
+	juce::Label hhCloseSliderLabel;
 	juce::Label cymbalsOHSliderLabel;
 	juce::Label cymbalsRoomSliderLabel;
 	juce::Label cymbalsBleedSliderLabel;
 
 	CymbalsSlidersPage()
 	{
-		crashCloseSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
+		/*crashCloseSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		crashCloseSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
 		crashCloseSlider.setRange(-48.0f, 10.0f);
 		crashCloseSlider.setDoubleClickReturnValue(true, 0.0f);
@@ -29,9 +31,9 @@ public:
 		addAndMakeVisible(crashCloseSliderLabel);
 		crashCloseSliderLabel.setText("Crash", juce::dontSendNotification);
 		crashCloseSliderLabel.setJustificationType(juce::Justification::centred);
-		crashCloseSliderLabel.attachToComponent(&crashCloseSlider, false);
+		crashCloseSliderLabel.attachToComponent(&crashCloseSlider, false);*/
 
-		rideCloseSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
+		/*rideCloseSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		rideCloseSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
 		rideCloseSlider.setRange(-48.0f, 10.0f);
 		rideCloseSlider.setDoubleClickReturnValue(true, 0.0f);
@@ -40,7 +42,18 @@ public:
 		addAndMakeVisible(rideCloseSliderLabel);
 		rideCloseSliderLabel.setText("Ride", juce::dontSendNotification);
 		rideCloseSliderLabel.setJustificationType(juce::Justification::centred);
-		rideCloseSliderLabel.attachToComponent(&rideCloseSlider, false);
+		rideCloseSliderLabel.attachToComponent(&rideCloseSlider, false);*/
+
+		hhCloseSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
+		hhCloseSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
+		hhCloseSlider.setRange(-48.0f, 10.0f);
+		hhCloseSlider.setDoubleClickReturnValue(true, 0.0f);
+		hhCloseSlider.setValue(hhCloseSlider.getValue());
+		addAndMakeVisible(&hhCloseSlider);
+		addAndMakeVisible(hhCloseSliderLabel);
+		hhCloseSliderLabel.setText("HH", juce::dontSendNotification);
+		hhCloseSliderLabel.setJustificationType(juce::Justification::centred);
+		hhCloseSliderLabel.attachToComponent(&hhCloseSlider, false);
 
 		cymbalsOHSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		cymbalsOHSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
@@ -78,8 +91,9 @@ public:
 
 	void CymbalsSlidersPage::resized() override
 	{
-		crashCloseSlider.setBounds(30, 50, 70, getHeight() - 100);
-		rideCloseSlider.setBounds(120, 50, 70, getHeight() - 100);
+		/*crashCloseSlider.setBounds(30, 50, 70, getHeight() - 100);
+		rideCloseSlider.setBounds(120, 50, 70, getHeight() - 100);*/
+		hhCloseSlider.setBounds(120, 50, 70, getHeight() - 100);
 		cymbalsOHSlider.setBounds(210, 50, 70, getHeight() - 100);
 		cymbalsRoomSlider.setBounds(300, 50, 70, getHeight() - 100);
 		cymbalsBleedSlider.setBounds(390, 50, 70, getHeight() - 100);

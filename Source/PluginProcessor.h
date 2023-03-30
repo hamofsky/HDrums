@@ -100,19 +100,19 @@
 
 #define HH_CLOSE_GAIN_ID "hh Close"
 #define HH_CLOSE_GAIN_NAME "HH Close"
-#define TAMB_CLOSE_GAIN_ID "tamb Close"
-#define TAMB_CLOSE_GAIN_NAME "Tamb Close"
-#define HH_OH_GAIN_ID "hh OH"
-#define HH_OH_GAIN_NAME "HH OH"
-#define HH_ROOM_GAIN_ID "hh Room"
-#define HH_ROOM_GAIN_NAME "HH Room"
-#define HH_BLEED_GAIN_ID "hh Bleed"
-#define HH_BLEED_GAIN_NAME "HH Bleed"
-
-#define CRASH_CLOSE_GAIN_ID "crash Close"
-#define CRASH_CLOSE_GAIN_NAME "Crash Close"
-#define RIDE_CLOSE_GAIN_ID "ride Close"
-#define RIDE_CLOSE_GAIN_NAME "Ride Close"
+//#define TAMB_CLOSE_GAIN_ID "tamb Close"
+//#define TAMB_CLOSE_GAIN_NAME "Tamb Close"
+//#define HH_OH_GAIN_ID "hh OH"
+//#define HH_OH_GAIN_NAME "HH OH"
+//#define HH_ROOM_GAIN_ID "hh Room"
+//#define HH_ROOM_GAIN_NAME "HH Room"
+//#define HH_BLEED_GAIN_ID "hh Bleed"
+//#define HH_BLEED_GAIN_NAME "HH Bleed"
+//
+//#define CRASH_CLOSE_GAIN_ID "crash Close"
+//#define CRASH_CLOSE_GAIN_NAME "Crash Close"
+//#define RIDE_CLOSE_GAIN_ID "ride Close"
+//#define RIDE_CLOSE_GAIN_NAME "Ride Close"
 #define CYMBALS_OH_GAIN_ID "cymbals OH"
 #define CYMBALS_OH_GAIN_NAME "Cymbals OH"
 #define CYMBALS_ROOM_GAIN_ID "cymbals Room"
@@ -161,7 +161,7 @@ public:
     void addSample(string sampleName, string destination, int midiNote, int lowestVelocity, int highestVelocity, double release, double maxLength, string bus);
     void loadSamples(int samplePackID, int kickNoteID, int snareNoteID, int snareFlamNoteID, int snareRoundNoteID,
                     int snareWirelessNoteID, int snareWirelessRoundNoteID, int tomNoteID, int tomFlamNoteID, int ftomNoteID, int ftomFlamNoteID,
-                    int hhBellNoteID, int hhClosedNoteID, int hhHalfNoteID, int hhOpenNoteID, int tambourineNoteID, int ridePointNoteID,
+                    int tambourineNoteID, int hhBellNoteID, int hhClosedNoteID, int hhHalfNoteID, int hhOpenNoteID,  int ridePointNoteID,
                     int rideHalfNoteID, int rideBellNoteID, int rideOpenNoteID, int crashPointNoteID, int crashBellNoteID, int crashOpenNoteID);
 
     juce::MidiMessageCollector& getMidiMessageCollector() noexcept { return midiMessageCollector; }
@@ -192,7 +192,7 @@ private:
     Sampler samplerSnareOH;
     Sampler samplerSnareRoom;
     Sampler samplerSnareBleed;
-
+    
     Sampler samplerTomClose;
     Sampler samplerFTomClose;
     Sampler samplerTomsOH;
@@ -200,13 +200,13 @@ private:
     Sampler samplerTomsBleed;
 
     Sampler samplerHHClose;
-    Sampler samplerTambClose;
+    /*Sampler samplerTambClose;
     Sampler samplerHHOH;
     Sampler samplerHHRoom;
     Sampler samplerHHBleed;
 
     Sampler samplerCrashClose;
-    Sampler samplerRideClose;
+    Sampler samplerRideClose;*/
     Sampler samplerCymbalsOH;
     Sampler samplerCymbalsRoom;
     Sampler samplerCymbalsBleed;

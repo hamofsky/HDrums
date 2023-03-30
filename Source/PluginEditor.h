@@ -15,10 +15,10 @@ public:
     ~HDrumsAudioProcessorEditor() override;
 
     juce::TabbedComponent myTabbedComponent;
+    HHSlidersPage mainSlidersPage;
     KickSlidersPage kickSlidersPage;
     SnareSlidersPage snareSlidersPage;
     TomsSlidersPage tomsSlidersPage;
-    HHSlidersPage hhSlidersPage;
     CymbalsSlidersPage cymbalsSlidersPage;
     MidiNotesChoosingPage midiNotesChoosingPage;
 
@@ -100,15 +100,16 @@ private:
 
     juce::Image background;
     juce::Image background2;
+    juce::Image dryBackground;
 
-    juce::Slider gainSlider;
-    juce::Slider OHgainSlider;
-    juce::Slider RoomGainSlider;
-    juce::Slider BleedGainSlider;
-    juce::Label gainLabel;
-    juce::Label OHgainLabel;
-    juce::Label RoomGainLabel;
-    juce::Label BleedGainLabel;
+    //juce::Slider gainSlider;
+    //juce::Slider OHgainSlider;
+    //juce::Slider RoomGainSlider;
+    //juce::Slider BleedGainSlider;
+    //juce::Label gainLabel;
+    //juce::Label OHgainLabel;
+    //juce::Label RoomGainLabel;
+    //juce::Label BleedGainLabel;
 
     void velocityCurveChanged();
     void samplePackMenuChanged();

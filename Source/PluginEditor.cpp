@@ -11,17 +11,17 @@
 
 HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     : AudioProcessorEditor(&p), audioProcessor(p), myTabbedComponent(juce::TabbedButtonBar::Orientation::TabsAtTop),
-    kickSlidersPage(), snareSlidersPage(), tomsSlidersPage(), hhSlidersPage(), cymbalsSlidersPage()//, midiNotesChoosingPage()//, openButton("Browse for directory")
+    mainSlidersPage(), kickSlidersPage(), snareSlidersPage(), tomsSlidersPage(), cymbalsSlidersPage(), midiNotesChoosingPage()//, openButton("Browse for directory")
 {
-    setSize(1000, 400);
+    setSize(1000, 500);
 
     addAndMakeVisible(&myTabbedComponent);
+    myTabbedComponent.addTab("Main", juce::Colours::blue.withAlpha(0.5f), &mainSlidersPage, true);
     myTabbedComponent.addTab("Kick", juce::Colours::pink.withAlpha(0.9f), &kickSlidersPage, true);
     myTabbedComponent.addTab("Snare", juce::Colours::red.withAlpha(0.6f), &snareSlidersPage, true);
     myTabbedComponent.addTab("Toms", juce::Colours::green.withAlpha(0.5f), &tomsSlidersPage, true);
-    myTabbedComponent.addTab("HH", juce::Colours::blue.withAlpha(0.5f), &hhSlidersPage, true);
     myTabbedComponent.addTab("Cymbals", juce::Colours::blue.withAlpha(0.5f), &cymbalsSlidersPage, true);
-    //myTabbedComponent.addTab("MIDI", juce::Colours::red.withAlpha(0.6f), &midiNotesChoosingPage, true);
+    myTabbedComponent.addTab("MIDI", juce::Colours::red.withAlpha(0.6f), &midiNotesChoosingPage, true);
 
     kickCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, KICK_CLOSE_GAIN_ID, kickSlidersPage.kickCloseSlider);
     kickOHSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, KICK_OH_GAIN_ID, kickSlidersPage.kickOHSlider);
@@ -40,20 +40,21 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     tomsRoomSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, TOMS_ROOM_GAIN_ID, tomsSlidersPage.tomsRoomSlider);
     tomsBleedSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, TOMS_BLEED_GAIN_ID, tomsSlidersPage.tomsBleedSlider);
 
-    hhCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, HH_CLOSE_GAIN_ID, hhSlidersPage.hhCloseSlider);
+    /*hhCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, HH_CLOSE_GAIN_ID, hhSlidersPage.hhCloseSlider);
     tambCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, TAMB_CLOSE_GAIN_ID, hhSlidersPage.tambCloseSlider);
     hhOHSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, HH_OH_GAIN_ID, hhSlidersPage.hhOHSlider);
     hhRoomSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, HH_ROOM_GAIN_ID, hhSlidersPage.hhRoomSlider);
     hhBleedSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, HH_BLEED_GAIN_ID, hhSlidersPage.hhBleedSlider);
 
     crashCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, CRASH_CLOSE_GAIN_ID, cymbalsSlidersPage.crashCloseSlider);
-    rideCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, RIDE_CLOSE_GAIN_ID, cymbalsSlidersPage.rideCloseSlider);
+    rideCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, RIDE_CLOSE_GAIN_ID, cymbalsSlidersPage.rideCloseSlider);*/
+    hhCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, HH_CLOSE_GAIN_ID, cymbalsSlidersPage.hhCloseSlider);
     cymbalsOHSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, CYMBALS_OH_GAIN_ID, cymbalsSlidersPage.cymbalsOHSlider);
     cymbalsRoomSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, CYMBALS_ROOM_GAIN_ID, cymbalsSlidersPage.cymbalsRoomSlider);
     cymbalsBleedSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, CYMBALS_BLEED_GAIN_ID, cymbalsSlidersPage.cymbalsBleedSlider);
 
     // buttons from MidiNoteChoosingPage
-    /*midiNotesChoosingPage.kickNoteMenu.onChange = [this] { samplePackMenuChanged(); };
+    midiNotesChoosingPage.kickNoteMenu.onChange = [this] { samplePackMenuChanged(); };
     midiNotesChoosingPage.kickButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.kickNoteMenu.getSelectedId()); };
 
     midiNotesChoosingPage.snareNoteMenu.onChange = [this] { samplePackMenuChanged(); };
@@ -101,7 +102,7 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     midiNotesChoosingPage.crashBellNoteMenu.onChange = [this] { samplePackMenuChanged(); };
     midiNotesChoosingPage.crashBellButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.crashBellNoteMenu.getSelectedId()); };
     midiNotesChoosingPage.crashOpenNoteMenu.onChange = [this] { samplePackMenuChanged(); };
-    midiNotesChoosingPage.crashOpenButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.crashOpenNoteMenu.getSelectedId()); };*/
+    midiNotesChoosingPage.crashOpenButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.crashOpenNoteMenu.getSelectedId()); };
 
     //addAndMakeVisible(&openButton);
     //openButton.onClick = [this] { loadDirectory(); };
@@ -136,57 +137,10 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     crashBellNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, CRASH_BELL_MIDI_NOTE_ID, midiNotesChoosingPage.crashBellNoteMenu);
     crashOpenNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, CRASH_OPEN_MIDI_NOTE_ID, midiNotesChoosingPage.crashOpenNoteMenu);
 
-    
-
-    sliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, GAIN_ID, gainSlider);
-    OHsliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, OH_GAIN_ID, OHgainSlider);
-    RoomSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, ROOM_GAIN_ID, RoomGainSlider);
-    BleedSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, BLEED_GAIN_ID, BleedGainSlider);
-
-    // Main sliders =======================================================
-    gainSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
-    gainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-    gainSlider.setRange(-48.0f, 10.0f);
-    gainSlider.setDoubleClickReturnValue(true, 0.0f);
-    gainSlider.setValue(gainSlider.getValue());
-    addAndMakeVisible(&gainSlider);
-    addAndMakeVisible(gainLabel);
-    gainLabel.setText("Close", juce::dontSendNotification);
-    gainLabel.setJustificationType(juce::Justification::centred);
-    gainLabel.attachToComponent(&gainSlider, false);
-
-    OHgainSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
-    OHgainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-    OHgainSlider.setRange(-48.0f, 10.0f);
-    OHgainSlider.setDoubleClickReturnValue(true, 0.0f);
-    OHgainSlider.setValue(OHgainSlider.getValue());
-    addAndMakeVisible(&OHgainSlider);
-    addAndMakeVisible(OHgainLabel);
-    OHgainLabel.setText("OH", juce::dontSendNotification);
-    OHgainLabel.setJustificationType(juce::Justification::centred);
-    OHgainLabel.attachToComponent(&OHgainSlider, false);
-
-    RoomGainSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
-    RoomGainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-    RoomGainSlider.setRange(-48.0f, 10.0f);
-    RoomGainSlider.setDoubleClickReturnValue(true, 0.0f);
-    RoomGainSlider.setValue(RoomGainSlider.getValue());
-    addAndMakeVisible(&RoomGainSlider);
-    addAndMakeVisible(RoomGainLabel);
-    RoomGainLabel.setText("Room", juce::dontSendNotification);
-    RoomGainLabel.setJustificationType(juce::Justification::centred);
-    RoomGainLabel.attachToComponent(&RoomGainSlider, false);
-
-    BleedGainSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
-    BleedGainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-    BleedGainSlider.setRange(-48.0f, 10.0f);
-    BleedGainSlider.setDoubleClickReturnValue(true, 0.0f);
-    BleedGainSlider.setValue(BleedGainSlider.getValue());
-    addAndMakeVisible(&BleedGainSlider);
-    addAndMakeVisible(BleedGainLabel);
-    BleedGainLabel.setText("Bleed", juce::dontSendNotification);
-    BleedGainLabel.setJustificationType(juce::Justification::centred);
-    BleedGainLabel.attachToComponent(&BleedGainSlider, false);
+    sliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, GAIN_ID, mainSlidersPage.closeSlider);
+    OHsliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, OH_GAIN_ID, mainSlidersPage.OHSlider);
+    RoomSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, ROOM_GAIN_ID, mainSlidersPage.roomSlider);
+    BleedSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, BLEED_GAIN_ID, mainSlidersPage.bleedSlider);
 
     // Menu ===========================================================
     addAndMakeVisible(&samplePackMenu);
@@ -208,7 +162,6 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
 
     // MIDI Menus =============================================
     auto kickNoteMenuValue = audioProcessor.treeState.getRawParameterValue(KICK_MIDI_NOTE_ID);
-    midiNotesChoosingPage.kickNoteMenu.setSelectedId(*kickNoteMenuValue);
     auto snareNoteMenuValue = audioProcessor.treeState.getRawParameterValue(SNARE_MIDI_NOTE_ID);
     auto snareFlamNoteMenuValue = audioProcessor.treeState.getRawParameterValue(SNARE_FLAM_MIDI_NOTE_ID);
     auto snareRoundNoteMenuValue = audioProcessor.treeState.getRawParameterValue(SNARE_ROUND_MIDI_NOTE_ID);
@@ -222,7 +175,7 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     auto hhBellNoteMenuValue = audioProcessor.treeState.getRawParameterValue(HH_BELL_MIDI_NOTE_ID);
     auto hhClosedNoteMenuValue = audioProcessor.treeState.getRawParameterValue(HH_CLOSED_MIDI_NOTE_ID);
     auto hhHalfNoteMenuValue = audioProcessor.treeState.getRawParameterValue(HH_HALF_MIDI_NOTE_ID);
-    auto hhOpenNoteMenuValue = audioProcessor.treeState.getRawParameterValue(HH_OPEN_MIDI_NOTE_ID);
+    auto hhOpenNoteMenuValue = audioProcessor.treeState.getRawParameterValue(HH_OPEN_MIDI_NOTE_ID); 
     auto ridePointNoteMenuValue = audioProcessor.treeState.getRawParameterValue(RIDE_POINT_MIDI_NOTE_ID);
     auto rideHalfNoteMenuValue = audioProcessor.treeState.getRawParameterValue(RIDE_HALF_MIDI_NOTE_ID);
     auto rideBellNoteMenuValue = audioProcessor.treeState.getRawParameterValue(RIDE_BELL_MIDI_NOTE_ID);
@@ -230,6 +183,7 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     auto crashPointNoteMenuValue = audioProcessor.treeState.getRawParameterValue(CRASH_POINT_MIDI_NOTE_ID);
     auto crashBellNoteMenuValue = audioProcessor.treeState.getRawParameterValue(CRASH_BELL_MIDI_NOTE_ID);
     auto crashOpenNoteMenuValue = audioProcessor.treeState.getRawParameterValue(CRASH_OPEN_MIDI_NOTE_ID);
+    midiNotesChoosingPage.kickNoteMenu.setSelectedId(*kickNoteMenuValue);
     midiNotesChoosingPage.snareNoteMenu.setSelectedId(*snareNoteMenuValue);
     midiNotesChoosingPage.snareFlamNoteMenu.setSelectedId(*snareFlamNoteMenuValue);
     midiNotesChoosingPage.snareRoundNoteMenu.setSelectedId(*snareRoundNoteMenuValue);
@@ -277,9 +231,12 @@ void HDrumsAudioProcessorEditor::paint (juce::Graphics& g)
 
     background = juce::ImageCache::getFromMemory(BinaryData::blue_400x400_png, BinaryData::blue_400x400_pngSize);
     background2 = juce::ImageCache::getFromMemory(BinaryData::grey_400x400_png, BinaryData::grey_400x400_pngSize);
+    dryBackground = juce::ImageCache::getFromMemory(BinaryData::dryDrumsImage_png, BinaryData::dryDrumsImage_pngSize);
 
     if (samplePackMenu.getSelectedId() == 2)
         g.drawImageWithin(background, 0, 0, getWidth(), getHeight(), juce::RectanglePlacement::stretchToFit);
+    else if (samplePackMenu.getSelectedId() == 3)
+        g.drawImageWithin(dryBackground, 0, 0, getWidth(), getHeight(), juce::RectanglePlacement::stretchToFit);
     else
         g.drawImageWithin(background2, 0, 0, getWidth(), getHeight(), juce::RectanglePlacement::stretchToFit);
 
@@ -290,10 +247,6 @@ void HDrumsAudioProcessorEditor::resized()
     auto halfWidth = getWidth() / 4;
     
     //openButton.setBounds(10, 10, getWidth() - 20, 30);
-    gainSlider.setBounds(30, 140, 80, getHeight() - 200);
-    OHgainSlider.setBounds(120, 140, 80, getHeight() - 200);
-    RoomGainSlider.setBounds(210, 140, 80, getHeight() - 200);
-    BleedGainSlider.setBounds(300, 140, 80, getHeight() - 200);
 
     samplePackMenu.setBounds(10, 10, halfWidth - 15, 20);
     curveMenu.setBounds(halfWidth + 5, 10, halfWidth - 15, 20);
