@@ -16,12 +16,12 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     setSize(1000, 500);
 
     addAndMakeVisible(&myTabbedComponent);
-    myTabbedComponent.addTab("Main", juce::Colours::blue.withAlpha(0.9f), &mainSlidersPage, true);
-    myTabbedComponent.addTab("Kick", juce::Colours::pink.withAlpha(0.9f), &kickSlidersPage, true);
-    myTabbedComponent.addTab("Snare", juce::Colours::aqua.withAlpha(0.9f), &snareSlidersPage, true);
-    myTabbedComponent.addTab("Toms", juce::Colours::green.withAlpha(0.9f), &tomsSlidersPage, true);
-    myTabbedComponent.addTab("Cymbals", juce::Colours::beige.withAlpha(0.9f), &cymbalsSlidersPage, true);
-    myTabbedComponent.addTab("MIDI", juce::Colours::red.withAlpha(0.9f), &midiNotesChoosingPage, true);
+    myTabbedComponent.addTab("Main", juce::Colours::red.withAlpha(0.5f), &mainSlidersPage, true);
+    myTabbedComponent.addTab("Kick", juce::Colours::pink.withAlpha(0.5f), &kickSlidersPage, true);
+    myTabbedComponent.addTab("Snare", juce::Colours::aqua.withAlpha(0.5f), &snareSlidersPage, true);
+    myTabbedComponent.addTab("Toms", juce::Colours::green.withAlpha(0.5f), &tomsSlidersPage, true);
+    myTabbedComponent.addTab("Cymbals", juce::Colours::beige.withAlpha(0.5f), &cymbalsSlidersPage, true);
+    myTabbedComponent.addTab("MIDI", juce::Colours::darkred.withAlpha(0.5f), &midiNotesChoosingPage, true);
 
     kickCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, KICK_CLOSE_GAIN_ID, kickSlidersPage.kickCloseSlider);
     kickOHSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, KICK_OH_GAIN_ID, kickSlidersPage.kickOHSlider);
@@ -71,8 +71,6 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
 
     midiNotesChoosingPage.tambNoteMenu.onChange = [this] { samplePackMenuChanged(); };
     midiNotesChoosingPage.tambButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.tambNoteMenu.getSelectedId()); };
-    midiNotesChoosingPage.hhBellNoteMenu.onChange = [this] { samplePackMenuChanged(); };
-    midiNotesChoosingPage.hhBellButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.hhBellNoteMenu.getSelectedId()); };
     midiNotesChoosingPage.hhClosedNoteMenu.onChange = [this] { samplePackMenuChanged(); };
     midiNotesChoosingPage.hhClosedButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.hhClosedNoteMenu.getSelectedId()); };
     midiNotesChoosingPage.hhHalfNoteMenu.onChange = [this] { samplePackMenuChanged(); };
@@ -82,8 +80,6 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
 
     midiNotesChoosingPage.ridePointNoteMenu.onChange = [this] { samplePackMenuChanged(); };
     midiNotesChoosingPage.ridePointButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.ridePointNoteMenu.getSelectedId()); };
-    midiNotesChoosingPage.rideHalfNoteMenu.onChange = [this] { samplePackMenuChanged(); };
-    midiNotesChoosingPage.rideHalfButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.rideHalfNoteMenu.getSelectedId()); };
     midiNotesChoosingPage.rideBellNoteMenu.onChange = [this] { samplePackMenuChanged(); };
     midiNotesChoosingPage.rideBellButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.rideBellNoteMenu.getSelectedId()); };
     midiNotesChoosingPage.rideOpenNoteMenu.onChange = [this] { samplePackMenuChanged(); };
@@ -114,14 +110,12 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     ftomNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, FTOM_MIDI_NOTE_ID, midiNotesChoosingPage.ftomNoteMenu);
     ftomFlamNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, FTOM_FLAM_MIDI_NOTE_ID, midiNotesChoosingPage.ftomFlamNoteMenu);
 
-    hhBellNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, HH_BELL_MIDI_NOTE_ID, midiNotesChoosingPage.hhBellNoteMenu);
     hhClosedNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, HH_CLOSED_MIDI_NOTE_ID, midiNotesChoosingPage.hhClosedNoteMenu);
     hhHalfNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, HH_HALF_MIDI_NOTE_ID, midiNotesChoosingPage.hhHalfNoteMenu);
     hhOpenNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, HH_OPEN_MIDI_NOTE_ID, midiNotesChoosingPage.hhOpenNoteMenu);
     tambNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, TAMB_MIDI_NOTE_ID, midiNotesChoosingPage.tambNoteMenu);
 
     ridePointNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, RIDE_POINT_MIDI_NOTE_ID, midiNotesChoosingPage.ridePointNoteMenu);
-    rideHalfNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, RIDE_HALF_MIDI_NOTE_ID, midiNotesChoosingPage.rideHalfNoteMenu);
     rideBellNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, RIDE_BELL_MIDI_NOTE_ID, midiNotesChoosingPage.rideBellNoteMenu);
     rideOpenNote = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, RIDE_OPEN_MIDI_NOTE_ID, midiNotesChoosingPage.rideOpenNoteMenu);
 
@@ -164,12 +158,10 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     auto ftomNoteMenuValue = audioProcessor.treeState.getRawParameterValue(FTOM_MIDI_NOTE_ID);
     auto ftomFlamNoteMenuValue = audioProcessor.treeState.getRawParameterValue(FTOM_FLAM_MIDI_NOTE_ID);
     auto tambNoteMenuValue = audioProcessor.treeState.getRawParameterValue(TAMB_MIDI_NOTE_ID);
-    auto hhBellNoteMenuValue = audioProcessor.treeState.getRawParameterValue(HH_BELL_MIDI_NOTE_ID);
     auto hhClosedNoteMenuValue = audioProcessor.treeState.getRawParameterValue(HH_CLOSED_MIDI_NOTE_ID);
     auto hhHalfNoteMenuValue = audioProcessor.treeState.getRawParameterValue(HH_HALF_MIDI_NOTE_ID);
     auto hhOpenNoteMenuValue = audioProcessor.treeState.getRawParameterValue(HH_OPEN_MIDI_NOTE_ID); 
     auto ridePointNoteMenuValue = audioProcessor.treeState.getRawParameterValue(RIDE_POINT_MIDI_NOTE_ID);
-    auto rideHalfNoteMenuValue = audioProcessor.treeState.getRawParameterValue(RIDE_HALF_MIDI_NOTE_ID);
     auto rideBellNoteMenuValue = audioProcessor.treeState.getRawParameterValue(RIDE_BELL_MIDI_NOTE_ID);
     auto rideOpenNoteMenuValue = audioProcessor.treeState.getRawParameterValue(RIDE_OPEN_MIDI_NOTE_ID);
     auto crashPointNoteMenuValue = audioProcessor.treeState.getRawParameterValue(CRASH_POINT_MIDI_NOTE_ID);
@@ -186,12 +178,10 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     midiNotesChoosingPage.ftomNoteMenu.setSelectedId(*ftomNoteMenuValue);
     midiNotesChoosingPage.ftomFlamNoteMenu.setSelectedId(*ftomFlamNoteMenuValue);
     midiNotesChoosingPage.tambNoteMenu.setSelectedId(*tambNoteMenuValue);
-    midiNotesChoosingPage.hhBellNoteMenu.setSelectedId(*hhBellNoteMenuValue);
     midiNotesChoosingPage.hhClosedNoteMenu.setSelectedId(*hhClosedNoteMenuValue);
     midiNotesChoosingPage.hhHalfNoteMenu.setSelectedId(*hhHalfNoteMenuValue);
     midiNotesChoosingPage.hhOpenNoteMenu.setSelectedId(*hhOpenNoteMenuValue);
     midiNotesChoosingPage.ridePointNoteMenu.setSelectedId(*ridePointNoteMenuValue);
-    midiNotesChoosingPage.rideHalfNoteMenu.setSelectedId(*rideHalfNoteMenuValue);
     midiNotesChoosingPage.rideBellNoteMenu.setSelectedId(*rideBellNoteMenuValue);
     midiNotesChoosingPage.rideOpenNoteMenu.setSelectedId(*rideOpenNoteMenuValue);
     midiNotesChoosingPage.crashPointNoteMenu.setSelectedId(*crashPointNoteMenuValue);
@@ -262,10 +252,9 @@ void HDrumsAudioProcessorEditor::samplePackMenuChanged()
         midiNotesChoosingPage.snareRoundNoteMenu.getSelectedId(), midiNotesChoosingPage.snareWirelessRoundNoteMenu.getSelectedId(),
         midiNotesChoosingPage.tomNoteMenu.getSelectedId(), midiNotesChoosingPage.tomFlamNoteMenu.getSelectedId(),
         midiNotesChoosingPage.ftomNoteMenu.getSelectedId(), midiNotesChoosingPage.ftomFlamNoteMenu.getSelectedId(),
-        midiNotesChoosingPage.hhBellNoteMenu.getSelectedId(), midiNotesChoosingPage.hhClosedNoteMenu.getSelectedId(),
-        midiNotesChoosingPage.hhHalfNoteMenu.getSelectedId(), midiNotesChoosingPage.hhOpenNoteMenu.getSelectedId(),
-        midiNotesChoosingPage.tambNoteMenu.getSelectedId(), midiNotesChoosingPage.ridePointNoteMenu.getSelectedId(),
-        midiNotesChoosingPage.rideHalfNoteMenu.getSelectedId(), midiNotesChoosingPage.rideBellNoteMenu.getSelectedId(),
+        midiNotesChoosingPage.hhClosedNoteMenu.getSelectedId(), midiNotesChoosingPage.hhHalfNoteMenu.getSelectedId(),
+        midiNotesChoosingPage.hhOpenNoteMenu.getSelectedId(), midiNotesChoosingPage.tambNoteMenu.getSelectedId(),
+        midiNotesChoosingPage.ridePointNoteMenu.getSelectedId(), midiNotesChoosingPage.rideBellNoteMenu.getSelectedId(),
         midiNotesChoosingPage.rideOpenNoteMenu.getSelectedId(), midiNotesChoosingPage.crashPointNoteMenu.getSelectedId(),
         midiNotesChoosingPage.crashBellNoteMenu.getSelectedId(), midiNotesChoosingPage.crashOpenNoteMenu.getSelectedId());
         repaint();

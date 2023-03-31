@@ -49,7 +49,7 @@ HDrumsAudioProcessor::HDrumsAudioProcessor()
         samplerCymbalsBleed.addVoice(new juce::SamplerVoice());
     }
 
-    loadSamples(1, 59, 60, 61, 62, 63, 64, 66, 67, 68, 69, 71, 72, 73, 74, 75, 77, 78, 79, 80, 82, 83, 84);// default settings for samples (samplePackMenuId, kick, snare, snareFlam, ...)
+    loadSamples(1, 59, 60, 61, 62, 63, 64, 66, 67, 68, 69, 71, 73, 74, 75, 78, 79, 80, 82, 83, 84);// default settings for samples (samplePackMenuId, kick, snare, snareFlam, ...)
 
 }
 
@@ -128,7 +128,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout HDrumsAudioProcessor::create
                                                              "C7", "C#7", "D7", "D#7", "E7", "F7", "F#7", "G7", "G#7", "A7", "A#7", "B7",
                                                              "C8", "C#8", "D8", "D#8", "E8", "F8", "F#8", "G8");
 
-    //59, 60, 61, 62, 63, 64, 66, 67, 68, 69, 71, 72, 73, 74, 85, 76, 77, 78, 79, 81, 82, 83
+    //59, 60, 61, 62, 63, 64, 66, 67, 68, 69, 71, 73, 74, 85, 76, 77, 78, 79, 81, 82, 83
     auto kickNoteParam = std::make_unique<juce::AudioParameterChoice>(KICK_MIDI_NOTE_ID, KICK_MIDI_NOTE_NAME, processorMidiNotes, 59);
     auto snareNoteParam = std::make_unique<juce::AudioParameterChoice>(SNARE_MIDI_NOTE_ID, SNARE_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 60);
     auto snareFlamNoteParam = std::make_unique<juce::AudioParameterChoice>(SNARE_FLAM_MIDI_NOTE_ID, SNARE_FLAM_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 61);
@@ -140,12 +140,10 @@ juce::AudioProcessorValueTreeState::ParameterLayout HDrumsAudioProcessor::create
     auto ftomNoteParam = std::make_unique<juce::AudioParameterChoice>(FTOM_MIDI_NOTE_ID, FTOM_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 68);
     auto ftomFlamNoteParam = std::make_unique<juce::AudioParameterChoice>(FTOM_FLAM_MIDI_NOTE_ID, FTOM_FLAM_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 69);
     auto tambNoteParam = std::make_unique<juce::AudioParameterChoice>(TAMB_MIDI_NOTE_ID, TAMB_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 71);
-    auto hhBellNoteParam = std::make_unique<juce::AudioParameterChoice>(HH_BELL_MIDI_NOTE_ID, HH_BELL_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 72);
     auto hhClosedNoteParam = std::make_unique<juce::AudioParameterChoice>(HH_CLOSED_MIDI_NOTE_ID, HH_CLOSED_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 73);
     auto hhHalfNoteParam = std::make_unique<juce::AudioParameterChoice>(HH_HALF_MIDI_NOTE_ID, HH_HALF_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 74);
     auto hhOpenNoteParam = std::make_unique<juce::AudioParameterChoice>(HH_OPEN_MIDI_NOTE_ID, HH_OPEN_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 75);
-    auto ridePointNoteParam = std::make_unique<juce::AudioParameterChoice>(RIDE_POINT_MIDI_NOTE_ID, RIDE_POINT_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 77);
-    auto rideHalfNoteParam = std::make_unique<juce::AudioParameterChoice>(RIDE_HALF_MIDI_NOTE_ID, RIDE_HALF_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 78);
+    auto ridePointNoteParam = std::make_unique<juce::AudioParameterChoice>(RIDE_POINT_MIDI_NOTE_ID, RIDE_POINT_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 78);
     auto rideBellNoteParam = std::make_unique<juce::AudioParameterChoice>(RIDE_BELL_MIDI_NOTE_ID, RIDE_BELL_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 79);
     auto rideOpenNoteParam = std::make_unique<juce::AudioParameterChoice>(RIDE_OPEN_MIDI_NOTE_ID, RIDE_OPEN_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 80);
     auto crashPointNoteParam = std::make_unique<juce::AudioParameterChoice>(CRASH_POINT_MIDI_NOTE_ID, CRASH_POINT_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 82);
@@ -162,12 +160,10 @@ juce::AudioProcessorValueTreeState::ParameterLayout HDrumsAudioProcessor::create
     params.push_back(std::move(ftomNoteParam));
     params.push_back(std::move(ftomFlamNoteParam));
     params.push_back(std::move(tambNoteParam));
-    params.push_back(std::move(hhBellNoteParam));
     params.push_back(std::move(hhClosedNoteParam));
     params.push_back(std::move(hhHalfNoteParam));
     params.push_back(std::move(hhOpenNoteParam));
     params.push_back(std::move(ridePointNoteParam));
-    params.push_back(std::move(rideHalfNoteParam));
     params.push_back(std::move(rideBellNoteParam));
     params.push_back(std::move(rideOpenNoteParam));
     params.push_back(std::move(crashPointNoteParam));
@@ -178,7 +174,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout HDrumsAudioProcessor::create
 }
 //==============================================================================
 
-void HDrumsAudioProcessor::addSample(string sampleName, string destination, int midiNote, int lowestVelocity, int highestVelocity, double release, double maxLength, string bus)
+void HDrumsAudioProcessor::addSample(string sampleName, string destination, int midiNote, float lowestVelocity, float highestVelocity, double release, double maxLength, string bus)
 {
     juce::File file(destination);
     unique_ptr<juce::AudioFormatReader>audioReader(formatManager.createReaderFor(file));
@@ -250,8 +246,8 @@ void HDrumsAudioProcessor::loadDirectory()
 
 void HDrumsAudioProcessor::loadSamples(int samplePackID, int kickNoteID, int snareNoteID, int snareFlamNoteID, int snareRoundNoteID,
                                         int snareWirelessNoteID, int snareWirelessRoundNoteID, int tomNoteID, int tomFlamNoteID, int ftomNoteID, int ftomFlamNoteID,
-                                        int tambourineNoteID, int hhBellNoteID, int hhClosedNoteID, int hhHalfNoteID, int hhOpenNoteID, int ridePointNoteID,
-                                        int rideHalfNoteID, int rideBellNoteID, int rideOpenNoteID, int crashPointNoteID, int crashBellNoteID, int crashOpenNoteID)
+                                        int tambourineNoteID, int hhClosedNoteID, int hhHalfNoteID, int hhOpenNoteID, int ridePointNoteID,
+                                        int rideBellNoteID, int rideOpenNoteID, int crashPointNoteID, int crashBellNoteID, int crashOpenNoteID)
 {
     string destinationAll = "C:/Users/damia/Desktop/Sampelki/";
 
@@ -548,9 +544,6 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int kickNoteID, int sna
 
         double hhRelease = 0.12;
         string tambDestination = dryDestination + "tambourine/";
-        /*addSample("Tambourine 1 Close", tambDestination + "tambourine_1_bleed.wav", tambourineNoteID, curveFor3[0], curveFor3[1] - 1, hhRelease, 0.5, "TambClose");
-        addSample("Tambourine 2 Close", tambDestination + "tambourine_2_bleed.wav", tambourineNoteID, curveFor3[1], curveFor3[2] - 1, hhRelease, 0.9, "TambClose");
-        addSample("Tambourine 3 Close", tambDestination + "tambourine_3_bleed.wav", tambourineNoteID, curveFor3[2], curveFor3[3] - 1, hhRelease, 0.8, "TambClose");*/
         addSample("Tambourine 1 OH", tambDestination + "tambourine_1_OH.wav", tambourineNoteID, curveFor3[0], curveFor3[1] - 1, hhRelease, 0.5, "CymbalsOH");
         addSample("Tambourine 2 OH", tambDestination + "tambourine_2_OH.wav", tambourineNoteID, curveFor3[1], curveFor3[2] - 1, hhRelease, 0.9, "CymbalsOH");
         addSample("Tambourine 3 OH", tambDestination + "tambourine_3_OH.wav", tambourineNoteID, curveFor3[2], curveFor3[3] - 1, hhRelease, 0.8, "CymbalsOH");
@@ -563,20 +556,6 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int kickNoteID, int sna
 
         double hhMaxLen = 1.0;
         string HHAllDestination = dryDestination + "HHAll/";
-        string HHBellDestination = HHAllDestination + "HHBell/";
-        addSample("HHBell 1 Close", HHBellDestination + "HHBell_1_close.wav", hhBellNoteID, curveFor3[0], curveFor3[1] - 1, hhRelease, hhMaxLen, "HHClose");
-        addSample("HHBell 2 Close", HHBellDestination + "HHBell_2_close.wav", hhBellNoteID, curveFor3[1], curveFor3[2] - 1, hhRelease, hhMaxLen, "HHClose");
-        addSample("HHBell 3 Close", HHBellDestination + "HHBell_3_close.wav", hhBellNoteID, curveFor3[2], curveFor3[3] - 1, hhRelease, hhMaxLen, "HHClose");
-        addSample("HHBell 1 OH", HHBellDestination + "HHBell_1_OH.wav", hhBellNoteID, curveFor3[0], curveFor3[1] - 1, hhRelease, hhMaxLen, "CymbalsOH");
-        addSample("HHBell 2 OH", HHBellDestination + "HHBell_2_OH.wav", hhBellNoteID, curveFor3[1], curveFor3[2] - 1, hhRelease, hhMaxLen, "CymbalsOH");
-        addSample("HHBell 3 OH", HHBellDestination + "HHBell_3_OH.wav", hhBellNoteID, curveFor3[2], curveFor3[3] - 1, hhRelease, hhMaxLen, "CymbalsOH");
-        addSample("HHBell 1 Room", HHBellDestination + "HHBell_1_room.wav", hhBellNoteID, curveFor3[0], curveFor3[1] - 1, hhRelease, hhMaxLen, "CymbalsRoom");
-        addSample("HHBell 2 Room", HHBellDestination + "HHBell_2_room.wav", hhBellNoteID, curveFor3[1], curveFor3[2] - 1, hhRelease, hhMaxLen, "CymbalsRoom");
-        addSample("HHBell 3 Room", HHBellDestination + "HHBell_3_room.wav", hhBellNoteID, curveFor3[2], curveFor3[3] - 1, hhRelease, hhMaxLen, "CymbalsRoom");
-        addSample("HHBell 1 Bleed", HHBellDestination + "HHBell_1_bleed.wav", hhBellNoteID, curveFor3[0], curveFor3[1] - 1, hhRelease, hhMaxLen, "CymbalsBleed");
-        addSample("HHBell 2 Bleed", HHBellDestination + "HHBell_2_bleed.wav", hhBellNoteID, curveFor3[1], curveFor3[2] - 1, hhRelease, hhMaxLen, "CymbalsBleed");
-        addSample("HHBell 3 Bleed", HHBellDestination + "HHBell_3_bleed.wav", hhBellNoteID, curveFor3[2], curveFor3[3] - 1, hhRelease, hhMaxLen, "CymbalsBleed");
-
         string HHClosedDestination = HHAllDestination + "HHClosed/";
         addSample("HHClosed 1 Close", HHClosedDestination + "HHClosed_1_close.wav", hhClosedNoteID, curveFor6[0], curveFor6[1] - 1, hhRelease, 0.9, "HHClose");
         addSample("HHClosed 2 Close", HHClosedDestination + "HHClosed_2_close.wav", hhClosedNoteID, curveFor6[1], curveFor6[2] - 1, hhRelease, 0.9, "HHClose");
@@ -663,17 +642,6 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int kickNoteID, int sna
         addSample("RidePoint 3 Bleed", RidePointDestination + "ridePoint_3_bleed.wav", ridePointNoteID, curveFor5[2], curveFor5[3] - 1, RideRelease, 4.5, "CymbalsBleed");
         addSample("RidePoint 4 Bleed", RidePointDestination + "ridePoint_4_bleed.wav", ridePointNoteID, curveFor5[3], curveFor5[4] - 1, RideRelease, 5.3, "CymbalsBleed");
         addSample("RidePoint 5 Bleed", RidePointDestination + "ridePoint_5_bleed.wav", ridePointNoteID, curveFor5[4], curveFor5[5] - 1, RideRelease, 7.9, "CymbalsBleed");
-
-        string RideHalfDestination = RideAllDestination + "rideHalf/";
-        addSample("RideHalf 1 OH", RideHalfDestination + "rideHalf_1_OH.wav", rideHalfNoteID, curveFor3[0], curveFor3[1] - 1, RideRelease, 3.8, "CymbalsOH");
-        addSample("RideHalf 2 OH", RideHalfDestination + "rideHalf_2_OH.wav", rideHalfNoteID, curveFor3[1], curveFor3[2] - 1, RideRelease, 4.8, "CymbalsOH");
-        addSample("RideHalf 3 OH", RideHalfDestination + "rideHalf_3_OH.wav", rideHalfNoteID, curveFor3[2], curveFor3[3] - 1, RideRelease, 4.3, "CymbalsOH");
-        addSample("RideHalf 1 Room", RideHalfDestination + "rideHalf_1_room.wav", rideHalfNoteID, curveFor3[0], curveFor3[1] - 1, RideRelease, 3.8, "CymbalsRoom");
-        addSample("RideHalf 2 Room", RideHalfDestination + "rideHalf_2_room.wav", rideHalfNoteID, curveFor3[1], curveFor3[2] - 1, RideRelease, 4.8, "CymbalsRoom");
-        addSample("RideHalf 3 Room", RideHalfDestination + "rideHalf_3_room.wav", rideHalfNoteID, curveFor3[2], curveFor3[3] - 1, RideRelease, 4.3, "CymbalsRoom");
-        addSample("RideHalf 1 Bleed", RideHalfDestination + "rideHalf_1_bleed.wav", rideHalfNoteID, curveFor3[0], curveFor3[1] - 1, RideRelease, 3.8, "CymbalsBleed");
-        addSample("RideHalf 2 Bleed", RideHalfDestination + "rideHalf_2_bleed.wav", rideHalfNoteID, curveFor3[1], curveFor3[2] - 1, RideRelease, 4.8, "CymbalsBleed");
-        addSample("RideHalf 3 Bleed", RideHalfDestination + "rideHalf_3_bleed.wav", rideHalfNoteID, curveFor3[2], curveFor3[3] - 1, RideRelease, 4.3, "CymbalsBleed");
 
         string RideBellDestination = RideAllDestination + "rideBell/";
         addSample("RideBell 1 OH", RideBellDestination + "rideBell_1_OH.wav", rideBellNoteID, curveFor5[0], curveFor5[1] - 1, RideRelease, 2.95, "CymbalsOH");
@@ -1181,13 +1149,11 @@ void HDrumsAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
     auto tomFlamNote = treeState.getRawParameterValue(TOM_FLAM_MIDI_NOTE_ID);
     auto ftomNote = treeState.getRawParameterValue(FTOM_MIDI_NOTE_ID);
     auto ftomFlamNote = treeState.getRawParameterValue(FTOM_FLAM_MIDI_NOTE_ID);
-    auto hhBellNote = treeState.getRawParameterValue(HH_BELL_MIDI_NOTE_ID);
     auto hhClosedNote = treeState.getRawParameterValue(HH_CLOSED_MIDI_NOTE_ID);
     auto hhHalfNote = treeState.getRawParameterValue(HH_HALF_MIDI_NOTE_ID);
     auto hhOpenNote = treeState.getRawParameterValue(HH_OPEN_MIDI_NOTE_ID);
     auto tambNote = treeState.getRawParameterValue(TAMB_MIDI_NOTE_ID);
     auto ridePointNote = treeState.getRawParameterValue(RIDE_POINT_MIDI_NOTE_ID);
-    auto rideHalfNote = treeState.getRawParameterValue(RIDE_HALF_MIDI_NOTE_ID);
     auto rideBellNote = treeState.getRawParameterValue(RIDE_BELL_MIDI_NOTE_ID);
     auto rideOpenNote = treeState.getRawParameterValue(RIDE_OPEN_MIDI_NOTE_ID);
     auto crashPointNote = treeState.getRawParameterValue(CRASH_POINT_MIDI_NOTE_ID);
@@ -1203,13 +1169,11 @@ void HDrumsAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
     juce::MemoryOutputStream(destData, true).writeFloat(*tomFlamNote);
     juce::MemoryOutputStream(destData, true).writeFloat(*ftomNote);
     juce::MemoryOutputStream(destData, true).writeFloat(*ftomFlamNote);
-    juce::MemoryOutputStream(destData, true).writeFloat(*hhBellNote);
     juce::MemoryOutputStream(destData, true).writeFloat(*hhClosedNote);
     juce::MemoryOutputStream(destData, true).writeFloat(*hhHalfNote);
     juce::MemoryOutputStream(destData, true).writeFloat(*hhOpenNote);
     juce::MemoryOutputStream(destData, true).writeFloat(*tambNote);
     juce::MemoryOutputStream(destData, true).writeFloat(*ridePointNote);
-    juce::MemoryOutputStream(destData, true).writeFloat(*rideHalfNote);
     juce::MemoryOutputStream(destData, true).writeFloat(*rideBellNote);
     juce::MemoryOutputStream(destData, true).writeFloat(*rideOpenNote);
     juce::MemoryOutputStream(destData, true).writeFloat(*crashPointNote);
@@ -1251,13 +1215,11 @@ void HDrumsAudioProcessor::setStateInformation (const void* data, int sizeInByte
     auto tomFlamNote = treeState.getRawParameterValue(TOM_FLAM_MIDI_NOTE_ID);
     auto ftomNote = treeState.getRawParameterValue(FTOM_MIDI_NOTE_ID);
     auto ftomFlamNote = treeState.getRawParameterValue(FTOM_FLAM_MIDI_NOTE_ID);
-    auto hhBellNote = treeState.getRawParameterValue(HH_BELL_MIDI_NOTE_ID);
     auto hhClosedNote = treeState.getRawParameterValue(HH_CLOSED_MIDI_NOTE_ID);
     auto hhHalfNote = treeState.getRawParameterValue(HH_HALF_MIDI_NOTE_ID);
     auto hhOpenNote = treeState.getRawParameterValue(HH_OPEN_MIDI_NOTE_ID);
     auto tambNote = treeState.getRawParameterValue(TAMB_MIDI_NOTE_ID);
     auto ridePointNote = treeState.getRawParameterValue(RIDE_POINT_MIDI_NOTE_ID);
-    auto rideHalfNote = treeState.getRawParameterValue(RIDE_HALF_MIDI_NOTE_ID);
     auto rideBellNote = treeState.getRawParameterValue(RIDE_BELL_MIDI_NOTE_ID);
     auto rideOpenNote = treeState.getRawParameterValue(RIDE_OPEN_MIDI_NOTE_ID);
     auto crashPointNote = treeState.getRawParameterValue(CRASH_POINT_MIDI_NOTE_ID);
@@ -1273,13 +1235,11 @@ void HDrumsAudioProcessor::setStateInformation (const void* data, int sizeInByte
     *tomFlamNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
     *ftomNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
     *ftomFlamNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *hhBellNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
     *hhClosedNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
     *hhHalfNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
     *hhOpenNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
     *tambNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
     *ridePointNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *rideHalfNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
     *rideBellNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
     *rideOpenNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
     *crashPointNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();

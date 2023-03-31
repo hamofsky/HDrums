@@ -18,13 +18,11 @@ public:
 	juce::TextButton tomFlamButton;
 	juce::TextButton ftomButton;
 	juce::TextButton ftomFlamButton;
-	juce::TextButton hhBellButton;
 	juce::TextButton hhClosedButton;
 	juce::TextButton hhHalfButton;
 	juce::TextButton hhOpenButton;
 	juce::TextButton tambButton;
 	juce::TextButton ridePointButton;
-	juce::TextButton rideHalfButton;
 	juce::TextButton rideBellButton;
 	juce::TextButton rideOpenButton;
 	juce::TextButton crashPointButton;
@@ -41,13 +39,11 @@ public:
 	juce::ComboBox tomFlamNoteMenu;
 	juce::ComboBox ftomNoteMenu;
 	juce::ComboBox ftomFlamNoteMenu;
-	juce::ComboBox hhBellNoteMenu;
 	juce::ComboBox hhClosedNoteMenu;
 	juce::ComboBox hhHalfNoteMenu;
 	juce::ComboBox hhOpenNoteMenu;
 	juce::ComboBox tambNoteMenu;
 	juce::ComboBox ridePointNoteMenu;
-	juce::ComboBox rideHalfNoteMenu;
 	juce::ComboBox rideBellNoteMenu;
 	juce::ComboBox rideOpenNoteMenu;
 	juce::ComboBox crashPointNoteMenu;
@@ -144,14 +140,6 @@ public:
 			tambNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
 		tambNoteMenu.setSelectedId(71);    // default MIDI note for tamb
 
-		addAndMakeVisible(hhBellButton);
-		hhBellButton.setButtonText("HH Bell");
-		addAndMakeVisible(&hhBellNoteMenu);
-		hhBellNoteMenu.setJustificationType(juce::Justification::centredLeft);
-		for (int i = 0; i < 128; i++)
-			hhBellNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		hhBellNoteMenu.setSelectedId(72);    // default MIDI note for hhBell
-
 		addAndMakeVisible(hhClosedButton);
 		hhClosedButton.setButtonText("HH Closed");
 		addAndMakeVisible(&hhClosedNoteMenu);
@@ -182,15 +170,7 @@ public:
 		ridePointNoteMenu.setJustificationType(juce::Justification::centredLeft);
 		for (int i = 0; i < 128; i++)
 			ridePointNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		ridePointNoteMenu.setSelectedId(77);    // default MIDI note for ridePoint
-
-		addAndMakeVisible(rideHalfButton);
-		rideHalfButton.setButtonText("Ride Half");
-		addAndMakeVisible(&rideHalfNoteMenu);
-		rideHalfNoteMenu.setJustificationType(juce::Justification::centredLeft);
-		for (int i = 0; i < 128; i++)
-			rideHalfNoteMenu.addItem(juce::String(i) + " (" + midiNotes[i] + ")", i);
-		rideHalfNoteMenu.setSelectedId(78);    // default MIDI note for rideHalf
+		ridePointNoteMenu.setSelectedId(78);    // default MIDI note for ridePoint
 
 		addAndMakeVisible(rideBellButton);
 		rideBellButton.setButtonText("Ride Bell");
@@ -242,53 +222,51 @@ public:
 	}
 	void MidiNotesChoosingPage::resized() override
 	{
-		// 22 guziczki
 		auto qWidth = getWidth() / 4;
-		kickButton.setBounds(10, 10, qWidth - 12.5, 20);
-		kickNoteMenu.setBounds(qWidth + 2.5, 10, qWidth - 7.5, 20);
-		snareButton.setBounds(10, 40, qWidth - 12.5, 20);
-		snareNoteMenu.setBounds(qWidth + 2.5, 40, qWidth - 7.5, 20);
-		snareFlamButton.setBounds(10, 70, qWidth - 12.5, 20);
-		snareFlamNoteMenu.setBounds(qWidth + 2.5, 70, qWidth - 7.5, 20);
-		snareRoundButton.setBounds(10, 100, qWidth - 12.5, 20);
-		snareRoundNoteMenu.setBounds(qWidth + 2.5, 100, qWidth - 7.5, 20);
-		snareWirelessButton.setBounds(10, 130, qWidth - 12.5, 20);
-		snareWirelessNoteMenu.setBounds(qWidth + 2.5, 130, qWidth - 7.5, 20);
-		snareWirelessRoundButton.setBounds(10, 160, qWidth - 12.5, 20);
-		snareWirelessRoundNoteMenu.setBounds(qWidth + 2.5, 160, qWidth - 7.5, 20);
-		tomButton.setBounds(10, 190, qWidth - 12.5, 20);
-		tomNoteMenu.setBounds(qWidth + 2.5, 190, qWidth - 7.5, 20);
-		tomFlamButton.setBounds(10, 220, qWidth - 12.5, 20);
-		tomFlamNoteMenu.setBounds(qWidth + 2.5, 220, qWidth - 7.5, 20);
-		ftomButton.setBounds(10, 250, qWidth - 12.5, 20);
-		ftomNoteMenu.setBounds(qWidth + 2.5, 250, qWidth - 7.5, 20);
-		ftomFlamButton.setBounds(10, 280, qWidth - 12.5, 20);
-		ftomFlamNoteMenu.setBounds(qWidth + 2.5, 280, qWidth - 7.5, 20);
-		tambButton.setBounds(10, 310, qWidth - 12.5, 20);
-		tambNoteMenu.setBounds(qWidth + 2.5, 310, qWidth - 7.5, 20);
+		auto deltaHeight = getHeight() / 10;
+		kickButton.setBounds(10, 8, qWidth - 12.5, deltaHeight - 5);
+		snareButton.setBounds(10, deltaHeight + 7, qWidth - 12.5, deltaHeight - 5);
+		snareFlamButton.setBounds(10, 2 * deltaHeight + 7, qWidth - 12.5, deltaHeight - 5);
+		snareWirelessButton.setBounds(10, 3 * deltaHeight + 7, qWidth - 12.5, deltaHeight - 5);
+		snareRoundButton.setBounds(10, 4 * deltaHeight + 7, qWidth - 12.5, deltaHeight - 5);
+		snareWirelessRoundButton.setBounds(10, 5 * deltaHeight + 7, qWidth - 12.5, deltaHeight - 5);
+		tomButton.setBounds(10, 6 * deltaHeight + 7, qWidth - 12.5, deltaHeight - 5);
+		tomFlamButton.setBounds(10, 7 * deltaHeight + 7, qWidth - 12.5, deltaHeight - 5);
+		ftomButton.setBounds(10, 8 * deltaHeight + 7, qWidth - 12.5, deltaHeight - 5);
+		ftomFlamButton.setBounds(10, 9 * deltaHeight + 7, qWidth - 12.5, deltaHeight - 5);
 
-		hhBellButton.setBounds(2 * qWidth + 10, 10, qWidth - 12.5, 20);
-		hhBellNoteMenu.setBounds(3* qWidth + 2.5, 10, qWidth - 7.5, 20);
-		hhClosedButton.setBounds(2 * qWidth + 10, 40, qWidth - 12.5, 20);
-		hhClosedNoteMenu.setBounds(3 * qWidth + 2.5, 40, qWidth - 7.5, 20);
-		hhHalfButton.setBounds(2 * qWidth + 10, 70, qWidth - 12.5, 20);
-		hhHalfNoteMenu.setBounds(3 * qWidth + 2.5, 70, qWidth - 7.5, 20);
-		hhOpenButton.setBounds(2 * qWidth + 10, 100, qWidth - 12.5, 20);
-		hhOpenNoteMenu.setBounds(3 * qWidth + 2.5, 100, qWidth - 7.5, 20);
-		ridePointButton.setBounds(2 * qWidth + 10, 130, qWidth - 12.5, 20);
-		ridePointNoteMenu.setBounds(3 * qWidth + 2.5, 130, qWidth - 7.5, 20);
-		rideHalfButton.setBounds(2 * qWidth + 10, 160, qWidth - 12.5, 20);
-		rideHalfNoteMenu.setBounds(3 * qWidth + 2.5, 160, qWidth - 7.5, 20);
-		rideBellButton.setBounds(2 * qWidth + 10, 190, qWidth - 12.5, 20);
-		rideBellNoteMenu.setBounds(3 * qWidth + 2.5, 190, qWidth - 7.5, 20);
-		rideOpenButton.setBounds(2 * qWidth + 10, 220, qWidth - 12.5, 20);
-		rideOpenNoteMenu.setBounds(3 * qWidth + 2.5, 220, qWidth - 7.5, 20);
-		crashPointButton.setBounds(2 * qWidth + 10, 250, qWidth - 12.5, 20);
-		crashPointNoteMenu.setBounds(3 * qWidth + 2.5, 250, qWidth - 7.5, 20);
-		crashBellButton.setBounds(2 * qWidth + 10, 280, qWidth - 12.5, 20);
-		crashBellNoteMenu.setBounds(3 * qWidth + 2.5, 280, qWidth - 7.5, 20);
-		crashOpenButton.setBounds(2 * qWidth + 10, 310, qWidth - 12.5, 20);
-		crashOpenNoteMenu.setBounds(3 * qWidth + 2.5, 310, qWidth - 7.5, 20);
+		tambButton.setBounds(2 * qWidth + 10, 8, qWidth - 12.5, deltaHeight - 5);
+		hhClosedButton.setBounds(2 * qWidth + 10, deltaHeight + 7, qWidth - 12.5, deltaHeight - 5);
+		hhHalfButton.setBounds(2 * qWidth + 10, 2 * deltaHeight + 7, qWidth - 12.5, deltaHeight - 5);
+		hhOpenButton.setBounds(2 * qWidth + 10, 3 * deltaHeight + 7, qWidth - 12.5, deltaHeight - 5);
+		ridePointButton.setBounds(2 * qWidth + 10, 4 * deltaHeight + 7, qWidth - 12.5, deltaHeight - 5);
+		rideBellButton.setBounds(2 * qWidth + 10, 5 * deltaHeight + 7, qWidth - 12.5, deltaHeight - 5);
+		rideOpenButton.setBounds(2 * qWidth + 10, 6 * deltaHeight + 7, qWidth - 12.5, deltaHeight - 5);
+		crashPointButton.setBounds(2 * qWidth + 10, 7 * deltaHeight + 7, qWidth - 12.5, deltaHeight - 5);
+		crashBellButton.setBounds(2 * qWidth + 10, 8 * deltaHeight + 7, qWidth - 12.5, deltaHeight - 5);
+		crashOpenButton.setBounds(2 * qWidth + 10, 9 * deltaHeight + 7, qWidth - 12.5, deltaHeight - 5);
+		
+		kickNoteMenu.setBounds(qWidth + 2.5, 8, qWidth - 7.5, deltaHeight - 5);
+		snareNoteMenu.setBounds(qWidth + 2.5, deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
+		snareFlamNoteMenu.setBounds(qWidth + 2.5, 2 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
+		snareRoundNoteMenu.setBounds(qWidth + 2.5, 3 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
+		snareWirelessNoteMenu.setBounds(qWidth + 2.5, 4 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
+		snareWirelessRoundNoteMenu.setBounds(qWidth + 2.5, 5 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
+		tomNoteMenu.setBounds(qWidth + 2.5, 6 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
+		tomFlamNoteMenu.setBounds(qWidth + 2.5, 7 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
+		ftomNoteMenu.setBounds(qWidth + 2.5, 8 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
+		ftomFlamNoteMenu.setBounds(qWidth + 2.5, 9 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
+
+		tambNoteMenu.setBounds(3 * qWidth + 2.5, 8, qWidth - 7.5, deltaHeight - 5);
+		hhClosedNoteMenu.setBounds(3 * qWidth + 2.5, deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
+		hhHalfNoteMenu.setBounds(3 * qWidth + 2.5, 2 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
+		hhOpenNoteMenu.setBounds(3 * qWidth + 2.5, 3 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
+		ridePointNoteMenu.setBounds(3 * qWidth + 2.5, 4 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
+		rideBellNoteMenu.setBounds(3 * qWidth + 2.5, 5 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
+		rideOpenNoteMenu.setBounds(3 * qWidth + 2.5, 6 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
+		crashPointNoteMenu.setBounds(3 * qWidth + 2.5, 7 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
+		crashBellNoteMenu.setBounds(3 * qWidth + 2.5, 8 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
+		crashOpenNoteMenu.setBounds(3 * qWidth + 2.5, 9 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
 
 	}
 

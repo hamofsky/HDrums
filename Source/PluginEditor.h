@@ -44,13 +44,11 @@ public:
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> tomFlamNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> ftomNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> ftomFlamNote;
-    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> hhBellNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> hhClosedNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> hhHalfNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> hhOpenNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> tambNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> ridePointNote;
-    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> rideHalfNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> rideBellNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> rideOpenNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> crashPointNote;

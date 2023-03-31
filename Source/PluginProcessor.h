@@ -31,8 +31,6 @@
 #define FTOM_FLAM_MIDI_NOTE_ID "MIDI note ftom Flam"
 #define FTOM_FLAM_MIDI_NOTE_NAME "MIDI note FTom Flam"
 
-#define HH_BELL_MIDI_NOTE_ID "MIDI note hh Bell"
-#define HH_BELL_MIDI_NOTE_NAME "MIDI note HH Bell"
 #define HH_CLOSED_MIDI_NOTE_ID "MIDI note hh Closed"
 #define HH_CLOSED_MIDI_NOTE_NAME "MIDI note HH Closed"
 #define HH_HALF_MIDI_NOTE_ID "MIDI note hh Half"
@@ -44,8 +42,6 @@
 
 #define RIDE_POINT_MIDI_NOTE_ID "MIDI note ride Point"
 #define RIDE_POINT_MIDI_NOTE_NAME "MIDI note Ride Point"
-#define RIDE_HALF_MIDI_NOTE_ID "MIDI note ride Half"
-#define RIDE_HALF_MIDI_NOTE_NAME "MIDI note Ride Half"
 #define RIDE_BELL_MIDI_NOTE_ID "MIDI note ride Bell"
 #define RIDE_BELL_MIDI_NOTE_NAME "MIDI note Ride Bell"
 #define RIDE_OPEN_MIDI_NOTE_ID "MIDI note ride Open"
@@ -145,11 +141,11 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-    void addSample(string sampleName, string destination, int midiNote, int lowestVelocity, int highestVelocity, double release, double maxLength, string bus);
+    void addSample(string sampleName, string destination, int midiNote, float lowestVelocity, float highestVelocity, double release, double maxLength, string bus);
     void loadSamples(int samplePackID, int kickNoteID, int snareNoteID, int snareFlamNoteID, int snareRoundNoteID,
                     int snareWirelessNoteID, int snareWirelessRoundNoteID, int tomNoteID, int tomFlamNoteID, int ftomNoteID, int ftomFlamNoteID,
-                    int tambourineNoteID, int hhBellNoteID, int hhClosedNoteID, int hhHalfNoteID, int hhOpenNoteID,  int ridePointNoteID,
-                    int rideHalfNoteID, int rideBellNoteID, int rideOpenNoteID, int crashPointNoteID, int crashBellNoteID, int crashOpenNoteID);
+                    int tambourineNoteID, int hhClosedNoteID, int hhHalfNoteID, int hhOpenNoteID,  int ridePointNoteID,
+                    int rideBellNoteID, int rideOpenNoteID, int crashPointNoteID, int crashBellNoteID, int crashOpenNoteID);
 
     juce::MidiMessageCollector& getMidiMessageCollector() noexcept { return midiMessageCollector; }
 
@@ -193,10 +189,10 @@ private:
 
     juce::AudioFormatManager formatManager;
 
-    float linCurveFor3[4] = { 0, 43, 85, 129 };
-    float linCurveFor4[5] = { 0, 32, 64, 96, 129 };
-    float linCurveFor5[6] = { 0, 26, 51, 77, 102, 129 };
-    float linCurveFor6[7] = { 0, 21, 43, 64, 85, 107, 129 };
+    float linCurveFor3[4] = { 0.0, 43.0, 85.0, 129.0 };
+    float linCurveFor4[5] = { 0.0, 32.0, 64.0, 96.0, 129.0 };
+    float linCurveFor5[6] = { 0.0, 26.0, 51.0, 77.0, 102.0, 129.0 };
+    float linCurveFor6[7] = { 0.0, 21.0, 43.0, 64.0, 85.0, 107.0, 129.0 };
 
     void loadDirectory();
     void clearSoundsFromAllSamplers();
