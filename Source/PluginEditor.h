@@ -4,7 +4,7 @@
 #include "KickSlidersPage.h"
 #include "SnareSlidersPage.h"
 #include "TomsSlidersPage.h"
-#include "HHSlidersPage.h"
+#include "MainSlidersPage.h"
 #include "CymbalsSlidersPage.h"
 #include "MidiNoteChoosingPage.h"
 
@@ -15,7 +15,7 @@ public:
     ~HDrumsAudioProcessorEditor() override;
 
     juce::TabbedComponent myTabbedComponent;
-    HHSlidersPage mainSlidersPage;
+    MainSlidersPage mainSlidersPage;
     KickSlidersPage kickSlidersPage;
     SnareSlidersPage snareSlidersPage;
     TomsSlidersPage tomsSlidersPage;
@@ -80,13 +80,6 @@ public:
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> tomsBleedSliderValue;
 
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> hhCloseSliderValue;
-    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> tambCloseSliderValue;
-    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> hhOHSliderValue;
-    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> hhRoomSliderValue;
-    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> hhBleedSliderValue;
-
-    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> crashCloseSliderValue;
-    juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> rideCloseSliderValue;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> cymbalsOHSliderValue;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> cymbalsRoomSliderValue;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> cymbalsBleedSliderValue;
@@ -101,15 +94,6 @@ private:
     juce::Image background;
     juce::Image background2;
     juce::Image dryBackground;
-
-    //juce::Slider gainSlider;
-    //juce::Slider OHgainSlider;
-    //juce::Slider RoomGainSlider;
-    //juce::Slider BleedGainSlider;
-    //juce::Label gainLabel;
-    //juce::Label OHgainLabel;
-    //juce::Label RoomGainLabel;
-    //juce::Label BleedGainLabel;
 
     void velocityCurveChanged();
     void samplePackMenuChanged();

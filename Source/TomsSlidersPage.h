@@ -78,11 +78,11 @@ public:
 
 	void TomsSlidersPage::resized() override
 	{
-		tomCloseSlider.setBounds(30, 50, 70, getHeight() - 100);
-		ftomCloseSlider.setBounds(120, 50, 70, getHeight() - 100);
-		tomsOHSlider.setBounds(210, 50, 70, getHeight() - 100);
-		tomsRoomSlider.setBounds(300, 50, 70, getHeight() - 100);
-		tomsBleedSlider.setBounds(390, 50, 70, getHeight() - 100);
+		tomCloseSlider.setBounds(10, 50, 70, getHeight() - 100);
+		ftomCloseSlider.setBounds(85, 50, 70, getHeight() - 100);
+		tomsOHSlider.setBounds(162, 50, 70, getHeight() - 100);
+		tomsRoomSlider.setBounds(240, 50, 70, getHeight() - 100);
+		tomsBleedSlider.setBounds(315, 50, 70, getHeight() - 100);
 	}
 
 private:

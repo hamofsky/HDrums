@@ -44,13 +44,6 @@ HDrumsAudioProcessor::HDrumsAudioProcessor()
         samplerTomsBleed.addVoice(new juce::SamplerVoice());
 
         samplerHHClose.addVoice(new juce::SamplerVoice());
-        /*samplerTambClose.addVoice(new juce::SamplerVoice());
-        samplerHHOH.addVoice(new juce::SamplerVoice());
-        samplerHHRoom.addVoice(new juce::SamplerVoice());
-        samplerHHBleed.addVoice(new juce::SamplerVoice());
-
-        samplerCrashClose.addVoice(new juce::SamplerVoice());
-        samplerRideClose.addVoice(new juce::SamplerVoice());*/
         samplerCymbalsOH.addVoice(new juce::SamplerVoice());
         samplerCymbalsRoom.addVoice(new juce::SamplerVoice());
         samplerCymbalsBleed.addVoice(new juce::SamplerVoice());
@@ -110,23 +103,10 @@ juce::AudioProcessorValueTreeState::ParameterLayout HDrumsAudioProcessor::create
     params.push_back(std::move(TomsBleedGainParam));
 
     auto HHCloseGainParam = std::make_unique<juce::AudioParameterFloat>(HH_CLOSE_GAIN_ID, HH_CLOSE_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    //auto HHOHGainParam = std::make_unique<juce::AudioParameterFloat>(HH_OH_GAIN_ID, HH_OH_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    //auto HHRoomGainParam = std::make_unique<juce::AudioParameterFloat>(HH_ROOM_GAIN_ID, HH_ROOM_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    //auto HHBleedGainParam = std::make_unique<juce::AudioParameterFloat>(HH_BLEED_GAIN_ID, HH_BLEED_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    params.push_back(std::move(HHCloseGainParam));
-    //params.push_back(std::move(HHOHGainParam));
-    //params.push_back(std::move(HHRoomGainParam));
-    //params.push_back(std::move(HHBleedGainParam));
-
-    //auto CrashCloseGainParam = std::make_unique<juce::AudioParameterFloat>(CRASH_CLOSE_GAIN_ID, CRASH_CLOSE_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    //auto RideCloseGainParam = std::make_unique<juce::AudioParameterFloat>(RIDE_CLOSE_GAIN_ID, RIDE_CLOSE_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    //auto TambCloseGainParam = std::make_unique<juce::AudioParameterFloat>(TAMB_CLOSE_GAIN_ID, TAMB_CLOSE_GAIN_NAME, -48.0f, 10.0f, 0.0f);
     auto CymbalsOHGainParam = std::make_unique<juce::AudioParameterFloat>(CYMBALS_OH_GAIN_ID, CYMBALS_OH_GAIN_NAME, -48.0f, 10.0f, 0.0f);
     auto CymbalsRoomGainParam = std::make_unique<juce::AudioParameterFloat>(CYMBALS_ROOM_GAIN_ID, CYMBALS_ROOM_GAIN_NAME, -48.0f, 10.0f, 0.0f);
     auto CymbalsBleedGainParam = std::make_unique<juce::AudioParameterFloat>(CYMBALS_BLEED_GAIN_ID, CYMBALS_BLEED_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    //params.push_back(std::move(CrashCloseGainParam));
-    //params.push_back(std::move(RideCloseGainParam));
-    //params.push_back(std::move(TambCloseGainParam));
+    params.push_back(std::move(HHCloseGainParam));
     params.push_back(std::move(CymbalsOHGainParam));
     params.push_back(std::move(CymbalsRoomGainParam));
     params.push_back(std::move(CymbalsBleedGainParam));
@@ -249,19 +229,6 @@ void HDrumsAudioProcessor::addSample(string sampleName, string destination, int 
 
         else if (bus == "HHClose")
             samplerHHClose.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
-        /*else if (bus == "TambClose")
-            samplerTambClose.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
-        else if (bus == "HHOH")
-            samplerHHOH.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
-        else if (bus == "HHRoom")
-            samplerHHRoom.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
-        else if (bus == "HHBleed")
-            samplerHHBleed.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));*/
-
-        //else if (bus == "CrashClose")
-        //    samplerCrashClose.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
-        //else if (bus == "RideClose")
-        //    samplerRideClose.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
         else if (bus == "CymbalsOH")
             samplerCymbalsOH.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
         else if (bus == "CymbalsRoom")
@@ -681,11 +648,6 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int kickNoteID, int sna
         double RideRelease = 0.7;
         string RideAllDestination = dryDestination + "rideAll/";
         string RidePointDestination = RideAllDestination + "ridePoint/";
-        /*addSample("RidePoint 1 Close", RidePointDestination + "ridePoint_1_bleed.wav", ridePointNoteID, curveFor5[0], curveFor5[1] - 1, RideRelease, 3.5, "RideClose");
-        addSample("RidePoint 2 Close", RidePointDestination + "ridePoint_2_bleed.wav", ridePointNoteID, curveFor5[1], curveFor5[2] - 1, RideRelease, 3.7, "RideClose");
-        addSample("RidePoint 3 Close", RidePointDestination + "ridePoint_3_bleed.wav", ridePointNoteID, curveFor5[2], curveFor5[3] - 1, RideRelease, 4.5, "RideClose");
-        addSample("RidePoint 4 Close", RidePointDestination + "ridePoint_4_bleed.wav", ridePointNoteID, curveFor5[3], curveFor5[4] - 1, RideRelease, 5.3, "RideClose");
-        addSample("RidePoint 5 Close", RidePointDestination + "ridePoint_5_bleed.wav", ridePointNoteID, curveFor5[4], curveFor5[5] - 1, RideRelease, 7.9, "RideClose");*/
         addSample("RidePoint 1 OH", RidePointDestination + "ridePoint_1_OH.wav", ridePointNoteID, curveFor5[0], curveFor5[1] - 1, RideRelease, 3.5, "CymbalsOH");
         addSample("RidePoint 2 OH", RidePointDestination + "ridePoint_2_OH.wav", ridePointNoteID, curveFor5[1], curveFor5[2] - 1, RideRelease, 3.7, "CymbalsOH");
         addSample("RidePoint 3 OH", RidePointDestination + "ridePoint_3_OH.wav", ridePointNoteID, curveFor5[2], curveFor5[3] - 1, RideRelease, 4.5, "CymbalsOH");
@@ -703,9 +665,6 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int kickNoteID, int sna
         addSample("RidePoint 5 Bleed", RidePointDestination + "ridePoint_5_bleed.wav", ridePointNoteID, curveFor5[4], curveFor5[5] - 1, RideRelease, 7.9, "CymbalsBleed");
 
         string RideHalfDestination = RideAllDestination + "rideHalf/";
-        /*addSample("RideHalf 1 Close", RideHalfDestination + "rideHalf_1_bleed.wav", rideHalfNoteID, curveFor3[0], curveFor3[1] - 1, RideRelease, 3.8, "RideClose");
-        addSample("RideHalf 2 Close", RideHalfDestination + "rideHalf_2_bleed.wav", rideHalfNoteID, curveFor3[1], curveFor3[2] - 1, RideRelease, 4.8, "RideClose");
-        addSample("RideHalf 3 Close", RideHalfDestination + "rideHalf_3_bleed.wav", rideHalfNoteID, curveFor3[2], curveFor3[3] - 1, RideRelease, 4.3, "RideClose");*/
         addSample("RideHalf 1 OH", RideHalfDestination + "rideHalf_1_OH.wav", rideHalfNoteID, curveFor3[0], curveFor3[1] - 1, RideRelease, 3.8, "CymbalsOH");
         addSample("RideHalf 2 OH", RideHalfDestination + "rideHalf_2_OH.wav", rideHalfNoteID, curveFor3[1], curveFor3[2] - 1, RideRelease, 4.8, "CymbalsOH");
         addSample("RideHalf 3 OH", RideHalfDestination + "rideHalf_3_OH.wav", rideHalfNoteID, curveFor3[2], curveFor3[3] - 1, RideRelease, 4.3, "CymbalsOH");
@@ -717,11 +676,6 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int kickNoteID, int sna
         addSample("RideHalf 3 Bleed", RideHalfDestination + "rideHalf_3_bleed.wav", rideHalfNoteID, curveFor3[2], curveFor3[3] - 1, RideRelease, 4.3, "CymbalsBleed");
 
         string RideBellDestination = RideAllDestination + "rideBell/";
-        /*addSample("RideBell 1 Close", RideBellDestination + "rideBell_1_bleed.wav", rideBellNoteID, curveFor5[0], curveFor5[1] - 1, RideRelease, 2.95, "RideClose");
-        addSample("RideBell 2 Close", RideBellDestination + "rideBell_2_bleed.wav", rideBellNoteID, curveFor5[1], curveFor5[2] - 1, RideRelease, 3.32, "RideClose");
-        addSample("RideBell 3 Close", RideBellDestination + "rideBell_3_bleed.wav", rideBellNoteID, curveFor5[2], curveFor5[3] - 1, RideRelease, 3.70, "RideClose");
-        addSample("RideBell 4 Close", RideBellDestination + "rideBell_4_bleed.wav", rideBellNoteID, curveFor5[3], curveFor5[4] - 1, RideRelease, 4.30, "RideClose");
-        addSample("RideBell 5 Close", RideBellDestination + "rideBell_5_bleed.wav", rideBellNoteID, curveFor5[4], curveFor5[5] - 1, RideRelease, 5.25, "RideClose");*/
         addSample("RideBell 1 OH", RideBellDestination + "rideBell_1_OH.wav", rideBellNoteID, curveFor5[0], curveFor5[1] - 1, RideRelease, 2.95, "CymbalsOH");
         addSample("RideBell 2 OH", RideBellDestination + "rideBell_2_OH.wav", rideBellNoteID, curveFor5[1], curveFor5[2] - 1, RideRelease, 3.32, "CymbalsOH");
         addSample("RideBell 3 OH", RideBellDestination + "rideBell_3_OH.wav", rideBellNoteID, curveFor5[2], curveFor5[3] - 1, RideRelease, 3.70, "CymbalsOH");
@@ -740,11 +694,6 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int kickNoteID, int sna
 
         double RideOpenRelease = 4.5;
         string RideOpenDestination = RideAllDestination + "rideOpen/";
-        /*addSample("RideOpen 1 Close", RideOpenDestination + "rideOpen_1_bleed.wav", rideOpenNoteID, curveFor5[0], curveFor5[1] - 1, RideOpenRelease, 5.80, "RideClose");
-        addSample("RideOpen 2 Close", RideOpenDestination + "rideOpen_2_bleed.wav", rideOpenNoteID, curveFor5[1], curveFor5[2] - 1, RideOpenRelease, 5.30, "RideClose");
-        addSample("RideOpen 3 Close", RideOpenDestination + "rideOpen_3_bleed.wav", rideOpenNoteID, curveFor5[2], curveFor5[3] - 1, RideOpenRelease, 5.85, "RideClose");
-        addSample("RideOpen 4 Close", RideOpenDestination + "rideOpen_4_bleed.wav", rideOpenNoteID, curveFor5[3], curveFor5[4] - 1, RideOpenRelease, 7.80, "RideClose");
-        addSample("RideOpen 5 Close", RideOpenDestination + "rideOpen_5_bleed.wav", rideOpenNoteID, curveFor5[4], curveFor5[5] - 1, RideOpenRelease, 10.0, "RideClose");*/
         addSample("RideOpen 1 OH", RideOpenDestination + "rideOpen_1_OH.wav", rideOpenNoteID, curveFor5[0], curveFor5[1] - 1, RideOpenRelease, 5.80, "CymbalsOH");
         addSample("RideOpen 2 OH", RideOpenDestination + "rideOpen_2_OH.wav", rideOpenNoteID, curveFor5[1], curveFor5[2] - 1, RideOpenRelease, 5.30, "CymbalsOH");
         addSample("RideOpen 3 OH", RideOpenDestination + "rideOpen_3_OH.wav", rideOpenNoteID, curveFor5[2], curveFor5[3] - 1, RideOpenRelease, 5.85, "CymbalsOH");
@@ -765,10 +714,6 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int kickNoteID, int sna
         double CrashRelease = 0.12;
         string CrashAllDestination = dryDestination + "crashAll/";
         string CrashPointDestination = CrashAllDestination + "crashPoint/";
-        /*addSample("CrashPoint 1 Close", CrashPointDestination + "crashPoint_1_bleed.wav", crashPointNoteID, curveFor4[0], curveFor4[1] - 1, CrashRelease, 2.08, "CrashClose");
-        addSample("CrashPoint 2 Close", CrashPointDestination + "crashPoint_2_bleed.wav", crashPointNoteID, curveFor4[1], curveFor4[2] - 1, CrashRelease, 1.96, "CrashClose");
-        addSample("CrashPoint 3 Close", CrashPointDestination + "crashPoint_3_bleed.wav", crashPointNoteID, curveFor4[2], curveFor4[3] - 1, CrashRelease, 3.20, "CrashClose");
-        addSample("CrashPoint 4 Close", CrashPointDestination + "crashPoint_4_bleed.wav", crashPointNoteID, curveFor4[3], curveFor4[4] - 1, CrashRelease, 3.30, "CrashClose");*/
         addSample("CrashPoint 1 OH", CrashPointDestination + "crashPoint_1_OH.wav", crashPointNoteID, curveFor4[0], curveFor4[1] - 1, CrashRelease, 2.08, "CymbalsOH");
         addSample("CrashPoint 2 OH", CrashPointDestination + "crashPoint_2_OH.wav", crashPointNoteID, curveFor4[1], curveFor4[2] - 1, CrashRelease, 1.96, "CymbalsOH");
         addSample("CrashPoint 3 OH", CrashPointDestination + "crashPoint_3_OH.wav", crashPointNoteID, curveFor4[2], curveFor4[3] - 1, CrashRelease, 3.20, "CymbalsOH");
@@ -783,11 +728,6 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int kickNoteID, int sna
         addSample("CrashPoint 4 Bleed", CrashPointDestination + "crashPoint_4_bleed.wav", crashPointNoteID, curveFor4[3], curveFor4[4] - 1, CrashRelease, 3.30, "CymbalsBleed");
 
         string CrashBellDestination = CrashAllDestination + "crashBell/";
-        /*addSample("CrashBell 1 Close", CrashBellDestination + "crashBell_1_bleed.wav", crashBellNoteID, curveFor5[0], curveFor5[1] - 1, CrashRelease, 1.22, "CrashClose");
-        addSample("CrashBell 2 Close", CrashBellDestination + "crashBell_2_bleed.wav", crashBellNoteID, curveFor5[1], curveFor5[2] - 1, CrashRelease, 1.84, "CrashClose");
-        addSample("CrashBell 3 Close", CrashBellDestination + "crashBell_3_bleed.wav", crashBellNoteID, curveFor5[2], curveFor5[3] - 1, CrashRelease, 2.81, "CrashClose");
-        addSample("CrashBell 4 Close", CrashBellDestination + "crashBell_4_bleed.wav", crashBellNoteID, curveFor5[3], curveFor5[4] - 1, CrashRelease, 3.00, "CrashClose");
-        addSample("CrashBell 5 Close", CrashBellDestination + "crashBell_5_bleed.wav", crashBellNoteID, curveFor5[4], curveFor5[5] - 1, CrashRelease, 3.70, "CrashClose");*/
         addSample("CrashBell 1 OH", CrashBellDestination + "crashBell_1_OH.wav", crashBellNoteID, curveFor5[0], curveFor5[1] - 1, CrashRelease, 1.22, "CymbalsOH");
         addSample("CrashBell 2 OH", CrashBellDestination + "crashBell_2_OH.wav", crashBellNoteID, curveFor5[1], curveFor5[2] - 1, CrashRelease, 1.84, "CymbalsOH");
         addSample("CrashBell 3 OH", CrashBellDestination + "crashBell_3_OH.wav", crashBellNoteID, curveFor5[2], curveFor5[3] - 1, CrashRelease, 2.81, "CymbalsOH");
@@ -807,10 +747,6 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID, int kickNoteID, int sna
         double CrashOpenRelease = 0.14;
         double CrashOpenMaxLen = 6.0;
         string CrashOpenDestination = CrashAllDestination + "crashOpen/";
-        /*addSample("CrashOpen 1 Close", CrashOpenDestination + "crashOpen_1_bleed.wav", crashOpenNoteID, curveFor4[0], curveFor4[1] - 1, CrashOpenRelease, 2.45, "CrashClose");
-        addSample("CrashOpen 2 Close", CrashOpenDestination + "crashOpen_2_bleed.wav", crashOpenNoteID, curveFor4[1], curveFor4[2] - 1, CrashOpenRelease, 3.30, "CrashClose");
-        addSample("CrashOpen 3 Close", CrashOpenDestination + "crashOpen_3_bleed.wav", crashOpenNoteID, curveFor4[2], curveFor4[3] - 1, CrashOpenRelease, 3.80, "CrashClose");
-        addSample("CrashOpen 4 Close", CrashOpenDestination + "crashOpen_4_bleed.wav", crashOpenNoteID, curveFor4[3], curveFor4[4] - 1, CrashOpenRelease, 4.90, "CrashClose");*/
         addSample("CrashOpen 1 OH", CrashOpenDestination + "crashOpen_1_OH.wav", crashOpenNoteID, curveFor4[0], curveFor4[1] - 1, CrashOpenRelease, 2.45, "CymbalsOH");
         addSample("CrashOpen 2 OH", CrashOpenDestination + "crashOpen_2_OH.wav", crashOpenNoteID, curveFor4[1], curveFor4[2] - 1, CrashOpenRelease, 3.30, "CymbalsOH");
         addSample("CrashOpen 3 OH", CrashOpenDestination + "crashOpen_3_OH.wav", crashOpenNoteID, curveFor4[2], curveFor4[3] - 1, CrashOpenRelease, 3.80, "CymbalsOH");
@@ -852,13 +788,6 @@ void HDrumsAudioProcessor::clearSoundsFromAllSamplers()
     samplerTomsBleed.clearSounds();
 
     samplerHHClose.clearSounds();
-    /*samplerTambClose.clearSounds();
-    samplerHHOH.clearSounds();
-    samplerHHRoom.clearSounds();
-    samplerHHBleed.clearSounds();*/
-
-    //samplerCrashClose.clearSounds();
-    //samplerRideClose.clearSounds();
     samplerCymbalsOH.clearSounds();
     samplerCymbalsRoom.clearSounds();
     samplerCymbalsBleed.clearSounds();
@@ -954,13 +883,6 @@ void HDrumsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock
     samplerTomsBleed.setCurrentPlaybackSampleRate(sampleRate);
     
     samplerHHClose.setCurrentPlaybackSampleRate(sampleRate);
-    /*samplerTambClose.setCurrentPlaybackSampleRate(sampleRate);
-    samplerHHOH.setCurrentPlaybackSampleRate(sampleRate);
-    samplerHHRoom.setCurrentPlaybackSampleRate(sampleRate);
-    samplerHHBleed.setCurrentPlaybackSampleRate(sampleRate);
-    
-    samplerCrashClose.setCurrentPlaybackSampleRate(sampleRate);
-    samplerRideClose.setCurrentPlaybackSampleRate(sampleRate);*/
     samplerCymbalsOH.setCurrentPlaybackSampleRate(sampleRate);
     samplerCymbalsRoom.setCurrentPlaybackSampleRate(sampleRate);
     samplerCymbalsBleed.setCurrentPlaybackSampleRate(sampleRate);
@@ -1007,7 +929,7 @@ void HDrumsAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
 
     midiMessageCollector.removeNextBlockOfMessages(midiMessages, buffer.getNumSamples());
 
-    midiProcessor.process(midiMessages);    //narazie nic sie tam nie dzieje
+    midiProcessor.process(midiMessages);
     
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i) {
         buffer.clear(i, 0, buffer.getNumSamples());
@@ -1036,13 +958,6 @@ void HDrumsAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
     auto tomsBleedSliderValue = treeState.getRawParameterValue(TOMS_BLEED_GAIN_ID);
 
     auto hhCloseSliderValue = treeState.getRawParameterValue(HH_CLOSE_GAIN_ID);
-    /*auto tambCloseSliderValue = treeState.getRawParameterValue(TAMB_CLOSE_GAIN_ID);
-    auto hhOHSliderValue = treeState.getRawParameterValue(HH_OH_GAIN_ID);
-    auto hhRoomSliderValue = treeState.getRawParameterValue(HH_ROOM_GAIN_ID);
-    auto hhBleedSliderValue = treeState.getRawParameterValue(HH_BLEED_GAIN_ID);
-
-    auto crashCloseSliderValue = treeState.getRawParameterValue(CRASH_CLOSE_GAIN_ID);
-    auto rideCloseSliderValue = treeState.getRawParameterValue(RIDE_CLOSE_GAIN_ID);*/
     auto cymbalsOHSliderValue = treeState.getRawParameterValue(CYMBALS_OH_GAIN_ID);
     auto cymbalsRoomSliderValue = treeState.getRawParameterValue(CYMBALS_ROOM_GAIN_ID);
     auto cymbalsBleedSliderValue = treeState.getRawParameterValue(CYMBALS_BLEED_GAIN_ID);
@@ -1070,13 +985,6 @@ void HDrumsAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
     juce::AudioBuffer<float> bufferTomsBleed;
     
     juce::AudioBuffer<float> bufferHHClose;
-    /*juce::AudioBuffer<float> bufferTambClose;
-    juce::AudioBuffer<float> bufferHHOH;
-    juce::AudioBuffer<float> bufferHHRoom;
-    juce::AudioBuffer<float> bufferHHBleed;
-    
-    juce::AudioBuffer<float> bufferCrashClose;
-    juce::AudioBuffer<float> bufferRideClose;*/
     juce::AudioBuffer<float> bufferCymbalsOH;
     juce::AudioBuffer<float> bufferCymbalsRoom;
     juce::AudioBuffer<float> bufferCymbalsBleed;
@@ -1104,13 +1012,6 @@ void HDrumsAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
     bufferTomsBleed.makeCopyOf(buffer);
     
     bufferHHClose.makeCopyOf(buffer);
-    /*bufferTambClose.makeCopyOf(buffer);
-    bufferHHOH.makeCopyOf(buffer);
-    bufferHHRoom.makeCopyOf(buffer);
-    bufferHHBleed.makeCopyOf(buffer);
-    
-    bufferCrashClose.makeCopyOf(buffer);
-    bufferRideClose.makeCopyOf(buffer);*/
     bufferCymbalsOH.makeCopyOf(buffer);
     bufferCymbalsRoom.makeCopyOf(buffer);
     bufferCymbalsBleed.makeCopyOf(buffer);
@@ -1124,9 +1025,6 @@ void HDrumsAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
     samplerTomClose.renderNextBlock(bufferTomClose, midiMessages, 0, bufferTomClose.getNumSamples());
     samplerFTomClose.renderNextBlock(bufferFTomClose, midiMessages, 0, bufferFTomClose.getNumSamples());
     samplerHHClose.renderNextBlock(bufferHHClose, midiMessages, 0, bufferHHClose.getNumSamples());
-    /*samplerTambClose.renderNextBlock(bufferTambClose, midiMessages, 0, bufferTambClose.getNumSamples());
-    samplerCrashClose.renderNextBlock(bufferCrashClose, midiMessages, 0, bufferCrashClose.getNumSamples());
-    samplerRideClose.renderNextBlock(bufferRideClose, midiMessages, 0, bufferRideClose.getNumSamples());*/
 
     bufferClose.addFrom(0, 0, bufferKickClose, 0, 0, bufferKickClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickCloseSliderValue));
     bufferClose.addFrom(1, 0, bufferKickClose, 1, 0, bufferKickClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickCloseSliderValue));
@@ -1140,17 +1038,10 @@ void HDrumsAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
     bufferClose.addFrom(1, 0, bufferFTomClose, 1, 0, bufferFTomClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*ftomCloseSliderValue));
     bufferClose.addFrom(0, 0, bufferHHClose, 0, 0, bufferHHClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*hhCloseSliderValue));
     bufferClose.addFrom(1, 0, bufferHHClose, 1, 0, bufferHHClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*hhCloseSliderValue));
-    /*bufferClose.addFrom(0, 0, bufferTambClose, 0, 0, bufferTambClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tambCloseSliderValue));
-    bufferClose.addFrom(1, 0, bufferTambClose, 1, 0, bufferTambClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tambCloseSliderValue));
-    bufferClose.addFrom(0, 0, bufferCrashClose, 0, 0, bufferCrashClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*crashCloseSliderValue));
-    bufferClose.addFrom(1, 0, bufferCrashClose, 1, 0, bufferCrashClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*crashCloseSliderValue));
-    bufferClose.addFrom(0, 0, bufferRideClose, 0, 0, bufferRideClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*rideCloseSliderValue));
-    bufferClose.addFrom(1, 0, bufferRideClose, 1, 0, bufferRideClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*rideCloseSliderValue));*/
     
     samplerKickOH.renderNextBlock(bufferKickOH, midiMessages, 0, bufferKickOH.getNumSamples());
     samplerSnareOH.renderNextBlock(bufferSnareOH, midiMessages, 0, bufferSnareOH.getNumSamples());
     samplerTomsOH.renderNextBlock(bufferTomsOH, midiMessages, 0, bufferTomsOH.getNumSamples());
-    //samplerHHOH.renderNextBlock(bufferHHOH, midiMessages, 0, bufferHHOH.getNumSamples());
     samplerCymbalsOH.renderNextBlock(bufferCymbalsOH, midiMessages, 0, bufferCymbalsOH.getNumSamples());
 
     bufferOH.addFrom(0, 0, bufferKickOH, 0, 0, bufferKickOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickOHSliderValue));
@@ -1159,15 +1050,12 @@ void HDrumsAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
     bufferOH.addFrom(1, 0, bufferSnareOH, 1, 0, bufferSnareOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareOHSliderValue));
     bufferOH.addFrom(0, 0, bufferTomsOH, 0, 0, bufferTomsOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsOHSliderValue));
     bufferOH.addFrom(1, 0, bufferTomsOH, 1, 0, bufferTomsOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsOHSliderValue));
-    /*bufferOH.addFrom(0, 0, bufferHHOH, 0, 0, bufferHHOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*hhOHSliderValue));
-    bufferOH.addFrom(1, 0, bufferHHOH, 1, 0, bufferHHOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*hhOHSliderValue));*/
     bufferOH.addFrom(0, 0, bufferCymbalsOH, 0, 0, bufferCymbalsOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsOHSliderValue));
     bufferOH.addFrom(1, 0, bufferCymbalsOH, 1, 0, bufferCymbalsOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsOHSliderValue));
 
     samplerKickRoom.renderNextBlock(bufferKickRoom, midiMessages, 0, bufferKickRoom.getNumSamples());
     samplerSnareRoom.renderNextBlock(bufferSnareRoom, midiMessages, 0, bufferSnareRoom.getNumSamples());
     samplerTomsRoom.renderNextBlock(bufferTomsRoom, midiMessages, 0, bufferTomsRoom.getNumSamples());
-    //samplerHHRoom.renderNextBlock(bufferHHRoom, midiMessages, 0, bufferHHRoom.getNumSamples());
     samplerCymbalsRoom.renderNextBlock(bufferCymbalsRoom, midiMessages, 0, bufferCymbalsRoom.getNumSamples());
 
     bufferRoom.addFrom(0, 0, bufferKickRoom, 0, 0, bufferKickRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickRoomSliderValue));
@@ -1176,15 +1064,12 @@ void HDrumsAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
     bufferRoom.addFrom(1, 0, bufferSnareRoom, 1, 0, bufferSnareRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareRoomSliderValue));
     bufferRoom.addFrom(0, 0, bufferTomsRoom, 0, 0, bufferTomsRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsRoomSliderValue));
     bufferRoom.addFrom(1, 0, bufferTomsRoom, 1, 0, bufferTomsRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsRoomSliderValue));
-    /*bufferRoom.addFrom(0, 0, bufferHHRoom, 0, 0, bufferHHRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*hhRoomSliderValue));
-    bufferRoom.addFrom(1, 0, bufferHHRoom, 1, 0, bufferHHRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*hhRoomSliderValue));*/
     bufferRoom.addFrom(0, 0, bufferCymbalsRoom, 0, 0, bufferCymbalsRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsRoomSliderValue));
     bufferRoom.addFrom(1, 0, bufferCymbalsRoom, 1, 0, bufferCymbalsRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsRoomSliderValue));
 
     samplerKickBleed.renderNextBlock(bufferKickBleed, midiMessages, 0, bufferKickBleed.getNumSamples());
     samplerSnareBleed.renderNextBlock(bufferSnareBleed, midiMessages, 0, bufferSnareBleed.getNumSamples());
     samplerTomsBleed.renderNextBlock(bufferTomsBleed, midiMessages, 0, bufferTomsBleed.getNumSamples());
-    //samplerHHBleed.renderNextBlock(bufferHHBleed, midiMessages, 0, bufferHHBleed.getNumSamples());
     samplerCymbalsBleed.renderNextBlock(bufferCymbalsBleed, midiMessages, 0, bufferCymbalsBleed.getNumSamples());
 
     bufferBleed.addFrom(0, 0, bufferKickBleed, 0, 0, bufferKickBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickBleedSliderValue));
@@ -1193,8 +1078,6 @@ void HDrumsAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
     bufferBleed.addFrom(1, 0, bufferSnareBleed, 1, 0, bufferSnareBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareBleedSliderValue));
     bufferBleed.addFrom(0, 0, bufferTomsBleed, 0, 0, bufferTomsBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsBleedSliderValue));
     bufferBleed.addFrom(1, 0, bufferTomsBleed, 1, 0, bufferTomsBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsBleedSliderValue));
-    /*bufferBleed.addFrom(0, 0, bufferHHBleed, 0, 0, bufferHHBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*hhBleedSliderValue));
-    bufferBleed.addFrom(1, 0, bufferHHBleed, 1, 0, bufferHHBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*hhBleedSliderValue));*/
     bufferBleed.addFrom(0, 0, bufferCymbalsBleed, 0, 0, bufferCymbalsBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsBleedSliderValue));
     bufferBleed.addFrom(1, 0, bufferCymbalsBleed, 1, 0, bufferCymbalsBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsBleedSliderValue));
 
@@ -1275,23 +1158,10 @@ void HDrumsAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
     juce::MemoryOutputStream(destData, true).writeFloat(*tomsBleedSliderValue);
 
     auto hhCloseSliderValue = treeState.getRawParameterValue(HH_CLOSE_GAIN_ID);
-    /*auto tambCloseSliderValue = treeState.getRawParameterValue(TAMB_CLOSE_GAIN_ID);
-    auto hhOHSliderValue = treeState.getRawParameterValue(HH_OH_GAIN_ID);
-    auto hhRoomSliderValue = treeState.getRawParameterValue(HH_ROOM_GAIN_ID);
-    auto hhBleedSliderValue = treeState.getRawParameterValue(HH_BLEED_GAIN_ID);*/
-    juce::MemoryOutputStream(destData, true).writeFloat(*hhCloseSliderValue);
-    /*juce::MemoryOutputStream(destData, true).writeFloat(*tambCloseSliderValue);
-    juce::MemoryOutputStream(destData, true).writeFloat(*hhOHSliderValue);
-    juce::MemoryOutputStream(destData, true).writeFloat(*hhRoomSliderValue);
-    juce::MemoryOutputStream(destData, true).writeFloat(*hhBleedSliderValue);*/
-
-    //auto crashCloseSliderValue = treeState.getRawParameterValue(CRASH_CLOSE_GAIN_ID);
-    //auto rideCloseSliderValue = treeState.getRawParameterValue(RIDE_CLOSE_GAIN_ID);
     auto cymbalsOHSliderValue = treeState.getRawParameterValue(CYMBALS_OH_GAIN_ID);
     auto cymbalsRoomSliderValue = treeState.getRawParameterValue(CYMBALS_ROOM_GAIN_ID);
     auto cymbalsBleedSliderValue = treeState.getRawParameterValue(CYMBALS_BLEED_GAIN_ID);
-    /*juce::MemoryOutputStream(destData, true).writeFloat(*crashCloseSliderValue);
-    juce::MemoryOutputStream(destData, true).writeFloat(*rideCloseSliderValue);*/
+    juce::MemoryOutputStream(destData, true).writeFloat(*hhCloseSliderValue);
     juce::MemoryOutputStream(destData, true).writeFloat(*cymbalsOHSliderValue);
     juce::MemoryOutputStream(destData, true).writeFloat(*cymbalsRoomSliderValue);
     juce::MemoryOutputStream(destData, true).writeFloat(*cymbalsBleedSliderValue);

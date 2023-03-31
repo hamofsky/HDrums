@@ -78,11 +78,11 @@ public:
 
 	void SnareSlidersPage::resized() override
 	{
-		snareTopCloseSlider.setBounds(30, 50, 70, getHeight() - 100);
-		snareBotCloseSlider.setBounds(120, 50, 70, getHeight() - 100);
-		snareOHSlider.setBounds(210, 50, 70, getHeight() - 100);
-		snareRoomSlider.setBounds(300, 50, 70, getHeight() - 100);
-		snareBleedSlider.setBounds(390, 50, 70, getHeight() - 100);
+		snareTopCloseSlider.setBounds(10, 50, 70, getHeight() - 100);
+		snareBotCloseSlider.setBounds(85, 50, 70, getHeight() - 100);
+		snareOHSlider.setBounds(162, 50, 70, getHeight() - 100);
+		snareRoomSlider.setBounds(240, 50, 70, getHeight() - 100);
+		snareBleedSlider.setBounds(315, 50, 70, getHeight() - 100);
 	}
 
 private:

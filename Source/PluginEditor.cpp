@@ -5,7 +5,7 @@
 #include "KickSlidersPage.h"
 #include "SnareSlidersPage.h"
 #include "TomsSlidersPage.h"
-#include "HHSlidersPage.h"
+#include "MainSlidersPage.h"
 #include "CymbalsSlidersPage.h"
 #include "MidiNoteChoosingPage.h"
 
@@ -16,12 +16,12 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     setSize(1000, 500);
 
     addAndMakeVisible(&myTabbedComponent);
-    myTabbedComponent.addTab("Main", juce::Colours::blue.withAlpha(0.5f), &mainSlidersPage, true);
+    myTabbedComponent.addTab("Main", juce::Colours::blue.withAlpha(0.9f), &mainSlidersPage, true);
     myTabbedComponent.addTab("Kick", juce::Colours::pink.withAlpha(0.9f), &kickSlidersPage, true);
-    myTabbedComponent.addTab("Snare", juce::Colours::red.withAlpha(0.6f), &snareSlidersPage, true);
-    myTabbedComponent.addTab("Toms", juce::Colours::green.withAlpha(0.5f), &tomsSlidersPage, true);
-    myTabbedComponent.addTab("Cymbals", juce::Colours::blue.withAlpha(0.5f), &cymbalsSlidersPage, true);
-    myTabbedComponent.addTab("MIDI", juce::Colours::red.withAlpha(0.6f), &midiNotesChoosingPage, true);
+    myTabbedComponent.addTab("Snare", juce::Colours::aqua.withAlpha(0.9f), &snareSlidersPage, true);
+    myTabbedComponent.addTab("Toms", juce::Colours::green.withAlpha(0.9f), &tomsSlidersPage, true);
+    myTabbedComponent.addTab("Cymbals", juce::Colours::beige.withAlpha(0.9f), &cymbalsSlidersPage, true);
+    myTabbedComponent.addTab("MIDI", juce::Colours::red.withAlpha(0.9f), &midiNotesChoosingPage, true);
 
     kickCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, KICK_CLOSE_GAIN_ID, kickSlidersPage.kickCloseSlider);
     kickOHSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, KICK_OH_GAIN_ID, kickSlidersPage.kickOHSlider);
@@ -40,14 +40,6 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     tomsRoomSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, TOMS_ROOM_GAIN_ID, tomsSlidersPage.tomsRoomSlider);
     tomsBleedSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, TOMS_BLEED_GAIN_ID, tomsSlidersPage.tomsBleedSlider);
 
-    /*hhCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, HH_CLOSE_GAIN_ID, hhSlidersPage.hhCloseSlider);
-    tambCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, TAMB_CLOSE_GAIN_ID, hhSlidersPage.tambCloseSlider);
-    hhOHSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, HH_OH_GAIN_ID, hhSlidersPage.hhOHSlider);
-    hhRoomSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, HH_ROOM_GAIN_ID, hhSlidersPage.hhRoomSlider);
-    hhBleedSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, HH_BLEED_GAIN_ID, hhSlidersPage.hhBleedSlider);
-
-    crashCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, CRASH_CLOSE_GAIN_ID, cymbalsSlidersPage.crashCloseSlider);
-    rideCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, RIDE_CLOSE_GAIN_ID, cymbalsSlidersPage.rideCloseSlider);*/
     hhCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, HH_CLOSE_GAIN_ID, cymbalsSlidersPage.hhCloseSlider);
     cymbalsOHSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, CYMBALS_OH_GAIN_ID, cymbalsSlidersPage.cymbalsOHSlider);
     cymbalsRoomSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, CYMBALS_ROOM_GAIN_ID, cymbalsSlidersPage.cymbalsRoomSlider);
@@ -251,7 +243,7 @@ void HDrumsAudioProcessorEditor::resized()
     samplePackMenu.setBounds(10, 10, halfWidth - 15, 20);
     curveMenu.setBounds(halfWidth + 5, 10, halfWidth - 15, 20);
 
-    myTabbedComponent.setBounds(getWidth() / 2, 0, getWidth() / 2, getHeight());
+    myTabbedComponent.setBounds(getWidth() / 2 + 100, 0, getWidth() / 2 - 100, getHeight());
 }
 
 void HDrumsAudioProcessorEditor::velocityCurveChanged()

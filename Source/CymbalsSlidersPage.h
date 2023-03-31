@@ -7,14 +7,10 @@
 class CymbalsSlidersPage : public juce::Component
 {
 public:
-	/*juce::Slider crashCloseSlider;
-	juce::Slider rideCloseSlider;*/
 	juce::Slider hhCloseSlider;
 	juce::Slider cymbalsOHSlider;
 	juce::Slider cymbalsRoomSlider;
 	juce::Slider cymbalsBleedSlider;
-	/*juce::Label crashCloseSliderLabel;
-	juce::Label rideCloseSliderLabel;*/
 	juce::Label hhCloseSliderLabel;
 	juce::Label cymbalsOHSliderLabel;
 	juce::Label cymbalsRoomSliderLabel;
@@ -22,28 +18,6 @@ public:
 
 	CymbalsSlidersPage()
 	{
-		/*crashCloseSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
-		crashCloseSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		crashCloseSlider.setRange(-48.0f, 10.0f);
-		crashCloseSlider.setDoubleClickReturnValue(true, 0.0f);
-		crashCloseSlider.setValue(crashCloseSlider.getValue());
-		addAndMakeVisible(&crashCloseSlider);
-		addAndMakeVisible(crashCloseSliderLabel);
-		crashCloseSliderLabel.setText("Crash", juce::dontSendNotification);
-		crashCloseSliderLabel.setJustificationType(juce::Justification::centred);
-		crashCloseSliderLabel.attachToComponent(&crashCloseSlider, false);*/
-
-		/*rideCloseSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
-		rideCloseSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		rideCloseSlider.setRange(-48.0f, 10.0f);
-		rideCloseSlider.setDoubleClickReturnValue(true, 0.0f);
-		rideCloseSlider.setValue(rideCloseSlider.getValue());
-		addAndMakeVisible(&rideCloseSlider);
-		addAndMakeVisible(rideCloseSliderLabel);
-		rideCloseSliderLabel.setText("Ride", juce::dontSendNotification);
-		rideCloseSliderLabel.setJustificationType(juce::Justification::centred);
-		rideCloseSliderLabel.attachToComponent(&rideCloseSlider, false);*/
-
 		hhCloseSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		hhCloseSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
 		hhCloseSlider.setRange(-48.0f, 10.0f);
@@ -91,12 +65,10 @@ public:
 
 	void CymbalsSlidersPage::resized() override
 	{
-		/*crashCloseSlider.setBounds(30, 50, 70, getHeight() - 100);
-		rideCloseSlider.setBounds(120, 50, 70, getHeight() - 100);*/
-		hhCloseSlider.setBounds(120, 50, 70, getHeight() - 100);
-		cymbalsOHSlider.setBounds(210, 50, 70, getHeight() - 100);
-		cymbalsRoomSlider.setBounds(300, 50, 70, getHeight() - 100);
-		cymbalsBleedSlider.setBounds(390, 50, 70, getHeight() - 100);
+		hhCloseSlider.setBounds(15, 50, 70, getHeight() - 100);
+		cymbalsOHSlider.setBounds(115, 50, 70, getHeight() - 100);
+		cymbalsRoomSlider.setBounds(215, 50, 70, getHeight() - 100);
+		cymbalsBleedSlider.setBounds(315, 50, 70, getHeight() - 100);
 	}
 
 private:

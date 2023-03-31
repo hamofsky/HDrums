@@ -71,10 +71,10 @@ public:
 	}
 	void KickSlidersPage::resized() override
 	{
-		kickCloseSlider.setBounds(60, 50, 70, getHeight() - 100);
-		kickOHSlider.setBounds(170, 50, 70, getHeight() - 100);
-		kickRoomSlider.setBounds(280, 50, 70, getHeight() - 100);
-		kickBleedSlider.setBounds(390, 50, 70, getHeight() - 100);
+		kickCloseSlider.setBounds(15, 50, 70, getHeight() - 100);
+		kickOHSlider.setBounds(115, 50, 70, getHeight() - 100);
+		kickRoomSlider.setBounds(215, 50, 70, getHeight() - 100);
+		kickBleedSlider.setBounds(315, 50, 70, getHeight() - 100);
 	}
 
 private:
