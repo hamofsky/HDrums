@@ -142,10 +142,7 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
     void addSample(string sampleName, string destination, int midiNote, float lowestVelocity, float highestVelocity, double release, double maxLength, string bus);
-    void loadSamples(int samplePackID, int kickNoteID, int snareNoteID, int snareFlamNoteID, int snareRoundNoteID,
-                    int snareWirelessNoteID, int snareWirelessRoundNoteID, int tomNoteID, int tomFlamNoteID, int ftomNoteID, int ftomFlamNoteID,
-                    int tambourineNoteID, int hhClosedNoteID, int hhHalfNoteID, int hhOpenNoteID,  int ridePointNoteID,
-                    int rideBellNoteID, int rideOpenNoteID, int crashPointNoteID, int crashBellNoteID, int crashOpenNoteID);
+    void loadSamples(int samplePackID);
 
     juce::MidiMessageCollector& getMidiMessageCollector() noexcept { return midiMessageCollector; }
 

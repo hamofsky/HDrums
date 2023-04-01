@@ -16,10 +16,14 @@ void Sampler::noteOn(const int midiChannel, const int midiNoteNumber, const floa
             for (int j = voices.size(); --j >= 0; )
             {
                 juce::SynthesiserVoice* const voice = voices.getUnchecked(j);
-                // wyjatek dla HH Open (64) konczacy sie przy uderzeniu w HH Closed (62)
-                if (voice->getCurrentlyPlayingNote() == 64
-                    && voice->isPlayingChannel(midiChannel) && sound->appliesTo(62, velocity))
-                    stopVoice(voice, 1.0f, true);
+                // wyjatek dla HH Open (75) konczacy sie przy uderzeniu w HH Half (74) || HH Closed (73)
+                if (voice->getCurrentlyPlayingNote() == 75)
+                {
+                    if (voice->isPlayingChannel(midiChannel) && (sound->appliesTo(74, velocity)))
+                        stopVoice(voice, 1.0f, true);
+                    else if (voice->isPlayingChannel(midiChannel) && (sound->appliesTo(73, velocity)))
+                        stopVoice(voice, 1.0f, true);
+                }
                 // pozostale przypadki (ta sama nuta konczy te sama)
                 else if (voice->getCurrentlyPlayingNote() == midiNoteNumber
                     && voice->isPlayingChannel(midiChannel) && sound->appliesTo(midiNoteNumber, velocity))

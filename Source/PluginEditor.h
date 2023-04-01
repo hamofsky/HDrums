@@ -95,6 +95,7 @@ private:
 
     void velocityCurveChanged();
     void samplePackMenuChanged();
+    void midiNoteChanged();
     void playMidiNote(int noteNumber);
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (HDrumsAudioProcessorEditor)
