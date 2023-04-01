@@ -15,6 +15,8 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
 {
     setSize(1000, 500);
 
+    midiNoteChanged();
+
     addAndMakeVisible(&myTabbedComponent);
     myTabbedComponent.addTab("Main", juce::Colours::red.withAlpha(0.5f), &mainSlidersPage, true);
     myTabbedComponent.addTab("Kick", juce::Colours::pink.withAlpha(0.5f), &kickSlidersPage, true);
@@ -252,7 +254,7 @@ void HDrumsAudioProcessorEditor::samplePackMenuChanged()
 
 void HDrumsAudioProcessorEditor::midiNoteChanged()
 {
-    audioProcessor.midiProcessor.newKickMidiNote = midiNotesChoosingPage.kickNoteMenu.getSelectedId();
+    /*audioProcessor.midiProcessor.newKickMidiNote = midiNotesChoosingPage.kickNoteMenu.getSelectedId();
     audioProcessor.midiProcessor.newSnareMidiNote = midiNotesChoosingPage.snareNoteMenu.getSelectedId();
     audioProcessor.midiProcessor.newSnareFlamMidiNote = midiNotesChoosingPage.snareFlamNoteMenu.getSelectedId();
     audioProcessor.midiProcessor.newSnareRoundMidiNote = midiNotesChoosingPage.snareRoundNoteMenu.getSelectedId();
@@ -261,6 +263,7 @@ void HDrumsAudioProcessorEditor::midiNoteChanged()
     audioProcessor.midiProcessor.newTomMidiNote = midiNotesChoosingPage.tomNoteMenu.getSelectedId();
     audioProcessor.midiProcessor.newTomFlamMidiNote = midiNotesChoosingPage.tomFlamNoteMenu.getSelectedId();
     audioProcessor.midiProcessor.newFTomMidiNote = midiNotesChoosingPage.ftomNoteMenu.getSelectedId();
+    audioProcessor.midiProcessor.newFTomFlamMidiNote = midiNotesChoosingPage.ftomFlamNoteMenu.getSelectedId();
     audioProcessor.midiProcessor.newTambMidiNote = midiNotesChoosingPage.tambNoteMenu.getSelectedId();
     audioProcessor.midiProcessor.newHHClosedMidiNote = midiNotesChoosingPage.hhClosedNoteMenu.getSelectedId();
     audioProcessor.midiProcessor.newHHHalfMidiNote = midiNotesChoosingPage.hhHalfNoteMenu.getSelectedId();
@@ -270,7 +273,28 @@ void HDrumsAudioProcessorEditor::midiNoteChanged()
     audioProcessor.midiProcessor.newRideOpenMidiNote = midiNotesChoosingPage.rideOpenNoteMenu.getSelectedId();
     audioProcessor.midiProcessor.newCrashPointMidiNote = midiNotesChoosingPage.crashPointNoteMenu.getSelectedId();
     audioProcessor.midiProcessor.newCrashBellMidiNote = midiNotesChoosingPage.crashBellNoteMenu.getSelectedId();
-    audioProcessor.midiProcessor.newCrashOpenMidiNote = midiNotesChoosingPage.crashOpenNoteMenu.getSelectedId();
+    audioProcessor.midiProcessor.newCrashOpenMidiNote = midiNotesChoosingPage.crashOpenNoteMenu.getSelectedId();*/
+
+    audioProcessor.midiProcessor.newMidiNotes[0] = midiNotesChoosingPage.kickNoteMenu.getSelectedId();
+    audioProcessor.midiProcessor.newMidiNotes[1] = midiNotesChoosingPage.snareNoteMenu.getSelectedId();
+    audioProcessor.midiProcessor.newMidiNotes[2] = midiNotesChoosingPage.snareFlamNoteMenu.getSelectedId();
+    audioProcessor.midiProcessor.newMidiNotes[3] = midiNotesChoosingPage.snareRoundNoteMenu.getSelectedId();
+    audioProcessor.midiProcessor.newMidiNotes[4] = midiNotesChoosingPage.snareWirelessNoteMenu.getSelectedId();
+    audioProcessor.midiProcessor.newMidiNotes[5] = midiNotesChoosingPage.snareWirelessRoundNoteMenu.getSelectedId();
+    audioProcessor.midiProcessor.newMidiNotes[6] = midiNotesChoosingPage.tomNoteMenu.getSelectedId();
+    audioProcessor.midiProcessor.newMidiNotes[7] = midiNotesChoosingPage.tomFlamNoteMenu.getSelectedId();
+    audioProcessor.midiProcessor.newMidiNotes[8] = midiNotesChoosingPage.ftomNoteMenu.getSelectedId();
+    audioProcessor.midiProcessor.newMidiNotes[9] = midiNotesChoosingPage.ftomFlamNoteMenu.getSelectedId();
+    audioProcessor.midiProcessor.newMidiNotes[10] = midiNotesChoosingPage.tambNoteMenu.getSelectedId();
+    audioProcessor.midiProcessor.newMidiNotes[11] = midiNotesChoosingPage.hhClosedNoteMenu.getSelectedId();
+    audioProcessor.midiProcessor.newMidiNotes[12] = midiNotesChoosingPage.hhHalfNoteMenu.getSelectedId();
+    audioProcessor.midiProcessor.newMidiNotes[13] = midiNotesChoosingPage.hhOpenNoteMenu.getSelectedId();
+    audioProcessor.midiProcessor.newMidiNotes[14] = midiNotesChoosingPage.ridePointNoteMenu.getSelectedId();
+    audioProcessor.midiProcessor.newMidiNotes[15] = midiNotesChoosingPage.rideBellNoteMenu.getSelectedId();
+    audioProcessor.midiProcessor.newMidiNotes[16] = midiNotesChoosingPage.rideOpenNoteMenu.getSelectedId();
+    audioProcessor.midiProcessor.newMidiNotes[17] = midiNotesChoosingPage.crashPointNoteMenu.getSelectedId();
+    audioProcessor.midiProcessor.newMidiNotes[18] = midiNotesChoosingPage.crashBellNoteMenu.getSelectedId();
+    audioProcessor.midiProcessor.newMidiNotes[19] = midiNotesChoosingPage.crashOpenNoteMenu.getSelectedId();
 }
 
 void HDrumsAudioProcessorEditor::playMidiNote(int noteNumber)

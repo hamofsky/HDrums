@@ -49,7 +49,7 @@ HDrumsAudioProcessor::HDrumsAudioProcessor()
         samplerCymbalsBleed.addVoice(new juce::SamplerVoice());
     }
 
-    loadSamples(1);// default settings for samples (samplePackMenuId)
+    loadSamples(1); // default settings for samples (samplePackMenuId)
 
 }
 
@@ -1188,19 +1188,19 @@ void HDrumsAudioProcessor::setStateInformation (const void* data, int sizeInByte
         if (xmlState->hasTagName(treeState.state.getType()))
             treeState.replaceState(juce::ValueTree::fromXml(*xmlState));
 
-    auto sliderValue = treeState.getRawParameterValue(GAIN_ID);
-    auto OHsliderValue = treeState.getRawParameterValue(OH_GAIN_ID);
-    auto RoomSliderValue = treeState.getRawParameterValue(ROOM_GAIN_ID);
-    auto BleedSliderValue = treeState.getRawParameterValue(BLEED_GAIN_ID);
-    *sliderValue = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *OHsliderValue = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *RoomSliderValue = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *BleedSliderValue = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
+    //auto sliderValue = treeState.getRawParameterValue(GAIN_ID);
+    //auto OHsliderValue = treeState.getRawParameterValue(OH_GAIN_ID);
+    //auto RoomSliderValue = treeState.getRawParameterValue(ROOM_GAIN_ID);
+    //auto BleedSliderValue = treeState.getRawParameterValue(BLEED_GAIN_ID);
+    //*sliderValue = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
+    //*OHsliderValue = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
+    //*RoomSliderValue = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
+    //*BleedSliderValue = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
     
-    auto samplePackMenu = treeState.getRawParameterValue(SAMPLE_PACK_ID);
+    /*auto samplePackMenu = treeState.getRawParameterValue(SAMPLE_PACK_ID);
     auto curveMenu = treeState.getRawParameterValue(CURVE_MENU_ID);
     *samplePackMenu = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *curveMenu = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
+    *curveMenu = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();*/
 
     /*auto kickNote = treeState.getRawParameterValue(KICK_MIDI_NOTE_ID);
     auto snareNote = treeState.getRawParameterValue(SNARE_MIDI_NOTE_ID);
