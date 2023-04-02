@@ -11,12 +11,64 @@
 
 HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     : AudioProcessorEditor(&p), audioProcessor(p), myTabbedComponent(juce::TabbedButtonBar::Orientation::TabsAtTop),
-    mainSlidersPage(), kickSlidersPage(), snareSlidersPage(), tomsSlidersPage(), cymbalsSlidersPage(), midiNotesChoosingPage()//, openButton("Browse for directory")
+    mainSlidersPage(), kickSlidersPage(), snareSlidersPage(), tomsSlidersPage(), cymbalsSlidersPage(), midiNotesChoosingPage(),
+    guiKickButton("GUI Kick Button", juce::Colours::black.withAlpha(0.05f), juce::Colours::black.withAlpha(0.1f), juce::Colours::black.withAlpha(0.2f)),
+    guiSnareButton("GUI Snare Button", juce::Colours::black.withAlpha(0.05f), juce::Colours::black.withAlpha(0.1f), juce::Colours::black.withAlpha(0.2f)),
+    guiTomButton("GUI Tom Button", juce::Colours::black.withAlpha(0.05f), juce::Colours::black.withAlpha(0.1f), juce::Colours::black.withAlpha(0.2f)),
+    guiFTomButton("GUI FTom Button", juce::Colours::black.withAlpha(0.05f), juce::Colours::black.withAlpha(0.1f), juce::Colours::black.withAlpha(0.2f)),
+    guiTambButton("GUI Tamb Button", juce::Colours::black.withAlpha(0.05f), juce::Colours::black.withAlpha(0.1f), juce::Colours::black.withAlpha(0.2f)),
+    guiHHButton("GUI HH Button", juce::Colours::black.withAlpha(0.05f), juce::Colours::black.withAlpha(0.1f), juce::Colours::black.withAlpha(0.2f)),
+    guiRideButton("GUI Ride Button", juce::Colours::black.withAlpha(0.05f), juce::Colours::black.withAlpha(0.1f), juce::Colours::black.withAlpha(0.2f)),
+    guiCrashButton("GUI Crash Button", juce::Colours::black.withAlpha(0.05f), juce::Colours::black.withAlpha(0.1f), juce::Colours::black.withAlpha(0.2f))//, openButton("Browse for directory")
 {
     setSize(1000, 500);
 
     midiNoteChanged();
 
+    // GUI Buttons overlaying the artwork ==============================================================
+    juce::Path guiKickButtonShape;
+    juce::Path guiSnareButtonShape;
+    juce::Path guiTomButtonShape;
+    juce::Path guiFTomButtonShape;
+    juce::Path guiTambButtonShape;
+    juce::Path guiHHButtonShape;
+    juce::Path guiRideButtonShape;
+    juce::Path guiCrashButtonShape;
+    guiKickButtonShape.addEllipse(0, 0, 150.0f, 150.0f);
+    guiSnareButtonShape.addEllipse(0, 0, 124.0f, 72.0f);
+    guiTomButtonShape.addEllipse(0, 0, 88.0f, 40.0f);
+    guiFTomButtonShape.addEllipse(0, 0, 126.0f, 66.0f);
+    guiTambButtonShape.addEllipse(0, 0, 78.0f, 50.0f);
+    guiHHButtonShape.addEllipse(0, 0, 120.0f, 46.0f);
+    guiRideButtonShape.addEllipse(0, 0, 180.0f, 80.0f);
+    guiCrashButtonShape.addEllipse(0, 0, 126.0f, 50.0f);
+    guiKickButton.setShape(guiKickButtonShape, true, true, false);
+    guiSnareButton.setShape(guiSnareButtonShape, true, true, false);
+    guiTomButton.setShape(guiTomButtonShape, true, true, false);
+    guiFTomButton.setShape(guiFTomButtonShape, true, true, false);
+    guiTambButton.setShape(guiTambButtonShape, true, true, false);
+    guiHHButton.setShape(guiHHButtonShape, true, true, false);
+    guiRideButton.setShape(guiRideButtonShape, true, true, false);
+    guiCrashButton.setShape(guiCrashButtonShape, true, true, false);
+
+    addAndMakeVisible(&guiKickButton);
+    addAndMakeVisible(&guiSnareButton);
+    addAndMakeVisible(&guiTomButton);
+    addAndMakeVisible(&guiFTomButton);
+    addAndMakeVisible(&guiTambButton);
+    addAndMakeVisible(&guiHHButton);
+    addAndMakeVisible(&guiRideButton);
+    addAndMakeVisible(&guiCrashButton);
+    guiKickButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.kickNoteMenu.getSelectedId()); };
+    guiSnareButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.snareNoteMenu.getSelectedId()); };
+    guiTomButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.tomNoteMenu.getSelectedId()); };
+    guiFTomButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.ftomNoteMenu.getSelectedId()); };
+    guiTambButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.tambNoteMenu.getSelectedId()); };
+    guiHHButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.hhClosedNoteMenu.getSelectedId()); };
+    guiRideButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.ridePointNoteMenu.getSelectedId()); };
+    guiCrashButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.crashPointNoteMenu.getSelectedId()); };
+
+    // Tabbed Component 
     addAndMakeVisible(&myTabbedComponent);
     myTabbedComponent.addTab("Main", juce::Colours::red.withAlpha(0.5f), &mainSlidersPage, true);
     myTabbedComponent.addTab("Kick", juce::Colours::pink.withAlpha(0.5f), &kickSlidersPage, true);
@@ -240,9 +292,18 @@ void HDrumsAudioProcessorEditor::resized()
     auto halfWidth = getWidth() / 4;
     
     //openButton.setBounds(10, 10, getWidth() - 20, 30);
+    
+    guiKickButton.setCentrePosition(230, 212);
+    guiSnareButton.setCentrePosition(110, 235);
+    guiTomButton.setCentrePosition(162, 145);
+    guiFTomButton.setCentrePosition(373, 233);
+    guiTambButton.setCentrePosition(279, 121);
+    guiHHButton.setCentrePosition(32, 128);
+    guiRideButton.setCentrePosition(372, 124);
+    guiCrashButton.setCentrePosition(150, 76);
 
-    samplePackMenu.setBounds(10, 10, halfWidth - 15, 20);
-    curveMenu.setBounds(halfWidth + 5, 10, halfWidth - 15, 20);
+    samplePackMenu.setBounds(10, 10, 285, 20);
+    curveMenu.setBounds(305, 10, 285, 20);
 
     myTabbedComponent.setBounds(getWidth() / 2 + 100, 0, getWidth() / 2 - 100, getHeight());
 }

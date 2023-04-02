@@ -14,6 +14,15 @@ public:
     HDrumsAudioProcessorEditor(HDrumsAudioProcessor&);
     ~HDrumsAudioProcessorEditor() override;
 
+    juce::ShapeButton guiKickButton;
+    juce::ShapeButton guiSnareButton;
+    juce::ShapeButton guiTomButton;
+    juce::ShapeButton guiFTomButton;
+    juce::ShapeButton guiTambButton;
+    juce::ShapeButton guiHHButton;
+    juce::ShapeButton guiRideButton;
+    juce::ShapeButton guiCrashButton;
+
     juce::TabbedComponent myTabbedComponent;
     MainSlidersPage mainSlidersPage;
     KickSlidersPage kickSlidersPage;
@@ -82,8 +91,6 @@ public:
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> cymbalsRoomSliderValue;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> cymbalsBleedSliderValue;
 
-    void setNote(juce::ComboBox &menu, std::atomic <float>* note);
-
 private:
     
     juce::AudioFormatManager formatManager;
@@ -95,6 +102,7 @@ private:
     juce::Image background2;
     juce::Image dryBackground;
 
+    void setNote(juce::ComboBox& menu, std::atomic <float>* note);
     void velocityCurveChanged();
     void samplePackMenuChanged();
     void midiNoteChanged();
