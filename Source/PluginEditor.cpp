@@ -130,11 +130,11 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     RoomSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, ROOM_GAIN_ID, mainSlidersPage.roomSlider);
     BleedSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, BLEED_GAIN_ID, mainSlidersPage.bleedSlider);
 
-    // Menu ===========================================================
+    // Menus ==================================================
     addAndMakeVisible(&samplePackMenu);
     samplePackMenu.setJustificationType(juce::Justification::centred);
-    samplePackMenu.addItem("Acoustic Drum Kit", 1);
-    samplePackMenu.addItem("Electronic Drum Kit", 2);
+    samplePackMenu.addItem("Electronic Drum Kit", 1);
+    samplePackMenu.addItem("Acoustic Drum Kit", 2);
     samplePackMenu.addItem("Dry Drum Kit", 3);
     samplePackMenu.onChange = [this] { samplePackMenuChanged(); };
     auto samplePackMenuValue = audioProcessor.treeState.getRawParameterValue(SAMPLE_PACK_ID);
@@ -169,32 +169,41 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     auto crashPointNoteMenuValue = audioProcessor.treeState.getRawParameterValue(CRASH_POINT_MIDI_NOTE_ID);
     auto crashBellNoteMenuValue = audioProcessor.treeState.getRawParameterValue(CRASH_BELL_MIDI_NOTE_ID);
     auto crashOpenNoteMenuValue = audioProcessor.treeState.getRawParameterValue(CRASH_OPEN_MIDI_NOTE_ID);
-    midiNotesChoosingPage.kickNoteMenu.setSelectedId(*kickNoteMenuValue);
-    midiNotesChoosingPage.snareNoteMenu.setSelectedId(*snareNoteMenuValue);
-    midiNotesChoosingPage.snareFlamNoteMenu.setSelectedId(*snareFlamNoteMenuValue);
-    midiNotesChoosingPage.snareRoundNoteMenu.setSelectedId(*snareRoundNoteMenuValue);
-    midiNotesChoosingPage.snareWirelessNoteMenu.setSelectedId(*snareWirelessNoteMenuValue);
-    midiNotesChoosingPage.snareWirelessRoundNoteMenu.setSelectedId(*snareWirelessRoundNoteMenuValue);
-    midiNotesChoosingPage.tomNoteMenu.setSelectedId(*tomNoteMenuValue);
-    midiNotesChoosingPage.tomFlamNoteMenu.setSelectedId(*tomFlamNoteMenuValue);
-    midiNotesChoosingPage.ftomNoteMenu.setSelectedId(*ftomNoteMenuValue);
-    midiNotesChoosingPage.ftomFlamNoteMenu.setSelectedId(*ftomFlamNoteMenuValue);
-    midiNotesChoosingPage.tambNoteMenu.setSelectedId(*tambNoteMenuValue);
-    midiNotesChoosingPage.hhClosedNoteMenu.setSelectedId(*hhClosedNoteMenuValue);
-    midiNotesChoosingPage.hhHalfNoteMenu.setSelectedId(*hhHalfNoteMenuValue);
-    midiNotesChoosingPage.hhOpenNoteMenu.setSelectedId(*hhOpenNoteMenuValue);
-    midiNotesChoosingPage.ridePointNoteMenu.setSelectedId(*ridePointNoteMenuValue);
-    midiNotesChoosingPage.rideBellNoteMenu.setSelectedId(*rideBellNoteMenuValue);
-    midiNotesChoosingPage.rideOpenNoteMenu.setSelectedId(*rideOpenNoteMenuValue);
-    midiNotesChoosingPage.crashPointNoteMenu.setSelectedId(*crashPointNoteMenuValue);
-    midiNotesChoosingPage.crashBellNoteMenu.setSelectedId(*crashBellNoteMenuValue);
-    midiNotesChoosingPage.crashOpenNoteMenu.setSelectedId(*crashOpenNoteMenuValue);
+    
+    setNote(midiNotesChoosingPage.kickNoteMenu, kickNoteMenuValue);
+    setNote(midiNotesChoosingPage.snareNoteMenu, snareNoteMenuValue);
+    setNote(midiNotesChoosingPage.snareFlamNoteMenu, snareFlamNoteMenuValue);
+    setNote(midiNotesChoosingPage.snareRoundNoteMenu, snareRoundNoteMenuValue);
+    setNote(midiNotesChoosingPage.snareWirelessNoteMenu, snareWirelessNoteMenuValue);
+    setNote(midiNotesChoosingPage.snareWirelessRoundNoteMenu, snareWirelessRoundNoteMenuValue);
+    setNote(midiNotesChoosingPage.tomNoteMenu, tomNoteMenuValue);
+    setNote(midiNotesChoosingPage.tomFlamNoteMenu, tomFlamNoteMenuValue);
+    setNote(midiNotesChoosingPage.ftomNoteMenu, ftomNoteMenuValue);
+    setNote(midiNotesChoosingPage.ftomFlamNoteMenu, ftomFlamNoteMenuValue);
+    setNote(midiNotesChoosingPage.tambNoteMenu, tambNoteMenuValue);
+    setNote(midiNotesChoosingPage.hhClosedNoteMenu, hhClosedNoteMenuValue);
+    setNote(midiNotesChoosingPage.hhHalfNoteMenu, hhHalfNoteMenuValue);
+    setNote(midiNotesChoosingPage.hhOpenNoteMenu, hhOpenNoteMenuValue);
+    setNote(midiNotesChoosingPage.ridePointNoteMenu, ridePointNoteMenuValue);
+    setNote(midiNotesChoosingPage.rideBellNoteMenu, rideBellNoteMenuValue);
+    setNote(midiNotesChoosingPage.rideOpenNoteMenu, rideOpenNoteMenuValue);
+    setNote(midiNotesChoosingPage.crashPointNoteMenu, crashPointNoteMenuValue);
+    setNote(midiNotesChoosingPage.crashBellNoteMenu, crashBellNoteMenuValue);
+    setNote(midiNotesChoosingPage.crashOpenNoteMenu, crashOpenNoteMenuValue);
 
 }
 
 HDrumsAudioProcessorEditor::~HDrumsAudioProcessorEditor()
 {
 
+}
+
+void HDrumsAudioProcessorEditor::setNote(juce::ComboBox &menu, std::atomic <float> *note)
+{
+    if (*note < 64)
+        menu.setSelectedId(*note + 1);
+    else
+        menu.setSelectedId(*note);
 }
 
 //juce::String HDrumsAudioProcessorEditor::loadDirectory()
@@ -240,7 +249,7 @@ void HDrumsAudioProcessorEditor::resized()
 
 void HDrumsAudioProcessorEditor::velocityCurveChanged()
 {
-    if (curveMenu.getSelectedId() == 2)
+    if (curveMenu.getSelectedId() == 1)
         audioProcessor.midiProcessor.logarhytmic = true;
     else
         audioProcessor.midiProcessor.logarhytmic = false;
@@ -254,27 +263,6 @@ void HDrumsAudioProcessorEditor::samplePackMenuChanged()
 
 void HDrumsAudioProcessorEditor::midiNoteChanged()
 {
-    /*audioProcessor.midiProcessor.newKickMidiNote = midiNotesChoosingPage.kickNoteMenu.getSelectedId();
-    audioProcessor.midiProcessor.newSnareMidiNote = midiNotesChoosingPage.snareNoteMenu.getSelectedId();
-    audioProcessor.midiProcessor.newSnareFlamMidiNote = midiNotesChoosingPage.snareFlamNoteMenu.getSelectedId();
-    audioProcessor.midiProcessor.newSnareRoundMidiNote = midiNotesChoosingPage.snareRoundNoteMenu.getSelectedId();
-    audioProcessor.midiProcessor.newSnareWirelessMidiNote = midiNotesChoosingPage.snareWirelessNoteMenu.getSelectedId();
-    audioProcessor.midiProcessor.newSnareWirelessRoundMidiNote = midiNotesChoosingPage.snareWirelessRoundNoteMenu.getSelectedId();
-    audioProcessor.midiProcessor.newTomMidiNote = midiNotesChoosingPage.tomNoteMenu.getSelectedId();
-    audioProcessor.midiProcessor.newTomFlamMidiNote = midiNotesChoosingPage.tomFlamNoteMenu.getSelectedId();
-    audioProcessor.midiProcessor.newFTomMidiNote = midiNotesChoosingPage.ftomNoteMenu.getSelectedId();
-    audioProcessor.midiProcessor.newFTomFlamMidiNote = midiNotesChoosingPage.ftomFlamNoteMenu.getSelectedId();
-    audioProcessor.midiProcessor.newTambMidiNote = midiNotesChoosingPage.tambNoteMenu.getSelectedId();
-    audioProcessor.midiProcessor.newHHClosedMidiNote = midiNotesChoosingPage.hhClosedNoteMenu.getSelectedId();
-    audioProcessor.midiProcessor.newHHHalfMidiNote = midiNotesChoosingPage.hhHalfNoteMenu.getSelectedId();
-    audioProcessor.midiProcessor.newHHOpenMidiNote = midiNotesChoosingPage.hhOpenNoteMenu.getSelectedId();
-    audioProcessor.midiProcessor.newRidePointMidiNote = midiNotesChoosingPage.ridePointNoteMenu.getSelectedId();
-    audioProcessor.midiProcessor.newRideBellMidiNote = midiNotesChoosingPage.rideBellNoteMenu.getSelectedId();
-    audioProcessor.midiProcessor.newRideOpenMidiNote = midiNotesChoosingPage.rideOpenNoteMenu.getSelectedId();
-    audioProcessor.midiProcessor.newCrashPointMidiNote = midiNotesChoosingPage.crashPointNoteMenu.getSelectedId();
-    audioProcessor.midiProcessor.newCrashBellMidiNote = midiNotesChoosingPage.crashBellNoteMenu.getSelectedId();
-    audioProcessor.midiProcessor.newCrashOpenMidiNote = midiNotesChoosingPage.crashOpenNoteMenu.getSelectedId();*/
-
     audioProcessor.midiProcessor.newMidiNotes[0] = midiNotesChoosingPage.kickNoteMenu.getSelectedId();
     audioProcessor.midiProcessor.newMidiNotes[1] = midiNotesChoosingPage.snareNoteMenu.getSelectedId();
     audioProcessor.midiProcessor.newMidiNotes[2] = midiNotesChoosingPage.snareFlamNoteMenu.getSelectedId();
@@ -299,7 +287,15 @@ void HDrumsAudioProcessorEditor::midiNoteChanged()
 
 void HDrumsAudioProcessorEditor::playMidiNote(int noteNumber)
 {
-    juce::MidiMessage message = juce::MidiMessage::noteOn(1, noteNumber, 0.92f);
+    float vel;
+    if (noteNumber == audioProcessor.midiProcessor.newMidiNotes[12])    // lower velocity for HH Half
+        vel = 0.75f;
+    else if (noteNumber == audioProcessor.midiProcessor.newMidiNotes[17])   // lower velocity for Crash Point
+        vel = 0.51f;
+    else
+        vel = 0.93f;
+    
+    juce::MidiMessage message = juce::MidiMessage::noteOn(1, noteNumber, vel);
     message.setTimeStamp(juce::Time::getMillisecondCounterHiRes() * 0.001 - 0.0);
     audioProcessor.getMidiMessageCollector().addMessageToQueue(message);
 }

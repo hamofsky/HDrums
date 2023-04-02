@@ -82,6 +82,8 @@ public:
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> cymbalsRoomSliderValue;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> cymbalsBleedSliderValue;
 
+    void setNote(juce::ComboBox &menu, std::atomic <float>* note);
+
 private:
     
     juce::AudioFormatManager formatManager;

@@ -19,7 +19,7 @@ HDrumsAudioProcessor::HDrumsAudioProcessor()
 {
 
     formatManager.registerBasicFormats();
-    for (auto i = 0; i < 10; i++)    // i < x+1 defines how many sounds can play at the same time
+    for (auto i = 0; i < 6; i++)    // i < x+1 defines how many sounds can play at the same time (x)
     {
         sampler.addVoice(new juce::SamplerVoice());
         samplerOH.addVoice(new juce::SamplerVoice());
@@ -64,17 +64,17 @@ juce::AudioProcessorValueTreeState::ParameterLayout HDrumsAudioProcessor::create
     std::vector <std::unique_ptr<juce::RangedAudioParameter>> params;
     auto gainParam = std::make_unique<juce::AudioParameterFloat>(GAIN_ID, GAIN_NAME, -48.0f, 10.0f, 0.0f);
     auto OHgainParam = std::make_unique<juce::AudioParameterFloat>(OH_GAIN_ID, OH_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    auto RoomGainParam = std::make_unique<juce::AudioParameterFloat>(ROOM_GAIN_ID, ROOM_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    auto BleedGainParam = std::make_unique<juce::AudioParameterFloat>(BLEED_GAIN_ID, BLEED_GAIN_NAME, -48.0f, 10.0f, 0.0f);
+    auto RoomGainParam = std::make_unique<juce::AudioParameterFloat>(ROOM_GAIN_ID, ROOM_GAIN_NAME, -48.0f, 10.0f, -3.0f);
+    auto BleedGainParam = std::make_unique<juce::AudioParameterFloat>(BLEED_GAIN_ID, BLEED_GAIN_NAME, -48.0f, 10.0f, -3.0f);
     params.push_back(std::move(gainParam));
     params.push_back(std::move(OHgainParam));
     params.push_back(std::move(RoomGainParam));
     params.push_back(std::move(BleedGainParam));
 
-    auto KickCloseGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_CLOSE_GAIN_ID, KICK_CLOSE_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    auto KickOHGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_OH_GAIN_ID, KICK_OH_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    auto KickRoomGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_ROOM_GAIN_ID, KICK_ROOM_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    auto KickBleedGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_BLEED_GAIN_ID, KICK_BLEED_GAIN_NAME, -48.0f, 10.0f, 0.0f);
+    auto KickCloseGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_CLOSE_GAIN_ID, KICK_CLOSE_GAIN_NAME, -48.0f, 10.0f, 3.0f);
+    auto KickOHGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_OH_GAIN_ID, KICK_OH_GAIN_NAME, -48.0f, 10.0f, -3.0f);
+    auto KickRoomGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_ROOM_GAIN_ID, KICK_ROOM_GAIN_NAME, -48.0f, 10.0f, -9.0f);
+    auto KickBleedGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_BLEED_GAIN_ID, KICK_BLEED_GAIN_NAME, -48.0f, 10.0f, -2.0f);
     params.push_back(std::move(KickCloseGainParam));
     params.push_back(std::move(KickOHGainParam));
     params.push_back(std::move(KickRoomGainParam));
@@ -82,9 +82,9 @@ juce::AudioProcessorValueTreeState::ParameterLayout HDrumsAudioProcessor::create
 
     auto SnareTopCloseGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_TOP_CLOSE_GAIN_ID, SNARE_TOP_CLOSE_GAIN_NAME, -48.0f, 10.0f, 0.0f);
     auto SnareBotCloseGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_BOT_CLOSE_GAIN_ID, SNARE_BOT_CLOSE_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    auto SnareOHGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_OH_GAIN_ID, SNARE_OH_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    auto SnareRoomGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_ROOM_GAIN_ID, SNARE_ROOM_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    auto SnareBleedGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_BLEED_GAIN_ID, SNARE_BLEED_GAIN_NAME, -48.0f, 10.0f, 0.0f);
+    auto SnareOHGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_OH_GAIN_ID, SNARE_OH_GAIN_NAME, -48.0f, 10.0f, -2.0f);
+    auto SnareRoomGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_ROOM_GAIN_ID, SNARE_ROOM_GAIN_NAME, -48.0f, 10.0f, -4.0f);
+    auto SnareBleedGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_BLEED_GAIN_ID, SNARE_BLEED_GAIN_NAME, -48.0f, 10.0f, -3.0f);
     params.push_back(std::move(SnareTopCloseGainParam));
     params.push_back(std::move(SnareBotCloseGainParam));
     params.push_back(std::move(SnareOHGainParam));
@@ -93,26 +93,26 @@ juce::AudioProcessorValueTreeState::ParameterLayout HDrumsAudioProcessor::create
 
     auto TomCloseGainParam = std::make_unique<juce::AudioParameterFloat>(TOM_CLOSE_GAIN_ID, TOM_CLOSE_GAIN_NAME, -48.0f, 10.0f, 0.0f);
     auto FTomCloseGainParam = std::make_unique<juce::AudioParameterFloat>(FTOM_CLOSE_GAIN_ID, FTOM_CLOSE_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    auto TomsOHGainParam = std::make_unique<juce::AudioParameterFloat>(TOMS_OH_GAIN_ID, TOMS_OH_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    auto TomsRoomGainParam = std::make_unique<juce::AudioParameterFloat>(TOMS_ROOM_GAIN_ID, TOMS_ROOM_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    auto TomsBleedGainParam = std::make_unique<juce::AudioParameterFloat>(TOMS_BLEED_GAIN_ID, TOMS_BLEED_GAIN_NAME, -48.0f, 10.0f, 0.0f);
+    auto TomsOHGainParam = std::make_unique<juce::AudioParameterFloat>(TOMS_OH_GAIN_ID, TOMS_OH_GAIN_NAME, -48.0f, 10.0f, -4.0f);
+    auto TomsRoomGainParam = std::make_unique<juce::AudioParameterFloat>(TOMS_ROOM_GAIN_ID, TOMS_ROOM_GAIN_NAME, -48.0f, 10.0f, -8.0f);
+    auto TomsBleedGainParam = std::make_unique<juce::AudioParameterFloat>(TOMS_BLEED_GAIN_ID, TOMS_BLEED_GAIN_NAME, -48.0f, 10.0f, -5.0f);
     params.push_back(std::move(TomCloseGainParam));
     params.push_back(std::move(FTomCloseGainParam));
     params.push_back(std::move(TomsOHGainParam));
     params.push_back(std::move(TomsRoomGainParam));
     params.push_back(std::move(TomsBleedGainParam));
 
-    auto HHCloseGainParam = std::make_unique<juce::AudioParameterFloat>(HH_CLOSE_GAIN_ID, HH_CLOSE_GAIN_NAME, -48.0f, 10.0f, 0.0f);
+    auto HHCloseGainParam = std::make_unique<juce::AudioParameterFloat>(HH_CLOSE_GAIN_ID, HH_CLOSE_GAIN_NAME, -48.0f, 10.0f, -3.0f);
     auto CymbalsOHGainParam = std::make_unique<juce::AudioParameterFloat>(CYMBALS_OH_GAIN_ID, CYMBALS_OH_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    auto CymbalsRoomGainParam = std::make_unique<juce::AudioParameterFloat>(CYMBALS_ROOM_GAIN_ID, CYMBALS_ROOM_GAIN_NAME, -48.0f, 10.0f, 0.0f);
+    auto CymbalsRoomGainParam = std::make_unique<juce::AudioParameterFloat>(CYMBALS_ROOM_GAIN_ID, CYMBALS_ROOM_GAIN_NAME, -48.0f, 10.0f, -6.0f);
     auto CymbalsBleedGainParam = std::make_unique<juce::AudioParameterFloat>(CYMBALS_BLEED_GAIN_ID, CYMBALS_BLEED_GAIN_NAME, -48.0f, 10.0f, 0.0f);
     params.push_back(std::move(HHCloseGainParam));
     params.push_back(std::move(CymbalsOHGainParam));
     params.push_back(std::move(CymbalsRoomGainParam));
     params.push_back(std::move(CymbalsBleedGainParam));
 
-    auto SamplePackParam = std::make_unique<juce::AudioParameterChoice>(SAMPLE_PACK_ID, SAMPLE_PACK_NAME, juce::StringArray("Acoustic", "Electronic", "Dry"), 1);
-    auto CurveMenuParam = std::make_unique<juce::AudioParameterChoice>(CURVE_MENU_ID, CURVE_MENU_NAME, juce::StringArray("Linear", "Logarhytmic"), 1);
+    auto SamplePackParam = std::make_unique<juce::AudioParameterChoice>(SAMPLE_PACK_ID, SAMPLE_PACK_NAME, juce::StringArray("Electronic", "Acoustic", "Dry"), 1);
+    auto CurveMenuParam = std::make_unique<juce::AudioParameterChoice>(CURVE_MENU_ID, CURVE_MENU_NAME, juce::StringArray("Logarhytmic", "Linear"), 1);
     params.push_back(std::move(SamplePackParam));
     params.push_back(std::move(CurveMenuParam));
 
@@ -143,12 +143,12 @@ juce::AudioProcessorValueTreeState::ParameterLayout HDrumsAudioProcessor::create
     auto hhClosedNoteParam = std::make_unique<juce::AudioParameterChoice>(HH_CLOSED_MIDI_NOTE_ID, HH_CLOSED_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 73 + 12);
     auto hhHalfNoteParam = std::make_unique<juce::AudioParameterChoice>(HH_HALF_MIDI_NOTE_ID, HH_HALF_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 74 + 12);
     auto hhOpenNoteParam = std::make_unique<juce::AudioParameterChoice>(HH_OPEN_MIDI_NOTE_ID, HH_OPEN_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 75 + 12);
-    auto ridePointNoteParam = std::make_unique<juce::AudioParameterChoice>(RIDE_POINT_MIDI_NOTE_ID, RIDE_POINT_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 78 + 12);
-    auto rideBellNoteParam = std::make_unique<juce::AudioParameterChoice>(RIDE_BELL_MIDI_NOTE_ID, RIDE_BELL_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 79 + 12);
-    auto rideOpenNoteParam = std::make_unique<juce::AudioParameterChoice>(RIDE_OPEN_MIDI_NOTE_ID, RIDE_OPEN_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 80 + 12);
-    auto crashPointNoteParam = std::make_unique<juce::AudioParameterChoice>(CRASH_POINT_MIDI_NOTE_ID, CRASH_POINT_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 82 + 12);
-    auto crashBellNoteParam = std::make_unique<juce::AudioParameterChoice>(CRASH_BELL_MIDI_NOTE_ID, CRASH_BELL_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 83 + 12);
-    auto crashOpenNoteParam = std::make_unique<juce::AudioParameterChoice>(CRASH_OPEN_MIDI_NOTE_ID, CRASH_OPEN_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 84 + 12);
+    auto ridePointNoteParam = std::make_unique<juce::AudioParameterChoice>(RIDE_POINT_MIDI_NOTE_ID, RIDE_POINT_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 77 + 12);
+    auto rideBellNoteParam = std::make_unique<juce::AudioParameterChoice>(RIDE_BELL_MIDI_NOTE_ID, RIDE_BELL_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 78 + 12);
+    auto rideOpenNoteParam = std::make_unique<juce::AudioParameterChoice>(RIDE_OPEN_MIDI_NOTE_ID, RIDE_OPEN_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 79 + 12);
+    auto crashPointNoteParam = std::make_unique<juce::AudioParameterChoice>(CRASH_POINT_MIDI_NOTE_ID, CRASH_POINT_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 81 + 12);
+    auto crashBellNoteParam = std::make_unique<juce::AudioParameterChoice>(CRASH_BELL_MIDI_NOTE_ID, CRASH_BELL_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 82 + 12);
+    auto crashOpenNoteParam = std::make_unique<juce::AudioParameterChoice>(CRASH_OPEN_MIDI_NOTE_ID, CRASH_OPEN_MIDI_NOTE_NAME, juce::StringArray(processorMidiNotes), 83 + 12);
     params.push_back(std::move(kickNoteParam));
     params.push_back(std::move(snareNoteParam));
     params.push_back(std::move(snareFlamNoteParam));
@@ -624,106 +624,106 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID)
         double RideRelease = 0.7;
         string RideAllDestination = dryDestination + "rideAll/";
         string RidePointDestination = RideAllDestination + "ridePoint/";
-        addSample("RidePoint 1 OH", RidePointDestination + "ridePoint_1_OH.wav", 78 + 12, curveFor5[0], curveFor5[1] - 1, RideRelease, 3.5, "CymbalsOH");
-        addSample("RidePoint 2 OH", RidePointDestination + "ridePoint_2_OH.wav", 78 + 12, curveFor5[1], curveFor5[2] - 1, RideRelease, 3.7, "CymbalsOH");
-        addSample("RidePoint 3 OH", RidePointDestination + "ridePoint_3_OH.wav", 78 + 12, curveFor5[2], curveFor5[3] - 1, RideRelease, 4.5, "CymbalsOH");
-        addSample("RidePoint 4 OH", RidePointDestination + "ridePoint_4_OH.wav", 78 + 12, curveFor5[3], curveFor5[4] - 1, RideRelease, 5.3, "CymbalsOH");
-        addSample("RidePoint 5 OH", RidePointDestination + "ridePoint_5_OH.wav", 78 + 12, curveFor5[4], curveFor5[5] - 1, RideRelease, 7.9, "CymbalsOH");
-        addSample("RidePoint 1 Room", RidePointDestination + "ridePoint_1_room.wav", 78 + 12, curveFor5[0], curveFor5[1] - 1, RideRelease, 3.5, "CymbalsRoom");
-        addSample("RidePoint 2 Room", RidePointDestination + "ridePoint_2_room.wav", 78 + 12, curveFor5[1], curveFor5[2] - 1, RideRelease, 3.7, "CymbalsRoom");
-        addSample("RidePoint 3 Room", RidePointDestination + "ridePoint_3_room.wav", 78 + 12, curveFor5[2], curveFor5[3] - 1, RideRelease, 4.5, "CymbalsRoom");
-        addSample("RidePoint 4 Room", RidePointDestination + "ridePoint_4_room.wav", 78 + 12, curveFor5[3], curveFor5[4] - 1, RideRelease, 5.3, "CymbalsRoom");
-        addSample("RidePoint 5 Room", RidePointDestination + "ridePoint_5_room.wav", 78 + 12, curveFor5[4], curveFor5[5] - 1, RideRelease, 7.9, "CymbalsRoom");
-        addSample("RidePoint 1 Bleed", RidePointDestination + "ridePoint_1_bleed.wav", 78 + 12, curveFor5[0], curveFor5[1] - 1, RideRelease, 3.5, "CymbalsBleed");
-        addSample("RidePoint 2 Bleed", RidePointDestination + "ridePoint_2_bleed.wav", 78 + 12, curveFor5[1], curveFor5[2] - 1, RideRelease, 3.7, "CymbalsBleed");
-        addSample("RidePoint 3 Bleed", RidePointDestination + "ridePoint_3_bleed.wav", 78 + 12, curveFor5[2], curveFor5[3] - 1, RideRelease, 4.5, "CymbalsBleed");
-        addSample("RidePoint 4 Bleed", RidePointDestination + "ridePoint_4_bleed.wav", 78 + 12, curveFor5[3], curveFor5[4] - 1, RideRelease, 5.3, "CymbalsBleed");
-        addSample("RidePoint 5 Bleed", RidePointDestination + "ridePoint_5_bleed.wav", 78 + 12, curveFor5[4], curveFor5[5] - 1, RideRelease, 7.9, "CymbalsBleed");
+        addSample("RidePoint 1 OH", RidePointDestination + "ridePoint_1_OH.wav", 77 + 12, curveFor5[0], curveFor5[1] - 1, RideRelease, 3.5, "CymbalsOH");
+        addSample("RidePoint 2 OH", RidePointDestination + "ridePoint_2_OH.wav", 77 + 12, curveFor5[1], curveFor5[2] - 1, RideRelease, 3.7, "CymbalsOH");
+        addSample("RidePoint 3 OH", RidePointDestination + "ridePoint_3_OH.wav", 77 + 12, curveFor5[2], curveFor5[3] - 1, RideRelease, 4.5, "CymbalsOH");
+        addSample("RidePoint 4 OH", RidePointDestination + "ridePoint_4_OH.wav", 77 + 12, curveFor5[3], curveFor5[4] - 1, RideRelease, 5.3, "CymbalsOH");
+        addSample("RidePoint 5 OH", RidePointDestination + "ridePoint_5_OH.wav", 77 + 12, curveFor5[4], curveFor5[5] - 1, RideRelease, 7.9, "CymbalsOH");
+        addSample("RidePoint 1 Room", RidePointDestination + "ridePoint_1_room.wav", 77 + 12, curveFor5[0], curveFor5[1] - 1, RideRelease, 3.5, "CymbalsRoom");
+        addSample("RidePoint 2 Room", RidePointDestination + "ridePoint_2_room.wav", 77 + 12, curveFor5[1], curveFor5[2] - 1, RideRelease, 3.7, "CymbalsRoom");
+        addSample("RidePoint 3 Room", RidePointDestination + "ridePoint_3_room.wav", 77 + 12, curveFor5[2], curveFor5[3] - 1, RideRelease, 4.5, "CymbalsRoom");
+        addSample("RidePoint 4 Room", RidePointDestination + "ridePoint_4_room.wav", 77 + 12, curveFor5[3], curveFor5[4] - 1, RideRelease, 5.3, "CymbalsRoom");
+        addSample("RidePoint 5 Room", RidePointDestination + "ridePoint_5_room.wav", 77 + 12, curveFor5[4], curveFor5[5] - 1, RideRelease, 7.9, "CymbalsRoom");
+        addSample("RidePoint 1 Bleed", RidePointDestination + "ridePoint_1_bleed.wav", 77 + 12, curveFor5[0], curveFor5[1] - 1, RideRelease, 3.5, "CymbalsBleed");
+        addSample("RidePoint 2 Bleed", RidePointDestination + "ridePoint_2_bleed.wav", 77 + 12, curveFor5[1], curveFor5[2] - 1, RideRelease, 3.7, "CymbalsBleed");
+        addSample("RidePoint 3 Bleed", RidePointDestination + "ridePoint_3_bleed.wav", 77 + 12, curveFor5[2], curveFor5[3] - 1, RideRelease, 4.5, "CymbalsBleed");
+        addSample("RidePoint 4 Bleed", RidePointDestination + "ridePoint_4_bleed.wav", 77 + 12, curveFor5[3], curveFor5[4] - 1, RideRelease, 5.3, "CymbalsBleed");
+        addSample("RidePoint 5 Bleed", RidePointDestination + "ridePoint_5_bleed.wav", 77 + 12, curveFor5[4], curveFor5[5] - 1, RideRelease, 7.9, "CymbalsBleed");
 
         string RideBellDestination = RideAllDestination + "rideBell/";
-        addSample("RideBell 1 OH", RideBellDestination + "rideBell_1_OH.wav", 79 + 12, curveFor5[0], curveFor5[1] - 1, RideRelease, 2.95, "CymbalsOH");
-        addSample("RideBell 2 OH", RideBellDestination + "rideBell_2_OH.wav", 79 + 12, curveFor5[1], curveFor5[2] - 1, RideRelease, 3.32, "CymbalsOH");
-        addSample("RideBell 3 OH", RideBellDestination + "rideBell_3_OH.wav", 79 + 12, curveFor5[2], curveFor5[3] - 1, RideRelease, 3.70, "CymbalsOH");
-        addSample("RideBell 4 OH", RideBellDestination + "rideBell_4_OH.wav", 79 + 12, curveFor5[3], curveFor5[4] - 1, RideRelease, 4.30, "CymbalsOH");
-        addSample("RideBell 5 OH", RideBellDestination + "rideBell_5_OH.wav", 79 + 12, curveFor5[4], curveFor5[5] - 1, RideRelease, 5.25, "CymbalsOH");
-        addSample("RideBell 1 Room", RideBellDestination + "rideBell_1_room.wav", 79 + 12, curveFor5[0], curveFor5[1] - 1, RideRelease, 2.95, "CymbalsRoom");
-        addSample("RideBell 2 Room", RideBellDestination + "rideBell_2_room.wav", 79 + 12, curveFor5[1], curveFor5[2] - 1, RideRelease, 3.32, "CymbalsRoom");
-        addSample("RideBell 3 Room", RideBellDestination + "rideBell_3_room.wav", 79 + 12, curveFor5[2], curveFor5[3] - 1, RideRelease, 3.70, "CymbalsRoom");
-        addSample("RideBell 4 Room", RideBellDestination + "rideBell_4_room.wav", 79 + 12, curveFor5[3], curveFor5[4] - 1, RideRelease, 4.30, "CymbalsRoom");
-        addSample("RideBell 5 Room", RideBellDestination + "rideBell_5_room.wav", 79 + 12, curveFor5[4], curveFor5[5] - 1, RideRelease, 5.25, "CymbalsRoom");
-        addSample("RideBell 1 Bleed", RideBellDestination + "rideBell_1_bleed.wav", 79 + 12, curveFor5[0], curveFor5[1] - 1, RideRelease, 2.95, "CymbalsBleed");
-        addSample("RideBell 2 Bleed", RideBellDestination + "rideBell_2_bleed.wav", 79 + 12, curveFor5[1], curveFor5[2] - 1, RideRelease, 3.32, "CymbalsBleed");
-        addSample("RideBell 3 Bleed", RideBellDestination + "rideBell_3_bleed.wav", 79 + 12, curveFor5[2], curveFor5[3] - 1, RideRelease, 3.70, "CymbalsBleed");
-        addSample("RideBell 4 Bleed", RideBellDestination + "rideBell_4_bleed.wav", 79 + 12, curveFor5[3], curveFor5[4] - 1, RideRelease, 4.30, "CymbalsBleed");
-        addSample("RideBell 5 Bleed", RideBellDestination + "rideBell_5_bleed.wav", 79 + 12, curveFor5[4], curveFor5[5] - 1, RideRelease, 5.25, "CymbalsBleed");
+        addSample("RideBell 1 OH", RideBellDestination + "rideBell_1_OH.wav", 78 + 12, curveFor5[0], curveFor5[1] - 1, RideRelease, 2.95, "CymbalsOH");
+        addSample("RideBell 2 OH", RideBellDestination + "rideBell_2_OH.wav", 78 + 12, curveFor5[1], curveFor5[2] - 1, RideRelease, 3.32, "CymbalsOH");
+        addSample("RideBell 3 OH", RideBellDestination + "rideBell_3_OH.wav", 78 + 12, curveFor5[2], curveFor5[3] - 1, RideRelease, 3.70, "CymbalsOH");
+        addSample("RideBell 4 OH", RideBellDestination + "rideBell_4_OH.wav", 78 + 12, curveFor5[3], curveFor5[4] - 1, RideRelease, 4.30, "CymbalsOH");
+        addSample("RideBell 5 OH", RideBellDestination + "rideBell_5_OH.wav", 78 + 12, curveFor5[4], curveFor5[5] - 1, RideRelease, 5.25, "CymbalsOH");
+        addSample("RideBell 1 Room", RideBellDestination + "rideBell_1_room.wav", 78 + 12, curveFor5[0], curveFor5[1] - 1, RideRelease, 2.95, "CymbalsRoom");
+        addSample("RideBell 2 Room", RideBellDestination + "rideBell_2_room.wav", 78 + 12, curveFor5[1], curveFor5[2] - 1, RideRelease, 3.32, "CymbalsRoom");
+        addSample("RideBell 3 Room", RideBellDestination + "rideBell_3_room.wav", 78 + 12, curveFor5[2], curveFor5[3] - 1, RideRelease, 3.70, "CymbalsRoom");
+        addSample("RideBell 4 Room", RideBellDestination + "rideBell_4_room.wav", 78 + 12, curveFor5[3], curveFor5[4] - 1, RideRelease, 4.30, "CymbalsRoom");
+        addSample("RideBell 5 Room", RideBellDestination + "rideBell_5_room.wav", 78 + 12, curveFor5[4], curveFor5[5] - 1, RideRelease, 5.25, "CymbalsRoom");
+        addSample("RideBell 1 Bleed", RideBellDestination + "rideBell_1_bleed.wav", 78 + 12, curveFor5[0], curveFor5[1] - 1, RideRelease, 2.95, "CymbalsBleed");
+        addSample("RideBell 2 Bleed", RideBellDestination + "rideBell_2_bleed.wav", 78 + 12, curveFor5[1], curveFor5[2] - 1, RideRelease, 3.32, "CymbalsBleed");
+        addSample("RideBell 3 Bleed", RideBellDestination + "rideBell_3_bleed.wav", 78 + 12, curveFor5[2], curveFor5[3] - 1, RideRelease, 3.70, "CymbalsBleed");
+        addSample("RideBell 4 Bleed", RideBellDestination + "rideBell_4_bleed.wav", 78 + 12, curveFor5[3], curveFor5[4] - 1, RideRelease, 4.30, "CymbalsBleed");
+        addSample("RideBell 5 Bleed", RideBellDestination + "rideBell_5_bleed.wav", 78 + 12, curveFor5[4], curveFor5[5] - 1, RideRelease, 5.25, "CymbalsBleed");
 
         double RideOpenRelease = 4.5;
         string RideOpenDestination = RideAllDestination + "rideOpen/";
-        addSample("RideOpen 1 OH", RideOpenDestination + "rideOpen_1_OH.wav", 80 + 12, curveFor5[0], curveFor5[1] - 1, RideOpenRelease, 5.80, "CymbalsOH");
-        addSample("RideOpen 2 OH", RideOpenDestination + "rideOpen_2_OH.wav", 80 + 12, curveFor5[1], curveFor5[2] - 1, RideOpenRelease, 5.30, "CymbalsOH");
-        addSample("RideOpen 3 OH", RideOpenDestination + "rideOpen_3_OH.wav", 80 + 12, curveFor5[2], curveFor5[3] - 1, RideOpenRelease, 5.85, "CymbalsOH");
-        addSample("RideOpen 4 OH", RideOpenDestination + "rideOpen_4_OH.wav", 80 + 12, curveFor5[3], curveFor5[4] - 1, RideOpenRelease, 7.80, "CymbalsOH");
-        addSample("RideOpen 5 OH", RideOpenDestination + "rideOpen_5_OH.wav", 80 + 12, curveFor5[4], curveFor5[5] - 1, RideOpenRelease, 10.0, "CymbalsOH");
-        addSample("RideOpen 1 Room", RideOpenDestination + "rideOpen_1_room.wav", 80 + 12, curveFor5[0], curveFor5[1] - 1, RideOpenRelease, 5.80, "CymbalsRoom");
-        addSample("RideOpen 2 Room", RideOpenDestination + "rideOpen_2_room.wav", 80 + 12, curveFor5[1], curveFor5[2] - 1, RideOpenRelease, 5.30, "CymbalsRoom");
-        addSample("RideOpen 3 Room", RideOpenDestination + "rideOpen_3_room.wav", 80 + 12, curveFor5[2], curveFor5[3] - 1, RideOpenRelease, 5.85, "CymbalsRoom");
-        addSample("RideOpen 4 Room", RideOpenDestination + "rideOpen_4_room.wav", 80 + 12, curveFor5[3], curveFor5[4] - 1, RideOpenRelease, 7.80, "CymbalsRoom");
-        addSample("RideOpen 5 Room", RideOpenDestination + "rideOpen_5_room.wav", 80 + 12, curveFor5[4], curveFor5[5] - 1, RideOpenRelease, 10.0, "CymbalsRoom");
-        addSample("RideOpen 1 Bleed", RideOpenDestination + "rideOpen_1_bleed.wav", 80 + 12, curveFor5[0], curveFor5[1] - 1, RideOpenRelease, 5.80, "CymbalsBleed");
-        addSample("RideOpen 2 Bleed", RideOpenDestination + "rideOpen_2_bleed.wav", 80 + 12, curveFor5[1], curveFor5[2] - 1, RideOpenRelease, 5.30, "CymbalsBleed");
-        addSample("RideOpen 3 Bleed", RideOpenDestination + "rideOpen_3_bleed.wav", 80 + 12, curveFor5[2], curveFor5[3] - 1, RideOpenRelease, 5.85, "CymbalsBleed");
-        addSample("RideOpen 4 Bleed", RideOpenDestination + "rideOpen_4_bleed.wav", 80 + 12, curveFor5[3], curveFor5[4] - 1, RideOpenRelease, 7.80, "CymbalsBleed");
-        addSample("RideOpen 5 Bleed", RideOpenDestination + "rideOpen_5_bleed.wav", 80 + 12, curveFor5[4], curveFor5[5] - 1, RideOpenRelease, 10.0, "CymbalsBleed");
+        addSample("RideOpen 1 OH", RideOpenDestination + "rideOpen_1_OH.wav", 79 + 12, curveFor5[0], curveFor5[1] - 1, RideOpenRelease, 5.80, "CymbalsOH");
+        addSample("RideOpen 2 OH", RideOpenDestination + "rideOpen_2_OH.wav", 79 + 12, curveFor5[1], curveFor5[2] - 1, RideOpenRelease, 5.30, "CymbalsOH");
+        addSample("RideOpen 3 OH", RideOpenDestination + "rideOpen_3_OH.wav", 79 + 12, curveFor5[2], curveFor5[3] - 1, RideOpenRelease, 5.85, "CymbalsOH");
+        addSample("RideOpen 4 OH", RideOpenDestination + "rideOpen_4_OH.wav", 79 + 12, curveFor5[3], curveFor5[4] - 1, RideOpenRelease, 7.80, "CymbalsOH");
+        addSample("RideOpen 5 OH", RideOpenDestination + "rideOpen_5_OH.wav", 79 + 12, curveFor5[4], curveFor5[5] - 1, RideOpenRelease, 10.0, "CymbalsOH");
+        addSample("RideOpen 1 Room", RideOpenDestination + "rideOpen_1_room.wav", 79 + 12, curveFor5[0], curveFor5[1] - 1, RideOpenRelease, 5.80, "CymbalsRoom");
+        addSample("RideOpen 2 Room", RideOpenDestination + "rideOpen_2_room.wav", 79 + 12, curveFor5[1], curveFor5[2] - 1, RideOpenRelease, 5.30, "CymbalsRoom");
+        addSample("RideOpen 3 Room", RideOpenDestination + "rideOpen_3_room.wav", 79 + 12, curveFor5[2], curveFor5[3] - 1, RideOpenRelease, 5.85, "CymbalsRoom");
+        addSample("RideOpen 4 Room", RideOpenDestination + "rideOpen_4_room.wav", 79 + 12, curveFor5[3], curveFor5[4] - 1, RideOpenRelease, 7.80, "CymbalsRoom");
+        addSample("RideOpen 5 Room", RideOpenDestination + "rideOpen_5_room.wav", 79 + 12, curveFor5[4], curveFor5[5] - 1, RideOpenRelease, 10.0, "CymbalsRoom");
+        addSample("RideOpen 1 Bleed", RideOpenDestination + "rideOpen_1_bleed.wav", 79 + 12, curveFor5[0], curveFor5[1] - 1, RideOpenRelease, 5.80, "CymbalsBleed");
+        addSample("RideOpen 2 Bleed", RideOpenDestination + "rideOpen_2_bleed.wav", 79 + 12, curveFor5[1], curveFor5[2] - 1, RideOpenRelease, 5.30, "CymbalsBleed");
+        addSample("RideOpen 3 Bleed", RideOpenDestination + "rideOpen_3_bleed.wav", 79 + 12, curveFor5[2], curveFor5[3] - 1, RideOpenRelease, 5.85, "CymbalsBleed");
+        addSample("RideOpen 4 Bleed", RideOpenDestination + "rideOpen_4_bleed.wav", 79 + 12, curveFor5[3], curveFor5[4] - 1, RideOpenRelease, 7.80, "CymbalsBleed");
+        addSample("RideOpen 5 Bleed", RideOpenDestination + "rideOpen_5_bleed.wav", 79 + 12, curveFor5[4], curveFor5[5] - 1, RideOpenRelease, 10.0, "CymbalsBleed");
 
 
         double CrashRelease = 0.12;
         string CrashAllDestination = dryDestination + "crashAll/";
         string CrashPointDestination = CrashAllDestination + "crashPoint/";
-        addSample("CrashPoint 1 OH", CrashPointDestination + "crashPoint_1_OH.wav", 82 + 12, curveFor4[0], curveFor4[1] - 1, CrashRelease, 2.08, "CymbalsOH");
-        addSample("CrashPoint 2 OH", CrashPointDestination + "crashPoint_2_OH.wav", 82 + 12, curveFor4[1], curveFor4[2] - 1, CrashRelease, 1.96, "CymbalsOH");
-        addSample("CrashPoint 3 OH", CrashPointDestination + "crashPoint_3_OH.wav", 82 + 12, curveFor4[2], curveFor4[3] - 1, CrashRelease, 3.20, "CymbalsOH");
-        addSample("CrashPoint 4 OH", CrashPointDestination + "crashPoint_4_OH.wav", 82 + 12, curveFor4[3], curveFor4[4] - 1, CrashRelease, 3.30, "CymbalsOH");
-        addSample("CrashPoint 1 Room", CrashPointDestination + "crashPoint_1_room.wav", 82 + 12, curveFor4[0], curveFor4[1] - 1, CrashRelease, 2.08, "CymbalsRoom");
-        addSample("CrashPoint 2 Room", CrashPointDestination + "crashPoint_2_room.wav", 82 + 12, curveFor4[1], curveFor4[2] - 1, CrashRelease, 1.96, "CymbalsRoom");
-        addSample("CrashPoint 3 Room", CrashPointDestination + "crashPoint_3_room.wav", 82 + 12, curveFor4[2], curveFor4[3] - 1, CrashRelease, 3.20, "CymbalsRoom");
-        addSample("CrashPoint 4 Room", CrashPointDestination + "crashPoint_4_room.wav", 82 + 12, curveFor4[3], curveFor4[4] - 1, CrashRelease, 3.30, "CymbalsRoom");
-        addSample("CrashPoint 1 Bleed", CrashPointDestination + "crashPoint_1_bleed.wav", 82 + 12, curveFor4[0], curveFor4[1] - 1, CrashRelease, 2.08, "CymbalsBleed");
-        addSample("CrashPoint 2 Bleed", CrashPointDestination + "crashPoint_2_bleed.wav", 82 + 12, curveFor4[1], curveFor4[2] - 1, CrashRelease, 1.96, "CymbalsBleed");
-        addSample("CrashPoint 3 Bleed", CrashPointDestination + "crashPoint_3_bleed.wav", 82 + 12, curveFor4[2], curveFor4[3] - 1, CrashRelease, 3.20, "CymbalsBleed");
-        addSample("CrashPoint 4 Bleed", CrashPointDestination + "crashPoint_4_bleed.wav", 82 + 12, curveFor4[3], curveFor4[4] - 1, CrashRelease, 3.30, "CymbalsBleed");
+        addSample("CrashPoint 1 OH", CrashPointDestination + "crashPoint_1_OH.wav", 81 + 12, curveFor4[0], curveFor4[1] - 1, CrashRelease, 2.08, "CymbalsOH");
+        addSample("CrashPoint 2 OH", CrashPointDestination + "crashPoint_2_OH.wav", 81 + 12, curveFor4[1], curveFor4[2] - 1, CrashRelease, 1.96, "CymbalsOH");
+        addSample("CrashPoint 3 OH", CrashPointDestination + "crashPoint_3_OH.wav", 81 + 12, curveFor4[2], curveFor4[3] - 1, CrashRelease, 3.20, "CymbalsOH");
+        addSample("CrashPoint 4 OH", CrashPointDestination + "crashPoint_4_OH.wav", 81 + 12, curveFor4[3], curveFor4[4] - 1, CrashRelease, 3.30, "CymbalsOH");
+        addSample("CrashPoint 1 Room", CrashPointDestination + "crashPoint_1_room.wav", 81 + 12, curveFor4[0], curveFor4[1] - 1, CrashRelease, 2.08, "CymbalsRoom");
+        addSample("CrashPoint 2 Room", CrashPointDestination + "crashPoint_2_room.wav", 81 + 12, curveFor4[1], curveFor4[2] - 1, CrashRelease, 1.96, "CymbalsRoom");
+        addSample("CrashPoint 3 Room", CrashPointDestination + "crashPoint_3_room.wav", 81 + 12, curveFor4[2], curveFor4[3] - 1, CrashRelease, 3.20, "CymbalsRoom");
+        addSample("CrashPoint 4 Room", CrashPointDestination + "crashPoint_4_room.wav", 81 + 12, curveFor4[3], curveFor4[4] - 1, CrashRelease, 3.30, "CymbalsRoom");
+        addSample("CrashPoint 1 Bleed", CrashPointDestination + "crashPoint_1_bleed.wav", 81 + 12, curveFor4[0], curveFor4[1] - 1, CrashRelease, 2.08, "CymbalsBleed");
+        addSample("CrashPoint 2 Bleed", CrashPointDestination + "crashPoint_2_bleed.wav", 81 + 12, curveFor4[1], curveFor4[2] - 1, CrashRelease, 1.96, "CymbalsBleed");
+        addSample("CrashPoint 3 Bleed", CrashPointDestination + "crashPoint_3_bleed.wav", 81 + 12, curveFor4[2], curveFor4[3] - 1, CrashRelease, 3.20, "CymbalsBleed");
+        addSample("CrashPoint 4 Bleed", CrashPointDestination + "crashPoint_4_bleed.wav", 81 + 12, curveFor4[3], curveFor4[4] - 1, CrashRelease, 3.30, "CymbalsBleed");
 
         string CrashBellDestination = CrashAllDestination + "crashBell/";
-        addSample("CrashBell 1 OH", CrashBellDestination + "crashBell_1_OH.wav", 83 + 12, curveFor5[0], curveFor5[1] - 1, CrashRelease, 1.22, "CymbalsOH");
-        addSample("CrashBell 2 OH", CrashBellDestination + "crashBell_2_OH.wav", 83 + 12, curveFor5[1], curveFor5[2] - 1, CrashRelease, 1.84, "CymbalsOH");
-        addSample("CrashBell 3 OH", CrashBellDestination + "crashBell_3_OH.wav", 83 + 12, curveFor5[2], curveFor5[3] - 1, CrashRelease, 2.81, "CymbalsOH");
-        addSample("CrashBell 4 OH", CrashBellDestination + "crashBell_4_OH.wav", 83 + 12, curveFor5[3], curveFor5[4] - 1, CrashRelease, 3.00, "CymbalsOH");
-        addSample("CrashBell 5 OH", CrashBellDestination + "crashBell_5_OH.wav", 83 + 12, curveFor5[4], curveFor5[5] - 1, CrashRelease, 3.70, "CymbalsOH");
-        addSample("CrashBell 1 Room", CrashBellDestination + "crashBell_1_room.wav", 83 + 12, curveFor5[0], curveFor5[1] - 1, CrashRelease, 1.22, "CymbalsRoom");
-        addSample("CrashBell 2 Room", CrashBellDestination + "crashBell_2_room.wav", 83 + 12, curveFor5[1], curveFor5[2] - 1, CrashRelease, 1.84, "CymbalsRoom");
-        addSample("CrashBell 3 Room", CrashBellDestination + "crashBell_3_room.wav", 83 + 12, curveFor5[2], curveFor5[3] - 1, CrashRelease, 2.81, "CymbalsRoom");
-        addSample("CrashBell 4 Room", CrashBellDestination + "crashBell_4_room.wav", 83 + 12, curveFor5[3], curveFor5[4] - 1, CrashRelease, 3.00, "CymbalsRoom");
-        addSample("CrashBell 5 Room", CrashBellDestination + "crashBell_5_room.wav", 83 + 12, curveFor5[4], curveFor5[5] - 1, CrashRelease, 3.70, "CymbalsRoom");
-        addSample("CrashBell 1 Bleed", CrashBellDestination + "crashBell_1_bleed.wav", 83 + 12, curveFor5[0], curveFor5[1] - 1, CrashRelease, 1.22, "CymbalsBleed");
-        addSample("CrashBell 2 Bleed", CrashBellDestination + "crashBell_2_bleed.wav", 83 + 12, curveFor5[1], curveFor5[2] - 1, CrashRelease, 1.84, "CymbalsBleed");
-        addSample("CrashBell 3 Bleed", CrashBellDestination + "crashBell_3_bleed.wav", 83 + 12, curveFor5[2], curveFor5[3] - 1, CrashRelease, 2.81, "CymbalsBleed");
-        addSample("CrashBell 4 Bleed", CrashBellDestination + "crashBell_4_bleed.wav", 83 + 12, curveFor5[3], curveFor5[4] - 1, CrashRelease, 3.00, "CymbalsBleed");
-        addSample("CrashBell 5 Bleed", CrashBellDestination + "crashBell_5_bleed.wav", 83 + 12, curveFor5[4], curveFor5[5] - 1, CrashRelease, 3.70, "CymbalsBleed");
+        addSample("CrashBell 1 OH", CrashBellDestination + "crashBell_1_OH.wav", 82 + 12, curveFor5[0], curveFor5[1] - 1, CrashRelease, 1.22, "CymbalsOH");
+        addSample("CrashBell 2 OH", CrashBellDestination + "crashBell_2_OH.wav", 82 + 12, curveFor5[1], curveFor5[2] - 1, CrashRelease, 1.84, "CymbalsOH");
+        addSample("CrashBell 3 OH", CrashBellDestination + "crashBell_3_OH.wav", 82 + 12, curveFor5[2], curveFor5[3] - 1, CrashRelease, 2.81, "CymbalsOH");
+        addSample("CrashBell 4 OH", CrashBellDestination + "crashBell_4_OH.wav", 82 + 12, curveFor5[3], curveFor5[4] - 1, CrashRelease, 3.00, "CymbalsOH");
+        addSample("CrashBell 5 OH", CrashBellDestination + "crashBell_5_OH.wav", 82 + 12, curveFor5[4], curveFor5[5] - 1, CrashRelease, 3.70, "CymbalsOH");
+        addSample("CrashBell 1 Room", CrashBellDestination + "crashBell_1_room.wav", 82 + 12, curveFor5[0], curveFor5[1] - 1, CrashRelease, 1.22, "CymbalsRoom");
+        addSample("CrashBell 2 Room", CrashBellDestination + "crashBell_2_room.wav", 82 + 12, curveFor5[1], curveFor5[2] - 1, CrashRelease, 1.84, "CymbalsRoom");
+        addSample("CrashBell 3 Room", CrashBellDestination + "crashBell_3_room.wav", 82 + 12, curveFor5[2], curveFor5[3] - 1, CrashRelease, 2.81, "CymbalsRoom");
+        addSample("CrashBell 4 Room", CrashBellDestination + "crashBell_4_room.wav", 82 + 12, curveFor5[3], curveFor5[4] - 1, CrashRelease, 3.00, "CymbalsRoom");
+        addSample("CrashBell 5 Room", CrashBellDestination + "crashBell_5_room.wav", 82 + 12, curveFor5[4], curveFor5[5] - 1, CrashRelease, 3.70, "CymbalsRoom");
+        addSample("CrashBell 1 Bleed", CrashBellDestination + "crashBell_1_bleed.wav", 82 + 12, curveFor5[0], curveFor5[1] - 1, CrashRelease, 1.22, "CymbalsBleed");
+        addSample("CrashBell 2 Bleed", CrashBellDestination + "crashBell_2_bleed.wav", 82 + 12, curveFor5[1], curveFor5[2] - 1, CrashRelease, 1.84, "CymbalsBleed");
+        addSample("CrashBell 3 Bleed", CrashBellDestination + "crashBell_3_bleed.wav", 82 + 12, curveFor5[2], curveFor5[3] - 1, CrashRelease, 2.81, "CymbalsBleed");
+        addSample("CrashBell 4 Bleed", CrashBellDestination + "crashBell_4_bleed.wav", 82 + 12, curveFor5[3], curveFor5[4] - 1, CrashRelease, 3.00, "CymbalsBleed");
+        addSample("CrashBell 5 Bleed", CrashBellDestination + "crashBell_5_bleed.wav", 82 + 12, curveFor5[4], curveFor5[5] - 1, CrashRelease, 3.70, "CymbalsBleed");
 
         double CrashOpenRelease = 0.14;
         double CrashOpenMaxLen = 6.0;
         string CrashOpenDestination = CrashAllDestination + "crashOpen/";
-        addSample("CrashOpen 1 OH", CrashOpenDestination + "crashOpen_1_OH.wav", 84 + 12, curveFor4[0], curveFor4[1] - 1, CrashOpenRelease, 2.45, "CymbalsOH");
-        addSample("CrashOpen 2 OH", CrashOpenDestination + "crashOpen_2_OH.wav", 84 + 12, curveFor4[1], curveFor4[2] - 1, CrashOpenRelease, 3.30, "CymbalsOH");
-        addSample("CrashOpen 3 OH", CrashOpenDestination + "crashOpen_3_OH.wav", 84 + 12, curveFor4[2], curveFor4[3] - 1, CrashOpenRelease, 3.80, "CymbalsOH");
-        addSample("CrashOpen 4 OH", CrashOpenDestination + "crashOpen_4_OH.wav", 84 + 12, curveFor4[3], curveFor4[4] - 1, CrashOpenRelease, 4.90, "CymbalsOH");
-        addSample("CrashOpen 1 Room", CrashOpenDestination + "crashOpen_1_room.wav", 84 + 12, curveFor4[0], curveFor4[1] - 1, CrashOpenRelease, 2.45, "CymbalsRoom");
-        addSample("CrashOpen 2 Room", CrashOpenDestination + "crashOpen_2_room.wav", 84 + 12, curveFor4[1], curveFor4[2] - 1, CrashOpenRelease, 3.30, "CymbalsRoom");
-        addSample("CrashOpen 3 Room", CrashOpenDestination + "crashOpen_3_room.wav", 84 + 12, curveFor4[2], curveFor4[3] - 1, CrashOpenRelease, 3.80, "CymbalsRoom");
-        addSample("CrashOpen 4 Room", CrashOpenDestination + "crashOpen_4_room.wav", 84 + 12, curveFor4[3], curveFor4[4] - 1, CrashOpenRelease, 4.90, "CymbalsRoom");
-        addSample("CrashOpen 1 Bleed", CrashOpenDestination + "crashOpen_1_bleed.wav", 84 + 12, curveFor4[0], curveFor4[1] - 1, CrashOpenRelease, 2.45, "CymbalsBleed");
-        addSample("CrashOpen 2 Bleed", CrashOpenDestination + "crashOpen_2_bleed.wav", 84 + 12, curveFor4[1], curveFor4[2] - 1, CrashOpenRelease, 3.30, "CymbalsBleed");
-        addSample("CrashOpen 3 Bleed", CrashOpenDestination + "crashOpen_3_bleed.wav", 84 + 12, curveFor4[2], curveFor4[3] - 1, CrashOpenRelease, 3.80, "CymbalsBleed");
-        addSample("CrashOpen 4 Bleed", CrashOpenDestination + "crashOpen_4_bleed.wav", 84 + 12, curveFor4[3], curveFor4[4] - 1, CrashOpenRelease, 4.90, "CymbalsBleed");
+        addSample("CrashOpen 1 OH", CrashOpenDestination + "crashOpen_1_OH.wav", 83 + 12, curveFor4[0], curveFor4[1] - 1, CrashOpenRelease, 2.45, "CymbalsOH");
+        addSample("CrashOpen 2 OH", CrashOpenDestination + "crashOpen_2_OH.wav", 83 + 12, curveFor4[1], curveFor4[2] - 1, CrashOpenRelease, 3.30, "CymbalsOH");
+        addSample("CrashOpen 3 OH", CrashOpenDestination + "crashOpen_3_OH.wav", 83 + 12, curveFor4[2], curveFor4[3] - 1, CrashOpenRelease, 3.80, "CymbalsOH");
+        addSample("CrashOpen 4 OH", CrashOpenDestination + "crashOpen_4_OH.wav", 83 + 12, curveFor4[3], curveFor4[4] - 1, CrashOpenRelease, 4.90, "CymbalsOH");
+        addSample("CrashOpen 1 Room", CrashOpenDestination + "crashOpen_1_room.wav", 83 + 12, curveFor4[0], curveFor4[1] - 1, CrashOpenRelease, 2.45, "CymbalsRoom");
+        addSample("CrashOpen 2 Room", CrashOpenDestination + "crashOpen_2_room.wav", 83 + 12, curveFor4[1], curveFor4[2] - 1, CrashOpenRelease, 3.30, "CymbalsRoom");
+        addSample("CrashOpen 3 Room", CrashOpenDestination + "crashOpen_3_room.wav", 83 + 12, curveFor4[2], curveFor4[3] - 1, CrashOpenRelease, 3.80, "CymbalsRoom");
+        addSample("CrashOpen 4 Room", CrashOpenDestination + "crashOpen_4_room.wav", 83 + 12, curveFor4[3], curveFor4[4] - 1, CrashOpenRelease, 4.90, "CymbalsRoom");
+        addSample("CrashOpen 1 Bleed", CrashOpenDestination + "crashOpen_1_bleed.wav", 83 + 12, curveFor4[0], curveFor4[1] - 1, CrashOpenRelease, 2.45, "CymbalsBleed");
+        addSample("CrashOpen 2 Bleed", CrashOpenDestination + "crashOpen_2_bleed.wav", 83 + 12, curveFor4[1], curveFor4[2] - 1, CrashOpenRelease, 3.30, "CymbalsBleed");
+        addSample("CrashOpen 3 Bleed", CrashOpenDestination + "crashOpen_3_bleed.wav", 83 + 12, curveFor4[2], curveFor4[3] - 1, CrashOpenRelease, 3.80, "CymbalsBleed");
+        addSample("CrashOpen 4 Bleed", CrashOpenDestination + "crashOpen_4_bleed.wav", 83 + 12, curveFor4[3], curveFor4[4] - 1, CrashOpenRelease, 4.90, "CymbalsBleed");
 
     }
 }
@@ -1176,8 +1176,6 @@ void HDrumsAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
     juce::MemoryOutputStream(destData, true).writeFloat(*crashPointNote);
     juce::MemoryOutputStream(destData, true).writeFloat(*crashBellNote);
     juce::MemoryOutputStream(destData, true).writeFloat(*crashOpenNote);
-
-
 }
 
 void HDrumsAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
@@ -1189,59 +1187,7 @@ void HDrumsAudioProcessor::setStateInformation (const void* data, int sizeInByte
             treeState.replaceState(juce::ValueTree::fromXml(*xmlState));
 
     //auto sliderValue = treeState.getRawParameterValue(GAIN_ID);
-    //auto OHsliderValue = treeState.getRawParameterValue(OH_GAIN_ID);
-    //auto RoomSliderValue = treeState.getRawParameterValue(ROOM_GAIN_ID);
-    //auto BleedSliderValue = treeState.getRawParameterValue(BLEED_GAIN_ID);
     //*sliderValue = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    //*OHsliderValue = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    //*RoomSliderValue = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    //*BleedSliderValue = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    
-    /*auto samplePackMenu = treeState.getRawParameterValue(SAMPLE_PACK_ID);
-    auto curveMenu = treeState.getRawParameterValue(CURVE_MENU_ID);
-    *samplePackMenu = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *curveMenu = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();*/
-
-    /*auto kickNote = treeState.getRawParameterValue(KICK_MIDI_NOTE_ID);
-    auto snareNote = treeState.getRawParameterValue(SNARE_MIDI_NOTE_ID);
-    auto snareFlamNote = treeState.getRawParameterValue(SNARE_FLAM_MIDI_NOTE_ID);
-    auto snareRoundNote = treeState.getRawParameterValue(SNARE_ROUND_MIDI_NOTE_ID);
-    auto snareWirelessNote = treeState.getRawParameterValue(SNARE_WIRELESS_MIDI_NOTE_ID);
-    auto snareWirelessRoundNote = treeState.getRawParameterValue(SNARE_WIRELESS_ROUND_MIDI_NOTE_ID);
-    auto tomNote = treeState.getRawParameterValue(TOM_MIDI_NOTE_ID);
-    auto tomFlamNote = treeState.getRawParameterValue(TOM_FLAM_MIDI_NOTE_ID);
-    auto ftomNote = treeState.getRawParameterValue(FTOM_MIDI_NOTE_ID);
-    auto ftomFlamNote = treeState.getRawParameterValue(FTOM_FLAM_MIDI_NOTE_ID);
-    auto hhClosedNote = treeState.getRawParameterValue(HH_CLOSED_MIDI_NOTE_ID);
-    auto hhHalfNote = treeState.getRawParameterValue(HH_HALF_MIDI_NOTE_ID);
-    auto hhOpenNote = treeState.getRawParameterValue(HH_OPEN_MIDI_NOTE_ID);
-    auto tambNote = treeState.getRawParameterValue(TAMB_MIDI_NOTE_ID);
-    auto ridePointNote = treeState.getRawParameterValue(RIDE_POINT_MIDI_NOTE_ID);
-    auto rideBellNote = treeState.getRawParameterValue(RIDE_BELL_MIDI_NOTE_ID);
-    auto rideOpenNote = treeState.getRawParameterValue(RIDE_OPEN_MIDI_NOTE_ID);
-    auto crashPointNote = treeState.getRawParameterValue(CRASH_POINT_MIDI_NOTE_ID);
-    auto crashBellNote = treeState.getRawParameterValue(CRASH_BELL_MIDI_NOTE_ID);
-    auto crashOpenNote = treeState.getRawParameterValue(CRASH_OPEN_MIDI_NOTE_ID);
-    *kickNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *snareNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *snareFlamNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *snareRoundNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *snareWirelessNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *snareWirelessRoundNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *tomNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *tomFlamNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *ftomNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *ftomFlamNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *hhClosedNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *hhHalfNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *hhOpenNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *tambNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *ridePointNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *rideBellNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *rideOpenNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *crashPointNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *crashBellNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
-    *crashOpenNote = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();*/
 }
 
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
