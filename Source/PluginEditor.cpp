@@ -8,18 +8,19 @@
 #include "MainSlidersPage.h"
 #include "CymbalsSlidersPage.h"
 #include "MidiNoteChoosingPage.h"
+#include "MyLookAndFeel.h"
 
 HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     : AudioProcessorEditor(&p), audioProcessor(p), myTabbedComponent(juce::TabbedButtonBar::Orientation::TabsAtTop),
     mainSlidersPage(), kickSlidersPage(), snareSlidersPage(), tomsSlidersPage(), cymbalsSlidersPage(), midiNotesChoosingPage(),
-    guiKickButton("GUI Kick Button", juce::Colours::black.withAlpha(0.05f), juce::Colours::black.withAlpha(0.1f), juce::Colours::black.withAlpha(0.2f)),
-    guiSnareButton("GUI Snare Button", juce::Colours::black.withAlpha(0.05f), juce::Colours::black.withAlpha(0.1f), juce::Colours::black.withAlpha(0.2f)),
-    guiTomButton("GUI Tom Button", juce::Colours::black.withAlpha(0.05f), juce::Colours::black.withAlpha(0.1f), juce::Colours::black.withAlpha(0.2f)),
-    guiFTomButton("GUI FTom Button", juce::Colours::black.withAlpha(0.05f), juce::Colours::black.withAlpha(0.1f), juce::Colours::black.withAlpha(0.2f)),
-    guiTambButton("GUI Tamb Button", juce::Colours::black.withAlpha(0.05f), juce::Colours::black.withAlpha(0.1f), juce::Colours::black.withAlpha(0.2f)),
-    guiHHButton("GUI HH Button", juce::Colours::black.withAlpha(0.05f), juce::Colours::black.withAlpha(0.1f), juce::Colours::black.withAlpha(0.2f)),
-    guiRideButton("GUI Ride Button", juce::Colours::black.withAlpha(0.05f), juce::Colours::black.withAlpha(0.1f), juce::Colours::black.withAlpha(0.2f)),
-    guiCrashButton("GUI Crash Button", juce::Colours::black.withAlpha(0.05f), juce::Colours::black.withAlpha(0.1f), juce::Colours::black.withAlpha(0.2f))//, openButton("Browse for directory")
+    guiKickButton("GUI Kick Button", juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.04f), juce::Colours::black.withAlpha(0.1f)),
+    guiSnareButton("GUI Snare Button", juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.04f), juce::Colours::black.withAlpha(0.1f)),
+    guiTomButton("GUI Tom Button", juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.04f), juce::Colours::black.withAlpha(0.1f)),
+    guiFTomButton("GUI FTom Button", juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.04f), juce::Colours::black.withAlpha(0.1f)),
+    guiTambButton("GUI Tamb Button", juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.04f), juce::Colours::black.withAlpha(0.1f)),
+    guiHHButton("GUI HH Button", juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.04f), juce::Colours::black.withAlpha(0.1f)),
+    guiRideButton("GUI Ride Button", juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.04f), juce::Colours::black.withAlpha(0.1f)),
+    guiCrashButton("GUI Crash Button", juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.04f), juce::Colours::black.withAlpha(0.1f))//, openButton("Browse for directory")
 {
     setSize(1000, 500);
 
@@ -34,14 +35,14 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     juce::Path guiHHButtonShape;
     juce::Path guiRideButtonShape;
     juce::Path guiCrashButtonShape;
-    guiKickButtonShape.addEllipse(0, 0, 150.0f, 150.0f);
-    guiSnareButtonShape.addEllipse(0, 0, 124.0f, 72.0f);
-    guiTomButtonShape.addEllipse(0, 0, 88.0f, 40.0f);
-    guiFTomButtonShape.addEllipse(0, 0, 126.0f, 66.0f);
+    guiKickButtonShape.addEllipse(0, 0, 149.0f, 149.0f);
+    guiSnareButtonShape.addEllipse(0, 0, 124.0f, 70.0f);
+    guiTomButtonShape.addEllipse(0, 0, 86.0f, 39.0f);
+    guiFTomButtonShape.addEllipse(0, 0, 125.0f, 62.0f);
     guiTambButtonShape.addEllipse(0, 0, 78.0f, 50.0f);
     guiHHButtonShape.addEllipse(0, 0, 120.0f, 46.0f);
-    guiRideButtonShape.addEllipse(0, 0, 180.0f, 80.0f);
-    guiCrashButtonShape.addEllipse(0, 0, 126.0f, 50.0f);
+    guiRideButtonShape.addEllipse(0, 0, 180.0f, 79.0f);
+    guiCrashButtonShape.addEllipse(0, 0, 125.0f, 50.0f);
     guiKickButton.setShape(guiKickButtonShape, true, true, false);
     guiSnareButton.setShape(guiSnareButtonShape, true, true, false);
     guiTomButton.setShape(guiTomButtonShape, true, true, false);
@@ -70,12 +71,12 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
 
     // Tabbed Component 
     addAndMakeVisible(&myTabbedComponent);
-    myTabbedComponent.addTab("Main", juce::Colours::red.withAlpha(0.5f), &mainSlidersPage, true);
-    myTabbedComponent.addTab("Kick", juce::Colours::pink.withAlpha(0.5f), &kickSlidersPage, true);
-    myTabbedComponent.addTab("Snare", juce::Colours::aqua.withAlpha(0.5f), &snareSlidersPage, true);
-    myTabbedComponent.addTab("Toms", juce::Colours::green.withAlpha(0.5f), &tomsSlidersPage, true);
-    myTabbedComponent.addTab("Cymbals", juce::Colours::beige.withAlpha(0.5f), &cymbalsSlidersPage, true);
-    myTabbedComponent.addTab("MIDI", juce::Colours::darkred.withAlpha(0.5f), &midiNotesChoosingPage, true);
+    myTabbedComponent.addTab("Main", juce::Colours::black.withAlpha(0.5f), &mainSlidersPage, true);
+    myTabbedComponent.addTab("Kick", juce::Colours::darkgrey.withAlpha(0.5f), &kickSlidersPage, true);
+    myTabbedComponent.addTab("Snare", juce::Colours::dimgrey.withAlpha(0.6f), &snareSlidersPage, true);
+    myTabbedComponent.addTab("Toms", juce::Colours::grey.withAlpha(0.5f), &tomsSlidersPage, true);
+    myTabbedComponent.addTab("Cymbals", juce::Colours::grey.withAlpha(0.5f), &cymbalsSlidersPage, true);
+    myTabbedComponent.addTab("MIDI", juce::Colours::lightgrey.withAlpha(0.5f), &midiNotesChoosingPage, true);
 
     kickCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, KICK_CLOSE_GAIN_ID, kickSlidersPage.kickCloseSlider);
     kickOHSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, KICK_OH_GAIN_ID, kickSlidersPage.kickOHSlider);
@@ -194,8 +195,8 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     
     addAndMakeVisible(&curveMenu);
     curveMenu.setJustificationType(juce::Justification::centred);
-    curveMenu.addItem("Linear", 1);
-    curveMenu.addItem("Logarhytmic", 2);
+    curveMenu.addItem("Logarhytmic", 1);
+    curveMenu.addItem("Linear", 2);
     curveMenu.onChange = [this] { velocityCurveChanged(); };
     auto curveMenuValue = audioProcessor.treeState.getRawParameterValue(CURVE_MENU_ID);
     curveMenu.setSelectedId(*curveMenuValue + 1);
@@ -222,26 +223,26 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     auto crashBellNoteMenuValue = audioProcessor.treeState.getRawParameterValue(CRASH_BELL_MIDI_NOTE_ID);
     auto crashOpenNoteMenuValue = audioProcessor.treeState.getRawParameterValue(CRASH_OPEN_MIDI_NOTE_ID);
     
-    setNote(midiNotesChoosingPage.kickNoteMenu, kickNoteMenuValue);
-    setNote(midiNotesChoosingPage.snareNoteMenu, snareNoteMenuValue);
-    setNote(midiNotesChoosingPage.snareFlamNoteMenu, snareFlamNoteMenuValue);
-    setNote(midiNotesChoosingPage.snareRoundNoteMenu, snareRoundNoteMenuValue);
-    setNote(midiNotesChoosingPage.snareWirelessNoteMenu, snareWirelessNoteMenuValue);
-    setNote(midiNotesChoosingPage.snareWirelessRoundNoteMenu, snareWirelessRoundNoteMenuValue);
-    setNote(midiNotesChoosingPage.tomNoteMenu, tomNoteMenuValue);
-    setNote(midiNotesChoosingPage.tomFlamNoteMenu, tomFlamNoteMenuValue);
-    setNote(midiNotesChoosingPage.ftomNoteMenu, ftomNoteMenuValue);
-    setNote(midiNotesChoosingPage.ftomFlamNoteMenu, ftomFlamNoteMenuValue);
-    setNote(midiNotesChoosingPage.tambNoteMenu, tambNoteMenuValue);
-    setNote(midiNotesChoosingPage.hhClosedNoteMenu, hhClosedNoteMenuValue);
-    setNote(midiNotesChoosingPage.hhHalfNoteMenu, hhHalfNoteMenuValue);
-    setNote(midiNotesChoosingPage.hhOpenNoteMenu, hhOpenNoteMenuValue);
-    setNote(midiNotesChoosingPage.ridePointNoteMenu, ridePointNoteMenuValue);
-    setNote(midiNotesChoosingPage.rideBellNoteMenu, rideBellNoteMenuValue);
-    setNote(midiNotesChoosingPage.rideOpenNoteMenu, rideOpenNoteMenuValue);
-    setNote(midiNotesChoosingPage.crashPointNoteMenu, crashPointNoteMenuValue);
-    setNote(midiNotesChoosingPage.crashBellNoteMenu, crashBellNoteMenuValue);
-    setNote(midiNotesChoosingPage.crashOpenNoteMenu, crashOpenNoteMenuValue);
+    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.kickNoteMenu, kickNoteMenuValue);
+    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.snareNoteMenu, snareNoteMenuValue);
+    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.snareFlamNoteMenu, snareFlamNoteMenuValue);
+    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.snareRoundNoteMenu, snareRoundNoteMenuValue);
+    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.snareWirelessNoteMenu, snareWirelessNoteMenuValue);
+    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.snareWirelessRoundNoteMenu, snareWirelessRoundNoteMenuValue);
+    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.tomNoteMenu, tomNoteMenuValue);
+    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.tomFlamNoteMenu, tomFlamNoteMenuValue);
+    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.ftomNoteMenu, ftomNoteMenuValue);
+    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.ftomFlamNoteMenu, ftomFlamNoteMenuValue);
+    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.tambNoteMenu, tambNoteMenuValue);
+    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.hhClosedNoteMenu, hhClosedNoteMenuValue);
+    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.hhHalfNoteMenu, hhHalfNoteMenuValue);
+    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.hhOpenNoteMenu, hhOpenNoteMenuValue);
+    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.ridePointNoteMenu, ridePointNoteMenuValue);
+    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.rideBellNoteMenu, rideBellNoteMenuValue);
+    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.rideOpenNoteMenu, rideOpenNoteMenuValue);
+    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.crashPointNoteMenu, crashPointNoteMenuValue);
+    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.crashBellNoteMenu, crashBellNoteMenuValue);
+    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.crashOpenNoteMenu, crashOpenNoteMenuValue);
 
 }
 
@@ -250,7 +251,7 @@ HDrumsAudioProcessorEditor::~HDrumsAudioProcessorEditor()
 
 }
 
-void HDrumsAudioProcessorEditor::setNote(juce::ComboBox &menu, std::atomic <float> *note)
+void HDrumsAudioProcessorEditor::setNoteInMidiNotesChoosingPage(juce::ComboBox &menu, std::atomic <float> *note)
 {
     if (*note < 64)
         menu.setSelectedId(*note + 1);
@@ -278,12 +279,13 @@ void HDrumsAudioProcessorEditor::paint (juce::Graphics& g)
     background2 = juce::ImageCache::getFromMemory(BinaryData::grey_400x400_png, BinaryData::grey_400x400_pngSize);
     dryBackground = juce::ImageCache::getFromMemory(BinaryData::dryDrumsImage_png, BinaryData::dryDrumsImage_pngSize);
 
-    if (samplePackMenu.getSelectedId() == 2)
+    if (samplePackMenu.getSelectedId() == 1)
         g.drawImageWithin(background, 0, 0, getWidth(), getHeight(), juce::RectanglePlacement::stretchToFit);
-    else if (samplePackMenu.getSelectedId() == 3)
-        g.drawImageWithin(dryBackground, 0, 0, getWidth(), getHeight(), juce::RectanglePlacement::stretchToFit);
-    else
+    else if (samplePackMenu.getSelectedId() == 2)
         g.drawImageWithin(background2, 0, 0, getWidth(), getHeight(), juce::RectanglePlacement::stretchToFit);
+    else
+        g.drawImageWithin(dryBackground, 0, 0, getWidth(), getHeight(), juce::RectanglePlacement::stretchToFit);
+        
 
 }
 
@@ -295,7 +297,7 @@ void HDrumsAudioProcessorEditor::resized()
     
     guiKickButton.setCentrePosition(230, 212);
     guiSnareButton.setCentrePosition(110, 235);
-    guiTomButton.setCentrePosition(162, 145);
+    guiTomButton.setCentrePosition(162, 147);
     guiFTomButton.setCentrePosition(373, 233);
     guiTambButton.setCentrePosition(279, 121);
     guiHHButton.setCentrePosition(32, 128);
@@ -350,9 +352,9 @@ void HDrumsAudioProcessorEditor::playMidiNote(int noteNumber)
 {
     float vel;
     if (noteNumber == audioProcessor.midiProcessor.newMidiNotes[12])    // lower velocity for HH Half
-        vel = 0.75f;
+        vel = 0.77f;
     else if (noteNumber == audioProcessor.midiProcessor.newMidiNotes[17])   // lower velocity for Crash Point
-        vel = 0.51f;
+        vel = 0.56f;
     else
         vel = 0.93f;
     

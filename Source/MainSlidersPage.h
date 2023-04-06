@@ -1,12 +1,14 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "MyLookAndFeel.h"
 
 #pragma once
 
 class MainSlidersPage : public juce::Component
 {
 public:
+	MyLookAndFeel myLookAndFeel;
 	juce::Slider closeSlider;
 	juce::Slider OHSlider;
 	juce::Slider roomSlider;
@@ -23,6 +25,7 @@ public:
 		closeSlider.setRange(-48.0f, 10.0f);
 		closeSlider.setDoubleClickReturnValue(true, 0.0f);
 		closeSlider.setValue(closeSlider.getValue());
+		closeSlider.setLookAndFeel(&myLookAndFeel);
 		addAndMakeVisible(&closeSlider);
 		addAndMakeVisible(closeSliderLabel);
 		closeSliderLabel.setText("Close", juce::dontSendNotification);

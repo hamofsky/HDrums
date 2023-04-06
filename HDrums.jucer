@@ -42,6 +42,7 @@
             file="Source/CymbalsSlidersPage.h"/>
       <FILE id="kdttmQ" name="MidiNoteChoosingPage.h" compile="0" resource="0"
             file="Source/MidiNoteChoosingPage.h"/>
+      <FILE id="LFH5Bl" name="MyLookAndFeel.h" compile="0" resource="0" file="Source/MyLookAndFeel.h"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>

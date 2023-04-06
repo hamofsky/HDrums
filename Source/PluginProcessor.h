@@ -191,6 +191,8 @@ private:
     float linCurveFor5[6] = { 0.0, 26.0, 51.0, 77.0, 102.0, 129.0 };
     float linCurveFor6[7] = { 0.0, 21.0, 43.0, 64.0, 85.0, 107.0, 129.0 };
 
+    int defaultMidiNotes[20] = { 71, 72, 73, 74, 75, 76, 78, 79, 80, 81, 83, 85, 86, 87, 89, 90, 91, 93, 94, 95 };
+
     void loadDirectory();
     void clearSoundsFromAllSamplers();
 

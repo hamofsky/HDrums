@@ -102,7 +102,7 @@ private:
     juce::Image background2;
     juce::Image dryBackground;
 
-    void setNote(juce::ComboBox& menu, std::atomic <float>* note);
+    void setNoteInMidiNotesChoosingPage(juce::ComboBox& menu, std::atomic <float>* note);
     void velocityCurveChanged();
     void samplePackMenuChanged();
     void midiNoteChanged();

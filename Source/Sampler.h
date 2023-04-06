@@ -13,6 +13,5 @@ private:
     int minimumSubBlockSize = 32;
     bool subBlockSubdivisionIsStrict = false;
     double currentSampleRate = 44100.0;
-    float* gainValue;
 
 };
