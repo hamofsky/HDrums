@@ -61,51 +61,53 @@ HDrumsAudioProcessor::~HDrumsAudioProcessor()
 // here you add parameters that need to be transported from the Editor to the Processor (slider values, etc.). These will also be available to be automated in a DAW
 juce::AudioProcessorValueTreeState::ParameterLayout HDrumsAudioProcessor::createParameterLayout()
 {
+    float sliderMinValue = -36.0f;
+    float sliderMaxValue = 12.0f;
     std::vector <std::unique_ptr<juce::RangedAudioParameter>> params;
-    auto gainParam = std::make_unique<juce::AudioParameterFloat>(GAIN_ID, GAIN_NAME, -48.0f, 12.0f, 0.0f);
-    auto OHgainParam = std::make_unique<juce::AudioParameterFloat>(OH_GAIN_ID, OH_GAIN_NAME, -48.0f, 12.0f, 0.0f);
-    auto RoomGainParam = std::make_unique<juce::AudioParameterFloat>(ROOM_GAIN_ID, ROOM_GAIN_NAME, -48.0f, 12.0f, -3.0f);
-    auto BleedGainParam = std::make_unique<juce::AudioParameterFloat>(BLEED_GAIN_ID, BLEED_GAIN_NAME, -48.0f, 12.0f, -3.0f);
+    auto gainParam = std::make_unique<juce::AudioParameterFloat>(GAIN_ID, GAIN_NAME, sliderMinValue, sliderMaxValue, 0.0f);
+    auto OHgainParam = std::make_unique<juce::AudioParameterFloat>(OH_GAIN_ID, OH_GAIN_NAME, sliderMinValue, sliderMaxValue, 0.0f);
+    auto RoomGainParam = std::make_unique<juce::AudioParameterFloat>(ROOM_GAIN_ID, ROOM_GAIN_NAME, sliderMinValue, sliderMaxValue, -3.0f);
+    auto BleedGainParam = std::make_unique<juce::AudioParameterFloat>(BLEED_GAIN_ID, BLEED_GAIN_NAME, sliderMinValue, sliderMaxValue, -3.0f);
     params.push_back(std::move(gainParam));
     params.push_back(std::move(OHgainParam));
     params.push_back(std::move(RoomGainParam));
     params.push_back(std::move(BleedGainParam));
 
-    auto KickCloseGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_CLOSE_GAIN_ID, KICK_CLOSE_GAIN_NAME, -48.0f, 12.0f, 3.0f);
-    auto KickOHGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_OH_GAIN_ID, KICK_OH_GAIN_NAME, -48.0f, 12.0f, -6.0f);
-    auto KickRoomGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_ROOM_GAIN_ID, KICK_ROOM_GAIN_NAME, -48.0f, 12.0f, -6.0f);
-    auto KickBleedGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_BLEED_GAIN_ID, KICK_BLEED_GAIN_NAME, -48.0f, 12.0f, -18.0f);
+    auto KickCloseGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_CLOSE_GAIN_ID, KICK_CLOSE_GAIN_NAME, sliderMinValue, sliderMaxValue, 3.0f);
+    auto KickOHGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_OH_GAIN_ID, KICK_OH_GAIN_NAME, sliderMinValue, sliderMaxValue, -6.0f);
+    auto KickRoomGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_ROOM_GAIN_ID, KICK_ROOM_GAIN_NAME, sliderMinValue, sliderMaxValue, -6.0f);
+    auto KickBleedGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_BLEED_GAIN_ID, KICK_BLEED_GAIN_NAME, sliderMinValue, sliderMaxValue, -18.0f);
     params.push_back(std::move(KickCloseGainParam));
     params.push_back(std::move(KickOHGainParam));
     params.push_back(std::move(KickRoomGainParam));
     params.push_back(std::move(KickBleedGainParam));
 
-    auto SnareTopCloseGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_TOP_CLOSE_GAIN_ID, SNARE_TOP_CLOSE_GAIN_NAME, -48.0f, 12.0f, 0.0f);
-    auto SnareBotCloseGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_BOT_CLOSE_GAIN_ID, SNARE_BOT_CLOSE_GAIN_NAME, -48.0f, 12.0f, -3.0f);
-    auto SnareOHGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_OH_GAIN_ID, SNARE_OH_GAIN_NAME, -48.0f, 12.0f, -3.0f);
-    auto SnareRoomGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_ROOM_GAIN_ID, SNARE_ROOM_GAIN_NAME, -48.0f, 12.0f, -3.0f);
-    auto SnareBleedGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_BLEED_GAIN_ID, SNARE_BLEED_GAIN_NAME, -48.0f, 12.0f, -16.0f);
+    auto SnareTopCloseGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_TOP_CLOSE_GAIN_ID, SNARE_TOP_CLOSE_GAIN_NAME, sliderMinValue, sliderMaxValue, 0.0f);
+    auto SnareBotCloseGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_BOT_CLOSE_GAIN_ID, SNARE_BOT_CLOSE_GAIN_NAME, sliderMinValue, sliderMaxValue, -6.0f);
+    auto SnareOHGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_OH_GAIN_ID, SNARE_OH_GAIN_NAME, sliderMinValue, sliderMaxValue, 0.0f);
+    auto SnareRoomGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_ROOM_GAIN_ID, SNARE_ROOM_GAIN_NAME, sliderMinValue, sliderMaxValue, -3.0f);
+    auto SnareBleedGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_BLEED_GAIN_ID, SNARE_BLEED_GAIN_NAME, sliderMinValue, sliderMaxValue, -9.0f);
     params.push_back(std::move(SnareTopCloseGainParam));
     params.push_back(std::move(SnareBotCloseGainParam));
     params.push_back(std::move(SnareOHGainParam));
     params.push_back(std::move(SnareRoomGainParam));
     params.push_back(std::move(SnareBleedGainParam));
 
-    auto TomCloseGainParam = std::make_unique<juce::AudioParameterFloat>(TOM_CLOSE_GAIN_ID, TOM_CLOSE_GAIN_NAME, -48.0f, 12.0f, 0.0f);
-    auto FTomCloseGainParam = std::make_unique<juce::AudioParameterFloat>(FTOM_CLOSE_GAIN_ID, FTOM_CLOSE_GAIN_NAME, -48.0f, 12.0f, 0.0f);
-    auto TomsOHGainParam = std::make_unique<juce::AudioParameterFloat>(TOMS_OH_GAIN_ID, TOMS_OH_GAIN_NAME, -48.0f, 12.0f, -9.0f);
-    auto TomsRoomGainParam = std::make_unique<juce::AudioParameterFloat>(TOMS_ROOM_GAIN_ID, TOMS_ROOM_GAIN_NAME, -48.0f, 12.0f, -9.0f);
-    auto TomsBleedGainParam = std::make_unique<juce::AudioParameterFloat>(TOMS_BLEED_GAIN_ID, TOMS_BLEED_GAIN_NAME, -48.0f, 12.0f, -9.0f);
+    auto TomCloseGainParam = std::make_unique<juce::AudioParameterFloat>(TOM_CLOSE_GAIN_ID, TOM_CLOSE_GAIN_NAME, sliderMinValue, sliderMaxValue, 0.0f);
+    auto FTomCloseGainParam = std::make_unique<juce::AudioParameterFloat>(FTOM_CLOSE_GAIN_ID, FTOM_CLOSE_GAIN_NAME, sliderMinValue, sliderMaxValue, 2.0f);
+    auto TomsOHGainParam = std::make_unique<juce::AudioParameterFloat>(TOMS_OH_GAIN_ID, TOMS_OH_GAIN_NAME, sliderMinValue, sliderMaxValue, -6.0f);
+    auto TomsRoomGainParam = std::make_unique<juce::AudioParameterFloat>(TOMS_ROOM_GAIN_ID, TOMS_ROOM_GAIN_NAME, sliderMinValue, sliderMaxValue, -12.0f);
+    auto TomsBleedGainParam = std::make_unique<juce::AudioParameterFloat>(TOMS_BLEED_GAIN_ID, TOMS_BLEED_GAIN_NAME, sliderMinValue, sliderMaxValue, -9.0f);
     params.push_back(std::move(TomCloseGainParam));
     params.push_back(std::move(FTomCloseGainParam));
     params.push_back(std::move(TomsOHGainParam));
     params.push_back(std::move(TomsRoomGainParam));
     params.push_back(std::move(TomsBleedGainParam));
 
-    auto HHCloseGainParam = std::make_unique<juce::AudioParameterFloat>(HH_CLOSE_GAIN_ID, HH_CLOSE_GAIN_NAME, -48.0f, 10.0f, -3.0f);
-    auto CymbalsOHGainParam = std::make_unique<juce::AudioParameterFloat>(CYMBALS_OH_GAIN_ID, CYMBALS_OH_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    auto CymbalsRoomGainParam = std::make_unique<juce::AudioParameterFloat>(CYMBALS_ROOM_GAIN_ID, CYMBALS_ROOM_GAIN_NAME, -48.0f, 10.0f, 0.0f);
-    auto CymbalsBleedGainParam = std::make_unique<juce::AudioParameterFloat>(CYMBALS_BLEED_GAIN_ID, CYMBALS_BLEED_GAIN_NAME, -48.0f, 10.0f, -12.0f);
+    auto HHCloseGainParam = std::make_unique<juce::AudioParameterFloat>(HH_CLOSE_GAIN_ID, HH_CLOSE_GAIN_NAME, sliderMinValue, sliderMaxValue, -3.0f);
+    auto CymbalsOHGainParam = std::make_unique<juce::AudioParameterFloat>(CYMBALS_OH_GAIN_ID, CYMBALS_OH_GAIN_NAME, sliderMinValue, sliderMaxValue, 0.0f);
+    auto CymbalsRoomGainParam = std::make_unique<juce::AudioParameterFloat>(CYMBALS_ROOM_GAIN_ID, CYMBALS_ROOM_GAIN_NAME, sliderMinValue, sliderMaxValue, 0.0f);
+    auto CymbalsBleedGainParam = std::make_unique<juce::AudioParameterFloat>(CYMBALS_BLEED_GAIN_ID, CYMBALS_BLEED_GAIN_NAME, sliderMinValue, sliderMaxValue, -9.0f);
     params.push_back(std::move(HHCloseGainParam));
     params.push_back(std::move(CymbalsOHGainParam));
     params.push_back(std::move(CymbalsRoomGainParam));
@@ -1136,9 +1138,6 @@ void HDrumsAudioProcessor::setStateInformation (const void* data, int sizeInByte
     if (xmlState.get() != nullptr)
         if (xmlState->hasTagName(treeState.state.getType()))
             treeState.replaceState(juce::ValueTree::fromXml(*xmlState));
-
-    //auto sliderValue = treeState.getRawParameterValue(GAIN_ID);
-    //*sliderValue = juce::MemoryInputStream(data, static_cast<size_t> (sizeInBytes), false).readFloat();
 }
 
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()

@@ -17,14 +17,15 @@ public:
 	juce::Label kickRoomSliderLabel;
 	juce::Slider kickBleedSlider;
 	juce::Label kickBleedSliderLabel;
+	float sliderMinValue = -36.0f;
+	float sliderMaxValue = 12.0f;
 
 	KickSlidersPage()
 	{
 		kickCloseSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		kickCloseSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		kickCloseSlider.setRange(-48.0f, 10.0f);
+		kickCloseSlider.setRange(sliderMinValue, sliderMaxValue);
 		kickCloseSlider.setDoubleClickReturnValue(true, 0.0f);
-		kickCloseSlider.setNumDecimalPlacesToDisplay(1);
 		kickCloseSlider.setLookAndFeel(&myLookAndFeel);
 		kickCloseSlider.setValue(kickCloseSlider.getValue());
 		addAndMakeVisible(&kickCloseSlider);
@@ -35,9 +36,8 @@ public:
 
 		kickOHSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		kickOHSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		kickOHSlider.setRange(-48.0f, 10.0f);
+		kickOHSlider.setRange(sliderMinValue, sliderMaxValue);
 		kickOHSlider.setDoubleClickReturnValue(true, 0.0f);
-		kickOHSlider.setNumDecimalPlacesToDisplay(1);
 		kickOHSlider.setLookAndFeel(&myLookAndFeel);
 		kickOHSlider.setValue(kickOHSlider.getValue());
 		addAndMakeVisible(&kickOHSlider);
@@ -48,9 +48,8 @@ public:
 
 		kickRoomSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		kickRoomSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		kickRoomSlider.setRange(-48.0f, 10.0f);
+		kickRoomSlider.setRange(sliderMinValue, sliderMaxValue);
 		kickRoomSlider.setDoubleClickReturnValue(true, 0.0f);
-		kickRoomSlider.setNumDecimalPlacesToDisplay(1);
 		kickRoomSlider.setLookAndFeel(&myLookAndFeel);
 		kickRoomSlider.setValue(kickRoomSlider.getValue());
 		addAndMakeVisible(&kickRoomSlider);
@@ -61,9 +60,8 @@ public:
 
 		kickBleedSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		kickBleedSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		kickBleedSlider.setRange(-48.0f, 10.0f);
+		kickBleedSlider.setRange(sliderMinValue, sliderMaxValue);
 		kickBleedSlider.setDoubleClickReturnValue(true, 0.0f);
-		kickBleedSlider.setNumDecimalPlacesToDisplay(1);
 		kickBleedSlider.setLookAndFeel(&myLookAndFeel);
 		kickBleedSlider.setValue(kickBleedSlider.getValue());
 		addAndMakeVisible(&kickBleedSlider);
@@ -72,13 +70,7 @@ public:
 		kickBleedSliderLabel.setJustificationType(juce::Justification::centred);
 		kickBleedSliderLabel.attachToComponent(&kickBleedSlider, false);
 	}
-	
-	void paint(juce::Graphics& g) override
-	{
-		g.setColour(juce::Colours::white);
-		g.setFont(15.0f);
-		//g.drawFittedText("Kick Sliders Page", getLocalBounds(), juce::Justification::centred, 1);
-	}
+
 	void KickSlidersPage::resized() override
 	{
 		kickCloseSlider.setBounds(15, 50, 70, getHeight() - 100);

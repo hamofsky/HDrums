@@ -19,14 +19,15 @@ public:
 	juce::Label snareOHSliderLabel;
 	juce::Label snareRoomSliderLabel;
 	juce::Label snareBleedSliderLabel;
+	float sliderMinValue = -36.0f;
+	float sliderMaxValue = 12.0f;
 
 	SnareSlidersPage()
 	{
 		snareTopCloseSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		snareTopCloseSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		snareTopCloseSlider.setRange(-48.0f, 10.0f);
+		snareTopCloseSlider.setRange(sliderMinValue, sliderMaxValue);
 		snareTopCloseSlider.setDoubleClickReturnValue(true, 0.0f);
-		snareTopCloseSlider.setNumDecimalPlacesToDisplay(1);
 		snareTopCloseSlider.setLookAndFeel(&myLookAndFeel);
 		snareTopCloseSlider.setValue(snareTopCloseSlider.getValue());
 		addAndMakeVisible(&snareTopCloseSlider);
@@ -37,9 +38,8 @@ public:
 
 		snareBotCloseSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		snareBotCloseSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		snareBotCloseSlider.setRange(-48.0f, 10.0f);
+		snareBotCloseSlider.setRange(sliderMinValue, sliderMaxValue);
 		snareBotCloseSlider.setDoubleClickReturnValue(true, 0.0f);
-		snareBotCloseSlider.setNumDecimalPlacesToDisplay(1);
 		snareBotCloseSlider.setLookAndFeel(&myLookAndFeel);
 		snareBotCloseSlider.setValue(snareBotCloseSlider.getValue());
 		addAndMakeVisible(&snareBotCloseSlider);
@@ -50,9 +50,8 @@ public:
 
 		snareOHSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		snareOHSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		snareOHSlider.setRange(-48.0f, 10.0f);
+		snareOHSlider.setRange(sliderMinValue, sliderMaxValue);
 		snareOHSlider.setDoubleClickReturnValue(true, 0.0f);
-		snareOHSlider.setNumDecimalPlacesToDisplay(1);
 		snareOHSlider.setLookAndFeel(&myLookAndFeel);
 		snareOHSlider.setValue(snareOHSlider.getValue());
 		addAndMakeVisible(&snareOHSlider);
@@ -63,9 +62,8 @@ public:
 
 		snareRoomSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		snareRoomSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		snareRoomSlider.setRange(-48.0f, 10.0f);
+		snareRoomSlider.setRange(sliderMinValue, sliderMaxValue);
 		snareRoomSlider.setDoubleClickReturnValue(true, 0.0f);
-		snareRoomSlider.setNumDecimalPlacesToDisplay(1);
 		snareRoomSlider.setLookAndFeel(&myLookAndFeel);
 		snareRoomSlider.setValue(snareRoomSlider.getValue());
 		addAndMakeVisible(&snareRoomSlider);
@@ -76,9 +74,8 @@ public:
 
 		snareBleedSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		snareBleedSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		snareBleedSlider.setRange(-48.0f, 10.0f);
+		snareBleedSlider.setRange(sliderMinValue, sliderMaxValue);
 		snareBleedSlider.setDoubleClickReturnValue(true, 0.0f);
-		snareBleedSlider.setNumDecimalPlacesToDisplay(1);
 		snareBleedSlider.setLookAndFeel(&myLookAndFeel);
 		snareBleedSlider.setValue(snareBleedSlider.getValue());
 		addAndMakeVisible(&snareBleedSlider);

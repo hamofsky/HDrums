@@ -17,15 +17,16 @@ public:
 	juce::Label OHSliderLabel;
 	juce::Label roomSliderLabel;
 	juce::Label bleedSliderLabel;
+	float sliderMinValue = -36.0f;
+	float sliderMaxValue = 12.0f;
 
 	MainSlidersPage()
 	{
 		closeSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		closeSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		closeSlider.setRange(-48.0f, 10.0f);
+		closeSlider.setRange(sliderMinValue, sliderMaxValue);
 		closeSlider.setDoubleClickReturnValue(true, 0.0f);
 		closeSlider.setValue(closeSlider.getValue());
-		closeSlider.setNumDecimalPlacesToDisplay(1);
 		closeSlider.setLookAndFeel(&myLookAndFeel);
 		addAndMakeVisible(&closeSlider);
 		addAndMakeVisible(closeSliderLabel);
@@ -35,10 +36,9 @@ public:
 
 		OHSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		OHSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		OHSlider.setRange(-48.0f, 10.0f);
+		OHSlider.setRange(sliderMinValue, sliderMaxValue);
 		OHSlider.setDoubleClickReturnValue(true, 0.0f);
 		OHSlider.setValue(OHSlider.getValue());
-		OHSlider.setNumDecimalPlacesToDisplay(1);
 		OHSlider.setLookAndFeel(&myLookAndFeel);
 		addAndMakeVisible(&OHSlider);
 		addAndMakeVisible(OHSliderLabel);
@@ -48,9 +48,8 @@ public:
 
 		roomSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		roomSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		roomSlider.setRange(-48.0f, 10.0f);
+		roomSlider.setRange(sliderMinValue, sliderMaxValue);
 		roomSlider.setDoubleClickReturnValue(true, 0.0f);
-		roomSlider.setNumDecimalPlacesToDisplay(1);
 		roomSlider.setLookAndFeel(&myLookAndFeel);
 		roomSlider.setValue(roomSlider.getValue());
 		addAndMakeVisible(&roomSlider);
@@ -61,9 +60,8 @@ public:
 
 		bleedSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		bleedSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		bleedSlider.setRange(-48.0f, 10.0f);
+		bleedSlider.setRange(sliderMinValue, sliderMaxValue);
 		bleedSlider.setDoubleClickReturnValue(true, 0.0f);
-		bleedSlider.setNumDecimalPlacesToDisplay(1);
 		bleedSlider.setLookAndFeel(&myLookAndFeel);
 		bleedSlider.setValue(bleedSlider.getValue());
 		addAndMakeVisible(&bleedSlider);

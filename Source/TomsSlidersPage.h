@@ -19,14 +19,15 @@ public:
 	juce::Label tomsOHSliderLabel;
 	juce::Label tomsRoomSliderLabel;
 	juce::Label tomsBleedSliderLabel;
+	float sliderMinValue = -36.0f;
+	float sliderMaxValue = 12.0f;
 
 	TomsSlidersPage()
 	{
 		tomCloseSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		tomCloseSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		tomCloseSlider.setRange(-48.0f, 10.0f);
+		tomCloseSlider.setRange(sliderMinValue, sliderMaxValue);
 		tomCloseSlider.setDoubleClickReturnValue(true, 0.0f);
-		tomCloseSlider.setNumDecimalPlacesToDisplay(1);
 		tomCloseSlider.setLookAndFeel(&myLookAndFeel);
 		tomCloseSlider.setValue(tomCloseSlider.getValue());
 		addAndMakeVisible(&tomCloseSlider);
@@ -37,9 +38,8 @@ public:
 
 		ftomCloseSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		ftomCloseSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		ftomCloseSlider.setRange(-48.0f, 10.0f);
+		ftomCloseSlider.setRange(sliderMinValue, sliderMaxValue);
 		ftomCloseSlider.setDoubleClickReturnValue(true, 0.0f);
-		ftomCloseSlider.setNumDecimalPlacesToDisplay(1);
 		ftomCloseSlider.setLookAndFeel(&myLookAndFeel);
 		ftomCloseSlider.setValue(ftomCloseSlider.getValue());
 		addAndMakeVisible(&ftomCloseSlider);
@@ -50,9 +50,8 @@ public:
 
 		tomsOHSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		tomsOHSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		tomsOHSlider.setRange(-48.0f, 10.0f);
+		tomsOHSlider.setRange(sliderMinValue, sliderMaxValue);
 		tomsOHSlider.setDoubleClickReturnValue(true, 0.0f);
-		tomsOHSlider.setNumDecimalPlacesToDisplay(1);
 		tomsOHSlider.setLookAndFeel(&myLookAndFeel);
 		tomsOHSlider.setValue(tomsOHSlider.getValue());
 		addAndMakeVisible(&tomsOHSlider);
@@ -63,9 +62,8 @@ public:
 
 		tomsRoomSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		tomsRoomSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		tomsRoomSlider.setRange(-48.0f, 10.0f);
+		tomsRoomSlider.setRange(sliderMinValue, sliderMaxValue);
 		tomsRoomSlider.setDoubleClickReturnValue(true, 0.0f);
-		tomsRoomSlider.setNumDecimalPlacesToDisplay(1);
 		tomsRoomSlider.setLookAndFeel(&myLookAndFeel);
 		tomsRoomSlider.setValue(tomsRoomSlider.getValue());
 		addAndMakeVisible(&tomsRoomSlider);
@@ -76,9 +74,8 @@ public:
 
 		tomsBleedSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		tomsBleedSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		tomsBleedSlider.setRange(-48.0f, 10.0f);
+		tomsBleedSlider.setRange(sliderMinValue, sliderMaxValue);
 		tomsBleedSlider.setDoubleClickReturnValue(true, 0.0f);
-		tomsBleedSlider.setNumDecimalPlacesToDisplay(1);
 		tomsBleedSlider.setLookAndFeel(&myLookAndFeel);
 		tomsBleedSlider.setValue(tomsBleedSlider.getValue());
 		addAndMakeVisible(&tomsBleedSlider);

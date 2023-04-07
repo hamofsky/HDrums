@@ -17,14 +17,15 @@ public:
 	juce::Label cymbalsOHSliderLabel;
 	juce::Label cymbalsRoomSliderLabel;
 	juce::Label cymbalsBleedSliderLabel;
+	float sliderMinValue = -36.0f;
+	float sliderMaxValue = 12.0f;
 
 	CymbalsSlidersPage()
 	{
 		hhCloseSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		hhCloseSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		hhCloseSlider.setRange(-48.0f, 10.0f);
+		hhCloseSlider.setRange(sliderMinValue, sliderMaxValue);
 		hhCloseSlider.setDoubleClickReturnValue(true, 0.0f);
-		hhCloseSlider.setNumDecimalPlacesToDisplay(1);
 		hhCloseSlider.setLookAndFeel(&myLookAndFeel);
 		hhCloseSlider.setValue(hhCloseSlider.getValue());
 		addAndMakeVisible(&hhCloseSlider);
@@ -35,9 +36,8 @@ public:
 
 		cymbalsOHSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		cymbalsOHSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		cymbalsOHSlider.setRange(-48.0f, 10.0f);
+		cymbalsOHSlider.setRange(sliderMinValue, sliderMaxValue);
 		cymbalsOHSlider.setDoubleClickReturnValue(true, 0.0f);
-		cymbalsOHSlider.setNumDecimalPlacesToDisplay(1);
 		cymbalsOHSlider.setLookAndFeel(&myLookAndFeel);
 		cymbalsOHSlider.setValue(cymbalsOHSlider.getValue());
 		addAndMakeVisible(&cymbalsOHSlider);
@@ -48,9 +48,8 @@ public:
 
 		cymbalsRoomSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		cymbalsRoomSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		cymbalsRoomSlider.setRange(-48.0f, 10.0f);
+		cymbalsRoomSlider.setRange(sliderMinValue, sliderMaxValue);
 		cymbalsRoomSlider.setDoubleClickReturnValue(true, 0.0f);
-		cymbalsRoomSlider.setNumDecimalPlacesToDisplay(1);
 		cymbalsRoomSlider.setLookAndFeel(&myLookAndFeel);
 		cymbalsRoomSlider.setValue(cymbalsRoomSlider.getValue());
 		addAndMakeVisible(&cymbalsRoomSlider);
@@ -61,9 +60,8 @@ public:
 
 		cymbalsBleedSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
 		cymbalsBleedSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
-		cymbalsBleedSlider.setRange(-48.0f, 10.0f);
+		cymbalsBleedSlider.setRange(sliderMinValue, sliderMaxValue);
 		cymbalsBleedSlider.setDoubleClickReturnValue(true, 0.0f);
-		cymbalsBleedSlider.setNumDecimalPlacesToDisplay(1);
 		cymbalsBleedSlider.setLookAndFeel(&myLookAndFeel);
 		cymbalsBleedSlider.setValue(cymbalsBleedSlider.getValue());
 		addAndMakeVisible(&cymbalsBleedSlider);
