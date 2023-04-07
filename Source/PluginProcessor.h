@@ -103,6 +103,9 @@
 #define CYMBALS_BLEED_GAIN_ID "cymbals Bleed"
 #define CYMBALS_BLEED_GAIN_NAME "Cymbals Bleed"
 
+#define KICK_CLOSE_MUTE_ID "kick Mute"
+#define KICK_CLOSE_MUTE_NAME "Kick Mute"
+
 using namespace std;
 
 class HDrumsAudioProcessor  : public juce::AudioProcessor
