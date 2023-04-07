@@ -1,12 +1,14 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "MyLookAndFeel.h"
 
 #pragma once
 
 class CymbalsSlidersPage : public juce::Component
 {
 public:
+	MyLookAndFeel myLookAndFeel;
 	juce::Slider hhCloseSlider;
 	juce::Slider cymbalsOHSlider;
 	juce::Slider cymbalsRoomSlider;
@@ -22,6 +24,8 @@ public:
 		hhCloseSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
 		hhCloseSlider.setRange(-48.0f, 10.0f);
 		hhCloseSlider.setDoubleClickReturnValue(true, 0.0f);
+		hhCloseSlider.setNumDecimalPlacesToDisplay(1);
+		hhCloseSlider.setLookAndFeel(&myLookAndFeel);
 		hhCloseSlider.setValue(hhCloseSlider.getValue());
 		addAndMakeVisible(&hhCloseSlider);
 		addAndMakeVisible(hhCloseSliderLabel);
@@ -33,6 +37,8 @@ public:
 		cymbalsOHSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
 		cymbalsOHSlider.setRange(-48.0f, 10.0f);
 		cymbalsOHSlider.setDoubleClickReturnValue(true, 0.0f);
+		cymbalsOHSlider.setNumDecimalPlacesToDisplay(1);
+		cymbalsOHSlider.setLookAndFeel(&myLookAndFeel);
 		cymbalsOHSlider.setValue(cymbalsOHSlider.getValue());
 		addAndMakeVisible(&cymbalsOHSlider);
 		addAndMakeVisible(cymbalsOHSliderLabel);
@@ -44,6 +50,8 @@ public:
 		cymbalsRoomSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
 		cymbalsRoomSlider.setRange(-48.0f, 10.0f);
 		cymbalsRoomSlider.setDoubleClickReturnValue(true, 0.0f);
+		cymbalsRoomSlider.setNumDecimalPlacesToDisplay(1);
+		cymbalsRoomSlider.setLookAndFeel(&myLookAndFeel);
 		cymbalsRoomSlider.setValue(cymbalsRoomSlider.getValue());
 		addAndMakeVisible(&cymbalsRoomSlider);
 		addAndMakeVisible(cymbalsRoomSliderLabel);
@@ -55,6 +63,8 @@ public:
 		cymbalsBleedSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
 		cymbalsBleedSlider.setRange(-48.0f, 10.0f);
 		cymbalsBleedSlider.setDoubleClickReturnValue(true, 0.0f);
+		cymbalsBleedSlider.setNumDecimalPlacesToDisplay(1);
+		cymbalsBleedSlider.setLookAndFeel(&myLookAndFeel);
 		cymbalsBleedSlider.setValue(cymbalsBleedSlider.getValue());
 		addAndMakeVisible(&cymbalsBleedSlider);
 		addAndMakeVisible(cymbalsBleedSliderLabel);

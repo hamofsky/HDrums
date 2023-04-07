@@ -1,12 +1,14 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "MyLookAndFeel.h"
 
 #pragma once
 
 class TomsSlidersPage : public juce::Component
 {
 public:
+	MyLookAndFeel myLookAndFeel;
 	juce::Slider tomCloseSlider;
 	juce::Slider ftomCloseSlider;
 	juce::Slider tomsOHSlider;
@@ -24,6 +26,8 @@ public:
 		tomCloseSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
 		tomCloseSlider.setRange(-48.0f, 10.0f);
 		tomCloseSlider.setDoubleClickReturnValue(true, 0.0f);
+		tomCloseSlider.setNumDecimalPlacesToDisplay(1);
+		tomCloseSlider.setLookAndFeel(&myLookAndFeel);
 		tomCloseSlider.setValue(tomCloseSlider.getValue());
 		addAndMakeVisible(&tomCloseSlider);
 		addAndMakeVisible(tomCloseSliderLabel);
@@ -35,6 +39,8 @@ public:
 		ftomCloseSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
 		ftomCloseSlider.setRange(-48.0f, 10.0f);
 		ftomCloseSlider.setDoubleClickReturnValue(true, 0.0f);
+		ftomCloseSlider.setNumDecimalPlacesToDisplay(1);
+		ftomCloseSlider.setLookAndFeel(&myLookAndFeel);
 		ftomCloseSlider.setValue(ftomCloseSlider.getValue());
 		addAndMakeVisible(&ftomCloseSlider);
 		addAndMakeVisible(ftomCloseSliderLabel);
@@ -46,6 +52,8 @@ public:
 		tomsOHSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
 		tomsOHSlider.setRange(-48.0f, 10.0f);
 		tomsOHSlider.setDoubleClickReturnValue(true, 0.0f);
+		tomsOHSlider.setNumDecimalPlacesToDisplay(1);
+		tomsOHSlider.setLookAndFeel(&myLookAndFeel);
 		tomsOHSlider.setValue(tomsOHSlider.getValue());
 		addAndMakeVisible(&tomsOHSlider);
 		addAndMakeVisible(tomsOHSliderLabel);
@@ -57,6 +65,8 @@ public:
 		tomsRoomSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
 		tomsRoomSlider.setRange(-48.0f, 10.0f);
 		tomsRoomSlider.setDoubleClickReturnValue(true, 0.0f);
+		tomsRoomSlider.setNumDecimalPlacesToDisplay(1);
+		tomsRoomSlider.setLookAndFeel(&myLookAndFeel);
 		tomsRoomSlider.setValue(tomsRoomSlider.getValue());
 		addAndMakeVisible(&tomsRoomSlider);
 		addAndMakeVisible(tomsRoomSliderLabel);
@@ -68,6 +78,8 @@ public:
 		tomsBleedSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
 		tomsBleedSlider.setRange(-48.0f, 10.0f);
 		tomsBleedSlider.setDoubleClickReturnValue(true, 0.0f);
+		tomsBleedSlider.setNumDecimalPlacesToDisplay(1);
+		tomsBleedSlider.setLookAndFeel(&myLookAndFeel);
 		tomsBleedSlider.setValue(tomsBleedSlider.getValue());
 		addAndMakeVisible(&tomsBleedSlider);
 		addAndMakeVisible(tomsBleedSliderLabel);

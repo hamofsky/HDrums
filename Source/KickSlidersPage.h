@@ -1,12 +1,14 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "MyLookAndFeel.h"
 
 #pragma once
 
 class KickSlidersPage : public juce::Component
 {
 public:
+	MyLookAndFeel myLookAndFeel;
 	juce::Slider kickCloseSlider;
 	juce::Label kickCloseSliderLabel;
 	juce::Slider kickOHSlider;
@@ -22,6 +24,8 @@ public:
 		kickCloseSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
 		kickCloseSlider.setRange(-48.0f, 10.0f);
 		kickCloseSlider.setDoubleClickReturnValue(true, 0.0f);
+		kickCloseSlider.setNumDecimalPlacesToDisplay(1);
+		kickCloseSlider.setLookAndFeel(&myLookAndFeel);
 		kickCloseSlider.setValue(kickCloseSlider.getValue());
 		addAndMakeVisible(&kickCloseSlider);
 		addAndMakeVisible(kickCloseSliderLabel);
@@ -33,6 +37,8 @@ public:
 		kickOHSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
 		kickOHSlider.setRange(-48.0f, 10.0f);
 		kickOHSlider.setDoubleClickReturnValue(true, 0.0f);
+		kickOHSlider.setNumDecimalPlacesToDisplay(1);
+		kickOHSlider.setLookAndFeel(&myLookAndFeel);
 		kickOHSlider.setValue(kickOHSlider.getValue());
 		addAndMakeVisible(&kickOHSlider);
 		addAndMakeVisible(kickOHSliderLabel);
@@ -44,6 +50,8 @@ public:
 		kickRoomSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
 		kickRoomSlider.setRange(-48.0f, 10.0f);
 		kickRoomSlider.setDoubleClickReturnValue(true, 0.0f);
+		kickRoomSlider.setNumDecimalPlacesToDisplay(1);
+		kickRoomSlider.setLookAndFeel(&myLookAndFeel);
 		kickRoomSlider.setValue(kickRoomSlider.getValue());
 		addAndMakeVisible(&kickRoomSlider);
 		addAndMakeVisible(kickRoomSliderLabel);
@@ -55,6 +63,8 @@ public:
 		kickBleedSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
 		kickBleedSlider.setRange(-48.0f, 10.0f);
 		kickBleedSlider.setDoubleClickReturnValue(true, 0.0f);
+		kickBleedSlider.setNumDecimalPlacesToDisplay(1);
+		kickBleedSlider.setLookAndFeel(&myLookAndFeel);
 		kickBleedSlider.setValue(kickBleedSlider.getValue());
 		addAndMakeVisible(&kickBleedSlider);
 		addAndMakeVisible(kickBleedSliderLabel);

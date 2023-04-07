@@ -25,6 +25,7 @@ public:
 		closeSlider.setRange(-48.0f, 10.0f);
 		closeSlider.setDoubleClickReturnValue(true, 0.0f);
 		closeSlider.setValue(closeSlider.getValue());
+		closeSlider.setNumDecimalPlacesToDisplay(1);
 		closeSlider.setLookAndFeel(&myLookAndFeel);
 		addAndMakeVisible(&closeSlider);
 		addAndMakeVisible(closeSliderLabel);
@@ -37,6 +38,8 @@ public:
 		OHSlider.setRange(-48.0f, 10.0f);
 		OHSlider.setDoubleClickReturnValue(true, 0.0f);
 		OHSlider.setValue(OHSlider.getValue());
+		OHSlider.setNumDecimalPlacesToDisplay(1);
+		OHSlider.setLookAndFeel(&myLookAndFeel);
 		addAndMakeVisible(&OHSlider);
 		addAndMakeVisible(OHSliderLabel);
 		OHSliderLabel.setText("OH", juce::dontSendNotification);
@@ -47,6 +50,8 @@ public:
 		roomSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
 		roomSlider.setRange(-48.0f, 10.0f);
 		roomSlider.setDoubleClickReturnValue(true, 0.0f);
+		roomSlider.setNumDecimalPlacesToDisplay(1);
+		roomSlider.setLookAndFeel(&myLookAndFeel);
 		roomSlider.setValue(roomSlider.getValue());
 		addAndMakeVisible(&roomSlider);
 		addAndMakeVisible(roomSliderLabel);
@@ -58,6 +63,8 @@ public:
 		bleedSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
 		bleedSlider.setRange(-48.0f, 10.0f);
 		bleedSlider.setDoubleClickReturnValue(true, 0.0f);
+		bleedSlider.setNumDecimalPlacesToDisplay(1);
+		bleedSlider.setLookAndFeel(&myLookAndFeel);
 		bleedSlider.setValue(bleedSlider.getValue());
 		addAndMakeVisible(&bleedSlider);
 		addAndMakeVisible(bleedSliderLabel);

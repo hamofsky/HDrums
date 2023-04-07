@@ -71,12 +71,12 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
 
     // Tabbed Component 
     addAndMakeVisible(&myTabbedComponent);
-    myTabbedComponent.addTab("Main", juce::Colours::black.withAlpha(0.5f), &mainSlidersPage, true);
-    myTabbedComponent.addTab("Kick", juce::Colours::darkgrey.withAlpha(0.5f), &kickSlidersPage, true);
-    myTabbedComponent.addTab("Snare", juce::Colours::dimgrey.withAlpha(0.6f), &snareSlidersPage, true);
-    myTabbedComponent.addTab("Toms", juce::Colours::grey.withAlpha(0.5f), &tomsSlidersPage, true);
-    myTabbedComponent.addTab("Cymbals", juce::Colours::grey.withAlpha(0.5f), &cymbalsSlidersPage, true);
-    myTabbedComponent.addTab("MIDI", juce::Colours::lightgrey.withAlpha(0.5f), &midiNotesChoosingPage, true);
+    myTabbedComponent.addTab("Main", juce::Colours::black.withAlpha(0.7f), &mainSlidersPage, true);
+    myTabbedComponent.addTab("Kick", juce::Colours::black.withAlpha(0.7f), &kickSlidersPage, true);
+    myTabbedComponent.addTab("Snare", juce::Colours::black.withAlpha(0.7f), &snareSlidersPage, true);
+    myTabbedComponent.addTab("Toms", juce::Colours::black.withAlpha(0.7f), &tomsSlidersPage, true);
+    myTabbedComponent.addTab("Cymbals", juce::Colours::black.withAlpha(0.7f), &cymbalsSlidersPage, true);
+    myTabbedComponent.addTab("MIDI", juce::Colours::grey.withAlpha(0.8f), &midiNotesChoosingPage, true);
 
     kickCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, KICK_CLOSE_GAIN_ID, kickSlidersPage.kickCloseSlider);
     kickOHSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, KICK_OH_GAIN_ID, kickSlidersPage.kickOHSlider);
