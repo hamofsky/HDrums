@@ -31,6 +31,8 @@ public:
     CymbalsSlidersPage cymbalsSlidersPage;
     MidiNotesChoosingPage midiNotesChoosingPage;
 
+    
+
     juce::Font textFont{ 12.0f };
     juce::ComboBox samplePackMenu;
     juce::ComboBox curveMenu;
@@ -90,6 +92,16 @@ public:
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> cymbalsOHSliderValue;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> cymbalsRoomSliderValue;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> cymbalsBleedSliderValue;
+
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> closeSoloState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> OHSoloState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> roomSoloState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> bleedSoloState;
+
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> closeMuteState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> OHMuteState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> roomMuteState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> bleedMuteState;
 
 private:
     

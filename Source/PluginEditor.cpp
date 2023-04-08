@@ -100,52 +100,60 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     cymbalsRoomSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, CYMBALS_ROOM_GAIN_ID, cymbalsSlidersPage.cymbalsRoomSlider);
     cymbalsBleedSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, CYMBALS_BLEED_GAIN_ID, cymbalsSlidersPage.cymbalsBleedSlider);
 
+    // Solo & Mute buttons
+    closeSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, CLOSE_SOLO_ID, mainSlidersPage.closeSolo);
+    OHSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, OH_SOLO_ID, mainSlidersPage.OHSolo);
+    roomSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, ROOM_SOLO_ID, mainSlidersPage.roomSolo);
+    bleedSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, BLEED_SOLO_ID, mainSlidersPage.bleedSolo);
+
+    closeMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, CLOSE_MUTE_ID, mainSlidersPage.closeMute);
+    OHMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, OH_MUTE_ID, mainSlidersPage.OHMute);
+    roomMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, ROOM_MUTE_ID, mainSlidersPage.roomMute);
+    bleedMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, BLEED_MUTE_ID, mainSlidersPage.bleedMute);
+
+
     // buttons from MidiNoteChoosingPage
-    midiNotesChoosingPage.kickNoteMenu.onChange = [this] { midiNoteChanged(); };
     midiNotesChoosingPage.kickButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.kickNoteMenu.getSelectedId()); };
-
-    midiNotesChoosingPage.snareNoteMenu.onChange = [this] { midiNoteChanged(); };
     midiNotesChoosingPage.snareButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.snareNoteMenu.getSelectedId()); };
-    midiNotesChoosingPage.snareFlamNoteMenu.onChange = [this] { midiNoteChanged(); };
     midiNotesChoosingPage.snareFlamButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.snareFlamNoteMenu.getSelectedId()); };
-    midiNotesChoosingPage.snareRoundNoteMenu.onChange = [this] { midiNoteChanged(); };
     midiNotesChoosingPage.snareRoundButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.snareRoundNoteMenu.getSelectedId()); };
-    midiNotesChoosingPage.snareWirelessNoteMenu.onChange = [this] { midiNoteChanged(); };
     midiNotesChoosingPage.snareWirelessButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.snareWirelessNoteMenu.getSelectedId()); };
-    midiNotesChoosingPage.snareWirelessRoundNoteMenu.onChange = [this] { midiNoteChanged(); };
     midiNotesChoosingPage.snareWirelessRoundButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.snareWirelessRoundNoteMenu.getSelectedId()); };
-
-    midiNotesChoosingPage.tomNoteMenu.onChange = [this] { midiNoteChanged(); };
     midiNotesChoosingPage.tomButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.tomNoteMenu.getSelectedId()); };
-    midiNotesChoosingPage.tomFlamNoteMenu.onChange = [this] { midiNoteChanged(); };
     midiNotesChoosingPage.tomFlamButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.tomFlamNoteMenu.getSelectedId()); };
-    midiNotesChoosingPage.ftomNoteMenu.onChange = [this] { midiNoteChanged(); };
     midiNotesChoosingPage.ftomButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.ftomNoteMenu.getSelectedId()); };
-    midiNotesChoosingPage.ftomFlamNoteMenu.onChange = [this] { midiNoteChanged(); };
     midiNotesChoosingPage.ftomFlamButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.ftomFlamNoteMenu.getSelectedId()); };
-
-    midiNotesChoosingPage.tambNoteMenu.onChange = [this] { midiNoteChanged(); };
     midiNotesChoosingPage.tambButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.tambNoteMenu.getSelectedId()); };
-    midiNotesChoosingPage.hhClosedNoteMenu.onChange = [this] { midiNoteChanged(); };
     midiNotesChoosingPage.hhClosedButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.hhClosedNoteMenu.getSelectedId()); };
-    midiNotesChoosingPage.hhHalfNoteMenu.onChange = [this] { midiNoteChanged(); };
     midiNotesChoosingPage.hhHalfButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.hhHalfNoteMenu.getSelectedId()); };
-    midiNotesChoosingPage.hhOpenNoteMenu.onChange = [this] { midiNoteChanged(); };
     midiNotesChoosingPage.hhOpenButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.hhOpenNoteMenu.getSelectedId()); };
-
-    midiNotesChoosingPage.ridePointNoteMenu.onChange = [this] { midiNoteChanged(); };
     midiNotesChoosingPage.ridePointButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.ridePointNoteMenu.getSelectedId()); };
-    midiNotesChoosingPage.rideBellNoteMenu.onChange = [this] { midiNoteChanged(); };
     midiNotesChoosingPage.rideBellButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.rideBellNoteMenu.getSelectedId()); };
-    midiNotesChoosingPage.rideOpenNoteMenu.onChange = [this] { midiNoteChanged(); };
     midiNotesChoosingPage.rideOpenButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.rideOpenNoteMenu.getSelectedId()); };
-    
-    midiNotesChoosingPage.crashPointNoteMenu.onChange = [this] { midiNoteChanged(); };
     midiNotesChoosingPage.crashPointButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.crashPointNoteMenu.getSelectedId()); };
-    midiNotesChoosingPage.crashBellNoteMenu.onChange = [this] { midiNoteChanged(); };
     midiNotesChoosingPage.crashBellButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.crashBellNoteMenu.getSelectedId()); };
-    midiNotesChoosingPage.crashOpenNoteMenu.onChange = [this] { midiNoteChanged(); };
     midiNotesChoosingPage.crashOpenButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.crashOpenNoteMenu.getSelectedId()); };
+
+    midiNotesChoosingPage.kickNoteMenu.onChange = [this] { midiNoteChanged(); };
+    midiNotesChoosingPage.snareNoteMenu.onChange = [this] { midiNoteChanged(); };
+    midiNotesChoosingPage.snareFlamNoteMenu.onChange = [this] { midiNoteChanged(); };
+    midiNotesChoosingPage.snareRoundNoteMenu.onChange = [this] { midiNoteChanged(); };
+    midiNotesChoosingPage.snareWirelessNoteMenu.onChange = [this] { midiNoteChanged(); };
+    midiNotesChoosingPage.snareWirelessRoundNoteMenu.onChange = [this] { midiNoteChanged(); };
+    midiNotesChoosingPage.tomNoteMenu.onChange = [this] { midiNoteChanged(); };
+    midiNotesChoosingPage.tomFlamNoteMenu.onChange = [this] { midiNoteChanged(); };
+    midiNotesChoosingPage.ftomNoteMenu.onChange = [this] { midiNoteChanged(); };
+    midiNotesChoosingPage.ftomFlamNoteMenu.onChange = [this] { midiNoteChanged(); };
+    midiNotesChoosingPage.tambNoteMenu.onChange = [this] { midiNoteChanged(); };
+    midiNotesChoosingPage.hhClosedNoteMenu.onChange = [this] { midiNoteChanged(); };
+    midiNotesChoosingPage.hhHalfNoteMenu.onChange = [this] { midiNoteChanged(); };
+    midiNotesChoosingPage.hhOpenNoteMenu.onChange = [this] { midiNoteChanged(); };
+    midiNotesChoosingPage.ridePointNoteMenu.onChange = [this] { midiNoteChanged(); };
+    midiNotesChoosingPage.rideBellNoteMenu.onChange = [this] { midiNoteChanged(); };
+    midiNotesChoosingPage.rideOpenNoteMenu.onChange = [this] { midiNoteChanged(); };
+    midiNotesChoosingPage.crashPointNoteMenu.onChange = [this] { midiNoteChanged(); };
+    midiNotesChoosingPage.crashBellNoteMenu.onChange = [this] { midiNoteChanged(); };
+    midiNotesChoosingPage.crashOpenNoteMenu.onChange = [this] { midiNoteChanged(); };
 
     //addAndMakeVisible(&openButton);
     //openButton.onClick = [this] { loadDirectory(); };
@@ -250,6 +258,12 @@ HDrumsAudioProcessorEditor::~HDrumsAudioProcessorEditor()
 {
 
 }
+
+//void HDrumsAudioProcessorEditor::muteStateChanged(int muteButtonId, juce::ToggleButton::ButtonState muteButtonState)
+//{
+//    /*audioProcessor.muteStates[muteButtonId] == muteButtonState;
+//    audioProcessor.muteState == true;*/
+//}
 
 void HDrumsAudioProcessorEditor::setNoteInMidiNotesChoosingPage(juce::ComboBox &menu, std::atomic <float> *note)
 {

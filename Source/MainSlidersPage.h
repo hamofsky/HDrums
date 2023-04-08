@@ -20,6 +20,20 @@ public:
 	float sliderMinValue = -36.0f;
 	float sliderMaxValue = 12.0f;
 
+	juce::ToggleButton closeSolo;
+	juce::ToggleButton OHSolo;
+	juce::ToggleButton roomSolo;
+	juce::ToggleButton bleedSolo;
+	std::vector<juce::ToggleButton*> soloButtons = { &closeSolo, &OHSolo, &roomSolo, &bleedSolo };
+
+	juce::ToggleButton closeMute;
+	juce::ToggleButton OHMute;
+	juce::ToggleButton roomMute;
+	juce::ToggleButton bleedMute;
+	std::vector<juce::ToggleButton*> muteButtons = { &closeMute, &OHMute, &roomMute, &bleedMute };
+	
+	bool muteButtonsToMuteAfterSolo[4] = { false, false, false, false };
+
 	MainSlidersPage()
 	{
 		closeSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
@@ -69,14 +83,89 @@ public:
 		bleedSliderLabel.setText("Bleed", juce::dontSendNotification);
 		bleedSliderLabel.setJustificationType(juce::Justification::centred);
 		bleedSliderLabel.attachToComponent(&bleedSlider, false);
+
+		for (int i = 0; i < soloButtons.size(); i++)
+		{
+			addAndMakeVisible(soloButtons[i]);
+			//soloButtons[i]->onStateChange = [this] { soloStateChanged(i); };
+			addAndMakeVisible(muteButtons[i]);
+		}
+		soloButtons[0]->onClick = [this] { soloStateChanged(0); };
+		soloButtons[1]->onClick = [this] { soloStateChanged(1); };
+		soloButtons[2]->onClick = [this] { soloStateChanged(2); };
+		soloButtons[3]->onClick = [this] { soloStateChanged(3); };
+
+		for (int i = 0; i < muteButtons.size(); i++)
+			muteButtonsToMuteAfterSolo[i] = muteButtons[i]->getToggleState();
+	}
+
+	MainSlidersPage::~MainSlidersPage()
+	{
+		muteButtons.clear();
+		soloButtons.clear();
+		muteButtons.shrink_to_fit();
+		soloButtons.shrink_to_fit();
+	}
+
+	void soloStateChanged(int soloButtonId)
+	{
+		for (int i = 0; i < soloButtons.size(); i++)
+		{
+			// solo clicked, unclick all the other solo buttons
+			if (soloButtons[soloButtonId]->getToggleState() && soloButtons[i]->getToggleState() && i != soloButtonId)
+			{
+				soloButtons[i]->setToggleState(false, false);
+			}
+
+			// solo clicked, mute all yet unmuted buttons except for the one with the same index
+			if (soloButtons[soloButtonId]->getToggleState() && !muteButtons[i]->getToggleState() && i != soloButtonId)
+			{
+				muteButtons[i]->setToggleState(true, true);
+				muteButtonsToMuteAfterSolo[i] = false;
+			}
+			// solo clicked, unmute a button with the same index if was muted before
+			else if (soloButtons[soloButtonId]->getToggleState() && muteButtons[i]->getToggleState() && i == soloButtonId)
+			{
+				muteButtons[i]->setToggleState(false, true);
+				muteButtonsToMuteAfterSolo[i] = true;
+			}
+			// solo clicked, set the buttons that were muted before to remain muted when solo is unchecked
+			else if (soloButtons[soloButtonId]->getToggleState() && muteButtons[i]->getToggleState() && i != soloButtonId)
+			{
+				muteButtonsToMuteAfterSolo[i] = true;
+			}
+			// solo unchecked, unmute all mute buttons that were not muted before solo, except for the one with the same index
+			else if (!soloButtons[soloButtonId]->getToggleState() && !muteButtonsToMuteAfterSolo[i] && i != soloButtonId)
+			{
+				muteButtons[i]->setToggleState(false, true);
+				muteButtonsToMuteAfterSolo[i] = false;
+			}
+			// solo unchecked, mute a mute button with the same index if it was muted before
+			else if (!soloButtons[soloButtonId]->getToggleState() && muteButtonsToMuteAfterSolo[i] && i == soloButtonId)
+			{
+				muteButtons[i]->setToggleState(true, true);
+				muteButtonsToMuteAfterSolo[i] = false;
+			}
+
+		}
 	}
 
 	void MainSlidersPage::resized() override
 	{
-		closeSlider.setBounds(15, 50, 70, getHeight() - 100);
-		OHSlider.setBounds(115, 50, 70, getHeight() - 100);
-		roomSlider.setBounds(215, 50, 70, getHeight() - 100);
-		bleedSlider.setBounds(315, 50, 70, getHeight() - 100);
+		closeSlider.setBounds(15, 40, 70, getHeight() - 110);
+		OHSlider.setBounds(115, 40, 70, getHeight() - 110);
+		roomSlider.setBounds(215, 40, 70, getHeight() - 110);
+		bleedSlider.setBounds(315, 40, 70, getHeight() - 110);
+
+		closeSolo.setBounds(20, getHeight() - 50, 30, 30);
+		OHSolo.setBounds(120, getHeight() - 50, 30, 30);
+		roomSolo.setBounds(220, getHeight() - 50, 30, 30);
+		bleedSolo.setBounds(320, getHeight() - 50, 30, 30);
+
+		closeMute.setBounds(60, getHeight() - 50, 30, 30);
+		OHMute.setBounds(160, getHeight() - 50, 30, 30);
+		roomMute.setBounds(260, getHeight() - 50, 30, 30);
+		bleedMute.setBounds(360, getHeight() - 50, 30, 30);
 	}
 
 private:

@@ -103,8 +103,23 @@
 #define CYMBALS_BLEED_GAIN_ID "cymbals Bleed"
 #define CYMBALS_BLEED_GAIN_NAME "Cymbals Bleed"
 
-#define KICK_CLOSE_MUTE_ID "kick Mute"
-#define KICK_CLOSE_MUTE_NAME "Kick Mute"
+#define CLOSE_SOLO_ID "close Solo"
+#define CLOSE_SOLO_NAME "Close Solo"
+#define OH_SOLO_ID "oh Solo"
+#define OH_SOLO_NAME "OH Solo"
+#define ROOM_SOLO_ID "room Solo"
+#define ROOM_SOLO_NAME "Room Solo"
+#define BLEED_SOLO_ID "bleed Solo"
+#define BLEED_SOLO_NAME "Bleed Solo"
+
+#define CLOSE_MUTE_ID "close Mute"
+#define CLOSE_MUTE_NAME "Close Mute"
+#define OH_MUTE_ID "oh Mute"
+#define OH_MUTE_NAME "OH Mute"
+#define ROOM_MUTE_ID "room Mute"
+#define ROOM_MUTE_NAME "Room Mute"
+#define BLEED_MUTE_ID "bleed Mute"
+#define BLEED_MUTE_NAME "Bleed Mute"
 
 using namespace std;
 
