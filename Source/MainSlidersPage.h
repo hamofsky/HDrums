@@ -2,6 +2,7 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 #include "MyLookAndFeel.h"
+#include "MuteAndSoloButtonsFunctionality.h"
 
 #pragma once
 
@@ -20,6 +21,8 @@ public:
 	float sliderMinValue = -36.0f;
 	float sliderMaxValue = 12.0f;
 
+	MuteAndSoloButtonsFunctionality muteAndSoloButtonsFunctionality;
+
 	juce::ToggleButton closeSolo;
 	juce::ToggleButton OHSolo;
 	juce::ToggleButton roomSolo;
@@ -32,7 +35,8 @@ public:
 	juce::ToggleButton bleedMute;
 	std::vector<juce::ToggleButton*> muteButtons = { &closeMute, &OHMute, &roomMute, &bleedMute };
 	
-	bool muteButtonsToMuteAfterSolo[4] = { false, false, false, false };
+	bool muteStateBeforeFirstSolo[4] = { false, false, false, false };
+	bool soloAlreadyEngaged = false;
 
 	MainSlidersPage()
 	{
@@ -87,16 +91,22 @@ public:
 		for (int i = 0; i < soloButtons.size(); i++)
 		{
 			addAndMakeVisible(soloButtons[i]);
+			soloButtons[i]->setToggleState(soloButtons[i]->getToggleState(), true);
 			//soloButtons[i]->onStateChange = [this] { soloStateChanged(i); };
 			addAndMakeVisible(muteButtons[i]);
-		}
-		soloButtons[0]->onClick = [this] { soloStateChanged(0); };
-		soloButtons[1]->onClick = [this] { soloStateChanged(1); };
-		soloButtons[2]->onClick = [this] { soloStateChanged(2); };
-		soloButtons[3]->onClick = [this] { soloStateChanged(3); };
+			muteButtons[i]->setToggleState(muteButtons[i]->getToggleState(), true);
 
-		for (int i = 0; i < muteButtons.size(); i++)
-			muteButtonsToMuteAfterSolo[i] = muteButtons[i]->getToggleState();
+			muteStateBeforeFirstSolo[i] = muteButtons[i]->getToggleState();
+
+			if (soloButtons[i]->getToggleState())
+			{
+				soloAlreadyEngaged = true;
+			}
+		}
+		soloButtons[0]->onClick = [this] { muteAndSoloButtonsFunctionality.soloStateChanged(0, soloButtons, muteButtons, muteStateBeforeFirstSolo, soloAlreadyEngaged); };
+		soloButtons[1]->onClick = [this] { muteAndSoloButtonsFunctionality.soloStateChanged(1, soloButtons, muteButtons, muteStateBeforeFirstSolo, soloAlreadyEngaged); };
+		soloButtons[2]->onClick = [this] { muteAndSoloButtonsFunctionality.soloStateChanged(2, soloButtons, muteButtons, muteStateBeforeFirstSolo, soloAlreadyEngaged); };
+		soloButtons[3]->onClick = [this] { muteAndSoloButtonsFunctionality.soloStateChanged(3, soloButtons, muteButtons, muteStateBeforeFirstSolo, soloAlreadyEngaged); };
 	}
 
 	MainSlidersPage::~MainSlidersPage()
@@ -105,49 +115,6 @@ public:
 		soloButtons.clear();
 		muteButtons.shrink_to_fit();
 		soloButtons.shrink_to_fit();
-	}
-
-	void soloStateChanged(int soloButtonId)
-	{
-		for (int i = 0; i < soloButtons.size(); i++)
-		{
-			// solo clicked, unclick all the other solo buttons
-			if (soloButtons[soloButtonId]->getToggleState() && soloButtons[i]->getToggleState() && i != soloButtonId)
-			{
-				soloButtons[i]->setToggleState(false, false);
-			}
-
-			// solo clicked, mute all yet unmuted buttons except for the one with the same index
-			if (soloButtons[soloButtonId]->getToggleState() && !muteButtons[i]->getToggleState() && i != soloButtonId)
-			{
-				muteButtons[i]->setToggleState(true, true);
-				muteButtonsToMuteAfterSolo[i] = false;
-			}
-			// solo clicked, unmute a button with the same index if was muted before
-			else if (soloButtons[soloButtonId]->getToggleState() && muteButtons[i]->getToggleState() && i == soloButtonId)
-			{
-				muteButtons[i]->setToggleState(false, true);
-				muteButtonsToMuteAfterSolo[i] = true;
-			}
-			// solo clicked, set the buttons that were muted before to remain muted when solo is unchecked
-			else if (soloButtons[soloButtonId]->getToggleState() && muteButtons[i]->getToggleState() && i != soloButtonId)
-			{
-				muteButtonsToMuteAfterSolo[i] = true;
-			}
-			// solo unchecked, unmute all mute buttons that were not muted before solo, except for the one with the same index
-			else if (!soloButtons[soloButtonId]->getToggleState() && !muteButtonsToMuteAfterSolo[i] && i != soloButtonId)
-			{
-				muteButtons[i]->setToggleState(false, true);
-				muteButtonsToMuteAfterSolo[i] = false;
-			}
-			// solo unchecked, mute a mute button with the same index if it was muted before
-			else if (!soloButtons[soloButtonId]->getToggleState() && muteButtonsToMuteAfterSolo[i] && i == soloButtonId)
-			{
-				muteButtons[i]->setToggleState(true, true);
-				muteButtonsToMuteAfterSolo[i] = false;
-			}
-
-		}
 	}
 
 	void MainSlidersPage::resized() override
