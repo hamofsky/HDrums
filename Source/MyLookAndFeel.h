@@ -5,11 +5,11 @@ class MyLookAndFeel : public juce::LookAndFeel_V4
 	public:
 		MyLookAndFeel()
 		{
-			setColour(juce::Slider::thumbColourId, juce::Colours::red);
-			
+			//setColour(juce::Slider::thumbColourId, juce::Colours::red);
 		}
 
-        static void drawRectangle(juce::Graphics& g, float x, float y, float width, float height, const juce::Colour& fill, const juce::Colour& outline) noexcept
+        static void drawRectangle(juce::Graphics& g, float x, float y, float width, float height,
+            const juce::Colour& fill, const juce::Colour& outline) noexcept
         {
             juce::Path p;
             p.addRectangle(juce::Rectangle<float> (x, y, width, height));
@@ -82,4 +82,48 @@ class MyLookAndFeel : public juce::LookAndFeel_V4
         {
             return 30;
         }
+
+        void drawTickBox(juce::Graphics& g, juce::Component& component, float x, float y, float w, float h,
+            bool ticked, bool isEnabled, bool shouldDrawButtonASHighlighted, bool shouldDrawButtonAsDown)
+        {
+            juce::Rectangle<float> tickBounds(x, y, w, h);
+            float cornerSize = 3.0f;
+
+            g.setColour(component.findColour(juce::ToggleButton::tickDisabledColourId));
+            g.drawRoundedRectangle(tickBounds, cornerSize, 2.0f);
+            g.setColour(juce::Colours::white);
+            g.drawText("M", tickBounds, juce::Justification::centred, true);
+
+            if (ticked)
+            {
+                g.setColour(juce::Colours::red.withAlpha(0.6f));
+                g.fillRoundedRectangle(tickBounds, cornerSize);
+                g.setColour(juce::Colours::white);
+                g.drawText("M", tickBounds, juce::Justification::centred, true);
+            }
+        }
+};
+
+class MyLookAndFeelSolo : public juce::LookAndFeel_V4
+{
+public:
+    void drawTickBox(juce::Graphics& g, juce::Component& component, float x, float y, float w, float h,
+        bool ticked, bool isEnabled, bool shouldDrawButtonASHighlighted, bool shouldDrawButtonAsDown)
+    {
+        juce::Rectangle<float> tickBounds(x, y, w, h);
+        float cornerSize = 1.0f;
+
+        g.setColour(component.findColour(juce::ToggleButton::tickDisabledColourId));
+        g.drawRoundedRectangle(tickBounds, cornerSize, 2.0f);
+        g.setColour(juce::Colours::white);
+        g.drawText("S", tickBounds, juce::Justification::centred, true);
+
+        if (ticked)
+        {
+            g.setColour(juce::Colours::yellow.withAlpha(0.7f));
+            g.fillRoundedRectangle(tickBounds, cornerSize);
+            g.setColour(juce::Colours::black);
+            g.drawText("S", tickBounds, juce::Justification::centred, true);
+        }
+    }
 };

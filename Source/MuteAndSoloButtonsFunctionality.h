@@ -3,6 +3,7 @@
 class MuteAndSoloButtonsFunctionality
 {
 public:
+
 	void soloStateChanged(int soloButtonId, std::vector<juce::ToggleButton*> soloButtons,
 		std::vector<juce::ToggleButton*> muteButtons, bool muteStateBeforeFirstSolo[4], bool soloAlreadyEngaged)
 	{

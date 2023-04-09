@@ -10,6 +10,7 @@ class MainSlidersPage : public juce::Component
 {
 public:
 	MyLookAndFeel myLookAndFeel;
+	MyLookAndFeelSolo myLookAndFeelSolo;
 	juce::Slider closeSlider;
 	juce::Slider OHSlider;
 	juce::Slider roomSlider;
@@ -91,9 +92,11 @@ public:
 		for (int i = 0; i < soloButtons.size(); i++)
 		{
 			addAndMakeVisible(soloButtons[i]);
+			soloButtons[i]->setLookAndFeel(&myLookAndFeelSolo);
 			soloButtons[i]->setToggleState(soloButtons[i]->getToggleState(), true);
 			//soloButtons[i]->onStateChange = [this] { soloStateChanged(i); };
 			addAndMakeVisible(muteButtons[i]);
+			muteButtons[i]->setLookAndFeel(&myLookAndFeel);
 			muteButtons[i]->setToggleState(muteButtons[i]->getToggleState(), true);
 
 			muteStateBeforeFirstSolo[i] = muteButtons[i]->getToggleState();
@@ -119,20 +122,21 @@ public:
 
 	void MainSlidersPage::resized() override
 	{
-		closeSlider.setBounds(15, 40, 70, getHeight() - 110);
-		OHSlider.setBounds(115, 40, 70, getHeight() - 110);
-		roomSlider.setBounds(215, 40, 70, getHeight() - 110);
-		bleedSlider.setBounds(315, 40, 70, getHeight() - 110);
+		closeSlider.setBounds(15, 40, 70, getHeight() - 104);
+		OHSlider.setBounds(115, 40, 70, getHeight() - 104);
+		roomSlider.setBounds(215, 40, 70, getHeight() - 104);
+		bleedSlider.setBounds(315, 40, 70, getHeight() - 104);
 
-		closeSolo.setBounds(20, getHeight() - 50, 30, 30);
-		OHSolo.setBounds(120, getHeight() - 50, 30, 30);
-		roomSolo.setBounds(220, getHeight() - 50, 30, 30);
-		bleedSolo.setBounds(320, getHeight() - 50, 30, 30);
+		int buttonsSize = 50;
 
-		closeMute.setBounds(60, getHeight() - 50, 30, 30);
-		OHMute.setBounds(160, getHeight() - 50, 30, 30);
-		roomMute.setBounds(260, getHeight() - 50, 30, 30);
-		bleedMute.setBounds(360, getHeight() - 50, 30, 30);
+		closeSolo.setBounds(20, getHeight() - 60, buttonsSize, buttonsSize);
+		OHSolo.setBounds(120, getHeight() - 60, buttonsSize, buttonsSize);
+		roomSolo.setBounds(220, getHeight() - 60, buttonsSize, buttonsSize);
+		bleedSolo.setBounds(320, getHeight() - 60, buttonsSize, buttonsSize);
+		closeMute.setBounds(57, getHeight() - 60, buttonsSize, buttonsSize);
+		OHMute.setBounds(157, getHeight() - 60, buttonsSize, buttonsSize);
+		roomMute.setBounds(257, getHeight() - 60, buttonsSize, buttonsSize);
+		bleedMute.setBounds(357, getHeight() - 60, buttonsSize, buttonsSize);
 	}
 
 	void soloStateChanged(int soloButtonId)
