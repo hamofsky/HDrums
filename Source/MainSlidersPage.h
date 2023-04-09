@@ -103,10 +103,10 @@ public:
 				soloAlreadyEngaged = true;
 			}
 		}
-		soloButtons[0]->onClick = [this] { muteAndSoloButtonsFunctionality.soloStateChanged(0, soloButtons, muteButtons, muteStateBeforeFirstSolo, soloAlreadyEngaged); };
-		soloButtons[1]->onClick = [this] { muteAndSoloButtonsFunctionality.soloStateChanged(1, soloButtons, muteButtons, muteStateBeforeFirstSolo, soloAlreadyEngaged); };
-		soloButtons[2]->onClick = [this] { muteAndSoloButtonsFunctionality.soloStateChanged(2, soloButtons, muteButtons, muteStateBeforeFirstSolo, soloAlreadyEngaged); };
-		soloButtons[3]->onClick = [this] { muteAndSoloButtonsFunctionality.soloStateChanged(3, soloButtons, muteButtons, muteStateBeforeFirstSolo, soloAlreadyEngaged); };
+		soloButtons[0]->onClick = [this] { soloStateChanged(0); };
+		soloButtons[1]->onClick = [this] { soloStateChanged(1); };
+		soloButtons[2]->onClick = [this] { soloStateChanged(2); };
+		soloButtons[3]->onClick = [this] { soloStateChanged(3); };
 	}
 
 	MainSlidersPage::~MainSlidersPage()
@@ -133,6 +133,29 @@ public:
 		OHMute.setBounds(160, getHeight() - 50, 30, 30);
 		roomMute.setBounds(260, getHeight() - 50, 30, 30);
 		bleedMute.setBounds(360, getHeight() - 50, 30, 30);
+	}
+
+	void soloStateChanged(int soloButtonId)
+	{
+		// solo clicked for the first time
+		if (soloButtons[soloButtonId]->getToggleState() && !soloAlreadyEngaged)
+		{
+			muteAndSoloButtonsFunctionality.muteButtonsWhenSoloFirstTime(soloButtonId, soloButtons, muteButtons, muteStateBeforeFirstSolo);
+			soloAlreadyEngaged = true;
+			muteAndSoloButtonsFunctionality.unsoloButtonsWhenSolo(soloButtonId, soloButtons);
+		}
+		// solo clicked for the n-th time
+		else if (soloButtons[soloButtonId]->getToggleState() && soloAlreadyEngaged)
+		{
+			muteAndSoloButtonsFunctionality.muteButtonsWhenSoloAgain(soloButtonId, soloButtons, muteButtons, muteStateBeforeFirstSolo);
+			muteAndSoloButtonsFunctionality.unsoloButtonsWhenSolo(soloButtonId, soloButtons);
+		}
+		// solo unclicked
+		else if (!soloButtons[soloButtonId]->getToggleState())
+		{
+			muteAndSoloButtonsFunctionality.unmuteButtonsWhenSolo(muteButtons, muteStateBeforeFirstSolo);
+			soloAlreadyEngaged = false;
+		}
 	}
 
 private:
