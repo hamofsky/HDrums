@@ -2,6 +2,7 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 #include "MyLookAndFeel.h"
+#include "MuteAndSoloButtonsFunctionality.h"
 
 #pragma once
 
@@ -9,6 +10,7 @@ class CymbalsSlidersPage : public juce::Component
 {
 public:
 	MyLookAndFeel myLookAndFeel;
+	MyLookAndFeelSolo myLookAndFeelSolo;
 	juce::Slider hhCloseSlider;
 	juce::Slider cymbalsOHSlider;
 	juce::Slider cymbalsRoomSlider;
@@ -19,6 +21,8 @@ public:
 	juce::Label cymbalsBleedSliderLabel;
 	float sliderMinValue = -36.0f;
 	float sliderMaxValue = 12.0f;
+
+	MuteAndSoloButtonsFunctionality muteAndSoloButtonsFunctionality;
 
 	CymbalsSlidersPage()
 	{

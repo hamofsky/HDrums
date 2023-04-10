@@ -2,6 +2,7 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 #include "MyLookAndFeel.h"
+#include "MuteAndSoloButtonsFunctionality.h"
 
 #pragma once
 
@@ -9,6 +10,7 @@ class KickSlidersPage : public juce::Component
 {
 public:
 	MyLookAndFeel myLookAndFeel;
+	MyLookAndFeelSolo myLookAndFeelSolo;
 	juce::Slider kickCloseSlider;
 	juce::Label kickCloseSliderLabel;
 	juce::Slider kickOHSlider;
@@ -19,6 +21,23 @@ public:
 	juce::Label kickBleedSliderLabel;
 	float sliderMinValue = -36.0f;
 	float sliderMaxValue = 12.0f;
+
+	MuteAndSoloButtonsFunctionality muteAndSoloButtonsFunctionality;
+
+	juce::ToggleButton kickCloseSolo;
+	juce::ToggleButton kickOHSolo;
+	juce::ToggleButton kickRoomSolo;
+	juce::ToggleButton kickBleedSolo;
+	std::vector<juce::ToggleButton*> kickSoloButtons = { &kickCloseSolo, &kickOHSolo, &kickRoomSolo, &kickBleedSolo };
+
+	juce::ToggleButton kickCloseMute;
+	juce::ToggleButton kickOHMute;
+	juce::ToggleButton kickRoomMute;
+	juce::ToggleButton kickBleedMute;
+	std::vector<juce::ToggleButton*> kickMuteButtons = { &kickCloseMute, &kickOHMute, &kickRoomMute, &kickBleedMute };
+
+	bool muteStateBeforeFirstSolo[4] = { false, false, false, false };
+	bool soloAlreadyEngaged = false;
 
 	KickSlidersPage()
 	{
@@ -69,14 +88,44 @@ public:
 		kickBleedSliderLabel.setText("Bleed", juce::dontSendNotification);
 		kickBleedSliderLabel.setJustificationType(juce::Justification::centred);
 		kickBleedSliderLabel.attachToComponent(&kickBleedSlider, false);
+
+		for (int i = 0; i < kickSoloButtons.size(); i++)
+		{
+			addAndMakeVisible(kickSoloButtons[i]);
+			kickSoloButtons[i]->setLookAndFeel(&myLookAndFeelSolo);
+			kickSoloButtons[i]->setToggleState(kickSoloButtons[i]->getToggleState(), true);
+
+			addAndMakeVisible(kickMuteButtons[i]);
+			kickMuteButtons[i]->setLookAndFeel(&myLookAndFeel);
+			kickMuteButtons[i]->setToggleState(kickMuteButtons[i]->getToggleState(), true);
+		}
+	}
+
+	KickSlidersPage::~KickSlidersPage()
+	{
+		kickMuteButtons.clear();
+		kickSoloButtons.clear();
+		kickMuteButtons.shrink_to_fit();
+		kickSoloButtons.shrink_to_fit();
 	}
 
 	void KickSlidersPage::resized() override
 	{
-		kickCloseSlider.setBounds(15, 50, 70, getHeight() - 100);
-		kickOHSlider.setBounds(115, 50, 70, getHeight() - 100);
-		kickRoomSlider.setBounds(215, 50, 70, getHeight() - 100);
-		kickBleedSlider.setBounds(315, 50, 70, getHeight() - 100);
+		kickCloseSlider.setBounds(15, 40, 70, getHeight() - 104);
+		kickOHSlider.setBounds(115, 40, 70, getHeight() - 104);
+		kickRoomSlider.setBounds(215, 40, 70, getHeight() - 104);
+		kickBleedSlider.setBounds(315, 40, 70, getHeight() - 104);
+
+		int buttonsSize = 50;
+
+		kickCloseSolo.setBounds(20, getHeight() - 60, buttonsSize, buttonsSize);
+		kickOHSolo.setBounds(120, getHeight() - 60, buttonsSize, buttonsSize);
+		kickRoomSolo.setBounds(220, getHeight() - 60, buttonsSize, buttonsSize);
+		kickBleedSolo.setBounds(320, getHeight() - 60, buttonsSize, buttonsSize);
+		kickCloseMute.setBounds(57, getHeight() - 60, buttonsSize, buttonsSize);
+		kickOHMute.setBounds(157, getHeight() - 60, buttonsSize, buttonsSize);
+		kickRoomMute.setBounds(257, getHeight() - 60, buttonsSize, buttonsSize);
+		kickBleedMute.setBounds(357, getHeight() - 60, buttonsSize, buttonsSize);
 	}
 
 private:

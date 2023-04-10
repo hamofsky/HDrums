@@ -31,7 +31,15 @@ public:
     CymbalsSlidersPage cymbalsSlidersPage;
     MidiNotesChoosingPage midiNotesChoosingPage;
 
-    
+    void soloStateChanged(int soloButtonId);
+
+    MuteAndSoloButtonsFunctionality muteAndSoloButtonsFunctionality;
+    std::vector<juce::ToggleButton*> soloButtons = { &mainSlidersPage.closeSolo, &mainSlidersPage.OHSolo, &mainSlidersPage.roomSolo, &mainSlidersPage.bleedSolo,
+                                    &kickSlidersPage.kickCloseSolo,& kickSlidersPage.kickOHSolo,& kickSlidersPage.kickRoomSolo,& kickSlidersPage.kickBleedSolo };
+    std::vector<juce::ToggleButton*> muteButtons = { &mainSlidersPage.closeMute, &mainSlidersPage.OHMute, &mainSlidersPage.roomMute, &mainSlidersPage.bleedMute,
+                                    & kickSlidersPage.kickCloseMute,& kickSlidersPage.kickOHMute,& kickSlidersPage.kickRoomMute,& kickSlidersPage.kickBleedMute };
+    bool muteStateBeforeFirstSolo[8] = { false, false, false, false, false, false, false, false };
+    bool soloAlreadyEngaged = false;
 
     juce::Font textFont{ 12.0f };
     juce::ComboBox samplePackMenu;

@@ -121,6 +121,46 @@
 #define BLEED_MUTE_ID "bleed Mute"
 #define BLEED_MUTE_NAME "Bleed Mute"
 
+#define KICK_CLOSE_MUTE_ID "kick Close Mute"
+#define KICK_CLOSE_MUTE_NAME "Kick Close Mute"
+#define KICK_OH_MUTE_ID "kick OH Mute"
+#define KICK_OH_MUTE_NAME "Kick OH Mute"
+#define KICK_ROOM_MUTE_ID "kick Room Mute"
+#define KICK_ROOM_MUTE_NAME "Kick Room Mute"
+#define KICK_BLEED_MUTE_ID "kick Bleed Mute"
+#define KICK_BLEED_MUTE_NAME "Kick Bleed Mute"
+
+#define SNARE_TOP_MUTE_ID "snare Top Close Mute"
+#define SNARE_TOP_MUTE_NAME "Snare Top Close Mute"
+#define SNARE_BOT_MUTE_ID "snare Bottom Close Mute"
+#define SNARE_BOT_MUTE_NAME "Snare Bottom Close Mute"
+#define SNARE_OH_MUTE_ID "snare OH Mute"
+#define SNARE_OH_MUTE_NAME "Snare OH Mute"
+#define SNARE_ROOM_MUTE_ID "snare Room Mute"
+#define SNARE_ROOM_MUTE_NAME "Snare Room Mute"
+#define SNARE_BLEED_MUTE_ID "snare Bleed Mute"
+#define SNARE_BLEED_MUTE_NAME "Snare Bleed Mute"
+
+#define TOM_CLOSE_MUTE_ID "tom Close Mute"
+#define TOM_CLOSE_MUTE_NAME "Tom Close Mute"
+#define FTOM_CLOSE_MUTE_ID "ftom Close Mute"
+#define FTOM_CLOSE_MUTE_NAME "FTom Close Mute"
+#define TOMS_OH_MUTE_ID "toms OH Mute"
+#define TOMS_OH_MUTE_NAME "Toms OH Mute"
+#define TOMS_ROOM_MUTE_ID "Toms Room Mute"
+#define TOMS_ROOM_MUTE_NAME "Toms Room Mute"
+#define TOMS_BLEED_MUTE_ID "Toms Bleed Mute"
+#define TOMS_BLEED_MUTE_NAME "Toms Bleed Mute"
+
+#define HH_CLOSE_MUTE_ID "hh Close Mute"
+#define HH_CLOSE_MUTE_NAME "HH Close Mute"
+#define CYMBALS_OH_MUTE_ID "cymbals OH Mute"
+#define CYMBALS_OH_MUTE_NAME "Cymbals OH Mute"
+#define CYMBALS_ROOM_MUTE_ID "cymbals Room Mute"
+#define CYMBALS_ROOM_MUTE_NAME "Cymbals Room Mute"
+#define CYMBALS_BLEED_MUTE_ID "cymbals Bleed Mute"
+#define CYMBALS_BLEED_MUTE_NAME "Cymbals Bleed Mute"
+
 using namespace std;
 
 class HDrumsAudioProcessor  : public juce::AudioProcessor

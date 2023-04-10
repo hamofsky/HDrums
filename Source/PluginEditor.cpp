@@ -9,6 +9,7 @@
 #include "CymbalsSlidersPage.h"
 #include "MidiNoteChoosingPage.h"
 #include "MyLookAndFeel.h"
+#include "MuteAndSoloButtonsFunctionality.h"
 
 HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     : AudioProcessorEditor(&p), audioProcessor(p), myTabbedComponent(juce::TabbedButtonBar::Orientation::TabsAtTop),
@@ -252,6 +253,25 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.crashBellNoteMenu, crashBellNoteMenuValue);
     setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.crashOpenNoteMenu, crashOpenNoteMenuValue);
 
+    for (int i = 0; i < soloButtons.size(); i++)
+    {
+        muteStateBeforeFirstSolo[i] = muteButtons[i]->getToggleState();
+        
+        if (soloButtons[i]->getToggleState())
+        {
+            soloAlreadyEngaged = true;
+        }
+        //soloButtons[i]->onClick = [this] { soloStateChanged(i); };
+    }
+    soloButtons[0]->onClick = [this] { soloStateChanged(0); };
+    soloButtons[1]->onClick = [this] { soloStateChanged(1); };
+    soloButtons[2]->onClick = [this] { soloStateChanged(2); };
+    soloButtons[3]->onClick = [this] { soloStateChanged(3); };
+    soloButtons[4]->onClick = [this] { soloStateChanged(4); };
+    soloButtons[5]->onClick = [this] { soloStateChanged(5); };
+    soloButtons[6]->onClick = [this] { soloStateChanged(6); };
+    soloButtons[7]->onClick = [this] { soloStateChanged(7); };
+
 }
 
 HDrumsAudioProcessorEditor::~HDrumsAudioProcessorEditor()
@@ -259,11 +279,28 @@ HDrumsAudioProcessorEditor::~HDrumsAudioProcessorEditor()
 
 }
 
-//void HDrumsAudioProcessorEditor::muteStateChanged(int muteButtonId, juce::ToggleButton::ButtonState muteButtonState)
-//{
-//    /*audioProcessor.muteStates[muteButtonId] == muteButtonState;
-//    audioProcessor.muteState == true;*/
-//}
+void HDrumsAudioProcessorEditor::soloStateChanged(int soloButtonId)
+{
+    // solo clicked for the first time
+    if (soloButtons[soloButtonId]->getToggleState() && !soloAlreadyEngaged)
+    {
+        muteAndSoloButtonsFunctionality.muteButtonsWhenSoloFirstTime(soloButtonId, soloButtons, muteButtons, muteStateBeforeFirstSolo);
+        soloAlreadyEngaged = true;
+        muteAndSoloButtonsFunctionality.unsoloButtonsWhenSolo(soloButtonId, soloButtons);
+    }
+    // solo clicked for the n-th time
+    else if (soloButtons[soloButtonId]->getToggleState() && soloAlreadyEngaged)
+    {
+        muteAndSoloButtonsFunctionality.muteButtonsWhenSoloAgain(soloButtonId, soloButtons, muteButtons, muteStateBeforeFirstSolo);
+        muteAndSoloButtonsFunctionality.unsoloButtonsWhenSolo(soloButtonId, soloButtons);
+    }
+    // solo unclicked
+    else if (!soloButtons[soloButtonId]->getToggleState())
+    {
+        muteAndSoloButtonsFunctionality.unmuteButtonsWhenSolo(muteButtons, muteStateBeforeFirstSolo);
+        soloAlreadyEngaged = false;
+    }
+}
 
 void HDrumsAudioProcessorEditor::setNoteInMidiNotesChoosingPage(juce::ComboBox &menu, std::atomic <float> *note)
 {
