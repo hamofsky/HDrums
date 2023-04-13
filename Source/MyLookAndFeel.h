@@ -83,14 +83,29 @@ class MyLookAndFeel : public juce::LookAndFeel_V4
             return 30;
         }
 
+        void drawToggleButton(juce::Graphics& g, juce::ToggleButton& button, bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown)
+        {
+            auto fontSize = juce::jmin(15.0f, (float)button.getHeight() * 0.8f);
+
+            drawTickBox(g, button, 0.0f, 0.0f, button.getWidth(), button.getHeight(),
+                button.getToggleState(), button.isEnabled(),
+                shouldDrawButtonAsHighlighted, shouldDrawButtonAsDown);
+
+            g.setColour(button.findColour(juce::ToggleButton::textColourId));
+            g.setFont(fontSize);
+
+            if (!button.isEnabled())
+                g.setOpacity(0.5f);
+        }
+
         void drawTickBox(juce::Graphics& g, juce::Component& component, float x, float y, float w, float h,
             bool ticked, bool isEnabled, bool shouldDrawButtonASHighlighted, bool shouldDrawButtonAsDown)
         {
             juce::Rectangle<float> tickBounds(x, y, w, h);
-            float cornerSize = 3.0f;
+            float cornerSize = 0.1f;
 
             g.setColour(component.findColour(juce::ToggleButton::tickDisabledColourId));
-            g.drawRoundedRectangle(tickBounds, cornerSize, 2.0f);
+            g.drawRoundedRectangle(tickBounds, cornerSize, 1.0f);
             g.setColour(juce::Colours::white);
             g.drawText("M", tickBounds, juce::Justification::centred, true);
 
@@ -107,14 +122,29 @@ class MyLookAndFeel : public juce::LookAndFeel_V4
 class MyLookAndFeelSolo : public juce::LookAndFeel_V4
 {
 public:
+    void drawToggleButton(juce::Graphics& g, juce::ToggleButton& button, bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown)
+    {
+        auto fontSize = juce::jmin(15.0f, (float)button.getHeight() * 0.8f);
+
+        drawTickBox(g, button, 0.0f, 0.0f, button.getWidth(), button.getHeight(),
+            button.getToggleState(), button.isEnabled(),
+            shouldDrawButtonAsHighlighted, shouldDrawButtonAsDown);
+
+        g.setColour(button.findColour(juce::ToggleButton::textColourId));
+        g.setFont(fontSize);
+
+        if (!button.isEnabled())
+            g.setOpacity(0.5f);
+    }
+
     void drawTickBox(juce::Graphics& g, juce::Component& component, float x, float y, float w, float h,
         bool ticked, bool isEnabled, bool shouldDrawButtonASHighlighted, bool shouldDrawButtonAsDown)
     {
         juce::Rectangle<float> tickBounds(x, y, w, h);
-        float cornerSize = 1.0f;
+        float cornerSize = 0.1f;
 
         g.setColour(component.findColour(juce::ToggleButton::tickDisabledColourId));
-        g.drawRoundedRectangle(tickBounds, cornerSize, 2.0f);
+        g.drawRoundedRectangle(tickBounds, cornerSize, 1.0f);
         g.setColour(juce::Colours::white);
         g.drawText("S", tickBounds, juce::Justification::centred, true);
 

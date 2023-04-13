@@ -24,6 +24,18 @@ public:
 
 	MuteAndSoloButtonsFunctionality muteAndSoloButtonsFunctionality;
 
+	juce::ToggleButton hhCloseSolo;
+	juce::ToggleButton cymbalsOHSolo;
+	juce::ToggleButton cymbalsRoomSolo;
+	juce::ToggleButton cymbalsBleedSolo;
+	std::vector<juce::ToggleButton*> cymbalsSoloButtons = { &hhCloseSolo, &cymbalsOHSolo, &cymbalsRoomSolo, &cymbalsBleedSolo };
+
+	juce::ToggleButton hhCloseMute;
+	juce::ToggleButton cymbalsOHMute;
+	juce::ToggleButton cymbalsRoomMute;
+	juce::ToggleButton cymbalsBleedMute;
+	std::vector<juce::ToggleButton*> cymbalsMuteButtons = { &hhCloseMute, &cymbalsOHMute, &cymbalsRoomMute, &cymbalsBleedMute };
+
 	CymbalsSlidersPage()
 	{
 		hhCloseSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
@@ -73,14 +85,47 @@ public:
 		cymbalsBleedSliderLabel.setText("Bleed", juce::dontSendNotification);
 		cymbalsBleedSliderLabel.setJustificationType(juce::Justification::centred);
 		cymbalsBleedSliderLabel.attachToComponent(&cymbalsBleedSlider, false);
+
+		for (int i = 0; i < cymbalsSoloButtons.size(); i++)
+		{
+			addAndMakeVisible(cymbalsSoloButtons[i]);
+			cymbalsSoloButtons[i]->setLookAndFeel(&myLookAndFeelSolo);
+			cymbalsSoloButtons[i]->setToggleState(cymbalsSoloButtons[i]->getToggleState(), true);
+
+			addAndMakeVisible(cymbalsMuteButtons[i]);
+			cymbalsMuteButtons[i]->setLookAndFeel(&myLookAndFeel);
+			cymbalsMuteButtons[i]->setToggleState(cymbalsMuteButtons[i]->getToggleState(), true);
+		}
+	}
+
+	CymbalsSlidersPage::~CymbalsSlidersPage()
+	{
+		cymbalsMuteButtons.clear();
+		cymbalsSoloButtons.clear();
+		cymbalsMuteButtons.shrink_to_fit();
+		cymbalsSoloButtons.shrink_to_fit();
 	}
 
 	void CymbalsSlidersPage::resized() override
 	{
-		hhCloseSlider.setBounds(15, 50, 70, getHeight() - 100);
-		cymbalsOHSlider.setBounds(115, 50, 70, getHeight() - 100);
-		cymbalsRoomSlider.setBounds(215, 50, 70, getHeight() - 100);
-		cymbalsBleedSlider.setBounds(315, 50, 70, getHeight() - 100);
+		int sliderWidth = 70;
+		int sliderHeight = getHeight() - 90;
+		hhCloseSlider.setBounds(15, 40, sliderWidth, sliderHeight);
+		cymbalsOHSlider.setBounds(115, 40, sliderWidth, sliderHeight);
+		cymbalsRoomSlider.setBounds(215, 40, sliderWidth, sliderHeight);
+		cymbalsBleedSlider.setBounds(315, 40, sliderWidth, sliderHeight);
+
+		int buttonsSize = 32;
+		int buttonsPositionY = sliderHeight + 45;
+		hhCloseSolo.setBounds(15, buttonsPositionY, buttonsSize, buttonsSize);
+		cymbalsOHSolo.setBounds(115, buttonsPositionY, buttonsSize, buttonsSize);
+		cymbalsRoomSolo.setBounds(215, buttonsPositionY, buttonsSize, buttonsSize);
+		cymbalsBleedSolo.setBounds(315, buttonsPositionY, buttonsSize, buttonsSize);
+
+		hhCloseMute.setBounds(53, buttonsPositionY, buttonsSize, buttonsSize);
+		cymbalsOHMute.setBounds(153, buttonsPositionY, buttonsSize, buttonsSize);
+		cymbalsRoomMute.setBounds(253, buttonsPositionY, buttonsSize, buttonsSize);
+		cymbalsBleedMute.setBounds(353, buttonsPositionY, buttonsSize, buttonsSize);
 	}
 
 private:

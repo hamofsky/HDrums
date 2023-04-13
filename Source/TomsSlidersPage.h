@@ -26,6 +26,20 @@ public:
 
 	MuteAndSoloButtonsFunctionality muteAndSoloButtonsFunctionality;
 
+	juce::ToggleButton tomCloseSolo;
+	juce::ToggleButton ftomCloseSolo;
+	juce::ToggleButton tomsOHSolo;
+	juce::ToggleButton tomsRoomSolo;
+	juce::ToggleButton tomsBleedSolo;
+	std::vector<juce::ToggleButton*> tomsSoloButtons = { &tomCloseSolo, &ftomCloseSolo, &tomsOHSolo, &tomsRoomSolo, &tomsBleedSolo };
+
+	juce::ToggleButton tomCloseMute;
+	juce::ToggleButton ftomCloseMute;
+	juce::ToggleButton tomsOHMute;
+	juce::ToggleButton tomsRoomMute;
+	juce::ToggleButton tomsBleedMute;
+	std::vector<juce::ToggleButton*> tomsMuteButtons = { &tomCloseMute, &ftomCloseMute, &tomsOHMute, &tomsRoomMute, &tomsBleedMute };
+
 	TomsSlidersPage()
 	{
 		tomCloseSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
@@ -87,15 +101,50 @@ public:
 		tomsBleedSliderLabel.setText("Bleed", juce::dontSendNotification);
 		tomsBleedSliderLabel.setJustificationType(juce::Justification::centred);
 		tomsBleedSliderLabel.attachToComponent(&tomsBleedSlider, false);
+
+		for (int i = 0; i < tomsSoloButtons.size(); i++)
+		{
+			addAndMakeVisible(tomsSoloButtons[i]);
+			tomsSoloButtons[i]->setLookAndFeel(&myLookAndFeelSolo);
+			tomsSoloButtons[i]->setToggleState(tomsSoloButtons[i]->getToggleState(), true);
+
+			addAndMakeVisible(tomsMuteButtons[i]);
+			tomsMuteButtons[i]->setLookAndFeel(&myLookAndFeel);
+			tomsMuteButtons[i]->setToggleState(tomsMuteButtons[i]->getToggleState(), true);
+		}
+	}
+
+	TomsSlidersPage::~TomsSlidersPage()
+	{
+		tomsMuteButtons.clear();
+		tomsSoloButtons.clear();
+		tomsMuteButtons.shrink_to_fit();
+		tomsSoloButtons.shrink_to_fit();
 	}
 
 	void TomsSlidersPage::resized() override
 	{
-		tomCloseSlider.setBounds(10, 50, 70, getHeight() - 100);
-		ftomCloseSlider.setBounds(85, 50, 70, getHeight() - 100);
-		tomsOHSlider.setBounds(162, 50, 70, getHeight() - 100);
-		tomsRoomSlider.setBounds(240, 50, 70, getHeight() - 100);
-		tomsBleedSlider.setBounds(315, 50, 70, getHeight() - 100);
+		int sliderWidth = 70;
+		int sliderHeight = getHeight() - 90;
+		tomCloseSlider.setBounds(10, 40, sliderWidth, sliderHeight);
+		ftomCloseSlider.setBounds(85, 40, sliderWidth, sliderHeight);
+		tomsOHSlider.setBounds(162, 40, sliderWidth, sliderHeight);
+		tomsRoomSlider.setBounds(240, 40, sliderWidth, sliderHeight);
+		tomsBleedSlider.setBounds(315, 40, sliderWidth, sliderHeight);
+
+		int buttonsSize = 32;
+		int buttonsPositionY = sliderHeight + 45;
+		tomCloseSolo.setBounds(10, buttonsPositionY, buttonsSize, buttonsSize);
+		ftomCloseSolo.setBounds(85, buttonsPositionY, buttonsSize, buttonsSize);
+		tomsOHSolo.setBounds(162, buttonsPositionY, buttonsSize, buttonsSize);
+		tomsRoomSolo.setBounds(240, buttonsPositionY, buttonsSize, buttonsSize);
+		tomsBleedSolo.setBounds(315, buttonsPositionY, buttonsSize, buttonsSize);
+
+		tomCloseMute.setBounds(48, buttonsPositionY, buttonsSize, buttonsSize);
+		ftomCloseMute.setBounds(123, buttonsPositionY, buttonsSize, buttonsSize);
+		tomsOHMute.setBounds(200, buttonsPositionY, buttonsSize, buttonsSize);
+		tomsRoomMute.setBounds(278, buttonsPositionY, buttonsSize, buttonsSize);
+		tomsBleedMute.setBounds(353, buttonsPositionY, buttonsSize, buttonsSize);
 	}
 
 private:

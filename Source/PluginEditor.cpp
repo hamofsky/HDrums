@@ -70,15 +70,16 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     guiRideButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.ridePointNoteMenu.getSelectedId()); };
     guiCrashButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.crashOpenNoteMenu.getSelectedId()); };
 
-    // Tabbed Component 
+    // Tabbed Component ===========================================================================
     addAndMakeVisible(&myTabbedComponent);
-    myTabbedComponent.addTab("Main", juce::Colours::black.withAlpha(0.7f), &mainSlidersPage, true);
-    myTabbedComponent.addTab("Kick", juce::Colours::black.withAlpha(0.7f), &kickSlidersPage, true);
-    myTabbedComponent.addTab("Snare", juce::Colours::black.withAlpha(0.7f), &snareSlidersPage, true);
-    myTabbedComponent.addTab("Toms", juce::Colours::black.withAlpha(0.7f), &tomsSlidersPage, true);
-    myTabbedComponent.addTab("Cymbals", juce::Colours::black.withAlpha(0.7f), &cymbalsSlidersPage, true);
-    myTabbedComponent.addTab("MIDI", juce::Colours::grey.withAlpha(0.8f), &midiNotesChoosingPage, true);
+    myTabbedComponent.addTab("Main", juce::Colours::black.withAlpha(0.6f), &mainSlidersPage, true);
+    myTabbedComponent.addTab("Kick", juce::Colours::black.withAlpha(0.6f), &kickSlidersPage, true);
+    myTabbedComponent.addTab("Snare", juce::Colours::black.withAlpha(0.6f), &snareSlidersPage, true);
+    myTabbedComponent.addTab("Toms", juce::Colours::black.withAlpha(0.6f), &tomsSlidersPage, true);
+    myTabbedComponent.addTab("Cymbals", juce::Colours::black.withAlpha(0.6f), &cymbalsSlidersPage, true);
+    myTabbedComponent.addTab("MIDI", juce::Colours::grey.withAlpha(0.7f), &midiNotesChoosingPage, true);
 
+    // Slider attachments =========================================================================
     kickCloseSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, KICK_CLOSE_GAIN_ID, kickSlidersPage.kickCloseSlider);
     kickOHSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, KICK_OH_GAIN_ID, kickSlidersPage.kickOHSlider);
     kickRoomSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, KICK_ROOM_GAIN_ID, kickSlidersPage.kickRoomSlider);
@@ -101,17 +102,61 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     cymbalsRoomSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, CYMBALS_ROOM_GAIN_ID, cymbalsSlidersPage.cymbalsRoomSlider);
     cymbalsBleedSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, CYMBALS_BLEED_GAIN_ID, cymbalsSlidersPage.cymbalsBleedSlider);
 
-    // Solo & Mute buttons
+    // Solo buttons ==========================================================
     closeSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, CLOSE_SOLO_ID, mainSlidersPage.closeSolo);
     OHSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, OH_SOLO_ID, mainSlidersPage.OHSolo);
     roomSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, ROOM_SOLO_ID, mainSlidersPage.roomSolo);
     bleedSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, BLEED_SOLO_ID, mainSlidersPage.bleedSolo);
 
+    kickCloseSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, KICK_CLOSE_SOLO_ID, kickSlidersPage.kickCloseSolo);
+    kickOHSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, KICK_OH_SOLO_ID, kickSlidersPage.kickOHSolo);
+    kickRoomSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, KICK_ROOM_SOLO_ID, kickSlidersPage.kickRoomSolo);
+    kickBleedSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, KICK_BLEED_SOLO_ID, kickSlidersPage.kickBleedSolo);
+
+    snareTopSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, SNARE_TOP_SOLO_ID, snareSlidersPage.snareTopSolo);
+    snareBotSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, SNARE_BOT_SOLO_ID, snareSlidersPage.snareBotSolo);
+    snareOHSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, SNARE_OH_SOLO_ID, snareSlidersPage.snareOHSolo);
+    snareRoomSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, SNARE_ROOM_SOLO_ID, snareSlidersPage.snareRoomSolo);
+    snareBleedSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, SNARE_BLEED_SOLO_ID, snareSlidersPage.snareBleedSolo);
+
+    tomCloseSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, TOM_CLOSE_SOLO_ID, tomsSlidersPage.tomCloseSolo);
+    ftomCloseSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, FTOM_CLOSE_SOLO_ID, tomsSlidersPage.ftomCloseSolo);
+    tomsOHSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, TOMS_OH_SOLO_ID, tomsSlidersPage.tomsOHSolo);
+    tomsRoomSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, TOMS_ROOM_SOLO_ID, tomsSlidersPage.tomsRoomSolo);
+    tomsBleedSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, TOMS_BLEED_SOLO_ID, tomsSlidersPage.tomsBleedSolo);
+
+    hhCloseSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, HH_CLOSE_SOLO_ID, cymbalsSlidersPage.hhCloseSolo);
+    cymbalsOHSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, CYMBALS_OH_SOLO_ID, cymbalsSlidersPage.cymbalsOHSolo);
+    cymbalsRoomSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, CYMBALS_ROOM_SOLO_ID, cymbalsSlidersPage.cymbalsRoomSolo);
+    cymbalsBleedSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, CYMBALS_BLEED_SOLO_ID, cymbalsSlidersPage.cymbalsBleedSolo);
+
+    // Mute buttons ==========================================================
     closeMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, CLOSE_MUTE_ID, mainSlidersPage.closeMute);
     OHMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, OH_MUTE_ID, mainSlidersPage.OHMute);
     roomMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, ROOM_MUTE_ID, mainSlidersPage.roomMute);
     bleedMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, BLEED_MUTE_ID, mainSlidersPage.bleedMute);
 
+    kickCloseMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, KICK_CLOSE_MUTE_ID, kickSlidersPage.kickCloseMute);
+    kickOHMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, KICK_OH_MUTE_ID, kickSlidersPage.kickOHMute);
+    kickRoomMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, KICK_ROOM_MUTE_ID, kickSlidersPage.kickRoomMute);
+    kickBleedMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, KICK_BLEED_MUTE_ID, kickSlidersPage.kickBleedMute);
+    
+    snareTopMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, SNARE_TOP_MUTE_ID, snareSlidersPage.snareTopMute);
+    snareBotMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, SNARE_BOT_MUTE_ID, snareSlidersPage.snareBotMute);
+    snareOHMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, SNARE_OH_MUTE_ID, snareSlidersPage.snareOHMute);
+    snareRoomMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, SNARE_ROOM_MUTE_ID, snareSlidersPage.snareRoomMute);
+    snareBleedMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, SNARE_BLEED_MUTE_ID, snareSlidersPage.snareBleedMute);
+    
+    tomCloseMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, TOM_CLOSE_MUTE_ID, tomsSlidersPage.tomCloseMute);
+    ftomCloseMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, FTOM_CLOSE_MUTE_ID, tomsSlidersPage.ftomCloseMute);
+    tomsOHMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, TOMS_OH_MUTE_ID, tomsSlidersPage.tomsOHMute);
+    tomsRoomMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, TOMS_ROOM_MUTE_ID, tomsSlidersPage.tomsRoomMute);
+    tomsBleedMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, TOMS_BLEED_MUTE_ID, tomsSlidersPage.tomsBleedMute);
+    
+    hhCloseMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, HH_CLOSE_MUTE_ID, cymbalsSlidersPage.hhCloseMute);
+    cymbalsOHMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, CYMBALS_OH_MUTE_ID, cymbalsSlidersPage.cymbalsOHMute);
+    cymbalsRoomMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, CYMBALS_ROOM_MUTE_ID, cymbalsSlidersPage.cymbalsRoomMute);
+    cymbalsBleedMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, CYMBALS_BLEED_MUTE_ID, cymbalsSlidersPage.cymbalsBleedMute);
 
     // buttons from MidiNoteChoosingPage
     midiNotesChoosingPage.kickButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.kickNoteMenu.getSelectedId()); };
@@ -271,6 +316,20 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     soloButtons[5]->onClick = [this] { soloStateChanged(5); };
     soloButtons[6]->onClick = [this] { soloStateChanged(6); };
     soloButtons[7]->onClick = [this] { soloStateChanged(7); };
+    soloButtons[8]->onClick = [this] { soloStateChanged(8); };
+    soloButtons[9]->onClick = [this] { soloStateChanged(9); };
+    soloButtons[10]->onClick = [this] { soloStateChanged(10); };
+    soloButtons[11]->onClick = [this] { soloStateChanged(11); };
+    soloButtons[12]->onClick = [this] { soloStateChanged(12); };
+    soloButtons[13]->onClick = [this] { soloStateChanged(13); };
+    soloButtons[14]->onClick = [this] { soloStateChanged(14); };
+    soloButtons[15]->onClick = [this] { soloStateChanged(15); };
+    soloButtons[16]->onClick = [this] { soloStateChanged(16); };
+    soloButtons[17]->onClick = [this] { soloStateChanged(17); };
+    /*soloButtons[18]->onClick = [this] { soloStateChanged(18); };
+    soloButtons[19]->onClick = [this] { soloStateChanged(19); };
+    soloButtons[20]->onClick = [this] { soloStateChanged(20); };
+    soloButtons[21]->onClick = [this] { soloStateChanged(21); };*/
 
 }
 

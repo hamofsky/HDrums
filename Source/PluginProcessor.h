@@ -3,11 +3,14 @@
 #include <JuceHeader.h>
 #include "MidiProcessor.h"
 #include "Sampler.h"
+
+// ComboBoxes ===========================
 #define SAMPLE_PACK_ID "sample Pack"
 #define SAMPLE_PACK_NAME "Sample Pack"
 #define CURVE_MENU_ID "velocity Curve"
 #define CURVE_MENU_NAME "Velocity Curve"
 
+// MIDI notes ===========================
 #define KICK_MIDI_NOTE_ID "MIDI note kick"
 #define KICK_MIDI_NOTE_NAME "MIDI note Kick"
 
@@ -54,6 +57,7 @@
 #define CRASH_OPEN_MIDI_NOTE_ID "MIDI note crash Open"
 #define CRASH_OPEN_MIDI_NOTE_NAME "MIDI note Crash Open"
 
+// Slider Values ========================================
 #define GAIN_ID "close"
 #define GAIN_NAME "Close"
 #define OH_GAIN_ID "OH"
@@ -103,6 +107,7 @@
 #define CYMBALS_BLEED_GAIN_ID "cymbals Bleed"
 #define CYMBALS_BLEED_GAIN_NAME "Cymbals Bleed"
 
+// Solo buttons =====================
 #define CLOSE_SOLO_ID "close Solo"
 #define CLOSE_SOLO_NAME "Close Solo"
 #define OH_SOLO_ID "oh Solo"
@@ -112,6 +117,47 @@
 #define BLEED_SOLO_ID "bleed Solo"
 #define BLEED_SOLO_NAME "Bleed Solo"
 
+#define KICK_CLOSE_SOLO_ID "kick Close Solo"
+#define KICK_CLOSE_SOLO_NAME "Kick Close Solo"
+#define KICK_OH_SOLO_ID "kick OH Solo"
+#define KICK_OH_SOLO_NAME "Kick OH Solo"
+#define KICK_ROOM_SOLO_ID "kick Room Solo"
+#define KICK_ROOM_SOLO_NAME "Kick Room Solo"
+#define KICK_BLEED_SOLO_ID "kick Bleed Solo"
+#define KICK_BLEED_SOLO_NAME "Kick Bleed Solo"
+
+#define SNARE_TOP_SOLO_ID "snare Top Close Solo"
+#define SNARE_TOP_SOLO_NAME "Snare Top Close Solo"
+#define SNARE_BOT_SOLO_ID "snare Bottom Close Solo"
+#define SNARE_BOT_SOLO_NAME "Snare Bottom Close Solo"
+#define SNARE_OH_SOLO_ID "snare OH Solo"
+#define SNARE_OH_SOLO_NAME "Snare OH Solo"
+#define SNARE_ROOM_SOLO_ID "snare Room Solo"
+#define SNARE_ROOM_SOLO_NAME "Snare Room Solo"
+#define SNARE_BLEED_SOLO_ID "snare Bleed Solo"
+#define SNARE_BLEED_SOLO_NAME "Snare Bleed Solo"
+
+#define TOM_CLOSE_SOLO_ID "tom Close Solo"
+#define TOM_CLOSE_SOLO_NAME "Tom Close Solo"
+#define FTOM_CLOSE_SOLO_ID "ftom Close Solo"
+#define FTOM_CLOSE_SOLO_NAME "FTom Close Solo"
+#define TOMS_OH_SOLO_ID "toms OH Solo"
+#define TOMS_OH_SOLO_NAME "Toms OH Solo"
+#define TOMS_ROOM_SOLO_ID "Toms Room Solo"
+#define TOMS_ROOM_SOLO_NAME "Toms Room Solo"
+#define TOMS_BLEED_SOLO_ID "Toms Bleed Solo"
+#define TOMS_BLEED_SOLO_NAME "Toms Bleed Solo"
+
+#define HH_CLOSE_SOLO_ID "hh Close Solo"
+#define HH_CLOSE_SOLO_NAME "HH Close Solo"
+#define CYMBALS_OH_SOLO_ID "cymbals OH Solo"
+#define CYMBALS_OH_SOLO_NAME "Cymbals OH Solo"
+#define CYMBALS_ROOM_SOLO_ID "cymbals Room Solo"
+#define CYMBALS_ROOM_SOLO_NAME "Cymbals Room Solo"
+#define CYMBALS_BLEED_SOLO_ID "cymbals Bleed Solo"
+#define CYMBALS_BLEED_SOLO_NAME "Cymbals Bleed Solo"
+
+// Mute buttons =====================
 #define CLOSE_MUTE_ID "close Mute"
 #define CLOSE_MUTE_NAME "Close Mute"
 #define OH_MUTE_ID "oh Mute"

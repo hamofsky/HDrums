@@ -34,11 +34,17 @@ public:
     void soloStateChanged(int soloButtonId);
 
     MuteAndSoloButtonsFunctionality muteAndSoloButtonsFunctionality;
-    std::vector<juce::ToggleButton*> soloButtons = { &mainSlidersPage.closeSolo, &mainSlidersPage.OHSolo, &mainSlidersPage.roomSolo, &mainSlidersPage.bleedSolo,
-                                    &kickSlidersPage.kickCloseSolo,& kickSlidersPage.kickOHSolo,& kickSlidersPage.kickRoomSolo,& kickSlidersPage.kickBleedSolo };
-    std::vector<juce::ToggleButton*> muteButtons = { &mainSlidersPage.closeMute, &mainSlidersPage.OHMute, &mainSlidersPage.roomMute, &mainSlidersPage.bleedMute,
-                                    & kickSlidersPage.kickCloseMute,& kickSlidersPage.kickOHMute,& kickSlidersPage.kickRoomMute,& kickSlidersPage.kickBleedMute };
-    bool muteStateBeforeFirstSolo[8] = { false, false, false, false, false, false, false, false };
+    std::vector<juce::ToggleButton*> soloButtons = { & kickSlidersPage.kickCloseSolo, & kickSlidersPage.kickOHSolo, & kickSlidersPage.kickRoomSolo, & kickSlidersPage.kickBleedSolo,
+                    & snareSlidersPage.snareTopSolo, & snareSlidersPage.snareBotSolo, & snareSlidersPage.snareOHSolo,& snareSlidersPage.snareRoomSolo, & snareSlidersPage.snareBleedSolo,
+                    & tomsSlidersPage.tomCloseSolo,& tomsSlidersPage.ftomCloseSolo,& tomsSlidersPage.tomsOHSolo,& tomsSlidersPage.tomsRoomSolo,& tomsSlidersPage.tomsBleedSolo,
+                    & cymbalsSlidersPage.hhCloseSolo,& cymbalsSlidersPage.cymbalsOHSolo,& cymbalsSlidersPage.cymbalsRoomSolo,& cymbalsSlidersPage.cymbalsBleedSolo };
+    
+    std::vector<juce::ToggleButton*> muteButtons = { & kickSlidersPage.kickCloseMute, & kickSlidersPage.kickOHMute, & kickSlidersPage.kickRoomMute, & kickSlidersPage.kickBleedMute,
+            & snareSlidersPage.snareTopMute, & snareSlidersPage.snareBotMute, & snareSlidersPage.snareOHMute, & snareSlidersPage.snareRoomMute, & snareSlidersPage.snareBleedMute,
+            & tomsSlidersPage.tomCloseMute,& tomsSlidersPage.ftomCloseMute,& tomsSlidersPage.tomsOHMute,& tomsSlidersPage.tomsRoomMute,& tomsSlidersPage.tomsBleedMute,
+            & cymbalsSlidersPage.hhCloseMute,& cymbalsSlidersPage.cymbalsOHMute,& cymbalsSlidersPage.cymbalsRoomMute,& cymbalsSlidersPage.cymbalsBleedMute };
+    
+    bool muteStateBeforeFirstSolo[18] = { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };
     bool soloAlreadyEngaged = false;
 
     juce::Font textFont{ 12.0f };
@@ -50,9 +56,11 @@ public:
 
     HDrumsAudioProcessor& audioProcessor;
 
+    // comboBox attachments ==========================================================================
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> samplePackAttachment;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> curveMenuAttachment;
 
+    // MIDI note buttons attachments =====================================================
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> kickNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> snareNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> snareFlamNote;
@@ -74,6 +82,7 @@ public:
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> crashBellNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> crashOpenNote;
 
+    // Slider values attachments ========================================================== 
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> sliderValue;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> OHsliderValue;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> RoomSliderValue;
@@ -101,15 +110,61 @@ public:
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> cymbalsRoomSliderValue;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> cymbalsBleedSliderValue;
 
+    // Solo buttons attachments ==============================================================
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> closeSoloState;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> OHSoloState;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> roomSoloState;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> bleedSoloState;
 
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> kickCloseSoloState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> kickOHSoloState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> kickRoomSoloState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> kickBleedSoloState;
+
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> snareTopSoloState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> snareBotSoloState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> snareOHSoloState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> snareRoomSoloState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> snareBleedSoloState;
+
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> tomCloseSoloState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> ftomCloseSoloState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> tomsOHSoloState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> tomsRoomSoloState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> tomsBleedSoloState;
+
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> hhCloseSoloState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> cymbalsOHSoloState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> cymbalsRoomSoloState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> cymbalsBleedSoloState;
+
+    // Mute Buttons attachments ==============================================================
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> closeMuteState;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> OHMuteState;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> roomMuteState;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> bleedMuteState;
+
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> kickCloseMuteState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> kickOHMuteState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> kickRoomMuteState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> kickBleedMuteState;
+
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> snareTopMuteState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> snareBotMuteState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> snareOHMuteState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> snareRoomMuteState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> snareBleedMuteState;
+    
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> tomCloseMuteState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> ftomCloseMuteState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> tomsOHMuteState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> tomsRoomMuteState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> tomsBleedMuteState;
+    
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> hhCloseMuteState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> cymbalsOHMuteState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> cymbalsRoomMuteState;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> cymbalsBleedMuteState;
 
 private:
     

@@ -26,6 +26,20 @@ public:
 
 	MuteAndSoloButtonsFunctionality muteAndSoloButtonsFunctionality;
 
+	juce::ToggleButton snareTopSolo;
+	juce::ToggleButton snareBotSolo;
+	juce::ToggleButton snareOHSolo;
+	juce::ToggleButton snareRoomSolo;
+	juce::ToggleButton snareBleedSolo;
+	std::vector<juce::ToggleButton*> snareSoloButtons = { &snareTopSolo, &snareBotSolo, &snareOHSolo, &snareRoomSolo, &snareBleedSolo };
+
+	juce::ToggleButton snareTopMute;
+	juce::ToggleButton snareBotMute;
+	juce::ToggleButton snareOHMute;
+	juce::ToggleButton snareRoomMute;
+	juce::ToggleButton snareBleedMute;
+	std::vector<juce::ToggleButton*> snareMuteButtons = { &snareTopMute, &snareBotMute, &snareOHMute, &snareRoomMute, &snareBleedMute };
+
 	SnareSlidersPage()
 	{
 		snareTopCloseSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
@@ -87,15 +101,49 @@ public:
 		snareBleedSliderLabel.setText("Bleed", juce::dontSendNotification);
 		snareBleedSliderLabel.setJustificationType(juce::Justification::centred);
 		snareBleedSliderLabel.attachToComponent(&snareBleedSlider, false);
+
+		for (int i = 0; i < snareSoloButtons.size(); i++)
+		{
+			addAndMakeVisible(snareSoloButtons[i]);
+			snareSoloButtons[i]->setLookAndFeel(&myLookAndFeelSolo);
+			snareSoloButtons[i]->setToggleState(snareSoloButtons[i]->getToggleState(), true);
+
+			addAndMakeVisible(snareMuteButtons[i]);
+			snareMuteButtons[i]->setLookAndFeel(&myLookAndFeel);
+			snareMuteButtons[i]->setToggleState(snareMuteButtons[i]->getToggleState(), true);
+		}
+	}
+
+	SnareSlidersPage::~SnareSlidersPage()
+	{
+		snareMuteButtons.clear();
+		snareSoloButtons.clear();
+		snareMuteButtons.shrink_to_fit();
+		snareSoloButtons.shrink_to_fit();
 	}
 
 	void SnareSlidersPage::resized() override
 	{
-		snareTopCloseSlider.setBounds(10, 50, 70, getHeight() - 100);
-		snareBotCloseSlider.setBounds(85, 50, 70, getHeight() - 100);
-		snareOHSlider.setBounds(162, 50, 70, getHeight() - 100);
-		snareRoomSlider.setBounds(240, 50, 70, getHeight() - 100);
-		snareBleedSlider.setBounds(315, 50, 70, getHeight() - 100);
+		int sliderWidth = 70;
+		int sliderHeight = getHeight() - 90;
+		snareTopCloseSlider.setBounds(10, 40, sliderWidth, sliderHeight);
+		snareBotCloseSlider.setBounds(85, 40, sliderWidth, sliderHeight);
+		snareOHSlider.setBounds(162, 40, sliderWidth, sliderHeight);
+		snareRoomSlider.setBounds(240, 40, sliderWidth, sliderHeight);
+		snareBleedSlider.setBounds(315, 40, sliderWidth, sliderHeight);
+		
+		int buttonsSize = 32;
+		int buttonsPositionY = sliderHeight + 45;
+		snareTopSolo.setBounds(10, buttonsPositionY, buttonsSize, buttonsSize);
+		snareBotSolo.setBounds(85, buttonsPositionY, buttonsSize, buttonsSize);
+		snareOHSolo.setBounds(162, buttonsPositionY, buttonsSize, buttonsSize);
+		snareRoomSolo.setBounds(240, buttonsPositionY, buttonsSize, buttonsSize);
+		snareBleedSolo.setBounds(315, buttonsPositionY, buttonsSize, buttonsSize);
+		snareTopMute.setBounds(48, buttonsPositionY, buttonsSize, buttonsSize);
+		snareBotMute.setBounds(123, buttonsPositionY, buttonsSize, buttonsSize);
+		snareOHMute.setBounds(200, buttonsPositionY, buttonsSize, buttonsSize);
+		snareRoomMute.setBounds(278, buttonsPositionY, buttonsSize, buttonsSize);
+		snareBleedMute.setBounds(353, buttonsPositionY, buttonsSize, buttonsSize);
 	}
 
 private:

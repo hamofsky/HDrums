@@ -2,7 +2,7 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 #include "MyLookAndFeel.h"
-//#include "MuteAndSoloButtonsFunctionality.h"
+#include "MuteAndSoloButtonsFunctionality.h"
 
 #pragma once
 
@@ -35,7 +35,7 @@ public:
 	juce::ToggleButton roomMute;
 	juce::ToggleButton bleedMute;
 	std::vector<juce::ToggleButton*> muteButtons = { &closeMute, &OHMute, &roomMute, &bleedMute };
-	
+
 	bool muteStateBeforeFirstSolo[4] = { false, false, false, false };
 	bool soloAlreadyEngaged = false;
 
@@ -94,23 +94,16 @@ public:
 			addAndMakeVisible(soloButtons[i]);
 			soloButtons[i]->setLookAndFeel(&myLookAndFeelSolo);
 			soloButtons[i]->setToggleState(soloButtons[i]->getToggleState(), true);
-			//soloButtons[i]->onStateChange = [this] { soloStateChanged(i); };
 
 			addAndMakeVisible(muteButtons[i]);
 			muteButtons[i]->setLookAndFeel(&myLookAndFeel);
 			muteButtons[i]->setToggleState(muteButtons[i]->getToggleState(), true);
-			
-			//muteStateBeforeFirstSolo[i] = muteButtons[i]->getToggleState();
-
-			/*if (soloButtons[i]->getToggleState())
-			{
-				soloAlreadyEngaged = true;
-			}*/
 		}
-		/*soloButtons[0]->onClick = [this] { soloStateChanged(0); };
+
+		soloButtons[0]->onClick = [this] { soloStateChanged(0); };
 		soloButtons[1]->onClick = [this] { soloStateChanged(1); };
 		soloButtons[2]->onClick = [this] { soloStateChanged(2); };
-		soloButtons[3]->onClick = [this] { soloStateChanged(3); };*/
+		soloButtons[3]->onClick = [this] { soloStateChanged(3); };
 	}
 
 	MainSlidersPage::~MainSlidersPage()
@@ -123,45 +116,48 @@ public:
 
 	void MainSlidersPage::resized() override
 	{
-		closeSlider.setBounds(15, 40, 70, getHeight() - 104);
-		OHSlider.setBounds(115, 40, 70, getHeight() - 104);
-		roomSlider.setBounds(215, 40, 70, getHeight() - 104);
-		bleedSlider.setBounds(315, 40, 70, getHeight() - 104);
+		int sliderWidth = 70;
+		int sliderHeight = getHeight() - 90;
+		closeSlider.setBounds(15, 40, sliderWidth, sliderHeight);
+		OHSlider.setBounds(115, 40, sliderWidth, sliderHeight);
+		roomSlider.setBounds(215, 40, sliderWidth, sliderHeight);
+		bleedSlider.setBounds(315, 40, sliderWidth, sliderHeight);
 
-		int buttonsSize = 50;
+		int buttonsSize = 32;
+		int buttonsPositionY = sliderHeight + 45;
+		closeSolo.setBounds(15, buttonsPositionY, buttonsSize, buttonsSize);
+		OHSolo.setBounds(115, buttonsPositionY, buttonsSize, buttonsSize);
+		roomSolo.setBounds(215, buttonsPositionY, buttonsSize, buttonsSize);
+		bleedSolo.setBounds(315, buttonsPositionY, buttonsSize, buttonsSize);
 
-		closeSolo.setBounds(20, getHeight() - 60, buttonsSize, buttonsSize);
-		OHSolo.setBounds(120, getHeight() - 60, buttonsSize, buttonsSize);
-		roomSolo.setBounds(220, getHeight() - 60, buttonsSize, buttonsSize);
-		bleedSolo.setBounds(320, getHeight() - 60, buttonsSize, buttonsSize);
-		closeMute.setBounds(57, getHeight() - 60, buttonsSize, buttonsSize);
-		OHMute.setBounds(157, getHeight() - 60, buttonsSize, buttonsSize);
-		roomMute.setBounds(257, getHeight() - 60, buttonsSize, buttonsSize);
-		bleedMute.setBounds(357, getHeight() - 60, buttonsSize, buttonsSize);
+		closeMute.setBounds(53, buttonsPositionY, buttonsSize, buttonsSize);
+		OHMute.setBounds(153, buttonsPositionY, buttonsSize, buttonsSize);
+		roomMute.setBounds(253, buttonsPositionY, buttonsSize, buttonsSize);
+		bleedMute.setBounds(353, buttonsPositionY, buttonsSize, buttonsSize);
 	}
 
-	//void soloStateChanged(int soloButtonId)
-	//{
-	//	// solo clicked for the first time
-	//	if (soloButtons[soloButtonId]->getToggleState() && !soloAlreadyEngaged)
-	//	{
-	//		muteAndSoloButtonsFunctionality.muteButtonsWhenSoloFirstTime(soloButtonId, soloButtons, muteButtons, muteStateBeforeFirstSolo);
-	//		soloAlreadyEngaged = true;
-	//		muteAndSoloButtonsFunctionality.unsoloButtonsWhenSolo(soloButtonId, soloButtons);
-	//	}
-	//	// solo clicked for the n-th time
-	//	else if (soloButtons[soloButtonId]->getToggleState() && soloAlreadyEngaged)
-	//	{
-	//		muteAndSoloButtonsFunctionality.muteButtonsWhenSoloAgain(soloButtonId, soloButtons, muteButtons, muteStateBeforeFirstSolo);
-	//		muteAndSoloButtonsFunctionality.unsoloButtonsWhenSolo(soloButtonId, soloButtons);
-	//	}
-	//	// solo unclicked
-	//	else if (!soloButtons[soloButtonId]->getToggleState())
-	//	{
-	//		muteAndSoloButtonsFunctionality.unmuteButtonsWhenSolo(muteButtons, muteStateBeforeFirstSolo);
-	//		soloAlreadyEngaged = false;
-	//	}
-	//}
+	void soloStateChanged(int soloButtonId)
+	{
+		// solo clicked for the first time
+		if (soloButtons[soloButtonId]->getToggleState() && !soloAlreadyEngaged)
+		{
+			muteAndSoloButtonsFunctionality.muteButtonsWhenSoloFirstTime(soloButtonId, soloButtons, muteButtons, muteStateBeforeFirstSolo);
+			soloAlreadyEngaged = true;
+			muteAndSoloButtonsFunctionality.unsoloButtonsWhenSolo(soloButtonId, soloButtons);
+		}
+		// solo clicked for the n-th time
+		else if (soloButtons[soloButtonId]->getToggleState() && soloAlreadyEngaged)
+		{
+			muteAndSoloButtonsFunctionality.muteButtonsWhenSoloAgain(soloButtonId, soloButtons, muteButtons, muteStateBeforeFirstSolo);
+			muteAndSoloButtonsFunctionality.unsoloButtonsWhenSolo(soloButtonId, soloButtons);
+		}
+		// solo unclicked
+		else if (!soloButtons[soloButtonId]->getToggleState())
+		{
+			muteAndSoloButtonsFunctionality.unmuteButtonsWhenSolo(muteButtons, muteStateBeforeFirstSolo);
+			soloAlreadyEngaged = false;
+		}
+	}
 
 private:
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainSlidersPage)

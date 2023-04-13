@@ -36,9 +36,6 @@ public:
 	juce::ToggleButton kickBleedMute;
 	std::vector<juce::ToggleButton*> kickMuteButtons = { &kickCloseMute, &kickOHMute, &kickRoomMute, &kickBleedMute };
 
-	bool muteStateBeforeFirstSolo[4] = { false, false, false, false };
-	bool soloAlreadyEngaged = false;
-
 	KickSlidersPage()
 	{
 		kickCloseSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
@@ -111,21 +108,24 @@ public:
 
 	void KickSlidersPage::resized() override
 	{
-		kickCloseSlider.setBounds(15, 40, 70, getHeight() - 104);
-		kickOHSlider.setBounds(115, 40, 70, getHeight() - 104);
-		kickRoomSlider.setBounds(215, 40, 70, getHeight() - 104);
-		kickBleedSlider.setBounds(315, 40, 70, getHeight() - 104);
+		int sliderWidth = 70;
+		int sliderHeight = getHeight() - 90;
+		kickCloseSlider.setBounds(15, 40, sliderWidth, sliderHeight);
+		kickOHSlider.setBounds(115, 40, sliderWidth, sliderHeight);
+		kickRoomSlider.setBounds(215, 40, sliderWidth, sliderHeight);
+		kickBleedSlider.setBounds(315, 40, sliderWidth, sliderHeight);
 
-		int buttonsSize = 50;
+		int buttonsSize = 32;
+		int buttonsPositionY = sliderHeight + 45;
+		kickCloseSolo.setBounds(15, buttonsPositionY, buttonsSize, buttonsSize);
+		kickOHSolo.setBounds(115, buttonsPositionY, buttonsSize, buttonsSize);
+		kickRoomSolo.setBounds(215, buttonsPositionY, buttonsSize, buttonsSize);
+		kickBleedSolo.setBounds(315, buttonsPositionY, buttonsSize, buttonsSize);
 
-		kickCloseSolo.setBounds(20, getHeight() - 60, buttonsSize, buttonsSize);
-		kickOHSolo.setBounds(120, getHeight() - 60, buttonsSize, buttonsSize);
-		kickRoomSolo.setBounds(220, getHeight() - 60, buttonsSize, buttonsSize);
-		kickBleedSolo.setBounds(320, getHeight() - 60, buttonsSize, buttonsSize);
-		kickCloseMute.setBounds(57, getHeight() - 60, buttonsSize, buttonsSize);
-		kickOHMute.setBounds(157, getHeight() - 60, buttonsSize, buttonsSize);
-		kickRoomMute.setBounds(257, getHeight() - 60, buttonsSize, buttonsSize);
-		kickBleedMute.setBounds(357, getHeight() - 60, buttonsSize, buttonsSize);
+		kickCloseMute.setBounds(53, buttonsPositionY, buttonsSize, buttonsSize);
+		kickOHMute.setBounds(153, buttonsPositionY, buttonsSize, buttonsSize);
+		kickRoomMute.setBounds(253, buttonsPositionY, buttonsSize, buttonsSize);
+		kickBleedMute.setBounds(353, buttonsPositionY, buttonsSize, buttonsSize);
 	}
 
 private:
