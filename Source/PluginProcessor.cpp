@@ -73,8 +73,8 @@ juce::AudioProcessorValueTreeState::ParameterLayout HDrumsAudioProcessor::create
     params.push_back(std::move(RoomGainParam));
     params.push_back(std::move(BleedGainParam));
 
-    auto KickCloseGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_CLOSE_GAIN_ID, KICK_CLOSE_GAIN_NAME, sliderMinValue, sliderMaxValue, 3.0f);
-    auto KickOHGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_OH_GAIN_ID, KICK_OH_GAIN_NAME, sliderMinValue, sliderMaxValue, -6.0f);
+    auto KickCloseGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_CLOSE_GAIN_ID, KICK_CLOSE_GAIN_NAME, sliderMinValue, sliderMaxValue, 0.0f);
+    auto KickOHGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_OH_GAIN_ID, KICK_OH_GAIN_NAME, sliderMinValue, sliderMaxValue, -3.0f);
     auto KickRoomGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_ROOM_GAIN_ID, KICK_ROOM_GAIN_NAME, sliderMinValue, sliderMaxValue, -6.0f);
     auto KickBleedGainParam = std::make_unique<juce::AudioParameterFloat>(KICK_BLEED_GAIN_ID, KICK_BLEED_GAIN_NAME, sliderMinValue, sliderMaxValue, -18.0f);
     params.push_back(std::move(KickCloseGainParam));
@@ -83,9 +83,9 @@ juce::AudioProcessorValueTreeState::ParameterLayout HDrumsAudioProcessor::create
     params.push_back(std::move(KickBleedGainParam));
 
     auto SnareTopCloseGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_TOP_CLOSE_GAIN_ID, SNARE_TOP_CLOSE_GAIN_NAME, sliderMinValue, sliderMaxValue, 0.0f);
-    auto SnareBotCloseGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_BOT_CLOSE_GAIN_ID, SNARE_BOT_CLOSE_GAIN_NAME, sliderMinValue, sliderMaxValue, -6.0f);
+    auto SnareBotCloseGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_BOT_CLOSE_GAIN_ID, SNARE_BOT_CLOSE_GAIN_NAME, sliderMinValue, sliderMaxValue, -9.0f);
     auto SnareOHGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_OH_GAIN_ID, SNARE_OH_GAIN_NAME, sliderMinValue, sliderMaxValue, 0.0f);
-    auto SnareRoomGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_ROOM_GAIN_ID, SNARE_ROOM_GAIN_NAME, sliderMinValue, sliderMaxValue, -3.0f);
+    auto SnareRoomGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_ROOM_GAIN_ID, SNARE_ROOM_GAIN_NAME, sliderMinValue, sliderMaxValue, -6.0f);
     auto SnareBleedGainParam = std::make_unique<juce::AudioParameterFloat>(SNARE_BLEED_GAIN_ID, SNARE_BLEED_GAIN_NAME, sliderMinValue, sliderMaxValue, -9.0f);
     params.push_back(std::move(SnareTopCloseGainParam));
     params.push_back(std::move(SnareBotCloseGainParam));
@@ -94,10 +94,10 @@ juce::AudioProcessorValueTreeState::ParameterLayout HDrumsAudioProcessor::create
     params.push_back(std::move(SnareBleedGainParam));
 
     auto TomCloseGainParam = std::make_unique<juce::AudioParameterFloat>(TOM_CLOSE_GAIN_ID, TOM_CLOSE_GAIN_NAME, sliderMinValue, sliderMaxValue, 0.0f);
-    auto FTomCloseGainParam = std::make_unique<juce::AudioParameterFloat>(FTOM_CLOSE_GAIN_ID, FTOM_CLOSE_GAIN_NAME, sliderMinValue, sliderMaxValue, 2.0f);
+    auto FTomCloseGainParam = std::make_unique<juce::AudioParameterFloat>(FTOM_CLOSE_GAIN_ID, FTOM_CLOSE_GAIN_NAME, sliderMinValue, sliderMaxValue, 0.0f);
     auto TomsOHGainParam = std::make_unique<juce::AudioParameterFloat>(TOMS_OH_GAIN_ID, TOMS_OH_GAIN_NAME, sliderMinValue, sliderMaxValue, -6.0f);
-    auto TomsRoomGainParam = std::make_unique<juce::AudioParameterFloat>(TOMS_ROOM_GAIN_ID, TOMS_ROOM_GAIN_NAME, sliderMinValue, sliderMaxValue, -12.0f);
-    auto TomsBleedGainParam = std::make_unique<juce::AudioParameterFloat>(TOMS_BLEED_GAIN_ID, TOMS_BLEED_GAIN_NAME, sliderMinValue, sliderMaxValue, -9.0f);
+    auto TomsRoomGainParam = std::make_unique<juce::AudioParameterFloat>(TOMS_ROOM_GAIN_ID, TOMS_ROOM_GAIN_NAME, sliderMinValue, sliderMaxValue, -16.0f);
+    auto TomsBleedGainParam = std::make_unique<juce::AudioParameterFloat>(TOMS_BLEED_GAIN_ID, TOMS_BLEED_GAIN_NAME, sliderMinValue, sliderMaxValue, -12.0f);
     params.push_back(std::move(TomCloseGainParam));
     params.push_back(std::move(FTomCloseGainParam));
     params.push_back(std::move(TomsOHGainParam));
@@ -120,6 +120,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout HDrumsAudioProcessor::create
     params.push_back(std::move(CurveMenuParam));
     // ==================================================================
 
+    // Solo parameters ==================================================
     auto closeSoloParam = std::make_unique<juce::AudioParameterBool>(CLOSE_SOLO_ID, CLOSE_SOLO_NAME, false);
     auto OHSoloParam = std::make_unique<juce::AudioParameterBool>(OH_SOLO_ID, OH_SOLO_NAME, false);
     auto roomSoloParam = std::make_unique<juce::AudioParameterBool>(ROOM_SOLO_ID, ROOM_SOLO_NAME, false);
@@ -129,6 +130,47 @@ juce::AudioProcessorValueTreeState::ParameterLayout HDrumsAudioProcessor::create
     params.push_back(std::move(roomSoloParam));
     params.push_back(std::move(bleedSoloParam));
 
+    auto kickCloseSoloParam = std::make_unique<juce::AudioParameterBool>(KICK_CLOSE_SOLO_ID, KICK_CLOSE_SOLO_NAME, false);
+    auto kickOHSoloParam = std::make_unique<juce::AudioParameterBool>(KICK_OH_SOLO_ID, KICK_OH_SOLO_NAME, false);
+    auto kickRoomSoloParam = std::make_unique<juce::AudioParameterBool>(KICK_ROOM_SOLO_ID, KICK_ROOM_SOLO_NAME, false);
+    auto kickBleedSoloParam = std::make_unique<juce::AudioParameterBool>(KICK_BLEED_SOLO_ID, KICK_BLEED_SOLO_NAME, false);
+    params.push_back(std::move(kickCloseSoloParam));
+    params.push_back(std::move(kickOHSoloParam));
+    params.push_back(std::move(kickRoomSoloParam));
+    params.push_back(std::move(kickBleedSoloParam));
+
+    auto snareTopSoloParam = std::make_unique<juce::AudioParameterBool>(SNARE_TOP_SOLO_ID, SNARE_TOP_SOLO_NAME, false);
+    auto snareBotSoloParam = std::make_unique<juce::AudioParameterBool>(SNARE_BOT_SOLO_ID, SNARE_BOT_SOLO_NAME, false);
+    auto snareOHSoloParam = std::make_unique<juce::AudioParameterBool>(SNARE_OH_SOLO_ID, SNARE_OH_SOLO_NAME, false);
+    auto snareRoomSoloParam = std::make_unique<juce::AudioParameterBool>(SNARE_ROOM_SOLO_ID, SNARE_ROOM_SOLO_NAME, false);
+    auto snareBleedSoloParam = std::make_unique<juce::AudioParameterBool>(SNARE_BLEED_SOLO_ID, SNARE_BLEED_SOLO_NAME, false);
+    params.push_back(std::move(snareTopSoloParam));
+    params.push_back(std::move(snareBotSoloParam));
+    params.push_back(std::move(snareOHSoloParam));
+    params.push_back(std::move(snareRoomSoloParam));
+    params.push_back(std::move(snareBleedSoloParam));
+
+    auto tomCloseSoloParam = std::make_unique<juce::AudioParameterBool>(TOM_CLOSE_SOLO_ID, TOM_CLOSE_SOLO_NAME, false);
+    auto ftomCloseSoloParam = std::make_unique<juce::AudioParameterBool>(FTOM_CLOSE_SOLO_ID, FTOM_CLOSE_SOLO_NAME, false);
+    auto tomsOHSoloParam = std::make_unique<juce::AudioParameterBool>(TOMS_OH_SOLO_ID, TOMS_OH_SOLO_NAME, false);
+    auto tomsRoomSoloParam = std::make_unique<juce::AudioParameterBool>(TOMS_ROOM_SOLO_ID, TOMS_ROOM_SOLO_NAME, false);
+    auto tomsBleedSoloParam = std::make_unique<juce::AudioParameterBool>(TOMS_BLEED_SOLO_ID, TOMS_BLEED_SOLO_NAME, false);
+    params.push_back(std::move(tomCloseSoloParam));
+    params.push_back(std::move(ftomCloseSoloParam));
+    params.push_back(std::move(tomsOHSoloParam));
+    params.push_back(std::move(tomsRoomSoloParam));
+    params.push_back(std::move(tomsBleedSoloParam));
+
+    auto hhCloseSoloParam = std::make_unique<juce::AudioParameterBool>(HH_CLOSE_SOLO_ID, HH_CLOSE_SOLO_NAME, false);
+    auto cymbalsOHSoloParam = std::make_unique<juce::AudioParameterBool>(CYMBALS_OH_SOLO_ID, CYMBALS_OH_SOLO_NAME, false);
+    auto cymbalsRoomSoloParam = std::make_unique<juce::AudioParameterBool>(CYMBALS_ROOM_SOLO_ID, CYMBALS_ROOM_SOLO_NAME, false);
+    auto cymbalsBleedSoloParam = std::make_unique<juce::AudioParameterBool>(CYMBALS_BLEED_SOLO_ID, CYMBALS_BLEED_SOLO_NAME, false);
+    params.push_back(std::move(hhCloseSoloParam));
+    params.push_back(std::move(cymbalsOHSoloParam));
+    params.push_back(std::move(cymbalsRoomSoloParam));
+    params.push_back(std::move(cymbalsBleedSoloParam));
+
+    // Mute parameters ==================================================
     auto closeMuteParam = std::make_unique<juce::AudioParameterBool>(CLOSE_MUTE_ID, CLOSE_MUTE_NAME, false);
     auto OHMuteParam = std::make_unique<juce::AudioParameterBool>(OH_MUTE_ID, OH_MUTE_NAME, false);
     auto roomMuteParam = std::make_unique<juce::AudioParameterBool>(ROOM_MUTE_ID, ROOM_MUTE_NAME, false);
@@ -972,10 +1014,6 @@ void HDrumsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
     auto cymbalsRoomSliderValue = treeState.getRawParameterValue(CYMBALS_ROOM_GAIN_ID);
     auto cymbalsBleedSliderValue = treeState.getRawParameterValue(CYMBALS_BLEED_GAIN_ID);
 
-    auto closeSoloState = treeState.getRawParameterValue(CLOSE_SOLO_ID);
-    auto OHSoloState = treeState.getRawParameterValue(OH_SOLO_ID);
-    auto roomSoloState = treeState.getRawParameterValue(ROOM_SOLO_ID);
-    auto bleedSoloState = treeState.getRawParameterValue(BLEED_SOLO_ID);
     // =================================================================
     auto closeMuteState = treeState.getRawParameterValue(CLOSE_MUTE_ID);
     auto OHMuteState = treeState.getRawParameterValue(OH_MUTE_ID);
@@ -1320,6 +1358,57 @@ void HDrumsAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
     juce::MemoryOutputStream(destData, true).writeFloat(*crashBellNote);
     juce::MemoryOutputStream(destData, true).writeFloat(*crashOpenNote);
 
+    // Solo buttons
+    auto closeSolo = treeState.getRawParameterValue(CLOSE_SOLO_ID);
+    auto OHSolo = treeState.getRawParameterValue(OH_SOLO_ID);
+    auto roomSolo = treeState.getRawParameterValue(ROOM_SOLO_ID);
+    auto bleedSolo = treeState.getRawParameterValue(BLEED_SOLO_ID);
+    juce::MemoryOutputStream(destData, true).writeFloat(*closeSolo);
+    juce::MemoryOutputStream(destData, true).writeFloat(*OHSolo);
+    juce::MemoryOutputStream(destData, true).writeFloat(*roomSolo);
+    juce::MemoryOutputStream(destData, true).writeFloat(*bleedSolo);
+
+    auto kickCloseSolo = treeState.getRawParameterValue(KICK_CLOSE_SOLO_ID);
+    auto kickOHSolo = treeState.getRawParameterValue(KICK_OH_SOLO_ID);
+    auto kickRoomSolo = treeState.getRawParameterValue(KICK_ROOM_SOLO_ID);
+    auto kickBleedSolo = treeState.getRawParameterValue(KICK_BLEED_SOLO_ID);
+    juce::MemoryOutputStream(destData, true).writeFloat(*kickCloseSolo);
+    juce::MemoryOutputStream(destData, true).writeFloat(*kickOHSolo);
+    juce::MemoryOutputStream(destData, true).writeFloat(*kickRoomSolo);
+    juce::MemoryOutputStream(destData, true).writeFloat(*kickBleedSolo);
+
+    auto snareTopSolo = treeState.getRawParameterValue(SNARE_TOP_SOLO_ID);
+    auto snareBotSolo = treeState.getRawParameterValue(SNARE_BOT_SOLO_ID);
+    auto snareOHSolo = treeState.getRawParameterValue(SNARE_OH_SOLO_ID);
+    auto snareRoomSolo = treeState.getRawParameterValue(SNARE_ROOM_SOLO_ID);
+    auto snareBleedSolo = treeState.getRawParameterValue(SNARE_BLEED_SOLO_ID);
+    juce::MemoryOutputStream(destData, true).writeFloat(*snareTopSolo);
+    juce::MemoryOutputStream(destData, true).writeFloat(*snareBotSolo);
+    juce::MemoryOutputStream(destData, true).writeFloat(*snareOHSolo);
+    juce::MemoryOutputStream(destData, true).writeFloat(*snareRoomSolo);
+    juce::MemoryOutputStream(destData, true).writeFloat(*snareBleedSolo);
+
+    auto tomCloseSolo = treeState.getRawParameterValue(TOM_CLOSE_SOLO_ID);
+    auto ftomCloseSolo = treeState.getRawParameterValue(FTOM_CLOSE_SOLO_ID);
+    auto tomsOHSolo = treeState.getRawParameterValue(TOMS_OH_SOLO_ID);
+    auto tomsRoomSolo = treeState.getRawParameterValue(TOMS_ROOM_SOLO_ID);
+    auto tomsBleedSolo = treeState.getRawParameterValue(TOMS_BLEED_SOLO_ID);
+    juce::MemoryOutputStream(destData, true).writeFloat(*tomCloseSolo);
+    juce::MemoryOutputStream(destData, true).writeFloat(*ftomCloseSolo);
+    juce::MemoryOutputStream(destData, true).writeFloat(*tomsOHSolo);
+    juce::MemoryOutputStream(destData, true).writeFloat(*tomsRoomSolo);
+    juce::MemoryOutputStream(destData, true).writeFloat(*tomsBleedSolo);
+
+    auto hhCloseSolo = treeState.getRawParameterValue(HH_CLOSE_SOLO_ID);
+    auto cymbalsOHSolo = treeState.getRawParameterValue(CYMBALS_OH_SOLO_ID);
+    auto cymbalsRoomSolo = treeState.getRawParameterValue(CYMBALS_ROOM_SOLO_ID);
+    auto cymbalsBleedSolo = treeState.getRawParameterValue(CYMBALS_BLEED_SOLO_ID);
+    juce::MemoryOutputStream(destData, true).writeFloat(*hhCloseSolo);
+    juce::MemoryOutputStream(destData, true).writeFloat(*cymbalsOHSolo);
+    juce::MemoryOutputStream(destData, true).writeFloat(*cymbalsRoomSolo);
+    juce::MemoryOutputStream(destData, true).writeFloat(*cymbalsBleedSolo);
+
+    // Mute buttons
     auto closeMute = treeState.getRawParameterValue(CLOSE_MUTE_ID);
     auto OHMute = treeState.getRawParameterValue(OH_MUTE_ID);
     auto roomMute = treeState.getRawParameterValue(ROOM_MUTE_ID);

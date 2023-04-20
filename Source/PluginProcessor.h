@@ -259,6 +259,8 @@ public:
 
 private:
     
+    juce::AudioProcessorValueTreeState::Listener *samplePackListener;
+
     juce::MidiMessageCollector midiMessageCollector;
     
     Sampler sampler;

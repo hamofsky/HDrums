@@ -14,14 +14,14 @@
 HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     : AudioProcessorEditor(&p), audioProcessor(p), myTabbedComponent(juce::TabbedButtonBar::Orientation::TabsAtTop),
     mainSlidersPage(), kickSlidersPage(), snareSlidersPage(), tomsSlidersPage(), cymbalsSlidersPage(), midiNotesChoosingPage(),
-    guiKickButton("GUI Kick Button", juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.04f), juce::Colours::black.withAlpha(0.1f)),
-    guiSnareButton("GUI Snare Button", juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.04f), juce::Colours::black.withAlpha(0.1f)),
-    guiTomButton("GUI Tom Button", juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.04f), juce::Colours::black.withAlpha(0.1f)),
-    guiFTomButton("GUI FTom Button", juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.04f), juce::Colours::black.withAlpha(0.1f)),
-    guiTambButton("GUI Tamb Button", juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.04f), juce::Colours::black.withAlpha(0.1f)),
-    guiHHButton("GUI HH Button", juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.04f), juce::Colours::black.withAlpha(0.1f)),
-    guiRideButton("GUI Ride Button", juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.04f), juce::Colours::black.withAlpha(0.1f)),
-    guiCrashButton("GUI Crash Button", juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.04f), juce::Colours::black.withAlpha(0.1f))//, openButton("Browse for directory")
+    guiKickButton("GUI Kick Button", juce::Colours::black.withAlpha(0.001f), juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.07f)),
+    guiSnareButton("GUI Snare Button", juce::Colours::black.withAlpha(0.001f), juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.1f)),
+    guiTomButton("GUI Tom Button", juce::Colours::black.withAlpha(0.001f), juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.1f)),
+    guiFTomButton("GUI FTom Button", juce::Colours::black.withAlpha(0.001f), juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.1f)),
+    guiTambButton("GUI Tamb Button", juce::Colours::black.withAlpha(0.001f), juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.1f)),
+    guiHHButton("GUI HH Button", juce::Colours::black.withAlpha(0.001f), juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.1f)),
+    guiRideButton("GUI Ride Button", juce::Colours::black.withAlpha(0.001f), juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.1f)),
+    guiCrashButton("GUI Crash Button", juce::Colours::black.withAlpha(0.001f), juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.1f))//, openButton("Browse for directory")
 {
     setSize(1000, 500);
 
@@ -37,13 +37,13 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     juce::Path guiRideButtonShape;
     juce::Path guiCrashButtonShape;
     guiKickButtonShape.addEllipse(0, 0, 149.0f, 149.0f);
-    guiSnareButtonShape.addEllipse(0, 0, 124.0f, 70.0f);
-    guiTomButtonShape.addEllipse(0, 0, 86.0f, 39.0f);
-    guiFTomButtonShape.addEllipse(0, 0, 125.0f, 62.0f);
+    guiSnareButtonShape.addEllipse(0, 0, 123.0f, 66.0f);
+    guiTomButtonShape.addEllipse(0, 0, 84.0f, 35.0f);
+    guiFTomButtonShape.addEllipse(0, 0, 125.0f, 61.0f);
     guiTambButtonShape.addEllipse(0, 0, 78.0f, 50.0f);
-    guiHHButtonShape.addEllipse(0, 0, 120.0f, 46.0f);
-    guiRideButtonShape.addEllipse(0, 0, 180.0f, 79.0f);
-    guiCrashButtonShape.addEllipse(0, 0, 125.0f, 50.0f);
+    guiHHButtonShape.addEllipse(0, 0, 122.0f, 46.0f);
+    guiRideButtonShape.addEllipse(0, 0, 185.0f, 78.0f);
+    guiCrashButtonShape.addEllipse(0, 0, 125.0f, 51.0f);
     guiKickButton.setShape(guiKickButtonShape, true, true, false);
     guiSnareButton.setShape(guiSnareButtonShape, true, true, false);
     guiTomButton.setShape(guiTomButtonShape, true, true, false);
@@ -300,12 +300,11 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
 
     for (int i = 0; i < soloButtons.size(); i++)
     {
-        muteStateBeforeFirstSolo[i] = muteButtons[i]->getToggleState();
-        
         if (soloButtons[i]->getToggleState())
-        {
-            soloAlreadyEngaged = true;
-        }
+            soloButtons[i]->setToggleState(true, true); // to send a notification to for soloStateChanged to mute muteButtons
+        /*else
+            soloButtons[i]->setToggleState(false, true);*/
+        
         //soloButtons[i]->onClick = [this] { soloStateChanged(i); };
     }
     soloButtons[0]->onClick = [this] { soloStateChanged(0); };
@@ -326,16 +325,15 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     soloButtons[15]->onClick = [this] { soloStateChanged(15); };
     soloButtons[16]->onClick = [this] { soloStateChanged(16); };
     soloButtons[17]->onClick = [this] { soloStateChanged(17); };
-    /*soloButtons[18]->onClick = [this] { soloStateChanged(18); };
-    soloButtons[19]->onClick = [this] { soloStateChanged(19); };
-    soloButtons[20]->onClick = [this] { soloStateChanged(20); };
-    soloButtons[21]->onClick = [this] { soloStateChanged(21); };*/
 
 }
 
 HDrumsAudioProcessorEditor::~HDrumsAudioProcessorEditor()
 {
-
+    muteButtons.clear();
+    soloButtons.clear();
+    muteButtons.shrink_to_fit();
+    soloButtons.shrink_to_fit();
 }
 
 void HDrumsAudioProcessorEditor::soloStateChanged(int soloButtonId)
@@ -385,12 +383,12 @@ void HDrumsAudioProcessorEditor::paint (juce::Graphics& g)
 {
     g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
 
-    background = juce::ImageCache::getFromMemory(BinaryData::blue_400x400_png, BinaryData::blue_400x400_pngSize);
+    electronicBackground = juce::ImageCache::getFromMemory(BinaryData::electronicDrumsImage_png, BinaryData::electronicDrumsImage_pngSize);
     background2 = juce::ImageCache::getFromMemory(BinaryData::grey_400x400_png, BinaryData::grey_400x400_pngSize);
     dryBackground = juce::ImageCache::getFromMemory(BinaryData::dryDrumsImage_png, BinaryData::dryDrumsImage_pngSize);
 
     if (samplePackMenu.getSelectedId() == 1)
-        g.drawImageWithin(background, 0, 0, getWidth(), getHeight(), juce::RectanglePlacement::stretchToFit);
+        g.drawImageWithin(electronicBackground, 0, 0, getWidth(), getHeight(), juce::RectanglePlacement::stretchToFit);
     else if (samplePackMenu.getSelectedId() == 2)
         g.drawImageWithin(background2, 0, 0, getWidth(), getHeight(), juce::RectanglePlacement::stretchToFit);
     else
@@ -401,23 +399,44 @@ void HDrumsAudioProcessorEditor::paint (juce::Graphics& g)
 
 void HDrumsAudioProcessorEditor::resized()
 {
-    auto halfWidth = getWidth() / 4;
-    
     //openButton.setBounds(10, 10, getWidth() - 20, 30);
-    
-    guiKickButton.setCentrePosition(230, 212);
+
+    /*guiKickButton.setCentrePosition(230, 212);
     guiSnareButton.setCentrePosition(110, 235);
     guiTomButton.setCentrePosition(162, 147);
     guiFTomButton.setCentrePosition(373, 233);
     guiTambButton.setCentrePosition(279, 121);
     guiHHButton.setCentrePosition(32, 128);
     guiRideButton.setCentrePosition(372, 124);
-    guiCrashButton.setCentrePosition(150, 76);
+    guiCrashButton.setCentrePosition(150, 76);*/
+
+    guiKickButton.setCentrePosition(303, 286);
+    guiSnareButton.setCentrePosition(171, 272);
+    guiTomButton.setCentrePosition(205, 167);
+    guiFTomButton.setCentrePosition(433, 264);
+    guiTambButton.setCentrePosition(318, 146);
+    guiHHButton.setCentrePosition(91, 150);
+    guiRideButton.setCentrePosition(461, 163);
+    guiCrashButton.setCentrePosition(212, 102);
 
     samplePackMenu.setBounds(10, 10, 285, 20);
     curveMenu.setBounds(305, 10, 285, 20);
 
     myTabbedComponent.setBounds(getWidth() / 2 + 100, 0, getWidth() / 2 - 100, getHeight());
+    
+    if (samplePackMenu.getSelectedId() == 1)
+    {   // Electronic
+        myTabbedComponent.setVisible(true);
+        guiTambButton.setVisible(false);
+    }
+    else if (samplePackMenu.getSelectedId() == 2)
+    {   // Acoustic
+        myTabbedComponent.setVisible(false);
+    }
+    else
+    {   // Dry
+        guiTambButton.setVisible(true);
+    }
 }
 
 void HDrumsAudioProcessorEditor::velocityCurveChanged()
@@ -432,6 +451,7 @@ void HDrumsAudioProcessorEditor::samplePackMenuChanged()
 {
     audioProcessor.loadSamples(samplePackMenu.getSelectedId());
     repaint();
+    resized();
 }
 
 void HDrumsAudioProcessorEditor::midiNoteChanged()

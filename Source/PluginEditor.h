@@ -31,6 +31,7 @@ public:
     CymbalsSlidersPage cymbalsSlidersPage;
     MidiNotesChoosingPage midiNotesChoosingPage;
 
+    // =====================================================================
     void soloStateChanged(int soloButtonId);
 
     MuteAndSoloButtonsFunctionality muteAndSoloButtonsFunctionality;
@@ -46,6 +47,19 @@ public:
     
     bool muteStateBeforeFirstSolo[18] = { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };
     bool soloAlreadyEngaged = false;
+
+    std::vector<juce::AudioProcessorValueTreeState::ButtonAttachment*> soloButtonsStates = {
+                            kickCloseSoloState, kickOHSoloState, kickRoomSoloState, kickBleedSoloState,
+                            snareTopSoloState, snareBotSoloState, snareOHSoloState, snareRoomSoloState, snareBleedSoloState,
+                            tomCloseSoloState, ftomCloseSoloState, tomsOHSoloState, tomsRoomSoloState, tomsBleedSoloState,
+                            hhCloseSoloState, cymbalsOHSoloState, cymbalsRoomSoloState, cymbalsBleedSoloState };
+
+    std::vector<juce::AudioProcessorValueTreeState::ButtonAttachment*> muteButtonsStates = {
+                            kickCloseMuteState, kickOHMuteState, kickRoomMuteState, kickBleedMuteState,
+                            snareTopMuteState, snareBotMuteState, snareOHMuteState, snareRoomMuteState, snareBleedMuteState,
+                            tomCloseMuteState, ftomCloseMuteState, tomsOHMuteState, tomsRoomMuteState, tomsBleedMuteState,
+                            hhCloseMuteState, cymbalsOHMuteState, cymbalsRoomMuteState, cymbalsBleedMuteState };
+    // =====================================================================================================
 
     juce::Font textFont{ 12.0f };
     juce::ComboBox samplePackMenu;
@@ -173,7 +187,7 @@ private:
     //juce::TextButton openButton;
     //juce::String loadDirectory();
 
-    juce::Image background;
+    juce::Image electronicBackground;
     juce::Image background2;
     juce::Image dryBackground;
 

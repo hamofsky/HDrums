@@ -106,11 +106,11 @@ public:
 		{
 			addAndMakeVisible(tomsSoloButtons[i]);
 			tomsSoloButtons[i]->setLookAndFeel(&myLookAndFeelSolo);
-			tomsSoloButtons[i]->setToggleState(tomsSoloButtons[i]->getToggleState(), true);
+			//tomsSoloButtons[i]->setToggleState(tomsSoloButtons[i]->getToggleState(), true);
 
 			addAndMakeVisible(tomsMuteButtons[i]);
 			tomsMuteButtons[i]->setLookAndFeel(&myLookAndFeel);
-			tomsMuteButtons[i]->setToggleState(tomsMuteButtons[i]->getToggleState(), true);
+			//tomsMuteButtons[i]->setToggleState(tomsMuteButtons[i]->getToggleState(), true);
 		}
 	}
 

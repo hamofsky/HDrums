@@ -90,11 +90,11 @@ public:
 		{
 			addAndMakeVisible(cymbalsSoloButtons[i]);
 			cymbalsSoloButtons[i]->setLookAndFeel(&myLookAndFeelSolo);
-			cymbalsSoloButtons[i]->setToggleState(cymbalsSoloButtons[i]->getToggleState(), true);
+			//cymbalsSoloButtons[i]->setToggleState(cymbalsSoloButtons[i]->getToggleState(), true);
 
 			addAndMakeVisible(cymbalsMuteButtons[i]);
 			cymbalsMuteButtons[i]->setLookAndFeel(&myLookAndFeel);
-			cymbalsMuteButtons[i]->setToggleState(cymbalsMuteButtons[i]->getToggleState(), true);
+			//cymbalsMuteButtons[i]->setToggleState(cymbalsMuteButtons[i]->getToggleState(), true);
 		}
 	}
 

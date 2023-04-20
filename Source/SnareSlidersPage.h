@@ -106,11 +106,11 @@ public:
 		{
 			addAndMakeVisible(snareSoloButtons[i]);
 			snareSoloButtons[i]->setLookAndFeel(&myLookAndFeelSolo);
-			snareSoloButtons[i]->setToggleState(snareSoloButtons[i]->getToggleState(), true);
+			//snareSoloButtons[i]->setToggleState(snareSoloButtons[i]->getToggleState(), true);
 
 			addAndMakeVisible(snareMuteButtons[i]);
 			snareMuteButtons[i]->setLookAndFeel(&myLookAndFeel);
-			snareMuteButtons[i]->setToggleState(snareMuteButtons[i]->getToggleState(), true);
+			//snareMuteButtons[i]->setToggleState(snareMuteButtons[i]->getToggleState(), true);
 		}
 	}
 

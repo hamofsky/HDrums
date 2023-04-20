@@ -90,11 +90,11 @@ public:
 		{
 			addAndMakeVisible(kickSoloButtons[i]);
 			kickSoloButtons[i]->setLookAndFeel(&myLookAndFeelSolo);
-			kickSoloButtons[i]->setToggleState(kickSoloButtons[i]->getToggleState(), true);
+			//kickSoloButtons[i]->setToggleState(kickSoloButtons[i]->getToggleState(), true);
 
 			addAndMakeVisible(kickMuteButtons[i]);
 			kickMuteButtons[i]->setLookAndFeel(&myLookAndFeel);
-			kickMuteButtons[i]->setToggleState(kickMuteButtons[i]->getToggleState(), true);
+			//kickMuteButtons[i]->setToggleState(kickMuteButtons[i]->getToggleState(), true);
 		}
 	}
 
