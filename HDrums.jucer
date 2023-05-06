@@ -15,6 +15,9 @@
               file="Source/Assets/dryDrumsImage.png"/>
         <FILE id="sNSF4u" name="grey_400x400.png" compile="0" resource="1"
               file="Source/Assets/grey_400x400.png"/>
+        <GROUP id="{CBD8BA8B-D937-9BE4-6880-7FCC07CA8D6C}" name="electronicSamples">
+          <FILE id="i93UnZ" name="kick_close.wav" compile="0" resource="1" file="Source/Assets/electronicSamples/kick_close.wav"/>
+        </GROUP>
       </GROUP>
       <FILE id="OWcBnF" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
@@ -40,8 +43,8 @@
             file="Source/TomsSlidersPage.h"/>
       <FILE id="MBP1An" name="CymbalsSlidersPage.h" compile="0" resource="0"
             file="Source/CymbalsSlidersPage.h"/>
-      <FILE id="kdttmQ" name="MidiNoteChoosingPage.h" compile="0" resource="0"
-            file="Source/MidiNoteChoosingPage.h"/>
+      <FILE id="kdttmQ" name="MidiNotesChoosingPage.h" compile="0" resource="0"
+            file="Source/MidiNotesChoosingPage.h"/>
       <FILE id="LFH5Bl" name="MyLookAndFeel.h" compile="0" resource="0" file="Source/MyLookAndFeel.h"/>
       <FILE id="piXhg6" name="MuteAndSoloButtonsFunctionality.h" compile="0"
             resource="0" file="Source/MuteAndSoloButtonsFunctionality.h"/>

@@ -16,6 +16,8 @@
 
 #define SNARE_MIDI_NOTE_ID "MIDI note snare"
 #define SNARE_MIDI_NOTE_NAME "MIDI note Snare"
+#define SNARE_SWIRL_MIDI_NOTE_ID "MIDI note snare Swirl"
+#define SNARE_SWIRL_MIDI_NOTE_NAME "MIDI note Snare Swirl"
 #define SNARE_FLAM_MIDI_NOTE_ID "MIDI note snare Flam"
 #define SNARE_FLAM_MIDI_NOTE_NAME "MIDI note Snare Flam"
 #define SNARE_ROUND_MIDI_NOTE_ID "MIDI note snare Round"
@@ -24,6 +26,11 @@
 #define SNARE_WIRELESS_MIDI_NOTE_NAME "MIDI note Snare Wireless"
 #define SNARE_WIRELESS_ROUND_MIDI_NOTE_ID "MIDI note snare Wireless Round"
 #define SNARE_WIRELESS_ROUND_MIDI_NOTE_NAME "MIDI note Snare Wireless Round"
+
+#define SNARE_PICCOLO_MIDI_NOTE_ID "MIDI note snare Piccolo"
+#define SNARE_PICCOLO_MIDI_NOTE_NAME "MIDI note Snare Piccolo"
+#define SNARE_PICCOLO_SWIRL_MIDI_NOTE_ID "MIDI note snare Piccolo Swirl"
+#define SNARE_PICCOLO_SWIRL_MIDI_NOTE_NAME "MIDI note Snare Piccolo Swirl"
 
 #define TOM_MIDI_NOTE_ID "MIDI note tom"
 #define TOM_MIDI_NOTE_NAME "MIDI note Tom"
@@ -34,12 +41,15 @@
 #define FTOM_FLAM_MIDI_NOTE_ID "MIDI note ftom Flam"
 #define FTOM_FLAM_MIDI_NOTE_NAME "MIDI note FTom Flam"
 
+#define HH_FOOT_MIDI_NOTE_ID "MIDI note hh Foot"
+#define HH_FOOT_MIDI_NOTE_NAME "MIDI note HH Foot"
 #define HH_CLOSED_MIDI_NOTE_ID "MIDI note hh Closed"
 #define HH_CLOSED_MIDI_NOTE_NAME "MIDI note HH Closed"
 #define HH_HALF_MIDI_NOTE_ID "MIDI note hh Half"
 #define HH_HALF_MIDI_NOTE_NAME "MIDI note HH Half"
 #define HH_OPEN_MIDI_NOTE_ID "MIDI note hh Open"
 #define HH_OPEN_MIDI_NOTE_NAME "MIDI note HH Open"
+
 #define TAMB_MIDI_NOTE_ID "MIDI note tambourine"
 #define TAMB_MIDI_NOTE_NAME "MIDI note Tambourine"
 
@@ -56,6 +66,14 @@
 #define CRASH_BELL_MIDI_NOTE_NAME "MIDI note Crash Bell"
 #define CRASH_OPEN_MIDI_NOTE_ID "MIDI note crash Open"
 #define CRASH_OPEN_MIDI_NOTE_NAME "MIDI note Crash Open"
+
+#define STACK_CLOSED_MIDI_NOTE_ID "MIDI note stack Closed"
+#define STACK_CLOSED_MIDI_NOTE_NAME "MIDI note Stack Closed"
+#define STACK_OPEN_MIDI_NOTE_ID "MIDI note stack Open"
+#define STACK_OPEN_MIDI_NOTE_NAME "MIDI note Stack Open"
+
+#define STICKS_MIDI_NOTE_ID "MIDI note sticks"
+#define STICKS_MIDI_NOTE_NAME "MIDI note Sticks"
 
 // Slider Values ========================================
 #define GAIN_ID "close"
@@ -297,7 +315,7 @@ private:
     float linCurveFor5[6] = { 0.0, 26.0, 51.0, 77.0, 102.0, 129.0 };
     float linCurveFor6[7] = { 0.0, 21.0, 43.0, 64.0, 85.0, 107.0, 129.0 };
 
-    int defaultMidiNotes[20] = { 71, 72, 73, 74, 75, 76, 78, 79, 80, 81, 83, 85, 86, 87, 89, 90, 91, 93, 94, 95 };
+    int defaultMidiNotes[27] = { 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97 };
 
     void loadDirectory();
     void clearSoundsFromAllSamplers();

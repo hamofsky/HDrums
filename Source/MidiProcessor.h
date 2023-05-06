@@ -7,8 +7,8 @@ public:
     bool logarhytmic = false;
     float maxValueOfLogCurve = log10(128);
 
-    int defaultMidiNotes[20] = { 71, 72, 73, 74, 75, 76, 78, 79, 80, 81, 83, 85, 86, 87, 89, 90, 91, 93, 94, 95 };
-    int newMidiNotes[20] = { 71, 72, 73, 74, 75, 76, 78, 79, 80, 81, 83, 85, 86, 87, 89, 90, 91, 93, 94, 95 };
+    int defaultMidiNotes[28] = { 0, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97 };
+    int newMidiNotes[28] = { 0, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97 };
 
     void process(juce::MidiBuffer& midiMessages)
     {

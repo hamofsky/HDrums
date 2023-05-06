@@ -16,20 +16,24 @@ void Sampler::noteOn(const int midiChannel, const int midiNoteNumber, const floa
             for (int j = voices.size(); --j >= 0; )
             {
                 juce::SynthesiserVoice* const voice = voices.getUnchecked(j);
-                // wyjatek dla HH Open (87) konczacy sie przy uderzeniu w HH Half (86) || HH Closed (85)
+                // wyjatek dla HH Open (87) konczacy sie przy uderzeniu w HH Half (86) || HH Closed (85) || HH Foot (84)
                 if (voice->getCurrentlyPlayingNote() == 87)
                 {
                     if (voice->isPlayingChannel(midiChannel) && (sound->appliesTo(86, velocity)))
                         stopVoice(voice, 1.0f, true);
                     else if (voice->isPlayingChannel(midiChannel) && (sound->appliesTo(85, velocity)))
                         stopVoice(voice, 1.0f, true);
+                    else if (voice->isPlayingChannel(midiChannel) && (sound->appliesTo(84, velocity)))
+                        stopVoice(voice, 1.0f, true);
                 }
-                // analogicznie dla HH Half (86) zamykanego przez HH Open (87) || HH Closed (85)
+                // analogicznie dla HH Half (86) zamykanego przez HH Open (87) || HH Closed (85) || HH Foot (84)
                 else if (voice->getCurrentlyPlayingNote() == 86)
                 {
                     if (voice->isPlayingChannel(midiChannel) && (sound->appliesTo(87, velocity)))
                         stopVoice(voice, 1.0f, true);
                     else if (voice->isPlayingChannel(midiChannel) && (sound->appliesTo(85, velocity)))
+                        stopVoice(voice, 1.0f, true);
+                    else if (voice->isPlayingChannel(midiChannel) && (sound->appliesTo(84, velocity)))
                         stopVoice(voice, 1.0f, true);
                 }
                 // pozostale przypadki (ta sama nuta konczy te sama)

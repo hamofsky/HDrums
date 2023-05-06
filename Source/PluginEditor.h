@@ -6,7 +6,7 @@
 #include "TomsSlidersPage.h"
 #include "MainSlidersPage.h"
 #include "CymbalsSlidersPage.h"
-#include "MidiNoteChoosingPage.h"
+#include "MidiNotesChoosingPage.h"
 
 class HDrumsAudioProcessorEditor  : public juce::AudioProcessorEditor
 {
@@ -30,6 +30,17 @@ public:
     TomsSlidersPage tomsSlidersPage;
     CymbalsSlidersPage cymbalsSlidersPage;
     MidiNotesChoosingPage midiNotesChoosingPage;
+
+
+    std::vector<juce::ComboBox*> midiNoteHiddenMenus = { & midiNotesChoosingPage.kickNoteMenu, & midiNotesChoosingPage.snareNoteMenu, & midiNotesChoosingPage.snareSwirlNoteMenu,
+                & midiNotesChoosingPage.snareFlamNoteMenu, & midiNotesChoosingPage.snareRoundNoteMenu, & midiNotesChoosingPage.snareWirelessNoteMenu,
+                & midiNotesChoosingPage.snareWirelessRoundNoteMenu, & midiNotesChoosingPage.snarePiccoloNoteMenu, & midiNotesChoosingPage.snarePiccoloSwirlNoteMenu,
+                & midiNotesChoosingPage.tomNoteMenu, & midiNotesChoosingPage.tomFlamNoteMenu, & midiNotesChoosingPage.ftomNoteMenu, & midiNotesChoosingPage.ftomFlamNoteMenu,
+                & midiNotesChoosingPage.hhFootNoteMenu, & midiNotesChoosingPage.hhClosedNoteMenu, & midiNotesChoosingPage.hhHalfNoteMenu, & midiNotesChoosingPage.hhOpenNoteMenu, & midiNotesChoosingPage.tambNoteMenu,
+                & midiNotesChoosingPage.ridePointNoteMenu, & midiNotesChoosingPage.rideBellNoteMenu, & midiNotesChoosingPage.rideOpenNoteMenu,
+                & midiNotesChoosingPage.crashPointNoteMenu, & midiNotesChoosingPage.crashBellNoteMenu, & midiNotesChoosingPage.crashOpenNoteMenu,
+                & midiNotesChoosingPage.stackClosedNoteMenu, & midiNotesChoosingPage.stackOpenNoteMenu, & midiNotesChoosingPage.sticksNoteMenu };
+
 
     // =====================================================================
     void soloStateChanged(int soloButtonId);
@@ -74,17 +85,21 @@ public:
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> samplePackAttachment;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> curveMenuAttachment;
 
-    // MIDI note buttons attachments =====================================================
+    // MIDI note combobox attachments =====================================================
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> kickNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> snareNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> snareSwirlNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> snareFlamNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> snareRoundNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> snareWirelessNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> snareWirelessRoundNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> snarePiccoloNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> snarePiccoloSwirlNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> tomNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> tomFlamNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> ftomNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> ftomFlamNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> hhFootNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> hhClosedNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> hhHalfNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> hhOpenNote;
@@ -95,6 +110,9 @@ public:
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> crashPointNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> crashBellNote;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> crashOpenNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> stackClosedNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> stackOpenNote;
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ComboBoxAttachment> sticksNote;
 
     // Slider values attachments ========================================================== 
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> sliderValue;
@@ -184,9 +202,6 @@ private:
     
     juce::AudioFormatManager formatManager;
 
-    //juce::TextButton openButton;
-    //juce::String loadDirectory();
-
     juce::Image electronicBackground;
     juce::Image background2;
     juce::Image dryBackground;
@@ -195,6 +210,8 @@ private:
     void velocityCurveChanged();
     void samplePackMenuChanged();
     void midiNoteChanged();
+    void midiNoteChanged2();
+    void changeMidiNoteMenuWhenSoundChanged();
     void playMidiNote(int noteNumber);
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (HDrumsAudioProcessorEditor)
