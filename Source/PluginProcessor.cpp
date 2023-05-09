@@ -383,6 +383,66 @@ void HDrumsAudioProcessor::addSample(string sampleName, string destination, int 
     
 }
 
+
+void HDrumsAudioProcessor::addSample2(string sampleName, const void* sourceData, size_t sourceDataSize, int midiNote, float lowestVelocity, float highestVelocity, double release, double maxLength, string bus)
+{
+    auto input = new juce::MemoryInputStream(sourceData, sourceDataSize, false);
+    unique_ptr<juce::AudioFormatReader>audioReader(formatManager.createReaderFor(std::unique_ptr<juce::InputStream>(input)));
+    juce::BigInteger midiNotes;
+    midiNotes.setRange(midiNote, 1, true);
+    juce::Range<float> velocities(1.f / 127 * lowestVelocity, 1.f / 127 * highestVelocity);
+
+    if (bus == "Close")
+        sampler.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+    else if (bus == "OH")
+        samplerOH.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+    else if (bus == "Room")
+        samplerRoom.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+    else if (bus == "Bleed")
+        samplerBleed.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+
+    else if (bus == "KickClose")
+        samplerKickClose.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+    else if (bus == "KickOH")
+        samplerKickOH.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+    else if (bus == "KickRoom")
+        samplerKickRoom.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+    else if (bus == "KickBleed")
+        samplerKickBleed.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+
+    else if (bus == "SnareTop")
+        samplerSnareTop.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+    else if (bus == "SnareBot")
+        samplerSnareBot.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+    else if (bus == "SnareOH")
+        samplerSnareOH.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+    else if (bus == "SnareRoom")
+        samplerSnareRoom.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+    else if (bus == "SnareBleed")
+        samplerSnareBleed.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+
+    else if (bus == "TomClose")
+        samplerTomClose.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+    else if (bus == "FTomClose")
+        samplerFTomClose.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+    else if (bus == "TomsOH")
+        samplerTomsOH.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+    else if (bus == "TomsRoom")
+        samplerTomsRoom.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+    else if (bus == "TomsBleed")
+        samplerTomsBleed.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+
+    else if (bus == "HHClose")
+        samplerHHClose.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+    else if (bus == "CymbalsOH")
+        samplerCymbalsOH.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+    else if (bus == "CymbalsRoom")
+        samplerCymbalsRoom.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+    else if (bus == "CymbalsBleed")
+        samplerCymbalsBleed.addSound(new SamplerSoundLayer(sampleName, *audioReader, midiNotes, midiNote, velocities, 0.01, release, maxLength));
+}
+
+
 void HDrumsAudioProcessor::loadDirectory()
 {
     DBG("Source was a nullptr, so you will have to choose a correct directory");
@@ -401,45 +461,42 @@ void HDrumsAudioProcessor::loadSamples(int samplePackID)
     {
         clearSoundsFromAllSamplers();
 
-        string electronicDestination = destinationAll + "electronicSamples/";
-        string kickDestination = electronicDestination + "kick/";
-        // sampleName, File destination, midiNote, lowestVelocity, highestVelocity, release in s, maxLength in s, bus select (0 - Close Mics, 1 - OH, 2 - Room)
-        addSample("Electronic Kick Close", kickDestination + "kick_close.wav", defaultMidiNotes[0], 1, 127, 0.5, 1.0, "KickClose");
-        addSample("Electronic Kick OH", kickDestination + "kick_OH.wav", defaultMidiNotes[0], 1, 127, 0.5, 1.0, "KickOH");
-        addSample("Electronic Kick Room", kickDestination + "kick_room.wav", defaultMidiNotes[0], 1, 127, 0.5, 1.0, "KickRoom");
-        addSample("Electronic Kick Bleed", kickDestination + "kick_bleed.wav", defaultMidiNotes[0], 1, 127, 0.5, 1.0, "KickBleed");
-        string snareDestination = electronicDestination + "snare/";
-        addSample("Electronic Snare Close", snareDestination + "snare_close.wav", defaultMidiNotes[1], 1, 127, 0.5, 1.0, "SnareTop");
-        addSample("Electronic Snare OH", snareDestination + "snare_OH.wav", defaultMidiNotes[1], 1, 127, 0.5, 1.0, "SnareOH");
-        addSample("Electronic Snare Room", snareDestination + "snare_room.wav", defaultMidiNotes[1], 1, 127, 0.5, 1.0, "SnareRoom");
-        addSample("Electronic Snare Bleed", snareDestination + "snare_bleed.wav", defaultMidiNotes[1], 1, 127, 0.5, 1.0, "SnareBleed");
-        string tomDestination = electronicDestination + "tom/";
-        addSample("Electronic Tom Close", tomDestination + "tom_close.wav", defaultMidiNotes[9], 1, 127, 0.5, 1.0, "TomClose");
-        addSample("Electronic Tom OH", tomDestination + "tom_OH.wav", defaultMidiNotes[9], 1, 127, 0.5, 1.0, "TomsOH");
-        addSample("Electronic Tom Room", tomDestination + "tom_room.wav", defaultMidiNotes[9], 1, 127, 0.5, 1.0, "TomsRoom");
-        addSample("Electronic Tom Bleed", tomDestination + "tom_bleed.wav", defaultMidiNotes[9], 1, 127, 0.5, 1.0, "TomsBleed");
-        string ftomDestination = electronicDestination + "ftom/";
-        addSample("Electronic FTom Close", ftomDestination + "ftom_close.wav", defaultMidiNotes[11], 1, 127, 0.5, 1.0, "FTomClose");
-        addSample("Electronic FTom OH", ftomDestination + "ftom_OH.wav", defaultMidiNotes[11], 1, 127, 0.5, 1.0, "TomsOH");
-        addSample("Electronic FTom Room", ftomDestination + "ftom_room.wav", defaultMidiNotes[11], 1, 127, 0.5, 1.0, "TomsRoom");
-        addSample("Electronic FTom Bleed", ftomDestination + "ftom_bleed.wav", defaultMidiNotes[11], 1, 127, 0.5, 1.0, "TomsBleed");
-        string hhDestination = electronicDestination + "hh/";
-        addSample("Electronic HH Closed Close", hhDestination + "hhClosed_close.wav", defaultMidiNotes[14], 1, 127, 0.5, 1.0, "HHClose");
-        addSample("Electronic HH Closed OH", hhDestination + "hhClosed_OH.wav", defaultMidiNotes[14], 1, 127, 0.5, 1.0, "CymbalsOH");
-        addSample("Electronic HH Closed Room", hhDestination + "hhClosed_room.wav", defaultMidiNotes[14], 1, 127, 0.5, 1.0, "CymbalsRoom");
-        addSample("Electronic HH Closed Bleed", hhDestination + "hhClosed_bleed.wav", defaultMidiNotes[14], 1, 127, 0.5, 1.0, "CymbalsBleed");
-        addSample("Electronic HH Open Close", hhDestination + "hhOpen_close.wav", defaultMidiNotes[16], 1, 127, 0.5, 1.0, "HHClose");
-        addSample("Electronic HH Open OH", hhDestination + "hhOpen_OH.wav", defaultMidiNotes[16], 1, 127, 0.5, 1.0, "CymbalsOH");
-        addSample("Electronic HH Open Room", hhDestination + "hhOpen_room.wav", defaultMidiNotes[16], 1, 127, 0.5, 1.0, "CymbalsRoom");
-        addSample("Electronic HH Open Bleed", hhDestination + "hhOpen_bleed.wav", defaultMidiNotes[16], 1, 127, 0.5, 1.0, "CymbalsBleed");
-        string rideDestination = electronicDestination + "ride/";
-        addSample("Electronic Ride OH", rideDestination + "ride_OH.wav", defaultMidiNotes[18], 1, 127, 0.8, 2.2, "CymbalsOH");
-        addSample("Electronic Ride Room", rideDestination + "ride_room.wav", defaultMidiNotes[18], 1, 127, 0.8, 2.2, "CymbalsRoom");
-        addSample("Electronic Ride Bleed", rideDestination + "ride_bleed.wav", defaultMidiNotes[18], 1, 127, 0.8, 2.2, "CymbalsBleed");
-        string crashDestination = electronicDestination + "crash/";
-        addSample("Electronic Crash OH", crashDestination + "crash_OH.wav", defaultMidiNotes[23], 1, 127, 0.8, 2.2, "CymbalsOH");
-        addSample("Electronic Crash Room", crashDestination + "crash_room.wav", defaultMidiNotes[23], 1, 127, 0.8, 2.2, "CymbalsRoom");
-        addSample("Electronic Crash Bleed", crashDestination + "crash_bleed.wav", defaultMidiNotes[23], 1, 127, 0.8, 2.2, "CymbalsBleed");
+        addSample2("Electronic Kick Close", BinaryData::e_kick_close_wav, BinaryData::e_kick_close_wavSize, defaultMidiNotes[0], 1, 127, 0.5, 1.0, "KickClose");
+        addSample2("Electronic Kick OH", BinaryData::e_kick_OH_wav, BinaryData::e_kick_OH_wavSize, defaultMidiNotes[0], 1, 127, 0.5, 1.0, "KickOH");
+        addSample2("Electronic Kick Room", BinaryData::e_kick_room_wav, BinaryData::e_kick_room_wavSize, defaultMidiNotes[0], 1, 127, 0.5, 1.0, "KickRoom");
+        addSample2("Electronic Kick Bleed", BinaryData::e_kick_bleed_wav, BinaryData::e_kick_bleed_wavSize, defaultMidiNotes[0], 1, 127, 0.5, 1.0, "KickBleed");
+        
+        addSample2("Electronic Snare Close", BinaryData::e_snare_close_wav, BinaryData::e_snare_close_wavSize, defaultMidiNotes[1], 1, 127, 0.5, 1.0, "SnareTop");
+        addSample2("Electronic Snare OH", BinaryData::e_snare_OH_wav, BinaryData::e_snare_OH_wavSize, defaultMidiNotes[1], 1, 127, 0.5, 1.0, "SnareOH");
+        addSample2("Electronic Snare Room", BinaryData::e_snare_room_wav, BinaryData::e_snare_room_wavSize, defaultMidiNotes[1], 1, 127, 0.5, 1.0, "SnareRoom");
+        addSample2("Electronic Snare Bleed", BinaryData::e_snare_bleed_wav, BinaryData::e_snare_bleed_wavSize, defaultMidiNotes[1], 1, 127, 0.5, 1.0, "SnareBleed");
+        
+        addSample2("Electronic Tom Close", BinaryData::e_tom_close_wav, BinaryData::e_tom_close_wavSize, defaultMidiNotes[9], 1, 127, 0.5, 1.0, "TomClose");
+        addSample2("Electronic Tom OH", BinaryData::e_tom_OH_wav, BinaryData::e_tom_OH_wavSize, defaultMidiNotes[9], 1, 127, 0.5, 1.0, "TomsOH");
+        addSample2("Electronic Tom Room", BinaryData::e_tom_room_wav, BinaryData::e_tom_room_wavSize, defaultMidiNotes[9], 1, 127, 0.5, 1.0, "TomsRoom");
+        addSample2("Electronic Tom Bleed", BinaryData::e_tom_bleed_wav, BinaryData::e_tom_bleed_wavSize, defaultMidiNotes[9], 1, 127, 0.5, 1.0, "TomsBleed");
+        
+        addSample2("Electronic FTom Close", BinaryData::e_ftom_close_wav, BinaryData::e_ftom_close_wavSize, defaultMidiNotes[11], 1, 127, 0.5, 1.0, "FTomClose");
+        addSample2("Electronic FTom OH", BinaryData::e_ftom_OH_wav, BinaryData::e_ftom_OH_wavSize, defaultMidiNotes[11], 1, 127, 0.5, 1.0, "TomsOH");
+        addSample2("Electronic FTom Room", BinaryData::e_ftom_room_wav, BinaryData::e_ftom_room_wavSize, defaultMidiNotes[11], 1, 127, 0.5, 1.0, "TomsRoom");
+        addSample2("Electronic FTom Bleed", BinaryData::e_ftom_bleed_wav, BinaryData::e_ftom_bleed_wavSize, defaultMidiNotes[11], 1, 127, 0.5, 1.0, "TomsBleed");
+        
+        addSample2("Electronic HH Closed Close", BinaryData::e_hhClosed_close_wav, BinaryData::e_hhClosed_close_wavSize, defaultMidiNotes[14], 1, 127, 0.5, 1.0, "HHClose");
+        addSample2("Electronic HH Closed OH", BinaryData::e_hhClosed_OH_wav, BinaryData::e_hhClosed_OH_wavSize, defaultMidiNotes[14], 1, 127, 0.5, 1.0, "CymbalsOH");
+        addSample2("Electronic HH Closed Room", BinaryData::e_hhClosed_room_wav, BinaryData::e_hhClosed_room_wavSize, defaultMidiNotes[14], 1, 127, 0.5, 1.0, "CymbalsRoom");
+        addSample2("Electronic HH Closed Bleed", BinaryData::e_hhClosed_bleed_wav, BinaryData::e_hhClosed_bleed_wavSize, defaultMidiNotes[14], 1, 127, 0.5, 1.0, "CymbalsBleed");
+        addSample2("Electronic HH Open Close", BinaryData::e_hhOpen_close_wav, BinaryData::e_hhOpen_close_wavSize, defaultMidiNotes[16], 1, 127, 0.5, 1.0, "HHClose");
+        addSample2("Electronic HH Open OH", BinaryData::e_hhOpen_OH_wav, BinaryData::e_hhOpen_OH_wavSize, defaultMidiNotes[16], 1, 127, 0.5, 1.0, "CymbalsOH");
+        addSample2("Electronic HH Open Room", BinaryData::e_hhOpen_room_wav, BinaryData::e_hhOpen_room_wavSize, defaultMidiNotes[16], 1, 127, 0.5, 1.0, "CymbalsRoom");
+        addSample2("Electronic HH Open Bleed", BinaryData::e_hhOpen_bleed_wav, BinaryData::e_hhOpen_bleed_wavSize, defaultMidiNotes[16], 1, 127, 0.5, 1.0, "CymbalsBleed");
+        
+        addSample2("Electronic Ride OH", BinaryData::e_ride_OH_wav, BinaryData::e_ride_OH_wavSize, defaultMidiNotes[18], 1, 127, 0.8, 2.4, "CymbalsOH");
+        addSample2("Electronic Ride Room", BinaryData::e_ride_room_wav, BinaryData::e_ride_room_wavSize, defaultMidiNotes[18], 1, 127, 0.8, 2.4, "CymbalsRoom");
+        addSample2("Electronic Ride Bleed", BinaryData::e_ride_bleed_wav, BinaryData::e_ride_bleed_wavSize, defaultMidiNotes[18], 1, 127, 0.8, 2.4, "CymbalsBleed");
+        
+        addSample2("Electronic Crash OH", BinaryData::e_crash_OH_wav, BinaryData::e_crash_OH_wavSize, defaultMidiNotes[23], 1, 127, 0.8, 2.4, "CymbalsOH");
+        addSample2("Electronic Crash Room", BinaryData::e_crash_room_wav, BinaryData::e_crash_room_wavSize, defaultMidiNotes[23], 1, 127, 0.8, 2.4, "CymbalsRoom");
+        addSample2("Electronic Crash Bleed", BinaryData::e_crash_bleed_wav, BinaryData::e_crash_bleed_wavSize, defaultMidiNotes[23], 1, 127, 0.8, 2.4, "CymbalsBleed");
 
     }
     else if (samplePackID == 2) // Acoustic Drum Kit

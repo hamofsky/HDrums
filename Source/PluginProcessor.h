@@ -264,6 +264,7 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
     void addSample(string sampleName, string destination, int midiNote, float lowestVelocity, float highestVelocity, double release, double maxLength, string bus);
+    void addSample2(string sampleName, const void *sourceData, size_t sourceDataSize, int midiNote, float lowestVelocity, float highestVelocity, double release, double maxLength, string bus);
     void loadSamples(int samplePackID);
 
     juce::MidiMessageCollector& getMidiMessageCollector() noexcept { return midiMessageCollector; }

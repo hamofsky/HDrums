@@ -7,6 +7,69 @@
               pluginName="HDrums" pluginDesc="A realistic drum sampler made by HD Plugins"
               bundleIdentifier="com.HDPlugins.HDrums">
   <MAINGROUP id="mSYpO8" name="HDrums">
+    <GROUP id="{C9E608D4-0BFF-D080-B491-E0FF164E36DB}" name="electronicSamples">
+      <GROUP id="{396F03B1-6E63-781D-6BD5-7F57CFDE2A97}" name="crash">
+        <FILE id="iBrLuf" name="e_crash_bleed.wav" compile="0" resource="1"
+              file="Source/Assets/electronicSamples/crash/e_crash_bleed.wav"/>
+        <FILE id="vd6tTv" name="e_crash_OH.wav" compile="0" resource="1" file="Source/Assets/electronicSamples/crash/e_crash_OH.wav"/>
+        <FILE id="Bxkhp2" name="e_crash_room.wav" compile="0" resource="1"
+              file="Source/Assets/electronicSamples/crash/e_crash_room.wav"/>
+      </GROUP>
+      <GROUP id="{258CF592-5129-32D4-D830-4AF43D408522}" name="ftom">
+        <FILE id="hGMIoR" name="e_ftom_bleed.wav" compile="0" resource="1"
+              file="Source/Assets/electronicSamples/ftom/e_ftom_bleed.wav"/>
+        <FILE id="QAG8MO" name="e_ftom_close.wav" compile="0" resource="1"
+              file="Source/Assets/electronicSamples/ftom/e_ftom_close.wav"/>
+        <FILE id="FejBB6" name="e_ftom_OH.wav" compile="0" resource="1" file="Source/Assets/electronicSamples/ftom/e_ftom_OH.wav"/>
+        <FILE id="UmQl5l" name="e_ftom_room.wav" compile="0" resource="1" file="Source/Assets/electronicSamples/ftom/e_ftom_room.wav"/>
+      </GROUP>
+      <GROUP id="{92884140-9F8C-DFF9-FB80-4F0D40D31A72}" name="hh">
+        <FILE id="O5eSrk" name="e_hhClosed_bleed.wav" compile="0" resource="1"
+              file="Source/Assets/electronicSamples/hh/e_hhClosed_bleed.wav"/>
+        <FILE id="Qckfa3" name="e_hhClosed_close.wav" compile="0" resource="1"
+              file="Source/Assets/electronicSamples/hh/e_hhClosed_close.wav"/>
+        <FILE id="lKf2Sp" name="e_hhClosed_OH.wav" compile="0" resource="1"
+              file="Source/Assets/electronicSamples/hh/e_hhClosed_OH.wav"/>
+        <FILE id="gXet6n" name="e_hhClosed_room.wav" compile="0" resource="1"
+              file="Source/Assets/electronicSamples/hh/e_hhClosed_room.wav"/>
+        <FILE id="MFju4R" name="e_hhOpen_bleed.wav" compile="0" resource="1"
+              file="Source/Assets/electronicSamples/hh/e_hhOpen_bleed.wav"/>
+        <FILE id="M6GlAR" name="e_hhOpen_close.wav" compile="0" resource="1"
+              file="Source/Assets/electronicSamples/hh/e_hhOpen_close.wav"/>
+        <FILE id="hKbNgc" name="e_hhOpen_OH.wav" compile="0" resource="1" file="Source/Assets/electronicSamples/hh/e_hhOpen_OH.wav"/>
+        <FILE id="wQ7Lme" name="e_hhOpen_room.wav" compile="0" resource="1"
+              file="Source/Assets/electronicSamples/hh/e_hhOpen_room.wav"/>
+      </GROUP>
+      <GROUP id="{8298AD2F-695B-94D0-A095-17E9732B634B}" name="kick">
+        <FILE id="NeGk3g" name="e_kick_bleed.wav" compile="0" resource="1"
+              file="Source/Assets/electronicSamples/kick/e_kick_bleed.wav"/>
+        <FILE id="AZAlKJ" name="e_kick_close.wav" compile="0" resource="1"
+              file="Source/Assets/electronicSamples/kick/e_kick_close.wav"/>
+        <FILE id="mlKqf6" name="e_kick_OH.wav" compile="0" resource="1" file="Source/Assets/electronicSamples/kick/e_kick_OH.wav"/>
+        <FILE id="KZczzD" name="e_kick_room.wav" compile="0" resource="1" file="Source/Assets/electronicSamples/kick/e_kick_room.wav"/>
+      </GROUP>
+      <GROUP id="{F001F467-8D42-88EB-1C55-01EF589C20E7}" name="ride">
+        <FILE id="ys9dm3" name="e_ride_bleed.wav" compile="0" resource="1"
+              file="Source/Assets/electronicSamples/ride/e_ride_bleed.wav"/>
+        <FILE id="f3hFSz" name="e_ride_OH.wav" compile="0" resource="1" file="Source/Assets/electronicSamples/ride/e_ride_OH.wav"/>
+        <FILE id="uuKEHz" name="e_ride_room.wav" compile="0" resource="1" file="Source/Assets/electronicSamples/ride/e_ride_room.wav"/>
+      </GROUP>
+      <GROUP id="{C52BC0FD-7078-6C46-3CA7-EB4B29117223}" name="snare">
+        <FILE id="edSb8A" name="e_snare_bleed.wav" compile="0" resource="1"
+              file="Source/Assets/electronicSamples/snare/e_snare_bleed.wav"/>
+        <FILE id="tPFrtt" name="e_snare_close.wav" compile="0" resource="1"
+              file="Source/Assets/electronicSamples/snare/e_snare_close.wav"/>
+        <FILE id="mA0vNJ" name="e_snare_OH.wav" compile="0" resource="1" file="Source/Assets/electronicSamples/snare/e_snare_OH.wav"/>
+        <FILE id="WIXt77" name="e_snare_room.wav" compile="0" resource="1"
+              file="Source/Assets/electronicSamples/snare/e_snare_room.wav"/>
+      </GROUP>
+      <GROUP id="{A9EF2217-9623-96F7-3B43-62827125D84D}" name="tom">
+        <FILE id="UsedDt" name="e_tom_bleed.wav" compile="0" resource="1" file="Source/Assets/electronicSamples/tom/e_tom_bleed.wav"/>
+        <FILE id="ZjOsy2" name="e_tom_close.wav" compile="0" resource="1" file="Source/Assets/electronicSamples/tom/e_tom_close.wav"/>
+        <FILE id="Eo2m1r" name="e_tom_OH.wav" compile="0" resource="1" file="Source/Assets/electronicSamples/tom/e_tom_OH.wav"/>
+        <FILE id="KilRPD" name="e_tom_room.wav" compile="0" resource="1" file="Source/Assets/electronicSamples/tom/e_tom_room.wav"/>
+      </GROUP>
+    </GROUP>
     <GROUP id="{00C7BD7B-4C86-BBC5-915B-CD78D6A9A402}" name="Source">
       <GROUP id="{34A5BC56-8EE7-1812-62BF-8139C531F8EE}" name="Assets">
         <FILE id="loU33O" name="electronicDrumsImage.png" compile="0" resource="1"
@@ -15,9 +78,6 @@
               file="Source/Assets/dryDrumsImage.png"/>
         <FILE id="sNSF4u" name="grey_400x400.png" compile="0" resource="1"
               file="Source/Assets/grey_400x400.png"/>
-        <GROUP id="{CBD8BA8B-D937-9BE4-6880-7FCC07CA8D6C}" name="electronicSamples">
-          <FILE id="i93UnZ" name="kick_close.wav" compile="0" resource="1" file="Source/Assets/electronicSamples/kick_close.wav"/>
-        </GROUP>
       </GROUP>
       <FILE id="OWcBnF" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
