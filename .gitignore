@@ -3,3 +3,10 @@
 **/.OS_Store
 Source/Assets/acousticSamples
 Source/Assets/electronicSamples
+<<<<<<< HEAD
+Source/Assets/drySamples
+Source/Assets/drumsImagesWide
+Source/Assets
+*.vst3
+=======
+>>>>>>> parent of 2aa8d19 (All samples loaded. Added the last background image. Moved some GUI elements)

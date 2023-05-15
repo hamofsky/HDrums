@@ -72,12 +72,23 @@
     </GROUP>
     <GROUP id="{00C7BD7B-4C86-BBC5-915B-CD78D6A9A402}" name="Source">
       <GROUP id="{34A5BC56-8EE7-1812-62BF-8139C531F8EE}" name="Assets">
+<<<<<<< HEAD
+        <GROUP id="{66500111-DA6B-DBA3-07A1-D68CE7FFB239}" name="drumsImagesWide">
+          <FILE id="ahUmsF" name="acousticDrumsImageWide.png" compile="0" resource="1"
+                file="Source/Assets/drumsImagesWide/acousticDrumsImageWide.png"/>
+          <FILE id="utkEZL" name="dryDrumsImageWide.png" compile="0" resource="1"
+                file="Source/Assets/drumsImagesWide/dryDrumsImageWide.png"/>
+          <FILE id="Q0jXnF" name="electronicDrumsImageWide.png" compile="0" resource="1"
+                file="Source/Assets/drumsImagesWide/electronicDrumsImageWide.png"/>
+        </GROUP>
+=======
         <FILE id="loU33O" name="electronicDrumsImage.png" compile="0" resource="1"
               file="Source/Assets/electronicDrumsImage.png"/>
         <FILE id="UZK3wF" name="dryDrumsImage.png" compile="0" resource="1"
               file="Source/Assets/dryDrumsImage.png"/>
         <FILE id="sNSF4u" name="grey_400x400.png" compile="0" resource="1"
               file="Source/Assets/grey_400x400.png"/>
+>>>>>>> parent of 2aa8d19 (All samples loaded. Added the last background image. Moved some GUI elements)
       </GROUP>
       <FILE id="OWcBnF" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
