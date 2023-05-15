@@ -126,6 +126,9 @@
 #define CYMBALS_BLEED_GAIN_NAME "Cymbals Bleed"
 
 // Solo buttons =====================
+#define BINAURAL_ID "binaural"
+#define BINAURAL_NAME "Binaural"
+
 #define CLOSE_SOLO_ID "close Solo"
 #define CLOSE_SOLO_NAME "Close Solo"
 #define OH_SOLO_ID "oh Solo"
@@ -308,6 +311,8 @@ private:
     Sampler samplerCymbalsOH;
     Sampler samplerCymbalsRoom;
     Sampler samplerCymbalsBleed;
+
+    Sampler samplerBinaural;
 
     juce::AudioFormatManager formatManager;
 

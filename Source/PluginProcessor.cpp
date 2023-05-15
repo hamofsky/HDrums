@@ -49,6 +49,9 @@ HDrumsAudioProcessor::HDrumsAudioProcessor()
         samplerCymbalsBleed.addVoice(new juce::SamplerVoice());
     }
 
+    for (auto i = 0; i < 16; i++)    // i < x+1 defines how many sounds can play at the same time (x)
+        samplerBinaural.addVoice(new juce::SamplerVoice());
+
     loadSamples(1); // default settings for samples (samplePackMenuId)
     /*midiProcessor.newMidiNotes[0] = *treeState.getRawParameterValue(KICK_MIDI_NOTE_ID);
     midiProcessor.newMidiNotes[1] = *treeState.getRawParameterValue(SNARE_MIDI_NOTE_ID);
@@ -148,6 +151,9 @@ juce::AudioProcessorValueTreeState::ParameterLayout HDrumsAudioProcessor::create
     // ==================================================================
 
     // Solo parameters ==================================================
+    auto binauralParam = std::make_unique<juce::AudioParameterBool>(BINAURAL_ID, BINAURAL_NAME, false);
+    params.push_back(std::move(binauralParam));
+
     auto closeSoloParam = std::make_unique<juce::AudioParameterBool>(CLOSE_SOLO_ID, CLOSE_SOLO_NAME, false);
     auto OHSoloParam = std::make_unique<juce::AudioParameterBool>(OH_SOLO_ID, OH_SOLO_NAME, false);
     auto roomSoloParam = std::make_unique<juce::AudioParameterBool>(ROOM_SOLO_ID, ROOM_SOLO_NAME, false);
@@ -942,6 +948,7 @@ void HDrumsAudioProcessor::clearSoundsFromAllSamplers()
     samplerCymbalsRoom.clearSounds();
     samplerCymbalsBleed.clearSounds();
 
+    samplerBinaural.clearSounds();
 }
 
 const juce::String HDrumsAudioProcessor::getName() const
@@ -1037,6 +1044,7 @@ void HDrumsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock
     samplerCymbalsRoom.setCurrentPlaybackSampleRate(sampleRate);
     samplerCymbalsBleed.setCurrentPlaybackSampleRate(sampleRate);
 
+    samplerBinaural.setCurrentPlaybackSampleRate(sampleRate);
 }
 
 void HDrumsAudioProcessor::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill)
@@ -1113,6 +1121,8 @@ void HDrumsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
     auto cymbalsBleedSliderValue = treeState.getRawParameterValue(CYMBALS_BLEED_GAIN_ID);
 
     // =================================================================
+    auto binauralState = treeState.getRawParameterValue(BINAURAL_ID);
+    
     auto closeMuteState = treeState.getRawParameterValue(CLOSE_MUTE_ID);
     auto OHMuteState = treeState.getRawParameterValue(OH_MUTE_ID);
     auto roomMuteState = treeState.getRawParameterValue(ROOM_MUTE_ID);
@@ -1139,6 +1149,8 @@ void HDrumsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
     auto cymbalsOHMuteState = treeState.getRawParameterValue(CYMBALS_OH_MUTE_ID);
     auto cymbalsRoomMuteState = treeState.getRawParameterValue(CYMBALS_ROOM_MUTE_ID);
     auto cymbalsBleedMuteState = treeState.getRawParameterValue(CYMBALS_BLEED_MUTE_ID);
+
+    juce::AudioBuffer<float> bufferBinaural;
 
     juce::AudioBuffer<float> bufferClose;
     juce::AudioBuffer<float> bufferOH;
@@ -1167,6 +1179,8 @@ void HDrumsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
     juce::AudioBuffer<float> bufferCymbalsRoom;
     juce::AudioBuffer<float> bufferCymbalsBleed;
 
+    bufferBinaural.makeCopyOf(buffer);
+    
     bufferClose.makeCopyOf(buffer);
     bufferOH.makeCopyOf(buffer);
     bufferRoom.makeCopyOf(buffer);
@@ -1197,148 +1211,157 @@ void HDrumsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
     sampler.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
     buffer.applyGain(juce::Decibels::decibelsToGain<float>(*sliderValue));
 
-    // Close individual microphones ========================================================================
-    if (*kickCloseMuteState < 0.5f)
+    if (*binauralState > 0.5f)
     {
-        samplerKickClose.renderNextBlock(bufferKickClose, midiMessages, 0, bufferKickClose.getNumSamples());
-        bufferClose.addFrom(0, 0, bufferKickClose, 0, 0, bufferKickClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickCloseSliderValue));
-        bufferClose.addFrom(1, 0, bufferKickClose, 1, 0, bufferKickClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickCloseSliderValue));
+        samplerBinaural.renderNextBlock(bufferBinaural, midiMessages, 0, bufferBinaural.getNumSamples());
+        buffer.addFrom(0, 0, bufferBinaural, 0, 0, bufferBinaural.getNumSamples(), 1.5f);
+        buffer.addFrom(1, 0, bufferBinaural, 1, 0, bufferBinaural.getNumSamples(), 1.5f);
     }
-    if (*snareTopMuteState < 0.5f)
+    else
     {
-        samplerSnareTop.renderNextBlock(bufferSnareTop, midiMessages, 0, bufferSnareTop.getNumSamples());
-        bufferClose.addFrom(0, 0, bufferSnareTop, 0, 0, bufferSnareTop.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareTopSliderValue));
-        bufferClose.addFrom(1, 0, bufferSnareTop, 1, 0, bufferSnareTop.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareTopSliderValue));
-    }
-    if (*snareBotMuteState < 0.5f)
-    {
-        samplerSnareBot.renderNextBlock(bufferSnareBot, midiMessages, 0, bufferSnareBot.getNumSamples());
-        bufferClose.addFrom(0, 0, bufferSnareBot, 0, 0, bufferSnareBot.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareBotSliderValue));
-        bufferClose.addFrom(1, 0, bufferSnareBot, 1, 0, bufferSnareBot.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareBotSliderValue));
-    }
-    if (*tomCloseMuteState < 0.5f)
-    {
-        samplerTomClose.renderNextBlock(bufferTomClose, midiMessages, 0, bufferTomClose.getNumSamples());
-        bufferClose.addFrom(0, 0, bufferTomClose, 0, 0, bufferTomClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomCloseSliderValue));
-        bufferClose.addFrom(1, 0, bufferTomClose, 1, 0, bufferTomClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomCloseSliderValue - 3.0));     // manual panning (the samples are mono)
-    }
-    if (*ftomCloseMuteState < 0.5f)
-    {
-        samplerFTomClose.renderNextBlock(bufferFTomClose, midiMessages, 0, bufferFTomClose.getNumSamples());
-        bufferClose.addFrom(0, 0, bufferFTomClose, 0, 0, bufferFTomClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*ftomCloseSliderValue - 10.0));
-        bufferClose.addFrom(1, 0, bufferFTomClose, 1, 0, bufferFTomClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*ftomCloseSliderValue));
-    }
-    if (*hhCloseMuteState < 0.5f)
-    {
-        samplerHHClose.renderNextBlock(bufferHHClose, midiMessages, 0, bufferHHClose.getNumSamples());
-        bufferClose.addFrom(0, 0, bufferHHClose, 0, 0, bufferHHClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*hhCloseSliderValue));
-        bufferClose.addFrom(1, 0, bufferHHClose, 1, 0, bufferHHClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*hhCloseSliderValue - 6.0));
-    }
+        // Close individual microphones ========================================================================
+        if (*kickCloseMuteState < 0.5f)
+        {
+            samplerKickClose.renderNextBlock(bufferKickClose, midiMessages, 0, bufferKickClose.getNumSamples());
+            bufferClose.addFrom(0, 0, bufferKickClose, 0, 0, bufferKickClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickCloseSliderValue));
+            bufferClose.addFrom(1, 0, bufferKickClose, 1, 0, bufferKickClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickCloseSliderValue));
+        }
+        if (*snareTopMuteState < 0.5f)
+        {
+            samplerSnareTop.renderNextBlock(bufferSnareTop, midiMessages, 0, bufferSnareTop.getNumSamples());
+            bufferClose.addFrom(0, 0, bufferSnareTop, 0, 0, bufferSnareTop.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareTopSliderValue));
+            bufferClose.addFrom(1, 0, bufferSnareTop, 1, 0, bufferSnareTop.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareTopSliderValue));
+        }
+        if (*snareBotMuteState < 0.5f)
+        {
+            samplerSnareBot.renderNextBlock(bufferSnareBot, midiMessages, 0, bufferSnareBot.getNumSamples());
+            bufferClose.addFrom(0, 0, bufferSnareBot, 0, 0, bufferSnareBot.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareBotSliderValue));
+            bufferClose.addFrom(1, 0, bufferSnareBot, 1, 0, bufferSnareBot.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareBotSliderValue));
+        }
+        if (*tomCloseMuteState < 0.5f)
+        {
+            samplerTomClose.renderNextBlock(bufferTomClose, midiMessages, 0, bufferTomClose.getNumSamples());
+            bufferClose.addFrom(0, 0, bufferTomClose, 0, 0, bufferTomClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomCloseSliderValue));
+            bufferClose.addFrom(1, 0, bufferTomClose, 1, 0, bufferTomClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomCloseSliderValue - 3.0));     // manual panning (the samples are mono)
+        }
+        if (*ftomCloseMuteState < 0.5f)
+        {
+            samplerFTomClose.renderNextBlock(bufferFTomClose, midiMessages, 0, bufferFTomClose.getNumSamples());
+            bufferClose.addFrom(0, 0, bufferFTomClose, 0, 0, bufferFTomClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*ftomCloseSliderValue - 10.0));
+            bufferClose.addFrom(1, 0, bufferFTomClose, 1, 0, bufferFTomClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*ftomCloseSliderValue));
+        }
+        if (*hhCloseMuteState < 0.5f)
+        {
+            samplerHHClose.renderNextBlock(bufferHHClose, midiMessages, 0, bufferHHClose.getNumSamples());
+            bufferClose.addFrom(0, 0, bufferHHClose, 0, 0, bufferHHClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*hhCloseSliderValue));
+            bufferClose.addFrom(1, 0, bufferHHClose, 1, 0, bufferHHClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*hhCloseSliderValue - 6.0));
+        }
 
-    // OH individual microphones ========================================================================
-    if (*kickOHMuteState < 0.5f)
-    {
-        samplerKickOH.renderNextBlock(bufferKickOH, midiMessages, 0, bufferKickOH.getNumSamples());
-        bufferOH.addFrom(1, 0, bufferKickOH, 1, 0, bufferKickOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickOHSliderValue));
-        bufferOH.addFrom(0, 0, bufferKickOH, 0, 0, bufferKickOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickOHSliderValue));
-    }
-    if (*snareOHMuteState < 0.5f)
-    {
-        samplerSnareOH.renderNextBlock(bufferSnareOH, midiMessages, 0, bufferSnareOH.getNumSamples());
-        bufferOH.addFrom(0, 0, bufferSnareOH, 0, 0, bufferSnareOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareOHSliderValue));
-        bufferOH.addFrom(1, 0, bufferSnareOH, 1, 0, bufferSnareOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareOHSliderValue));
-    }
-    if (*tomsOHMuteState < 0.5f)
-    {
-        samplerTomsOH.renderNextBlock(bufferTomsOH, midiMessages, 0, bufferTomsOH.getNumSamples());
-        bufferOH.addFrom(0, 0, bufferTomsOH, 0, 0, bufferTomsOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsOHSliderValue));
-        bufferOH.addFrom(1, 0, bufferTomsOH, 1, 0, bufferTomsOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsOHSliderValue));
-    }
-    if (*cymbalsOHMuteState < 0.5f)
-    {
-        samplerCymbalsOH.renderNextBlock(bufferCymbalsOH, midiMessages, 0, bufferCymbalsOH.getNumSamples());
-        bufferOH.addFrom(0, 0, bufferCymbalsOH, 0, 0, bufferCymbalsOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsOHSliderValue));
-        bufferOH.addFrom(1, 0, bufferCymbalsOH, 1, 0, bufferCymbalsOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsOHSliderValue));
-    }
+        // OH individual microphones ========================================================================
+        if (*kickOHMuteState < 0.5f)
+        {
+            samplerKickOH.renderNextBlock(bufferKickOH, midiMessages, 0, bufferKickOH.getNumSamples());
+            bufferOH.addFrom(1, 0, bufferKickOH, 1, 0, bufferKickOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickOHSliderValue));
+            bufferOH.addFrom(0, 0, bufferKickOH, 0, 0, bufferKickOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickOHSliderValue));
+        }
+        if (*snareOHMuteState < 0.5f)
+        {
+            samplerSnareOH.renderNextBlock(bufferSnareOH, midiMessages, 0, bufferSnareOH.getNumSamples());
+            bufferOH.addFrom(0, 0, bufferSnareOH, 0, 0, bufferSnareOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareOHSliderValue));
+            bufferOH.addFrom(1, 0, bufferSnareOH, 1, 0, bufferSnareOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareOHSliderValue));
+        }
+        if (*tomsOHMuteState < 0.5f)
+        {
+            samplerTomsOH.renderNextBlock(bufferTomsOH, midiMessages, 0, bufferTomsOH.getNumSamples());
+            bufferOH.addFrom(0, 0, bufferTomsOH, 0, 0, bufferTomsOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsOHSliderValue));
+            bufferOH.addFrom(1, 0, bufferTomsOH, 1, 0, bufferTomsOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsOHSliderValue));
+        }
+        if (*cymbalsOHMuteState < 0.5f)
+        {
+            samplerCymbalsOH.renderNextBlock(bufferCymbalsOH, midiMessages, 0, bufferCymbalsOH.getNumSamples());
+            bufferOH.addFrom(0, 0, bufferCymbalsOH, 0, 0, bufferCymbalsOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsOHSliderValue));
+            bufferOH.addFrom(1, 0, bufferCymbalsOH, 1, 0, bufferCymbalsOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsOHSliderValue));
+        }
 
-    // Room individual microphones ========================================================================
-    if (*kickRoomMuteState < 0.5f)
-    {
-        samplerKickRoom.renderNextBlock(bufferKickRoom, midiMessages, 0, bufferKickRoom.getNumSamples());
-        bufferRoom.addFrom(0, 0, bufferKickRoom, 0, 0, bufferKickRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickRoomSliderValue));
-        bufferRoom.addFrom(1, 0, bufferKickRoom, 1, 0, bufferKickRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickRoomSliderValue));
-    }
-    if (*snareRoomMuteState < 0.5f)
-    {
-        samplerSnareRoom.renderNextBlock(bufferSnareRoom, midiMessages, 0, bufferSnareRoom.getNumSamples());
-        bufferRoom.addFrom(0, 0, bufferSnareRoom, 0, 0, bufferSnareRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareRoomSliderValue));
-        bufferRoom.addFrom(1, 0, bufferSnareRoom, 1, 0, bufferSnareRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareRoomSliderValue));
-    }
-    if (*tomsRoomMuteState < 0.5f)
-    {
-        samplerTomsRoom.renderNextBlock(bufferTomsRoom, midiMessages, 0, bufferTomsRoom.getNumSamples());
-        bufferRoom.addFrom(0, 0, bufferTomsRoom, 0, 0, bufferTomsRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsRoomSliderValue));
-        bufferRoom.addFrom(1, 0, bufferTomsRoom, 1, 0, bufferTomsRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsRoomSliderValue));
-    }
-    if (*cymbalsRoomMuteState < 0.5f)
-    {
-        samplerCymbalsRoom.renderNextBlock(bufferCymbalsRoom, midiMessages, 0, bufferCymbalsRoom.getNumSamples());
-        bufferRoom.addFrom(0, 0, bufferCymbalsRoom, 0, 0, bufferCymbalsRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsRoomSliderValue));
-        bufferRoom.addFrom(1, 0, bufferCymbalsRoom, 1, 0, bufferCymbalsRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsRoomSliderValue));
-    }
+        // Room individual microphones ========================================================================
+        if (*kickRoomMuteState < 0.5f)
+        {
+            samplerKickRoom.renderNextBlock(bufferKickRoom, midiMessages, 0, bufferKickRoom.getNumSamples());
+            bufferRoom.addFrom(0, 0, bufferKickRoom, 0, 0, bufferKickRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickRoomSliderValue));
+            bufferRoom.addFrom(1, 0, bufferKickRoom, 1, 0, bufferKickRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickRoomSliderValue));
+        }
+        if (*snareRoomMuteState < 0.5f)
+        {
+            samplerSnareRoom.renderNextBlock(bufferSnareRoom, midiMessages, 0, bufferSnareRoom.getNumSamples());
+            bufferRoom.addFrom(0, 0, bufferSnareRoom, 0, 0, bufferSnareRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareRoomSliderValue));
+            bufferRoom.addFrom(1, 0, bufferSnareRoom, 1, 0, bufferSnareRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareRoomSliderValue));
+        }
+        if (*tomsRoomMuteState < 0.5f)
+        {
+            samplerTomsRoom.renderNextBlock(bufferTomsRoom, midiMessages, 0, bufferTomsRoom.getNumSamples());
+            bufferRoom.addFrom(0, 0, bufferTomsRoom, 0, 0, bufferTomsRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsRoomSliderValue));
+            bufferRoom.addFrom(1, 0, bufferTomsRoom, 1, 0, bufferTomsRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsRoomSliderValue));
+        }
+        if (*cymbalsRoomMuteState < 0.5f)
+        {
+            samplerCymbalsRoom.renderNextBlock(bufferCymbalsRoom, midiMessages, 0, bufferCymbalsRoom.getNumSamples());
+            bufferRoom.addFrom(0, 0, bufferCymbalsRoom, 0, 0, bufferCymbalsRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsRoomSliderValue));
+            bufferRoom.addFrom(1, 0, bufferCymbalsRoom, 1, 0, bufferCymbalsRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsRoomSliderValue));
+        }
 
-    // Bleed individual microphones ========================================================================
-    if (*kickBleedMuteState < 0.5f)
-    {
-        samplerKickBleed.renderNextBlock(bufferKickBleed, midiMessages, 0, bufferKickBleed.getNumSamples());
-        bufferBleed.addFrom(0, 0, bufferKickBleed, 0, 0, bufferKickBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickBleedSliderValue));
-        bufferBleed.addFrom(1, 0, bufferKickBleed, 1, 0, bufferKickBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickBleedSliderValue));
-    }
-    if (*snareBleedMuteState < 0.5f)
-    {
-        samplerSnareBleed.renderNextBlock(bufferSnareBleed, midiMessages, 0, bufferSnareBleed.getNumSamples());
-        bufferBleed.addFrom(0, 0, bufferSnareBleed, 0, 0, bufferSnareBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareBleedSliderValue));
-        bufferBleed.addFrom(1, 0, bufferSnareBleed, 1, 0, bufferSnareBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareBleedSliderValue));
-    }
-    if (*tomsBleedMuteState < 0.5f)
-    {
-        samplerTomsBleed.renderNextBlock(bufferTomsBleed, midiMessages, 0, bufferTomsBleed.getNumSamples());
-        bufferBleed.addFrom(0, 0, bufferTomsBleed, 0, 0, bufferTomsBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsBleedSliderValue));
-        bufferBleed.addFrom(1, 0, bufferTomsBleed, 1, 0, bufferTomsBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsBleedSliderValue));
-    }
-    if (*cymbalsBleedMuteState < 0.5f)
-    {
-        samplerCymbalsBleed.renderNextBlock(bufferCymbalsBleed, midiMessages, 0, bufferCymbalsBleed.getNumSamples());
-        bufferBleed.addFrom(0, 0, bufferCymbalsBleed, 0, 0, bufferCymbalsBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsBleedSliderValue));
-        bufferBleed.addFrom(1, 0, bufferCymbalsBleed, 1, 0, bufferCymbalsBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsBleedSliderValue));
-    }
-    
-    // Main mute ============================================================
-    if (*closeMuteState < 0.5f)
-    {
-        buffer.addFrom(0, 0, bufferClose, 0, 0, bufferClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*sliderValue));
-        buffer.addFrom(1, 0, bufferClose, 1, 0, bufferClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*sliderValue));
-    }
+        // Bleed individual microphones ========================================================================
+        if (*kickBleedMuteState < 0.5f)
+        {
+            samplerKickBleed.renderNextBlock(bufferKickBleed, midiMessages, 0, bufferKickBleed.getNumSamples());
+            bufferBleed.addFrom(0, 0, bufferKickBleed, 0, 0, bufferKickBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickBleedSliderValue));
+            bufferBleed.addFrom(1, 0, bufferKickBleed, 1, 0, bufferKickBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*kickBleedSliderValue));
+        }
+        if (*snareBleedMuteState < 0.5f)
+        {
+            samplerSnareBleed.renderNextBlock(bufferSnareBleed, midiMessages, 0, bufferSnareBleed.getNumSamples());
+            bufferBleed.addFrom(0, 0, bufferSnareBleed, 0, 0, bufferSnareBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareBleedSliderValue));
+            bufferBleed.addFrom(1, 0, bufferSnareBleed, 1, 0, bufferSnareBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*snareBleedSliderValue));
+        }
+        if (*tomsBleedMuteState < 0.5f)
+        {
+            samplerTomsBleed.renderNextBlock(bufferTomsBleed, midiMessages, 0, bufferTomsBleed.getNumSamples());
+            bufferBleed.addFrom(0, 0, bufferTomsBleed, 0, 0, bufferTomsBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsBleedSliderValue));
+            bufferBleed.addFrom(1, 0, bufferTomsBleed, 1, 0, bufferTomsBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*tomsBleedSliderValue));
+        }
+        if (*cymbalsBleedMuteState < 0.5f)
+        {
+            samplerCymbalsBleed.renderNextBlock(bufferCymbalsBleed, midiMessages, 0, bufferCymbalsBleed.getNumSamples());
+            bufferBleed.addFrom(0, 0, bufferCymbalsBleed, 0, 0, bufferCymbalsBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsBleedSliderValue));
+            bufferBleed.addFrom(1, 0, bufferCymbalsBleed, 1, 0, bufferCymbalsBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*cymbalsBleedSliderValue));
+        }
 
-    if (*OHMuteState < 0.5f)
-    {
-        samplerOH.renderNextBlock(bufferOH, midiMessages, 0, bufferOH.getNumSamples());
-        buffer.addFrom(0, 0, bufferOH, 0, 0, bufferOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*OHsliderValue));
-        buffer.addFrom(1, 0, bufferOH, 1, 0, bufferOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*OHsliderValue));
-    }
+        // Main mute ============================================================
+        if (*closeMuteState < 0.5f)
+        {
+            buffer.addFrom(0, 0, bufferClose, 0, 0, bufferClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*sliderValue));
+            buffer.addFrom(1, 0, bufferClose, 1, 0, bufferClose.getNumSamples(), juce::Decibels::decibelsToGain<float>(*sliderValue));
+        }
 
-    if (*roomMuteState < 0.5f)
-    {
-        samplerRoom.renderNextBlock(bufferRoom, midiMessages, 0, bufferRoom.getNumSamples());
-        buffer.addFrom(0, 0, bufferRoom, 0, 0, bufferRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*RoomSliderValue));
-        buffer.addFrom(1, 0, bufferRoom, 1, 0, bufferRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*RoomSliderValue));
-    }
+        if (*OHMuteState < 0.5f)
+        {
+            samplerOH.renderNextBlock(bufferOH, midiMessages, 0, bufferOH.getNumSamples());
+            buffer.addFrom(0, 0, bufferOH, 0, 0, bufferOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*OHsliderValue));
+            buffer.addFrom(1, 0, bufferOH, 1, 0, bufferOH.getNumSamples(), juce::Decibels::decibelsToGain<float>(*OHsliderValue));
+        }
 
-    if (*bleedMuteState < 0.5f)
-    {
-        samplerBleed.renderNextBlock(bufferBleed, midiMessages, 0, bufferBleed.getNumSamples());
-        buffer.addFrom(0, 0, bufferBleed, 0, 0, bufferBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*BleedSliderValue));
-        buffer.addFrom(1, 0, bufferBleed, 1, 0, bufferBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*BleedSliderValue));
+        if (*roomMuteState < 0.5f)
+        {
+            samplerRoom.renderNextBlock(bufferRoom, midiMessages, 0, bufferRoom.getNumSamples());
+            buffer.addFrom(0, 0, bufferRoom, 0, 0, bufferRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*RoomSliderValue));
+            buffer.addFrom(1, 0, bufferRoom, 1, 0, bufferRoom.getNumSamples(), juce::Decibels::decibelsToGain<float>(*RoomSliderValue));
+        }
+
+        if (*bleedMuteState < 0.5f)
+        {
+            samplerBleed.renderNextBlock(bufferBleed, midiMessages, 0, bufferBleed.getNumSamples());
+            buffer.addFrom(0, 0, bufferBleed, 0, 0, bufferBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*BleedSliderValue));
+            buffer.addFrom(1, 0, bufferBleed, 1, 0, bufferBleed.getNumSamples(), juce::Decibels::decibelsToGain<float>(*BleedSliderValue));
+        }
     }
 
 }
@@ -1471,6 +1494,9 @@ void HDrumsAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
     juce::MemoryOutputStream(destData, true).writeFloat(*sticksNote);
 
     // Solo buttons
+    auto binauralState = treeState.getRawParameterValue(BINAURAL_ID);
+    juce::MemoryOutputStream(destData, true).writeFloat(*binauralState);
+
     auto closeSolo = treeState.getRawParameterValue(CLOSE_SOLO_ID);
     auto OHSolo = treeState.getRawParameterValue(OH_SOLO_ID);
     auto roomSolo = treeState.getRawParameterValue(ROOM_SOLO_ID);

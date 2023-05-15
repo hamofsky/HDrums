@@ -8,6 +8,11 @@ class MyLookAndFeel : public juce::LookAndFeel_V4
 			//setColour(juce::Slider::thumbColourId, juce::Colours::red);
 		}
 
+        juce::Font getTextButtonFont(juce::TextButton&, int buttonHeight)
+        {
+            return { juce::jmin(20.0f, buttonHeight * 0.8f) };
+        }
+
         static void drawRectangle(juce::Graphics& g, float x, float y, float width, float height,
             const juce::Colour& fill, const juce::Colour& outline) noexcept
         {
@@ -154,6 +159,51 @@ public:
             g.fillRoundedRectangle(tickBounds, cornerSize);
             g.setColour(juce::Colours::black);
             g.drawText("S", tickBounds, juce::Justification::centred, true);
+        }
+    }
+};
+
+
+
+class MyLookAndFeelBinaural : public juce::LookAndFeel_V4
+{
+public:
+    void drawToggleButton(juce::Graphics& g, juce::ToggleButton& button, bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown)
+    {
+        auto fontSize = juce::jmin(15.0f, (float)button.getHeight() * 0.8f);
+
+        drawTickBox(g, button, 0.0f, 0.0f, button.getWidth(), button.getHeight(),
+            button.getToggleState(), button.isEnabled(),
+            shouldDrawButtonAsHighlighted, shouldDrawButtonAsDown);
+
+        g.setColour(button.findColour(juce::ToggleButton::textColourId));
+        g.setFont(fontSize);
+
+        if (!button.isEnabled())
+            g.setOpacity(0.7f);
+    }
+
+    void drawTickBox(juce::Graphics& g, juce::Component& component, float x, float y, float w, float h,
+        bool ticked, bool isEnabled, bool shouldDrawButtonASHighlighted, bool shouldDrawButtonAsDown)
+    {
+        juce::Rectangle<float> tickBounds(x, y, w, h);
+        float cornerSize = 0.2f;
+
+        g.setColour(component.findColour(juce::ToggleButton::tickDisabledColourId));
+        g.drawRoundedRectangle(tickBounds, cornerSize, 1.0f);
+        g.setColour(juce::Colours::aliceblue.withAlpha(0.7f));
+        g.fillRoundedRectangle(tickBounds, cornerSize);
+        g.setColour(juce::Colours::white);
+        g.setFont(18.0f);
+        g.drawText("Immersive", tickBounds, juce::Justification::centred, true);
+
+        if (ticked)
+        {
+            g.setColour(juce::Colours::cornflowerblue.withAlpha(0.6f));
+            g.fillRoundedRectangle(tickBounds, cornerSize);
+            g.setColour(juce::Colours::black);
+            g.setFont(18.0f);
+            g.drawText("Immersive", tickBounds, juce::Justification::centred, true);
         }
     }
 };

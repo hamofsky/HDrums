@@ -21,9 +21,11 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     guiTambButton("GUI Tamb Button", juce::Colours::black.withAlpha(0.001f), juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.1f)),
     guiHHButton("GUI HH Button", juce::Colours::black.withAlpha(0.001f), juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.1f)),
     guiRideButton("GUI Ride Button", juce::Colours::black.withAlpha(0.001f), juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.1f)),
-    guiCrashButton("GUI Crash Button", juce::Colours::black.withAlpha(0.001f), juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.1f))
+    guiCrashButton("GUI Crash Button", juce::Colours::black.withAlpha(0.001f), juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.1f)),
+    guiPiccoloButton("GUI Piccolo Button", juce::Colours::black.withAlpha(0.001f), juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.1f)),
+    guiStackButton("GUI Stack Button", juce::Colours::black.withAlpha(0.001f), juce::Colours::black.withAlpha(0.01f), juce::Colours::black.withAlpha(0.1f))
 {
-    setSize(1000, 500);
+    setSize(1050, 500);
     
     //midiNoteChanged();
 
@@ -36,6 +38,8 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     juce::Path guiHHButtonShape;
     juce::Path guiRideButtonShape;
     juce::Path guiCrashButtonShape;
+    juce::Path guiPiccoloButtonShape;
+    juce::Path guiStackButtonShape;
     guiKickButtonShape.addEllipse(0, 0, 149.0f, 149.0f);
     guiSnareButtonShape.addEllipse(0, 0, 123.0f, 66.0f);
     guiTomButtonShape.addEllipse(0, 0, 84.0f, 35.0f);
@@ -44,6 +48,8 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     guiHHButtonShape.addEllipse(0, 0, 122.0f, 46.0f);
     guiRideButtonShape.addEllipse(0, 0, 185.0f, 78.0f);
     guiCrashButtonShape.addEllipse(0, 0, 125.0f, 51.0f);
+    guiPiccoloButtonShape.addEllipse(0, 0, 66.0f, 39.0f);
+    guiStackButtonShape.addEllipse(0, 0, 152.0f, 62.0f);
     guiKickButton.setShape(guiKickButtonShape, true, true, false);
     guiSnareButton.setShape(guiSnareButtonShape, true, true, false);
     guiTomButton.setShape(guiTomButtonShape, true, true, false);
@@ -52,6 +58,8 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     guiHHButton.setShape(guiHHButtonShape, true, true, false);
     guiRideButton.setShape(guiRideButtonShape, true, true, false);
     guiCrashButton.setShape(guiCrashButtonShape, true, true, false);
+    guiPiccoloButton.setShape(guiPiccoloButtonShape, true, true, false);
+    guiStackButton.setShape(guiStackButtonShape, true, true, false);
 
     addAndMakeVisible(&guiKickButton);
     addAndMakeVisible(&guiSnareButton);
@@ -61,6 +69,8 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     addAndMakeVisible(&guiHHButton);
     addAndMakeVisible(&guiRideButton);
     addAndMakeVisible(&guiCrashButton);
+    addAndMakeVisible(&guiPiccoloButton);
+    addAndMakeVisible(&guiStackButton);
     guiKickButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.kickNoteMenu.getSelectedId()); };
     guiSnareButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.snareNoteMenu.getSelectedId()); };
     guiTomButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.tomNoteMenu.getSelectedId()); };
@@ -69,6 +79,8 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     guiHHButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.hhClosedNoteMenu.getSelectedId()); };
     guiRideButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.ridePointNoteMenu.getSelectedId()); };
     guiCrashButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.crashOpenNoteMenu.getSelectedId()); };
+    guiPiccoloButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.snarePiccoloNoteMenu.getSelectedId()); };
+    guiStackButton.onClick = [this] { playMidiNote(midiNotesChoosingPage.stackOpenNoteMenu.getSelectedId()); };
 
     // Tabbed Component ===========================================================================
     addAndMakeVisible(&myTabbedComponent);
@@ -103,6 +115,8 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     cymbalsBleedSliderValue = new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.treeState, CYMBALS_BLEED_GAIN_ID, cymbalsSlidersPage.cymbalsBleedSlider);
 
     // Solo buttons ==========================================================
+    binauralState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, BINAURAL_ID, binauralButton);
+    
     closeSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, CLOSE_SOLO_ID, mainSlidersPage.closeSolo);
     OHSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, OH_SOLO_ID, mainSlidersPage.OHSolo);
     roomSoloState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, ROOM_SOLO_ID, mainSlidersPage.roomSolo);
@@ -157,35 +171,6 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     cymbalsOHMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, CYMBALS_OH_MUTE_ID, cymbalsSlidersPage.cymbalsOHMute);
     cymbalsRoomMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, CYMBALS_ROOM_MUTE_ID, cymbalsSlidersPage.cymbalsRoomMute);
     cymbalsBleedMuteState = new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.treeState, CYMBALS_BLEED_MUTE_ID, cymbalsSlidersPage.cymbalsBleedMute);
-
-    // hidden menus (ComboBoxes) from MidiNoteChoosingPage for saving ValueTreeState Parameters
-    /*midiNotesChoosingPage.kickNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.snareNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.snareSwirlNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.snareFlamNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.snareRoundNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.snareWirelessNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.snareWirelessRoundNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.snarePiccoloNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.snarePiccoloSwirlNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.tomNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.tomFlamNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.ftomNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.ftomFlamNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.hhFootNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.hhClosedNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.hhHalfNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.hhOpenNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.tambNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.ridePointNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.rideBellNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.rideOpenNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.crashPointNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.crashBellNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.crashOpenNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.stackClosedNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.stackOpenNoteMenu.onChange = [this] { midiNoteChanged(); };
-    midiNotesChoosingPage.sticksNoteMenu.onChange = [this] { midiNoteChanged(); };*/
 
     samplePackAttachment = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, SAMPLE_PACK_ID, samplePackMenu);
     curveMenuAttachment = new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.treeState, CURVE_MENU_ID, curveMenu);
@@ -249,62 +234,7 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     auto curveMenuValue = audioProcessor.treeState.getRawParameterValue(CURVE_MENU_ID);
     curveMenu.setSelectedId(*curveMenuValue + 1);
 
-    // MIDI Menus =============================================
-    /*auto kickNoteMenuValue = audioProcessor.treeState.getRawParameterValue(KICK_MIDI_NOTE_ID);
-    auto snareNoteMenuValue = audioProcessor.treeState.getRawParameterValue(SNARE_MIDI_NOTE_ID);
-    auto snareSwirlNoteMenuValue = audioProcessor.treeState.getRawParameterValue(SNARE_SWIRL_MIDI_NOTE_ID);
-    auto snareFlamNoteMenuValue = audioProcessor.treeState.getRawParameterValue(SNARE_FLAM_MIDI_NOTE_ID);
-    auto snareRoundNoteMenuValue = audioProcessor.treeState.getRawParameterValue(SNARE_ROUND_MIDI_NOTE_ID);
-    auto snareWirelessNoteMenuValue = audioProcessor.treeState.getRawParameterValue(SNARE_WIRELESS_MIDI_NOTE_ID);
-    auto snareWirelessRoundNoteMenuValue = audioProcessor.treeState.getRawParameterValue(SNARE_WIRELESS_ROUND_MIDI_NOTE_ID);
-    auto snarePiccoloNoteMenuValue = audioProcessor.treeState.getRawParameterValue(SNARE_PICCOLO_MIDI_NOTE_ID);
-    auto snarePiccoloSwirlNoteMenuValue = audioProcessor.treeState.getRawParameterValue(SNARE_PICCOLO_SWIRL_MIDI_NOTE_ID);
-    auto tomNoteMenuValue = audioProcessor.treeState.getRawParameterValue(TOM_MIDI_NOTE_ID);
-    auto tomFlamNoteMenuValue = audioProcessor.treeState.getRawParameterValue(TOM_FLAM_MIDI_NOTE_ID);
-    auto ftomNoteMenuValue = audioProcessor.treeState.getRawParameterValue(FTOM_MIDI_NOTE_ID);
-    auto ftomFlamNoteMenuValue = audioProcessor.treeState.getRawParameterValue(FTOM_FLAM_MIDI_NOTE_ID);
-    auto hhFootNoteMenuValue = audioProcessor.treeState.getRawParameterValue(HH_FOOT_MIDI_NOTE_ID);
-    auto hhClosedNoteMenuValue = audioProcessor.treeState.getRawParameterValue(HH_CLOSED_MIDI_NOTE_ID);
-    auto hhHalfNoteMenuValue = audioProcessor.treeState.getRawParameterValue(HH_HALF_MIDI_NOTE_ID);
-    auto hhOpenNoteMenuValue = audioProcessor.treeState.getRawParameterValue(HH_OPEN_MIDI_NOTE_ID); 
-    auto tambNoteMenuValue = audioProcessor.treeState.getRawParameterValue(TAMB_MIDI_NOTE_ID);
-    auto ridePointNoteMenuValue = audioProcessor.treeState.getRawParameterValue(RIDE_POINT_MIDI_NOTE_ID);
-    auto rideBellNoteMenuValue = audioProcessor.treeState.getRawParameterValue(RIDE_BELL_MIDI_NOTE_ID);
-    auto rideOpenNoteMenuValue = audioProcessor.treeState.getRawParameterValue(RIDE_OPEN_MIDI_NOTE_ID);
-    auto crashPointNoteMenuValue = audioProcessor.treeState.getRawParameterValue(CRASH_POINT_MIDI_NOTE_ID);
-    auto crashBellNoteMenuValue = audioProcessor.treeState.getRawParameterValue(CRASH_BELL_MIDI_NOTE_ID);
-    auto crashOpenNoteMenuValue = audioProcessor.treeState.getRawParameterValue(CRASH_OPEN_MIDI_NOTE_ID);
-    auto stackClosedNoteMenuValue = audioProcessor.treeState.getRawParameterValue(STACK_CLOSED_MIDI_NOTE_ID);
-    auto stackOpenNoteMenuValue = audioProcessor.treeState.getRawParameterValue(STACK_OPEN_MIDI_NOTE_ID);
-    auto sticksNoteMenuValue = audioProcessor.treeState.getRawParameterValue(STICKS_MIDI_NOTE_ID);
-    
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.kickNoteMenu, kickNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.snareNoteMenu, snareNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.snareSwirlNoteMenu, snareSwirlNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.snareFlamNoteMenu, snareFlamNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.snareRoundNoteMenu, snareRoundNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.snareWirelessNoteMenu, snareWirelessNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.snareWirelessRoundNoteMenu, snareWirelessRoundNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.snarePiccoloNoteMenu, snarePiccoloNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.snarePiccoloSwirlNoteMenu, snarePiccoloSwirlNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.tomNoteMenu, tomNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.tomFlamNoteMenu, tomFlamNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.ftomNoteMenu, ftomNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.ftomFlamNoteMenu, ftomFlamNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.hhFootNoteMenu, hhFootNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.hhClosedNoteMenu, hhClosedNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.hhHalfNoteMenu, hhHalfNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.hhOpenNoteMenu, hhOpenNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.tambNoteMenu, tambNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.ridePointNoteMenu, ridePointNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.rideBellNoteMenu, rideBellNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.rideOpenNoteMenu, rideOpenNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.crashPointNoteMenu, crashPointNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.crashBellNoteMenu, crashBellNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.crashOpenNoteMenu, crashOpenNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.stackClosedNoteMenu, stackClosedNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.stackOpenNoteMenu, stackOpenNoteMenuValue);
-    setNoteInMidiNotesChoosingPage(midiNotesChoosingPage.sticksNoteMenu, sticksNoteMenuValue);*/
+    addAndMakeVisible(&binauralButton);
 
     for (int i = 0; i < midiNoteHiddenMenus.size(); i++)
     {
@@ -385,10 +315,6 @@ void HDrumsAudioProcessorEditor::soloStateChanged(int soloButtonId)
 void HDrumsAudioProcessorEditor::setNoteInMidiNotesChoosingPage(juce::ComboBox &menu, std::atomic <float> *note)
 {
     menu.setSelectedId(*note);
-    /*if (*note < 64)
-        menu.setSelectedId(*note + 1);
-    else
-        menu.setSelectedId(*note);*/
 }
 
 void HDrumsAudioProcessorEditor::changeMidiNoteMenuWhenSoundChanged()
@@ -438,48 +364,66 @@ void HDrumsAudioProcessorEditor::paint (juce::Graphics& g)
 {
     g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
 
-    electronicBackground = juce::ImageCache::getFromMemory(BinaryData::electronicDrumsImage_png, BinaryData::electronicDrumsImage_pngSize);
-    background2 = juce::ImageCache::getFromMemory(BinaryData::grey_400x400_png, BinaryData::grey_400x400_pngSize);
-    dryBackground = juce::ImageCache::getFromMemory(BinaryData::dryDrumsImage_png, BinaryData::dryDrumsImage_pngSize);
-
     if (samplePackMenu.getSelectedId() == 1)
+    {
+        electronicBackground = juce::ImageCache::getFromMemory(BinaryData::electronicDrumsImageWide_png, BinaryData::electronicDrumsImageWide_pngSize);
         g.drawImageWithin(electronicBackground, 0, 0, getWidth(), getHeight(), juce::RectanglePlacement::stretchToFit);
+    }
     else if (samplePackMenu.getSelectedId() == 2)
-        g.drawImageWithin(background2, 0, 0, getWidth(), getHeight(), juce::RectanglePlacement::stretchToFit);
+    {
+        acousticBackground = juce::ImageCache::getFromMemory(BinaryData::acousticDrumsImageWide_png, BinaryData::acousticDrumsImageWide_pngSize);
+        g.drawImageWithin(acousticBackground, 0, 0, getWidth(), getHeight(), juce::RectanglePlacement::stretchToFit);
+    }
     else
+    {
         g.drawImageWithin(dryBackground, 0, 0, getWidth(), getHeight(), juce::RectanglePlacement::stretchToFit);
-        
-
+        dryBackground = juce::ImageCache::getFromMemory(BinaryData::dryDrumsImageWide_png, BinaryData::dryDrumsImageWide_pngSize);
+    }
 }
 
 void HDrumsAudioProcessorEditor::resized()
 {
-
     guiKickButton.setCentrePosition(303, 286);
     guiSnareButton.setCentrePosition(171, 272);
     guiTomButton.setCentrePosition(205, 167);
-    guiFTomButton.setCentrePosition(433, 264);
     guiTambButton.setCentrePosition(318, 146);
     guiHHButton.setCentrePosition(91, 150);
     guiRideButton.setCentrePosition(461, 163);
     guiCrashButton.setCentrePosition(212, 102);
+    guiPiccoloButton.setCentrePosition(57, 250);
+    guiStackButton.setCentrePosition(557, 226);
 
-    samplePackMenu.setBounds(10, 10, 285, 20);
-    curveMenu.setBounds(305, 10, 285, 20);
+    samplePackMenu.setBounds(12, 12, 308, 30);
+    curveMenu.setBounds(330, 12, 308, 30);
 
-    myTabbedComponent.setBounds(getWidth() / 2 + 100, 0, getWidth() / 2 - 100, getHeight());
+    binauralButton.setBounds(525, 60, 100, 50);
+    binauralButton.setLookAndFeel(&myLookAndFeelBinaural);
+
+    myTabbedComponent.setBounds(getWidth() / 2 + 125, 0, getWidth() / 2 - 125, getHeight());
     
     if (samplePackMenu.getSelectedId() == 1)
     {   // Electronic
         guiTambButton.setVisible(false);
+        guiStackButton.setVisible(false);
+        guiPiccoloButton.setVisible(false);
+        guiFTomButton.setCentrePosition(433, 264);
+        binauralButton.setVisible(false);
     }
     else if (samplePackMenu.getSelectedId() == 2)
     {   // Acoustic
         guiTambButton.setVisible(false);
+        guiStackButton.setVisible(true);
+        guiPiccoloButton.setVisible(true);
+        guiFTomButton.setCentrePosition(433, 270);
+        binauralButton.setVisible(true);
     }
     else
     {   // Dry
         guiTambButton.setVisible(true);
+        guiStackButton.setVisible(false);
+        guiPiccoloButton.setVisible(false);
+        guiFTomButton.setCentrePosition(433, 264);
+        binauralButton.setVisible(false);
     }
 }
 

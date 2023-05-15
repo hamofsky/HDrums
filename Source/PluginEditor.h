@@ -22,6 +22,8 @@ public:
     juce::ShapeButton guiHHButton;
     juce::ShapeButton guiRideButton;
     juce::ShapeButton guiCrashButton;
+    juce::ShapeButton guiPiccoloButton;
+    juce::ShapeButton guiStackButton;
 
     juce::TabbedComponent myTabbedComponent;
     MainSlidersPage mainSlidersPage;
@@ -143,6 +145,8 @@ public:
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::SliderAttachment> cymbalsBleedSliderValue;
 
     // Solo buttons attachments ==============================================================
+    juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> binauralState;
+
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> closeSoloState;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> OHSoloState;
     juce::ScopedPointer <juce::AudioProcessorValueTreeState::ButtonAttachment> roomSoloState;
@@ -203,8 +207,11 @@ private:
     juce::AudioFormatManager formatManager;
 
     juce::Image electronicBackground;
-    juce::Image background2;
+    juce::Image acousticBackground;
     juce::Image dryBackground;
+
+    juce::ToggleButton binauralButton;
+    MyLookAndFeelBinaural myLookAndFeelBinaural;
 
     void setNoteInMidiNotesChoosingPage(juce::ComboBox& menu, std::atomic <float>* note);
     void velocityCurveChanged();

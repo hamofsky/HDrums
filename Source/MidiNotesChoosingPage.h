@@ -36,6 +36,8 @@ public:
 	juce::ComboBox stackOpenNoteMenu;
 	juce::ComboBox sticksNoteMenu;
 
+	MyLookAndFeel myLookAndFeel;
+
 	std::vector<juce::ComboBox*> midiNoteHiddenMenus = { &kickNoteMenu, &snareNoteMenu, &snareSwirlNoteMenu, &snareFlamNoteMenu, &snareRoundNoteMenu,
 								&snareWirelessNoteMenu, &snareWirelessRoundNoteMenu, &snarePiccoloNoteMenu, &snarePiccoloSwirlNoteMenu,
 								&tomNoteMenu, &tomFlamNoteMenu, &ftomNoteMenu, &ftomFlamNoteMenu,
@@ -71,6 +73,7 @@ public:
 
 		addAndMakeVisible(soundButton);
 		soundButton.setButtonText("Play Sound");
+		soundButton.setLookAndFeel(&myLookAndFeel);
 
 	}
 
@@ -82,42 +85,19 @@ public:
 
 	void paint(juce::Graphics& g) override
 	{
-		g.setColour(juce::Colours::white);
-		g.setFont(15.0f);
+		g.setFont(18.0f);
+		g.setColour(juce::Colours::black);
+		g.drawFittedText("ARTICULATION", getWidth() / 8, getHeight() / 8 + 6, 4 * getWidth() / 8 - 10, getHeight() / 8, juce::Justification::centred, 1);
+		g.drawFittedText("NOTE", 5 * getWidth() / 8 + 10, getHeight() / 8 + 6, 2 * getWidth() / 8 - 20, getHeight() / 8, juce::Justification::centred, 1);
 	}
 	void MidiNotesChoosingPage::resized() override
 	{
-		auto qWidth = getWidth() / 4;
+		auto qWidth = getWidth() / 8;
 		auto qHeight = getHeight() / 8;
-		auto deltaHeight = getHeight() / 10;
 
-		allSounds.setBounds(qWidth, qHeight, qWidth - 10, qHeight - 10);
-		soundNoteMenu.setBounds(2 * qWidth + 10, qHeight, qWidth - 10, qHeight - 10);
-		soundButton.setBounds(qWidth, 2 * qHeight + 10, 2 * qWidth, 1.5 * qHeight);
-
-
-		/*kickNoteMenu.setBounds(qWidth + 2.5, 8, qWidth - 7.5, deltaHeight - 5);
-		snareNoteMenu.setBounds(qWidth + 2.5, deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
-		snareFlamNoteMenu.setBounds(qWidth + 2.5, 2 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
-		snareRoundNoteMenu.setBounds(qWidth + 2.5, 3 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
-		snareWirelessNoteMenu.setBounds(qWidth + 2.5, 4 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
-		snareWirelessRoundNoteMenu.setBounds(qWidth + 2.5, 5 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
-		tomNoteMenu.setBounds(qWidth + 2.5, 6 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
-		tomFlamNoteMenu.setBounds(qWidth + 2.5, 7 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
-		ftomNoteMenu.setBounds(qWidth + 2.5, 8 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
-		ftomFlamNoteMenu.setBounds(qWidth + 2.5, 9 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
-
-		tambNoteMenu.setBounds(3 * qWidth + 2.5, 8, qWidth - 7.5, deltaHeight - 5);
-		hhClosedNoteMenu.setBounds(3 * qWidth + 2.5, deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
-		hhHalfNoteMenu.setBounds(3 * qWidth + 2.5, 2 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
-		hhOpenNoteMenu.setBounds(3 * qWidth + 2.5, 3 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
-		ridePointNoteMenu.setBounds(3 * qWidth + 2.5, 4 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
-		rideBellNoteMenu.setBounds(3 * qWidth + 2.5, 5 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
-		rideOpenNoteMenu.setBounds(3 * qWidth + 2.5, 6 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
-		crashPointNoteMenu.setBounds(3 * qWidth + 2.5, 7 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
-		crashBellNoteMenu.setBounds(3 * qWidth + 2.5, 8 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);
-		crashOpenNoteMenu.setBounds(3 * qWidth + 2.5, 9 * deltaHeight + 7, qWidth - 7.5, deltaHeight - 5);*/
-
+		allSounds.setBounds(qWidth, 2 * qHeight, 4 * qWidth - 10, qHeight - 10);
+		soundNoteMenu.setBounds(5 * qWidth + 10, 2 * qHeight, 2 * qWidth - 10, qHeight - 10);
+		soundButton.setBounds(qWidth, 3 * qHeight + 10, 6 * qWidth, 2 * qHeight);
 	}
 
 private:
