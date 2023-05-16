@@ -7,6 +7,7 @@
 #include "MainSlidersPage.h"
 #include "CymbalsSlidersPage.h"
 #include "MidiNotesChoosingPage.h"
+#include "LoadingSamples.h"
 
 class HDrumsAudioProcessorEditor  : public juce::AudioProcessorEditor
 {

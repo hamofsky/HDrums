@@ -3,6 +3,7 @@
 #include <JuceHeader.h>
 #include "MidiProcessor.h"
 #include "Sampler.h"
+#include "LoadingSamples.h"
 
 // ComboBoxes ===========================
 #define SAMPLE_PACK_ID "sample Pack"
@@ -266,8 +267,6 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-    void addSample(string sampleName, string destination, int midiNote, float lowestVelocity, float highestVelocity, double release, double maxLength, string bus);
-    void addSample2(string sampleName, const void *sourceData, size_t sourceDataSize, int midiNote, float lowestVelocity, float highestVelocity, double release, double maxLength, string bus);
     void loadSamples(int samplePackID);
 
     juce::MidiMessageCollector& getMidiMessageCollector() noexcept { return midiMessageCollector; }
@@ -314,14 +313,13 @@ private:
 
     Sampler samplerBinaural;
 
+    std::vector<Sampler*> samplers { & sampler, & samplerOH, & samplerRoom, & samplerBleed, & samplerKickClose, & samplerKickOH, & samplerKickRoom, & samplerKickBleed,
+        & samplerSnareTop, & samplerSnareBot, & samplerSnareOH, & samplerSnareRoom, & samplerSnareBleed, & samplerTomClose, & samplerFTomClose,
+        & samplerTomsOH, & samplerTomsRoom, & samplerTomsBleed, & samplerHHClose, & samplerCymbalsOH, & samplerCymbalsRoom, & samplerCymbalsBleed, & samplerBinaural };
+
     juce::AudioFormatManager formatManager;
 
-    float linCurveFor3[4] = { 0.0, 43.0, 85.0, 129.0 };
-    float linCurveFor4[5] = { 0.0, 32.0, 64.0, 96.0, 129.0 };
-    float linCurveFor5[6] = { 0.0, 26.0, 51.0, 77.0, 102.0, 129.0 };
-    float linCurveFor6[7] = { 0.0, 21.0, 43.0, 64.0, 85.0, 107.0, 129.0 };
-
-    int defaultMidiNotes[27] = { 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97 };
+    LoadingSamples loadingSamples;
 
     void loadDirectory();
     void clearSoundsFromAllSamplers();

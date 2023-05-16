@@ -10,6 +10,7 @@
 #include "MidiNotesChoosingPage.h"
 #include "MyLookAndFeel.h"
 #include "MuteAndSoloButtonsFunctionality.h"
+#include "LoadingSamples.h"
 
 HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     : AudioProcessorEditor(&p), audioProcessor(p), myTabbedComponent(juce::TabbedButtonBar::Orientation::TabsAtTop),

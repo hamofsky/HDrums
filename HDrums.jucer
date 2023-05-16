@@ -110,6 +110,8 @@
       <FILE id="LFH5Bl" name="MyLookAndFeel.h" compile="0" resource="0" file="Source/MyLookAndFeel.h"/>
       <FILE id="piXhg6" name="MuteAndSoloButtonsFunctionality.h" compile="0"
             resource="0" file="Source/MuteAndSoloButtonsFunctionality.h"/>
+      <FILE id="iFdnfG" name="LoadingSamples.h" compile="0" resource="0"
+            file="Source/LoadingSamples.h"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
