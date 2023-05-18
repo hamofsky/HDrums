@@ -7,6 +7,1468 @@
               pluginName="HDrums" pluginDesc="A realistic drum sampler made by HD Plugins"
               bundleIdentifier="com.HDPlugins.HDrums">
   <MAINGROUP id="mSYpO8" name="HDrums">
+    <GROUP id="{DB24BC68-C721-35CE-F5BD-EE5D5B6F875C}" name="acousticSamples">
+      <GROUP id="{74BD920E-C9C6-4971-F91E-E0E3198D4089}" name="a_binaural">
+        <GROUP id="{C66649D5-093E-EA1A-1976-4FBE38DD5067}" name="a_crashAll_binaural">
+          <GROUP id="{E40AD45D-FDCF-8F5F-5D82-46C9A2400131}" name="a_crashBell_binaural">
+            <FILE id="oecu58" name="a_crashBell_1_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_crashAll_binaural/a_crashBell_binaural/a_crashBell_1_binaural.wav"/>
+            <FILE id="OTGIqm" name="a_crashBell_2_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_crashAll_binaural/a_crashBell_binaural/a_crashBell_2_binaural.wav"/>
+            <FILE id="eR9GLT" name="a_crashBell_3_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_crashAll_binaural/a_crashBell_binaural/a_crashBell_3_binaural.wav"/>
+            <FILE id="CZJWOk" name="a_crashBell_4_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_crashAll_binaural/a_crashBell_binaural/a_crashBell_4_binaural.wav"/>
+            <FILE id="Dil7Sb" name="a_crashBell_5_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_crashAll_binaural/a_crashBell_binaural/a_crashBell_5_binaural.wav"/>
+            <FILE id="QFo7Lj" name="a_crashBell_6_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_crashAll_binaural/a_crashBell_binaural/a_crashBell_6_binaural.wav"/>
+          </GROUP>
+          <GROUP id="{E11E2953-FFE1-499F-9941-6DFE02D99151}" name="a_crashOpen_binaural">
+            <FILE id="LY6CSC" name="a_crashOpen_1_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_crashAll_binaural/a_crashOpen_binaural/a_crashOpen_1_binaural.wav"/>
+            <FILE id="BhMzzp" name="a_crashOpen_2_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_crashAll_binaural/a_crashOpen_binaural/a_crashOpen_2_binaural.wav"/>
+            <FILE id="rhCY57" name="a_crashOpen_3_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_crashAll_binaural/a_crashOpen_binaural/a_crashOpen_3_binaural.wav"/>
+            <FILE id="FBQSH9" name="a_crashOpen_4_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_crashAll_binaural/a_crashOpen_binaural/a_crashOpen_4_binaural.wav"/>
+            <FILE id="FxIB3e" name="a_crashOpen_5_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_crashAll_binaural/a_crashOpen_binaural/a_crashOpen_5_binaural.wav"/>
+            <FILE id="pBkz8J" name="a_crashOpen_6_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_crashAll_binaural/a_crashOpen_binaural/a_crashOpen_6_binaural.wav"/>
+          </GROUP>
+          <GROUP id="{F23825A1-B8CB-AAA1-D4A0-05EAB5C8F19E}" name="a_crashPoint_binaural">
+            <FILE id="wqXDUE" name="a_crashPoint_1_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_crashAll_binaural/a_crashPoint_binaural/a_crashPoint_1_binaural.wav"/>
+            <FILE id="vRJVff" name="a_crashPoint_2_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_crashAll_binaural/a_crashPoint_binaural/a_crashPoint_2_binaural.wav"/>
+            <FILE id="QwfvAP" name="a_crashPoint_3_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_crashAll_binaural/a_crashPoint_binaural/a_crashPoint_3_binaural.wav"/>
+            <FILE id="pmPfkK" name="a_crashPoint_4_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_crashAll_binaural/a_crashPoint_binaural/a_crashPoint_4_binaural.wav"/>
+            <FILE id="F1eAMp" name="a_crashPoint_5_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_crashAll_binaural/a_crashPoint_binaural/a_crashPoint_5_binaural.wav"/>
+            <FILE id="PdgElw" name="a_crashPoint_6_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_crashAll_binaural/a_crashPoint_binaural/a_crashPoint_6_binaural.wav"/>
+          </GROUP>
+        </GROUP>
+        <GROUP id="{ADFB2E0B-B233-A7A7-0CD5-47B1F57D1C0E}" name="a_hhAll_binaural">
+          <GROUP id="{01909378-E4CA-4E26-8F96-A34C5712F0B9}" name="a_hhClosed_binaural">
+            <FILE id="wNVqAa" name="a_hhClosed_1_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_hhAll_binaural/a_hhClosed_binaural/a_hhClosed_1_binaural.wav"/>
+            <FILE id="kHb4h5" name="a_hhClosed_2_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_hhAll_binaural/a_hhClosed_binaural/a_hhClosed_2_binaural.wav"/>
+            <FILE id="stQ0ML" name="a_hhClosed_3_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_hhAll_binaural/a_hhClosed_binaural/a_hhClosed_3_binaural.wav"/>
+            <FILE id="X4yUou" name="a_hhClosed_4_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_hhAll_binaural/a_hhClosed_binaural/a_hhClosed_4_binaural.wav"/>
+            <FILE id="AOK2yw" name="a_hhClosed_5_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_hhAll_binaural/a_hhClosed_binaural/a_hhClosed_5_binaural.wav"/>
+            <FILE id="pD98kX" name="a_hhClosed_6_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_hhAll_binaural/a_hhClosed_binaural/a_hhClosed_6_binaural.wav"/>
+            <FILE id="NFQjgK" name="a_hhClosed_7_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_hhAll_binaural/a_hhClosed_binaural/a_hhClosed_7_binaural.wav"/>
+          </GROUP>
+          <GROUP id="{F86D3359-063C-DB35-3E32-431FD5CAD0CE}" name="a_hhHalf_binaural">
+            <FILE id="uzy9Jg" name="a_hhHalf_1_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_hhAll_binaural/a_hhHalf_binaural/a_hhHalf_1_binaural.wav"/>
+            <FILE id="HTXmCy" name="a_hhHalf_2_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_hhAll_binaural/a_hhHalf_binaural/a_hhHalf_2_binaural.wav"/>
+            <FILE id="Qc1ZHb" name="a_hhHalf_3_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_hhAll_binaural/a_hhHalf_binaural/a_hhHalf_3_binaural.wav"/>
+            <FILE id="RxnzPv" name="a_hhHalf_4_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_hhAll_binaural/a_hhHalf_binaural/a_hhHalf_4_binaural.wav"/>
+            <FILE id="PUusDO" name="a_hhHalf_5_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_hhAll_binaural/a_hhHalf_binaural/a_hhHalf_5_binaural.wav"/>
+            <FILE id="fGdwLo" name="a_hhHalf_6_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_hhAll_binaural/a_hhHalf_binaural/a_hhHalf_6_binaural.wav"/>
+          </GROUP>
+          <GROUP id="{AFCFB8D2-C8E1-7E6F-E0EC-BD2AD9522ECA}" name="a_hhOpen_binaural">
+            <FILE id="YEsegr" name="a_hhOpen_1_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_hhAll_binaural/a_hhOpen_binaural/a_hhOpen_1_binaural.wav"/>
+            <FILE id="h9RMxE" name="a_hhOpen_2_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_hhAll_binaural/a_hhOpen_binaural/a_hhOpen_2_binaural.wav"/>
+            <FILE id="sQF8LH" name="a_hhOpen_3_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_hhAll_binaural/a_hhOpen_binaural/a_hhOpen_3_binaural.wav"/>
+            <FILE id="EVaLyx" name="a_hhOpen_4_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_hhAll_binaural/a_hhOpen_binaural/a_hhOpen_4_binaural.wav"/>
+            <FILE id="ziIq6O" name="a_hhOpen_5_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_hhAll_binaural/a_hhOpen_binaural/a_hhOpen_5_binaural.wav"/>
+          </GROUP>
+          <GROUP id="{82EDC11F-09C4-17A2-33C5-859526344D9D}" name="a_hhStomp_binaural">
+            <FILE id="OoC1zf" name="a_hhStomp_1_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_hhAll_binaural/a_hhStomp_binaural/a_hhStomp_1_binaural.wav"/>
+            <FILE id="edYbLu" name="a_hhStomp_2_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_hhAll_binaural/a_hhStomp_binaural/a_hhStomp_2_binaural.wav"/>
+            <FILE id="LmMgKQ" name="a_hhStomp_3_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_hhAll_binaural/a_hhStomp_binaural/a_hhStomp_3_binaural.wav"/>
+          </GROUP>
+        </GROUP>
+        <GROUP id="{CBCD2FCE-7623-AA80-7EDC-1C256822B6EF}" name="a_kick_binaural">
+          <FILE id="SfeMMi" name="a_kick_1_binaural.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_binaural/a_kick_binaural/a_kick_1_binaural.wav"/>
+          <FILE id="tYEZI5" name="a_kick_2_binaural.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_binaural/a_kick_binaural/a_kick_2_binaural.wav"/>
+          <FILE id="eHDCON" name="a_kick_3_binaural.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_binaural/a_kick_binaural/a_kick_3_binaural.wav"/>
+          <FILE id="OgNIlf" name="a_kick_4_binaural.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_binaural/a_kick_binaural/a_kick_4_binaural.wav"/>
+          <FILE id="JlP0Pm" name="a_kick_5_binaural.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_binaural/a_kick_binaural/a_kick_5_binaural.wav"/>
+          <FILE id="bYjq8o" name="a_kick_6_binaural.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_binaural/a_kick_binaural/a_kick_6_binaural.wav"/>
+        </GROUP>
+        <GROUP id="{17765C8D-1098-125B-0DC3-8A0333A6DF8C}" name="a_rideAll_binaural">
+          <GROUP id="{FF71E2DE-8C23-9B43-DEB2-B5D8D8CD8FDC}" name="a_rideBell_binaural">
+            <FILE id="lgWCOP" name="a_rideBell_1_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_rideAll_binaural/a_rideBell_binaural/a_rideBell_1_binaural.wav"/>
+            <FILE id="mZOdML" name="a_rideBell_2_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_rideAll_binaural/a_rideBell_binaural/a_rideBell_2_binaural.wav"/>
+            <FILE id="DvWgzu" name="a_rideBell_3_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_rideAll_binaural/a_rideBell_binaural/a_rideBell_3_binaural.wav"/>
+            <FILE id="ohwfXu" name="a_rideBell_4_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_rideAll_binaural/a_rideBell_binaural/a_rideBell_4_binaural.wav"/>
+            <FILE id="aHvcqX" name="a_rideBell_5_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_rideAll_binaural/a_rideBell_binaural/a_rideBell_5_binaural.wav"/>
+            <FILE id="iRvwdd" name="a_rideBell_6_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_rideAll_binaural/a_rideBell_binaural/a_rideBell_6_binaural.wav"/>
+          </GROUP>
+          <GROUP id="{86E29D6B-2532-2200-EC4C-5EDD182D5AF3}" name="a_rideOpen_binaural">
+            <FILE id="QLvN4w" name="a_rideOpen_1_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_rideAll_binaural/a_rideOpen_binaural/a_rideOpen_1_binaural.wav"/>
+            <FILE id="ILPWJy" name="a_rideOpen_2_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_rideAll_binaural/a_rideOpen_binaural/a_rideOpen_2_binaural.wav"/>
+            <FILE id="hYygOj" name="a_rideOpen_3_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_rideAll_binaural/a_rideOpen_binaural/a_rideOpen_3_binaural.wav"/>
+            <FILE id="IdcnXr" name="a_rideOpen_4_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_rideAll_binaural/a_rideOpen_binaural/a_rideOpen_4_binaural.wav"/>
+            <FILE id="ThENBf" name="a_rideOpen_5_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_rideAll_binaural/a_rideOpen_binaural/a_rideOpen_5_binaural.wav"/>
+            <FILE id="ZvsP7c" name="a_rideOpen_6_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_rideAll_binaural/a_rideOpen_binaural/a_rideOpen_6_binaural.wav"/>
+          </GROUP>
+          <GROUP id="{83FF45FC-2990-0D30-90EC-0B755EE4C29D}" name="a_ridePoint_binaural">
+            <FILE id="y4L1ff" name="a_ridePoint_1_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_rideAll_binaural/a_ridePoint_binaural/a_ridePoint_1_binaural.wav"/>
+            <FILE id="kNWHoi" name="a_ridePoint_2_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_rideAll_binaural/a_ridePoint_binaural/a_ridePoint_2_binaural.wav"/>
+            <FILE id="DfcjTV" name="a_ridePoint_3_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_rideAll_binaural/a_ridePoint_binaural/a_ridePoint_3_binaural.wav"/>
+            <FILE id="U3sGUd" name="a_ridePoint_4_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_rideAll_binaural/a_ridePoint_binaural/a_ridePoint_4_binaural.wav"/>
+            <FILE id="ejnGKc" name="a_ridePoint_5_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_rideAll_binaural/a_ridePoint_binaural/a_ridePoint_5_binaural.wav"/>
+            <FILE id="K3eWoh" name="a_ridePoint_6_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_rideAll_binaural/a_ridePoint_binaural/a_ridePoint_6_binaural.wav"/>
+          </GROUP>
+        </GROUP>
+        <GROUP id="{B7625444-C982-DA1E-7A64-86D451E7E175}" name="a_snareAll_binaural">
+          <GROUP id="{BB417149-1A0A-33DB-93B2-A3B0DB6273C8}" name="a_snare_binaural">
+            <FILE id="IhBMZU" name="a_snare_1_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snare_binaural/a_snare_1_binaural.wav"/>
+            <FILE id="NRcZNv" name="a_snare_2_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snare_binaural/a_snare_2_binaural.wav"/>
+            <FILE id="PI5y8P" name="a_snare_3_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snare_binaural/a_snare_3_binaural.wav"/>
+            <FILE id="wRgnZv" name="a_snare_4_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snare_binaural/a_snare_4_binaural.wav"/>
+            <FILE id="dlj9NW" name="a_snare_5_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snare_binaural/a_snare_5_binaural.wav"/>
+            <FILE id="fZEZv9" name="a_snare_6_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snare_binaural/a_snare_6_binaural.wav"/>
+            <FILE id="rfEBlM" name="a_snare_7_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snare_binaural/a_snare_7_binaural.wav"/>
+          </GROUP>
+          <GROUP id="{D1E79349-6923-3282-F653-96AE28C86318}" name="a_snareFlam_binaural">
+            <FILE id="njE9fJ" name="a_snareFlam_1_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareFlam_binaural/a_snareFlam_1_binaural.wav"/>
+            <FILE id="y2oxIh" name="a_snareFlam_2_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareFlam_binaural/a_snareFlam_2_binaural.wav"/>
+            <FILE id="dBUhOD" name="a_snareFlam_3_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareFlam_binaural/a_snareFlam_3_binaural.wav"/>
+            <FILE id="eeVprQ" name="a_snareFlam_4_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareFlam_binaural/a_snareFlam_4_binaural.wav"/>
+            <FILE id="gbYwPc" name="a_snareFlam_5_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareFlam_binaural/a_snareFlam_5_binaural.wav"/>
+            <FILE id="FemTwh" name="a_snareFlam_6_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareFlam_binaural/a_snareFlam_6_binaural.wav"/>
+            <FILE id="O5IJlP" name="a_snareFlam_7_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareFlam_binaural/a_snareFlam_7_binaural.wav"/>
+          </GROUP>
+          <GROUP id="{7054FF50-0695-41FF-6FBF-B87DAB1E7EBE}" name="a_snarePiccolo_binaural">
+            <FILE id="syCE6h" name="a_snarePiccolo_1_binaural.wav" compile="0"
+                  resource="1" file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snarePiccolo_binaural/a_snarePiccolo_1_binaural.wav"/>
+            <FILE id="GHwdYn" name="a_snarePiccolo_2_binaural.wav" compile="0"
+                  resource="1" file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snarePiccolo_binaural/a_snarePiccolo_2_binaural.wav"/>
+            <FILE id="w20tV0" name="a_snarePiccolo_3_binaural.wav" compile="0"
+                  resource="1" file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snarePiccolo_binaural/a_snarePiccolo_3_binaural.wav"/>
+            <FILE id="GrMxAM" name="a_snarePiccolo_4_binaural.wav" compile="0"
+                  resource="1" file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snarePiccolo_binaural/a_snarePiccolo_4_binaural.wav"/>
+            <FILE id="XMYsHo" name="a_snarePiccolo_5_binaural.wav" compile="0"
+                  resource="1" file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snarePiccolo_binaural/a_snarePiccolo_5_binaural.wav"/>
+          </GROUP>
+          <GROUP id="{14707FDE-E423-2497-DE4F-7D81AACEA33D}" name="a_snarePiccoloSwirl_binaural">
+            <FILE id="KMkcKs" name="a_snarePiccoloSwirl_1_binaural.wav" compile="0"
+                  resource="1" file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snarePiccoloSwirl_binaural/a_snarePiccoloSwirl_1_binaural.wav"/>
+            <FILE id="FfUzFw" name="a_snarePiccoloSwirl_2_binaural.wav" compile="0"
+                  resource="1" file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snarePiccoloSwirl_binaural/a_snarePiccoloSwirl_2_binaural.wav"/>
+            <FILE id="v21Kk5" name="a_snarePiccoloSwirl_3_binaural.wav" compile="0"
+                  resource="1" file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snarePiccoloSwirl_binaural/a_snarePiccoloSwirl_3_binaural.wav"/>
+          </GROUP>
+          <GROUP id="{85F1187A-52D2-B693-24A1-877571284805}" name="a_snareRound_binaural">
+            <FILE id="Mf2hEf" name="a_snareRound_1_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareRound_binaural/a_snareRound_1_binaural.wav"/>
+            <FILE id="B2LqOp" name="a_snareRound_2_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareRound_binaural/a_snareRound_2_binaural.wav"/>
+            <FILE id="fGMSQb" name="a_snareRound_3_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareRound_binaural/a_snareRound_3_binaural.wav"/>
+            <FILE id="LMu3Gb" name="a_snareRound_4_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareRound_binaural/a_snareRound_4_binaural.wav"/>
+            <FILE id="oD8JAB" name="a_snareRound_5_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareRound_binaural/a_snareRound_5_binaural.wav"/>
+          </GROUP>
+          <GROUP id="{F0FE5553-AFE3-EC8D-A817-2DB79A9BD06F}" name="a_snareSwirl_binaural">
+            <FILE id="qpt4ti" name="a_snareSwirl_1_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareSwirl_binaural/a_snareSwirl_1_binaural.wav"/>
+            <FILE id="RuHdbv" name="a_snareSwirl_2_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareSwirl_binaural/a_snareSwirl_2_binaural.wav"/>
+            <FILE id="ENvSbw" name="a_snareSwirl_3_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareSwirl_binaural/a_snareSwirl_3_binaural.wav"/>
+            <FILE id="dUaJWe" name="a_snareSwirl_4_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareSwirl_binaural/a_snareSwirl_4_binaural.wav"/>
+          </GROUP>
+          <GROUP id="{92040511-E972-386F-C79A-D8CA9444D065}" name="a_snareWireless_binaural">
+            <FILE id="OpDNBA" name="a_snareWireless_1_binaural.wav" compile="0"
+                  resource="1" file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareWireless_binaural/a_snareWireless_1_binaural.wav"/>
+            <FILE id="TYSZCw" name="a_snareWireless_2_binaural.wav" compile="0"
+                  resource="1" file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareWireless_binaural/a_snareWireless_2_binaural.wav"/>
+            <FILE id="ldXIDK" name="a_snareWireless_3_binaural.wav" compile="0"
+                  resource="1" file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareWireless_binaural/a_snareWireless_3_binaural.wav"/>
+            <FILE id="Nzd1FI" name="a_snareWireless_4_binaural.wav" compile="0"
+                  resource="1" file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareWireless_binaural/a_snareWireless_4_binaural.wav"/>
+            <FILE id="nfvqsb" name="a_snareWireless_5_binaural.wav" compile="0"
+                  resource="1" file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareWireless_binaural/a_snareWireless_5_binaural.wav"/>
+          </GROUP>
+          <GROUP id="{4B0B3AFC-1839-625C-926E-83D62131A4DD}" name="a_snareWirelessRound_binaural">
+            <FILE id="BRGENF" name="a_snareWirelessRound_1_binaural.wav" compile="0"
+                  resource="1" file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareWirelessRound_binaural/a_snareWirelessRound_1_binaural.wav"/>
+            <FILE id="XYrkBZ" name="a_snareWirelessRound_2_binaural.wav" compile="0"
+                  resource="1" file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareWirelessRound_binaural/a_snareWirelessRound_2_binaural.wav"/>
+            <FILE id="cOWtCb" name="a_snareWirelessRound_3_binaural.wav" compile="0"
+                  resource="1" file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareWirelessRound_binaural/a_snareWirelessRound_3_binaural.wav"/>
+            <FILE id="reWEJt" name="a_snareWirelessRound_4_binaural.wav" compile="0"
+                  resource="1" file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareWirelessRound_binaural/a_snareWirelessRound_4_binaural.wav"/>
+            <FILE id="ovS7vn" name="a_snareWirelessRound_5_binaural.wav" compile="0"
+                  resource="1" file="Source/Assets/acousticSamples/a_binaural/a_snareAll_binaural/a_snareWirelessRound_binaural/a_snareWirelessRound_5_binaural.wav"/>
+          </GROUP>
+        </GROUP>
+        <GROUP id="{6C5939A0-260C-D186-5340-E356FDB9AABC}" name="a_stackAll_binaural">
+          <GROUP id="{5DB739F0-A70C-1EBE-3518-206A186F0742}" name="a_stackClosed_binaural">
+            <FILE id="VxnxTi" name="a_stackClosed_1_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_stackAll_binaural/a_stackClosed_binaural/a_stackClosed_1_binaural.wav"/>
+            <FILE id="g8m8Lt" name="a_stackClosed_2_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_stackAll_binaural/a_stackClosed_binaural/a_stackClosed_2_binaural.wav"/>
+            <FILE id="tPyAYb" name="a_stackClosed_3_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_stackAll_binaural/a_stackClosed_binaural/a_stackClosed_3_binaural.wav"/>
+            <FILE id="Euc4b3" name="a_stackClosed_4_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_stackAll_binaural/a_stackClosed_binaural/a_stackClosed_4_binaural.wav"/>
+            <FILE id="srxsFX" name="a_stackClosed_5_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_stackAll_binaural/a_stackClosed_binaural/a_stackClosed_5_binaural.wav"/>
+          </GROUP>
+          <GROUP id="{34E56407-2DDC-980C-D4CD-9901456DE5EC}" name="a_stackOpen_binaural">
+            <FILE id="bBGa8d" name="a_stackOpen_1_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_stackAll_binaural/a_stackOpen_binaural/a_stackOpen_1_binaural.wav"/>
+            <FILE id="qm8aLR" name="a_stackOpen_2_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_stackAll_binaural/a_stackOpen_binaural/a_stackOpen_2_binaural.wav"/>
+            <FILE id="r8nkzj" name="a_stackOpen_3_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_stackAll_binaural/a_stackOpen_binaural/a_stackOpen_3_binaural.wav"/>
+            <FILE id="UVG4N6" name="a_stackOpen_4_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_stackAll_binaural/a_stackOpen_binaural/a_stackOpen_4_binaural.wav"/>
+            <FILE id="pA5gnW" name="a_stackOpen_5_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_stackAll_binaural/a_stackOpen_binaural/a_stackOpen_5_binaural.wav"/>
+          </GROUP>
+        </GROUP>
+        <GROUP id="{FADAED03-98BD-702D-F322-69A44B37AB13}" name="a_sticks_binaural">
+          <FILE id="Ug2BxK" name="a_sticks_1_binaural.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_binaural/a_sticks_binaural/a_sticks_1_binaural.wav"/>
+          <FILE id="aVD57T" name="a_sticks_2_binaural.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_binaural/a_sticks_binaural/a_sticks_2_binaural.wav"/>
+          <FILE id="XwS66T" name="a_sticks_3_binaural.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_binaural/a_sticks_binaural/a_sticks_3_binaural.wav"/>
+          <FILE id="cKCeM8" name="a_sticks_4_binaural.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_binaural/a_sticks_binaural/a_sticks_4_binaural.wav"/>
+        </GROUP>
+        <GROUP id="{0078C9E5-0681-55AC-2556-AB09D8E80634}" name="a_tomsAll_binaural">
+          <GROUP id="{2DA3F0DF-64DA-2A1F-17D0-EB50D6B0FC24}" name="a_ftom_binaural">
+            <FILE id="ix5lqF" name="a_ftom_1_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_tomsAll_binaural/a_ftom_binaural/a_ftom_1_binaural.wav"/>
+            <FILE id="gRO4UA" name="a_ftom_2_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_tomsAll_binaural/a_ftom_binaural/a_ftom_2_binaural.wav"/>
+            <FILE id="xJgVeI" name="a_ftom_3_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_tomsAll_binaural/a_ftom_binaural/a_ftom_3_binaural.wav"/>
+            <FILE id="zgXEXM" name="a_ftom_4_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_tomsAll_binaural/a_ftom_binaural/a_ftom_4_binaural.wav"/>
+            <FILE id="vYyYmE" name="a_ftom_5_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_tomsAll_binaural/a_ftom_binaural/a_ftom_5_binaural.wav"/>
+          </GROUP>
+          <GROUP id="{8F83A126-CB55-84EF-4CC4-164F9006CACE}" name="a_ftomFlam_binaural">
+            <FILE id="nFHEOh" name="a_ftomFlam_1_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_tomsAll_binaural/a_ftomFlam_binaural/a_ftomFlam_1_binaural.wav"/>
+            <FILE id="jjxmrG" name="a_ftomFlam_2_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_tomsAll_binaural/a_ftomFlam_binaural/a_ftomFlam_2_binaural.wav"/>
+            <FILE id="ZDndFi" name="a_ftomFlam_3_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_tomsAll_binaural/a_ftomFlam_binaural/a_ftomFlam_3_binaural.wav"/>
+            <FILE id="hon45L" name="a_ftomFlam_4_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_tomsAll_binaural/a_ftomFlam_binaural/a_ftomFlam_4_binaural.wav"/>
+            <FILE id="U1x3nE" name="a_ftomFlam_5_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_tomsAll_binaural/a_ftomFlam_binaural/a_ftomFlam_5_binaural.wav"/>
+          </GROUP>
+          <GROUP id="{6A207BCD-BED3-7ED0-A72A-64AF78FFD126}" name="a_tom_binaural">
+            <FILE id="BC8T10" name="a_tom_1_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_tomsAll_binaural/a_tom_binaural/a_tom_1_binaural.wav"/>
+            <FILE id="RqzA1f" name="a_tom_2_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_tomsAll_binaural/a_tom_binaural/a_tom_2_binaural.wav"/>
+            <FILE id="WY1yGr" name="a_tom_3_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_tomsAll_binaural/a_tom_binaural/a_tom_3_binaural.wav"/>
+            <FILE id="YV21ht" name="a_tom_4_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_tomsAll_binaural/a_tom_binaural/a_tom_4_binaural.wav"/>
+            <FILE id="If00vE" name="a_tom_5_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_tomsAll_binaural/a_tom_binaural/a_tom_5_binaural.wav"/>
+          </GROUP>
+          <GROUP id="{A79EF2BB-FB41-D9FC-9483-7E168B0E96A5}" name="a_tomFlam_binaural">
+            <FILE id="EEayud" name="a_tomFlam_1_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_tomsAll_binaural/a_tomFlam_binaural/a_tomFlam_1_binaural.wav"/>
+            <FILE id="nMUSnS" name="a_tomFlam_2_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_tomsAll_binaural/a_tomFlam_binaural/a_tomFlam_2_binaural.wav"/>
+            <FILE id="pbN1vG" name="a_tomFlam_3_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_tomsAll_binaural/a_tomFlam_binaural/a_tomFlam_3_binaural.wav"/>
+            <FILE id="swZo6T" name="a_tomFlam_4_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_tomsAll_binaural/a_tomFlam_binaural/a_tomFlam_4_binaural.wav"/>
+            <FILE id="bjQi4d" name="a_tomFlam_5_binaural.wav" compile="0" resource="1"
+                  file="Source/Assets/acousticSamples/a_binaural/a_tomsAll_binaural/a_tomFlam_binaural/a_tomFlam_5_binaural.wav"/>
+          </GROUP>
+        </GROUP>
+      </GROUP>
+      <GROUP id="{8DC59028-646A-6143-C8E4-D2FEBBBA7C09}" name="a_crashAll">
+        <GROUP id="{C96B1836-1E63-5E38-F3DE-356EE69A704F}" name="a_crashBell">
+          <FILE id="YPbJV6" name="a_crashBell_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashBell/a_crashBell_1_bleed.wav"/>
+          <FILE id="mmqMfJ" name="a_crashBell_1_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashBell/a_crashBell_1_oh.wav"/>
+          <FILE id="Op09Rp" name="a_crashBell_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashBell/a_crashBell_1_room.wav"/>
+          <FILE id="vnBjcf" name="a_crashBell_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashBell/a_crashBell_2_bleed.wav"/>
+          <FILE id="zMFKPw" name="a_crashBell_2_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashBell/a_crashBell_2_oh.wav"/>
+          <FILE id="BBitdt" name="a_crashBell_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashBell/a_crashBell_2_room.wav"/>
+          <FILE id="vGxDHi" name="a_crashBell_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashBell/a_crashBell_3_bleed.wav"/>
+          <FILE id="SFALcz" name="a_crashBell_3_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashBell/a_crashBell_3_oh.wav"/>
+          <FILE id="rGKuH4" name="a_crashBell_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashBell/a_crashBell_3_room.wav"/>
+          <FILE id="talv88" name="a_crashBell_4_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashBell/a_crashBell_4_bleed.wav"/>
+          <FILE id="qgpCNp" name="a_crashBell_4_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashBell/a_crashBell_4_oh.wav"/>
+          <FILE id="s4L0kJ" name="a_crashBell_4_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashBell/a_crashBell_4_room.wav"/>
+          <FILE id="zcBRM0" name="a_crashBell_5_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashBell/a_crashBell_5_bleed.wav"/>
+          <FILE id="Dsd7Db" name="a_crashBell_5_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashBell/a_crashBell_5_oh.wav"/>
+          <FILE id="w8VP6C" name="a_crashBell_5_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashBell/a_crashBell_5_room.wav"/>
+          <FILE id="UD8Y3I" name="a_crashBell_6_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashBell/a_crashBell_6_bleed.wav"/>
+          <FILE id="DAS7Lb" name="a_crashBell_6_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashBell/a_crashBell_6_oh.wav"/>
+          <FILE id="zZPwgB" name="a_crashBell_6_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashBell/a_crashBell_6_room.wav"/>
+        </GROUP>
+        <GROUP id="{165EED55-3CF2-156E-325C-F28B6C812F1A}" name="a_crashOpen">
+          <FILE id="MU2mSr" name="a_crashOpen_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashOpen/a_crashOpen_1_bleed.wav"/>
+          <FILE id="Q8lYSl" name="a_crashOpen_1_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashOpen/a_crashOpen_1_oh.wav"/>
+          <FILE id="aIPFWW" name="a_crashOpen_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashOpen/a_crashOpen_1_room.wav"/>
+          <FILE id="qi4tTO" name="a_crashOpen_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashOpen/a_crashOpen_2_bleed.wav"/>
+          <FILE id="BUZIrE" name="a_crashOpen_2_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashOpen/a_crashOpen_2_oh.wav"/>
+          <FILE id="q17UVA" name="a_crashOpen_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashOpen/a_crashOpen_2_room.wav"/>
+          <FILE id="c1vmo3" name="a_crashOpen_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashOpen/a_crashOpen_3_bleed.wav"/>
+          <FILE id="PP8Jz3" name="a_crashOpen_3_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashOpen/a_crashOpen_3_oh.wav"/>
+          <FILE id="Am7fGm" name="a_crashOpen_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashOpen/a_crashOpen_3_room.wav"/>
+          <FILE id="wDjshg" name="a_crashOpen_4_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashOpen/a_crashOpen_4_bleed.wav"/>
+          <FILE id="rfkD9Y" name="a_crashOpen_4_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashOpen/a_crashOpen_4_oh.wav"/>
+          <FILE id="j087gG" name="a_crashOpen_4_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashOpen/a_crashOpen_4_room.wav"/>
+          <FILE id="pEJpmo" name="a_crashOpen_5_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashOpen/a_crashOpen_5_bleed.wav"/>
+          <FILE id="WgYXIY" name="a_crashOpen_5_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashOpen/a_crashOpen_5_oh.wav"/>
+          <FILE id="mnsQjO" name="a_crashOpen_5_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashOpen/a_crashOpen_5_room.wav"/>
+          <FILE id="WVxdEg" name="a_crashOpen_6_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashOpen/a_crashOpen_6_bleed.wav"/>
+          <FILE id="A3ydGn" name="a_crashOpen_6_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashOpen/a_crashOpen_6_oh.wav"/>
+          <FILE id="utZzAY" name="a_crashOpen_6_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashOpen/a_crashOpen_6_room.wav"/>
+        </GROUP>
+        <GROUP id="{09C480CA-8915-36F6-9443-7616E415856F}" name="a_crashPoint">
+          <FILE id="JX86Hu" name="a_crashPoint_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashPoint/a_crashPoint_1_bleed.wav"/>
+          <FILE id="MO5gpI" name="a_crashPoint_1_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashPoint/a_crashPoint_1_oh.wav"/>
+          <FILE id="LM1Fsp" name="a_crashPoint_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashPoint/a_crashPoint_1_room.wav"/>
+          <FILE id="SnG100" name="a_crashPoint_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashPoint/a_crashPoint_2_bleed.wav"/>
+          <FILE id="HQsypL" name="a_crashPoint_2_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashPoint/a_crashPoint_2_oh.wav"/>
+          <FILE id="NvDw4J" name="a_crashPoint_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashPoint/a_crashPoint_2_room.wav"/>
+          <FILE id="EKssS1" name="a_crashPoint_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashPoint/a_crashPoint_3_bleed.wav"/>
+          <FILE id="S89wl9" name="a_crashPoint_3_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashPoint/a_crashPoint_3_oh.wav"/>
+          <FILE id="cMAeK0" name="a_crashPoint_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashPoint/a_crashPoint_3_room.wav"/>
+          <FILE id="bogLwR" name="a_crashPoint_4_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashPoint/a_crashPoint_4_bleed.wav"/>
+          <FILE id="kI7AMb" name="a_crashPoint_4_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashPoint/a_crashPoint_4_oh.wav"/>
+          <FILE id="fv3hzk" name="a_crashPoint_4_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashPoint/a_crashPoint_4_room.wav"/>
+          <FILE id="IS6XBy" name="a_crashPoint_5_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashPoint/a_crashPoint_5_bleed.wav"/>
+          <FILE id="NlNi2h" name="a_crashPoint_5_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashPoint/a_crashPoint_5_oh.wav"/>
+          <FILE id="tVXitt" name="a_crashPoint_5_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashPoint/a_crashPoint_5_room.wav"/>
+          <FILE id="GfjSJb" name="a_crashPoint_6_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashPoint/a_crashPoint_6_bleed.wav"/>
+          <FILE id="tAhQrO" name="a_crashPoint_6_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashPoint/a_crashPoint_6_oh.wav"/>
+          <FILE id="sWhH8I" name="a_crashPoint_6_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_crashAll/a_crashPoint/a_crashPoint_6_room.wav"/>
+        </GROUP>
+      </GROUP>
+      <GROUP id="{596F947E-1242-B64A-1BEC-1DC8F64603C6}" name="a_hhAll">
+        <GROUP id="{2A77359F-107B-8EEE-8F4D-3CDEB166F06E}" name="a_hhClosed">
+          <FILE id="XjZ4qL" name="a_hhClosed_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_1_bleed.wav"/>
+          <FILE id="s2gCJq" name="a_hhClosed_1_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_1_close.wav"/>
+          <FILE id="Yia8ck" name="a_hhClosed_1_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_1_oh.wav"/>
+          <FILE id="dDgNvm" name="a_hhClosed_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_1_room.wav"/>
+          <FILE id="BUDbKQ" name="a_hhClosed_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_2_bleed.wav"/>
+          <FILE id="swb1xn" name="a_hhClosed_2_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_2_close.wav"/>
+          <FILE id="r5nrGl" name="a_hhClosed_2_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_2_oh.wav"/>
+          <FILE id="uwMsvh" name="a_hhClosed_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_2_room.wav"/>
+          <FILE id="miUp3f" name="a_hhClosed_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_3_bleed.wav"/>
+          <FILE id="aW8GdO" name="a_hhClosed_3_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_3_close.wav"/>
+          <FILE id="hT7iCT" name="a_hhClosed_3_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_3_oh.wav"/>
+          <FILE id="t4Sn9R" name="a_hhClosed_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_3_room.wav"/>
+          <FILE id="P3RFcJ" name="a_hhClosed_4_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_4_bleed.wav"/>
+          <FILE id="EIqh4x" name="a_hhClosed_4_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_4_close.wav"/>
+          <FILE id="ndJxHt" name="a_hhClosed_4_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_4_oh.wav"/>
+          <FILE id="iWp311" name="a_hhClosed_4_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_4_room.wav"/>
+          <FILE id="OsT7mi" name="a_hhClosed_5_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_5_bleed.wav"/>
+          <FILE id="uWu5uF" name="a_hhClosed_5_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_5_close.wav"/>
+          <FILE id="Xz3HTB" name="a_hhClosed_5_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_5_oh.wav"/>
+          <FILE id="MbBDjx" name="a_hhClosed_5_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_5_room.wav"/>
+          <FILE id="PPQLV7" name="a_hhClosed_6_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_6_bleed.wav"/>
+          <FILE id="v4lZch" name="a_hhClosed_6_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_6_close.wav"/>
+          <FILE id="KRttiE" name="a_hhClosed_6_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_6_oh.wav"/>
+          <FILE id="WS0BuI" name="a_hhClosed_6_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_6_room.wav"/>
+          <FILE id="PL4T5K" name="a_hhClosed_7_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_7_bleed.wav"/>
+          <FILE id="TQoEEh" name="a_hhClosed_7_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_7_close.wav"/>
+          <FILE id="BRfkSj" name="a_hhClosed_7_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_7_oh.wav"/>
+          <FILE id="Py6JsE" name="a_hhClosed_7_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhClosed/a_hhClosed_7_room.wav"/>
+        </GROUP>
+        <GROUP id="{C14ED0D2-8B3B-3C5B-F58C-3CA672454714}" name="a_hhHalf">
+          <FILE id="RTg4SB" name="a_hhHalf_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_1_bleed.wav"/>
+          <FILE id="J6jlxf" name="a_hhHalf_1_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_1_close.wav"/>
+          <FILE id="KVHwng" name="a_hhHalf_1_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_1_oh.wav"/>
+          <FILE id="QM5gHU" name="a_hhHalf_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_1_room.wav"/>
+          <FILE id="rOpU0X" name="a_hhHalf_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_2_bleed.wav"/>
+          <FILE id="TCm8RL" name="a_hhHalf_2_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_2_close.wav"/>
+          <FILE id="PZnioo" name="a_hhHalf_2_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_2_oh.wav"/>
+          <FILE id="R0Xreo" name="a_hhHalf_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_2_room.wav"/>
+          <FILE id="h0bkbl" name="a_hhHalf_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_3_bleed.wav"/>
+          <FILE id="mW5160" name="a_hhHalf_3_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_3_close.wav"/>
+          <FILE id="LM5WTY" name="a_hhHalf_3_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_3_oh.wav"/>
+          <FILE id="P3D07m" name="a_hhHalf_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_3_room.wav"/>
+          <FILE id="b9NKoP" name="a_hhHalf_4_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_4_bleed.wav"/>
+          <FILE id="pPG0p7" name="a_hhHalf_4_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_4_close.wav"/>
+          <FILE id="VWTow2" name="a_hhHalf_4_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_4_oh.wav"/>
+          <FILE id="rbVm2s" name="a_hhHalf_4_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_4_room.wav"/>
+          <FILE id="wmqYJo" name="a_hhHalf_5_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_5_bleed.wav"/>
+          <FILE id="W26ldI" name="a_hhHalf_5_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_5_close.wav"/>
+          <FILE id="ld6fyX" name="a_hhHalf_5_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_5_oh.wav"/>
+          <FILE id="tbu0mi" name="a_hhHalf_5_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_5_room.wav"/>
+          <FILE id="VlsVGD" name="a_hhHalf_6_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_6_bleed.wav"/>
+          <FILE id="rcplYf" name="a_hhHalf_6_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_6_close.wav"/>
+          <FILE id="yICbTV" name="a_hhHalf_6_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_6_oh.wav"/>
+          <FILE id="reSZgG" name="a_hhHalf_6_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhHalf/a_hhHalf_6_room.wav"/>
+        </GROUP>
+        <GROUP id="{2F658881-9FFE-78C7-2693-D6A91AAAC493}" name="a_hhOpen">
+          <FILE id="HebCR5" name="a_hhOpen_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhOpen/a_hhOpen_1_bleed.wav"/>
+          <FILE id="Mhpwis" name="a_hhOpen_1_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhOpen/a_hhOpen_1_close.wav"/>
+          <FILE id="LKDUHr" name="a_hhOpen_1_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhOpen/a_hhOpen_1_oh.wav"/>
+          <FILE id="gjibtQ" name="a_hhOpen_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhOpen/a_hhOpen_1_room.wav"/>
+          <FILE id="ws75Mg" name="a_hhOpen_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhOpen/a_hhOpen_2_bleed.wav"/>
+          <FILE id="rUa9Eh" name="a_hhOpen_2_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhOpen/a_hhOpen_2_close.wav"/>
+          <FILE id="r0GcRj" name="a_hhOpen_2_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhOpen/a_hhOpen_2_oh.wav"/>
+          <FILE id="H4Qk1R" name="a_hhOpen_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhOpen/a_hhOpen_2_room.wav"/>
+          <FILE id="FhRV6Z" name="a_hhOpen_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhOpen/a_hhOpen_3_bleed.wav"/>
+          <FILE id="jDCrGJ" name="a_hhOpen_3_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhOpen/a_hhOpen_3_close.wav"/>
+          <FILE id="kSesRV" name="a_hhOpen_3_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhOpen/a_hhOpen_3_oh.wav"/>
+          <FILE id="fNIGMn" name="a_hhOpen_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhOpen/a_hhOpen_3_room.wav"/>
+          <FILE id="K3kV5t" name="a_hhOpen_4_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhOpen/a_hhOpen_4_bleed.wav"/>
+          <FILE id="tFbTAQ" name="a_hhOpen_4_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhOpen/a_hhOpen_4_close.wav"/>
+          <FILE id="G99WD9" name="a_hhOpen_4_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhOpen/a_hhOpen_4_oh.wav"/>
+          <FILE id="bYmebD" name="a_hhOpen_4_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhOpen/a_hhOpen_4_room.wav"/>
+          <FILE id="h92sMV" name="a_hhOpen_5_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhOpen/a_hhOpen_5_bleed.wav"/>
+          <FILE id="Rqxov2" name="a_hhOpen_5_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhOpen/a_hhOpen_5_close.wav"/>
+          <FILE id="HTlOfH" name="a_hhOpen_5_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhOpen/a_hhOpen_5_oh.wav"/>
+          <FILE id="kwjqic" name="a_hhOpen_5_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhOpen/a_hhOpen_5_room.wav"/>
+        </GROUP>
+        <GROUP id="{9724748D-84A0-3BA8-3E99-BE8DF97D79EC}" name="a_hhStomp">
+          <FILE id="ZqlptU" name="a_hhStomp_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhStomp/a_hhStomp_1_bleed.wav"/>
+          <FILE id="kLjwju" name="a_hhStomp_1_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhStomp/a_hhStomp_1_close.wav"/>
+          <FILE id="Z9yy5D" name="a_hhStomp_1_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhStomp/a_hhStomp_1_oh.wav"/>
+          <FILE id="bpevYG" name="a_hhStomp_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhStomp/a_hhStomp_1_room.wav"/>
+          <FILE id="epiPFj" name="a_hhStomp_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhStomp/a_hhStomp_2_bleed.wav"/>
+          <FILE id="gGc531" name="a_hhStomp_2_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhStomp/a_hhStomp_2_close.wav"/>
+          <FILE id="foaFlH" name="a_hhStomp_2_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhStomp/a_hhStomp_2_oh.wav"/>
+          <FILE id="JB5Yyg" name="a_hhStomp_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhStomp/a_hhStomp_2_room.wav"/>
+          <FILE id="WOQvvC" name="a_hhStomp_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhStomp/a_hhStomp_3_bleed.wav"/>
+          <FILE id="I91SGU" name="a_hhStomp_3_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhStomp/a_hhStomp_3_close.wav"/>
+          <FILE id="mkZd0R" name="a_hhStomp_3_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhStomp/a_hhStomp_3_oh.wav"/>
+          <FILE id="aCl8oD" name="a_hhStomp_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_hhAll/a_hhStomp/a_hhStomp_3_room.wav"/>
+        </GROUP>
+      </GROUP>
+      <GROUP id="{58D95CBE-A3CE-48A6-D6CB-4C8C180E310B}" name="a_kick">
+        <FILE id="jBQDfh" name="a_kick_1_bleed.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_kick/a_kick_1_bleed.wav"/>
+        <FILE id="HzSa9P" name="a_kick_1_close.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_kick/a_kick_1_close.wav"/>
+        <FILE id="zqJmhK" name="a_kick_1_oh.wav" compile="0" resource="1" file="Source/Assets/acousticSamples/a_kick/a_kick_1_oh.wav"/>
+        <FILE id="ZQlC4O" name="a_kick_1_room.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_kick/a_kick_1_room.wav"/>
+        <FILE id="FFcIER" name="a_kick_2_bleed.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_kick/a_kick_2_bleed.wav"/>
+        <FILE id="OF9JNo" name="a_kick_2_close.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_kick/a_kick_2_close.wav"/>
+        <FILE id="KgJ9TL" name="a_kick_2_oh.wav" compile="0" resource="1" file="Source/Assets/acousticSamples/a_kick/a_kick_2_oh.wav"/>
+        <FILE id="hJfvE3" name="a_kick_2_room.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_kick/a_kick_2_room.wav"/>
+        <FILE id="Ap8pn8" name="a_kick_3_bleed.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_kick/a_kick_3_bleed.wav"/>
+        <FILE id="z0xKSZ" name="a_kick_3_close.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_kick/a_kick_3_close.wav"/>
+        <FILE id="KFsZsa" name="a_kick_3_oh.wav" compile="0" resource="1" file="Source/Assets/acousticSamples/a_kick/a_kick_3_oh.wav"/>
+        <FILE id="iANo8e" name="a_kick_3_room.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_kick/a_kick_3_room.wav"/>
+        <FILE id="RaSfJe" name="a_kick_4_bleed.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_kick/a_kick_4_bleed.wav"/>
+        <FILE id="ak2AP9" name="a_kick_4_close.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_kick/a_kick_4_close.wav"/>
+        <FILE id="N7Fqs7" name="a_kick_4_oh.wav" compile="0" resource="1" file="Source/Assets/acousticSamples/a_kick/a_kick_4_oh.wav"/>
+        <FILE id="imJWQT" name="a_kick_4_room.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_kick/a_kick_4_room.wav"/>
+        <FILE id="LVT1pn" name="a_kick_5_bleed.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_kick/a_kick_5_bleed.wav"/>
+        <FILE id="y2RqxM" name="a_kick_5_close.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_kick/a_kick_5_close.wav"/>
+        <FILE id="oKDGGc" name="a_kick_5_oh.wav" compile="0" resource="1" file="Source/Assets/acousticSamples/a_kick/a_kick_5_oh.wav"/>
+        <FILE id="q3DMse" name="a_kick_5_room.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_kick/a_kick_5_room.wav"/>
+        <FILE id="O5fDqQ" name="a_kick_6_bleed.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_kick/a_kick_6_bleed.wav"/>
+        <FILE id="SbJm4O" name="a_kick_6_close.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_kick/a_kick_6_close.wav"/>
+        <FILE id="hM9WAY" name="a_kick_6_oh.wav" compile="0" resource="1" file="Source/Assets/acousticSamples/a_kick/a_kick_6_oh.wav"/>
+        <FILE id="fAInj3" name="a_kick_6_room.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_kick/a_kick_6_room.wav"/>
+      </GROUP>
+      <GROUP id="{D2504B22-BAC6-B5C4-B476-680BC6284519}" name="a_rideAll">
+        <GROUP id="{E5D14F99-D04B-422B-D7EF-8F6642053C58}" name="a_rideBell">
+          <FILE id="e88KIZ" name="a_rideBell_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideBell/a_rideBell_1_bleed.wav"/>
+          <FILE id="qxqmnI" name="a_rideBell_1_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideBell/a_rideBell_1_oh.wav"/>
+          <FILE id="Daq4Mo" name="a_rideBell_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideBell/a_rideBell_1_room.wav"/>
+          <FILE id="bxhLaU" name="a_rideBell_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideBell/a_rideBell_2_bleed.wav"/>
+          <FILE id="Jew3sU" name="a_rideBell_2_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideBell/a_rideBell_2_oh.wav"/>
+          <FILE id="biaIAE" name="a_rideBell_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideBell/a_rideBell_2_room.wav"/>
+          <FILE id="nL6dAg" name="a_rideBell_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideBell/a_rideBell_3_bleed.wav"/>
+          <FILE id="Mxht3b" name="a_rideBell_3_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideBell/a_rideBell_3_oh.wav"/>
+          <FILE id="hp6zyR" name="a_rideBell_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideBell/a_rideBell_3_room.wav"/>
+          <FILE id="T0Hh2f" name="a_rideBell_4_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideBell/a_rideBell_4_bleed.wav"/>
+          <FILE id="Qzsjbt" name="a_rideBell_4_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideBell/a_rideBell_4_oh.wav"/>
+          <FILE id="QNRcRp" name="a_rideBell_4_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideBell/a_rideBell_4_room.wav"/>
+          <FILE id="XREUZd" name="a_rideBell_5_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideBell/a_rideBell_5_bleed.wav"/>
+          <FILE id="m09fhA" name="a_rideBell_5_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideBell/a_rideBell_5_oh.wav"/>
+          <FILE id="IQLm3V" name="a_rideBell_5_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideBell/a_rideBell_5_room.wav"/>
+          <FILE id="tqrXKI" name="a_rideBell_6_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideBell/a_rideBell_6_bleed.wav"/>
+          <FILE id="fAMxdN" name="a_rideBell_6_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideBell/a_rideBell_6_oh.wav"/>
+          <FILE id="g7i8wg" name="a_rideBell_6_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideBell/a_rideBell_6_room.wav"/>
+        </GROUP>
+        <GROUP id="{97F4D908-71B6-5821-CB34-7E747A7A764A}" name="a_rideOpen">
+          <FILE id="HZbibE" name="a_rideOpen_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideOpen/a_rideOpen_1_bleed.wav"/>
+          <FILE id="HR73lI" name="a_rideOpen_1_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideOpen/a_rideOpen_1_oh.wav"/>
+          <FILE id="LDxwCy" name="a_rideOpen_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideOpen/a_rideOpen_1_room.wav"/>
+          <FILE id="b2IoGR" name="a_rideOpen_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideOpen/a_rideOpen_2_bleed.wav"/>
+          <FILE id="VQM3Lo" name="a_rideOpen_2_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideOpen/a_rideOpen_2_oh.wav"/>
+          <FILE id="B595jr" name="a_rideOpen_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideOpen/a_rideOpen_2_room.wav"/>
+          <FILE id="Lomovx" name="a_rideOpen_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideOpen/a_rideOpen_3_bleed.wav"/>
+          <FILE id="bpxFrM" name="a_rideOpen_3_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideOpen/a_rideOpen_3_oh.wav"/>
+          <FILE id="CQqI7o" name="a_rideOpen_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideOpen/a_rideOpen_3_room.wav"/>
+          <FILE id="oqLHmP" name="a_rideOpen_4_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideOpen/a_rideOpen_4_bleed.wav"/>
+          <FILE id="wrg9Fs" name="a_rideOpen_4_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideOpen/a_rideOpen_4_oh.wav"/>
+          <FILE id="E7cj6E" name="a_rideOpen_4_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideOpen/a_rideOpen_4_room.wav"/>
+          <FILE id="vCrCEY" name="a_rideOpen_5_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideOpen/a_rideOpen_5_bleed.wav"/>
+          <FILE id="uT4AKQ" name="a_rideOpen_5_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideOpen/a_rideOpen_5_oh.wav"/>
+          <FILE id="jz1fFj" name="a_rideOpen_5_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideOpen/a_rideOpen_5_room.wav"/>
+          <FILE id="p7oXSA" name="a_rideOpen_6_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideOpen/a_rideOpen_6_bleed.wav"/>
+          <FILE id="bwHZPh" name="a_rideOpen_6_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideOpen/a_rideOpen_6_oh.wav"/>
+          <FILE id="zhvyGY" name="a_rideOpen_6_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_rideOpen/a_rideOpen_6_room.wav"/>
+        </GROUP>
+        <GROUP id="{83A71AA2-70D2-D49A-1215-6FF9700E9513}" name="a_ridePoint">
+          <FILE id="NAxzjF" name="a_ridePoint_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_ridePoint/a_ridePoint_1_bleed.wav"/>
+          <FILE id="RHRVaT" name="a_ridePoint_1_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_ridePoint/a_ridePoint_1_oh.wav"/>
+          <FILE id="kqQEFW" name="a_ridePoint_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_ridePoint/a_ridePoint_1_room.wav"/>
+          <FILE id="INUI37" name="a_ridePoint_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_ridePoint/a_ridePoint_2_bleed.wav"/>
+          <FILE id="WElqNc" name="a_ridePoint_2_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_ridePoint/a_ridePoint_2_oh.wav"/>
+          <FILE id="qbBE5L" name="a_ridePoint_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_ridePoint/a_ridePoint_2_room.wav"/>
+          <FILE id="jAkHK0" name="a_ridePoint_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_ridePoint/a_ridePoint_3_bleed.wav"/>
+          <FILE id="Lw0aCY" name="a_ridePoint_3_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_ridePoint/a_ridePoint_3_oh.wav"/>
+          <FILE id="wJbeCY" name="a_ridePoint_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_ridePoint/a_ridePoint_3_room.wav"/>
+          <FILE id="zMAu60" name="a_ridePoint_4_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_ridePoint/a_ridePoint_4_bleed.wav"/>
+          <FILE id="aSqFQL" name="a_ridePoint_4_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_ridePoint/a_ridePoint_4_oh.wav"/>
+          <FILE id="Ig4R6I" name="a_ridePoint_4_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_ridePoint/a_ridePoint_4_room.wav"/>
+          <FILE id="IUr938" name="a_ridePoint_5_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_ridePoint/a_ridePoint_5_bleed.wav"/>
+          <FILE id="Yu9MTB" name="a_ridePoint_5_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_ridePoint/a_ridePoint_5_oh.wav"/>
+          <FILE id="fzV2PU" name="a_ridePoint_5_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_ridePoint/a_ridePoint_5_room.wav"/>
+          <FILE id="Vu8avm" name="a_ridePoint_6_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_ridePoint/a_ridePoint_6_bleed.wav"/>
+          <FILE id="QdTpWY" name="a_ridePoint_6_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_ridePoint/a_ridePoint_6_oh.wav"/>
+          <FILE id="ZAtSPL" name="a_ridePoint_6_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_rideAll/a_ridePoint/a_ridePoint_6_room.wav"/>
+        </GROUP>
+      </GROUP>
+      <GROUP id="{6D161AE1-1B70-3FCC-27FF-5082558F1566}" name="a_snareAll">
+        <GROUP id="{950A1680-B496-57B8-E844-9ACF60E6E4B1}" name="a_snare">
+          <FILE id="yLNdOS" name="a_snare_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_1_bleed.wav"/>
+          <FILE id="BZ1bYT" name="a_snare_1_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_1_bot.wav"/>
+          <FILE id="LODL55" name="a_snare_1_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_1_oh.wav"/>
+          <FILE id="PcLeZV" name="a_snare_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_1_room.wav"/>
+          <FILE id="yQGcdU" name="a_snare_1_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_1_top.wav"/>
+          <FILE id="MmYm6w" name="a_snare_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_2_bleed.wav"/>
+          <FILE id="nEtUcg" name="a_snare_2_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_2_bot.wav"/>
+          <FILE id="QBSC5E" name="a_snare_2_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_2_oh.wav"/>
+          <FILE id="fAXyCD" name="a_snare_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_2_room.wav"/>
+          <FILE id="llhwBY" name="a_snare_2_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_2_top.wav"/>
+          <FILE id="xDTxLG" name="a_snare_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_3_bleed.wav"/>
+          <FILE id="HtSiPA" name="a_snare_3_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_3_bot.wav"/>
+          <FILE id="BM5RBc" name="a_snare_3_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_3_oh.wav"/>
+          <FILE id="X3MZkU" name="a_snare_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_3_room.wav"/>
+          <FILE id="o9CB4G" name="a_snare_3_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_3_top.wav"/>
+          <FILE id="Emlv0E" name="a_snare_4_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_4_bleed.wav"/>
+          <FILE id="tBSaX9" name="a_snare_4_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_4_bot.wav"/>
+          <FILE id="N6gGgM" name="a_snare_4_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_4_oh.wav"/>
+          <FILE id="eo976p" name="a_snare_4_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_4_room.wav"/>
+          <FILE id="HF4gZF" name="a_snare_4_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_4_top.wav"/>
+          <FILE id="AZfS9R" name="a_snare_5_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_5_bleed.wav"/>
+          <FILE id="HIO8Fq" name="a_snare_5_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_5_bot.wav"/>
+          <FILE id="J654Mf" name="a_snare_5_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_5_oh.wav"/>
+          <FILE id="AEk5uj" name="a_snare_5_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_5_room.wav"/>
+          <FILE id="zPKuwL" name="a_snare_5_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_5_top.wav"/>
+          <FILE id="ML2XgH" name="a_snare_6_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_6_bleed.wav"/>
+          <FILE id="S5cmxQ" name="a_snare_6_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_6_bot.wav"/>
+          <FILE id="JI7owJ" name="a_snare_6_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_6_oh.wav"/>
+          <FILE id="QEkfYD" name="a_snare_6_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_6_room.wav"/>
+          <FILE id="DyqKei" name="a_snare_6_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_6_top.wav"/>
+          <FILE id="mtaycG" name="a_snare_7_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_7_bleed.wav"/>
+          <FILE id="MR7XmO" name="a_snare_7_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_7_bot.wav"/>
+          <FILE id="Nyz3fg" name="a_snare_7_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_7_oh.wav"/>
+          <FILE id="mm92WZ" name="a_snare_7_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_7_room.wav"/>
+          <FILE id="vGLqkd" name="a_snare_7_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snare/a_snare_7_top.wav"/>
+        </GROUP>
+        <GROUP id="{80C37494-B50C-97D2-3F48-7D986E101FDD}" name="a_snareFlam">
+          <FILE id="MGtiG0" name="a_snareFlam_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_1_bleed.wav"/>
+          <FILE id="C3nX2i" name="a_snareFlam_1_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_1_bot.wav"/>
+          <FILE id="bsrAwX" name="a_snareFlam_1_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_1_oh.wav"/>
+          <FILE id="Qp7Ge7" name="a_snareFlam_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_1_room.wav"/>
+          <FILE id="Cnu3Vs" name="a_snareFlam_1_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_1_top.wav"/>
+          <FILE id="aPlUFr" name="a_snareFlam_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_2_bleed.wav"/>
+          <FILE id="Egyn9W" name="a_snareFlam_2_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_2_bot.wav"/>
+          <FILE id="N5wBP2" name="a_snareFlam_2_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_2_oh.wav"/>
+          <FILE id="TE7oOp" name="a_snareFlam_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_2_room.wav"/>
+          <FILE id="gLVbZj" name="a_snareFlam_2_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_2_top.wav"/>
+          <FILE id="VIu93q" name="a_snareFlam_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_3_bleed.wav"/>
+          <FILE id="LckLAC" name="a_snareFlam_3_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_3_bot.wav"/>
+          <FILE id="fHbARZ" name="a_snareFlam_3_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_3_oh.wav"/>
+          <FILE id="whyUTZ" name="a_snareFlam_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_3_room.wav"/>
+          <FILE id="Cwievx" name="a_snareFlam_3_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_3_top.wav"/>
+          <FILE id="odA8So" name="a_snareFlam_4_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_4_bleed.wav"/>
+          <FILE id="i6j1XM" name="a_snareFlam_4_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_4_bot.wav"/>
+          <FILE id="ZI2W7t" name="a_snareFlam_4_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_4_oh.wav"/>
+          <FILE id="Ew8K9s" name="a_snareFlam_4_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_4_room.wav"/>
+          <FILE id="Dy08Ic" name="a_snareFlam_4_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_4_top.wav"/>
+          <FILE id="pIHu3D" name="a_snareFlam_5_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_5_bleed.wav"/>
+          <FILE id="Dx6fwX" name="a_snareFlam_5_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_5_bot.wav"/>
+          <FILE id="WN3Wvh" name="a_snareFlam_5_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_5_oh.wav"/>
+          <FILE id="TPzwmg" name="a_snareFlam_5_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_5_room.wav"/>
+          <FILE id="V3c4qN" name="a_snareFlam_5_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_5_top.wav"/>
+          <FILE id="J3iL8v" name="a_snareFlam_6_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_6_bleed.wav"/>
+          <FILE id="QOAgfc" name="a_snareFlam_6_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_6_bot.wav"/>
+          <FILE id="Qv7R0c" name="a_snareFlam_6_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_6_oh.wav"/>
+          <FILE id="EOIkQo" name="a_snareFlam_6_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_6_room.wav"/>
+          <FILE id="VOFE7J" name="a_snareFlam_6_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_6_top.wav"/>
+          <FILE id="BnQX7X" name="a_snareFlam_7_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_7_bleed.wav"/>
+          <FILE id="mqGa0m" name="a_snareFlam_7_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_7_bot.wav"/>
+          <FILE id="WWjtPm" name="a_snareFlam_7_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_7_oh.wav"/>
+          <FILE id="PY7vVo" name="a_snareFlam_7_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_7_room.wav"/>
+          <FILE id="N64YQl" name="a_snareFlam_7_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareFlam/a_snareFlam_7_top.wav"/>
+        </GROUP>
+        <GROUP id="{096E6D11-BDA2-1168-E51A-6423A49CA29E}" name="a_snarePiccolo">
+          <FILE id="SsxPAn" name="a_snarePiccolo_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccolo/a_snarePiccolo_1_bleed.wav"/>
+          <FILE id="YeBYMB" name="a_snarePiccolo_1_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccolo/a_snarePiccolo_1_close.wav"/>
+          <FILE id="ljDRxX" name="a_snarePiccolo_1_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccolo/a_snarePiccolo_1_oh.wav"/>
+          <FILE id="OgGOYw" name="a_snarePiccolo_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccolo/a_snarePiccolo_1_room.wav"/>
+          <FILE id="pTZDCD" name="a_snarePiccolo_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccolo/a_snarePiccolo_2_bleed.wav"/>
+          <FILE id="Yx7Y0y" name="a_snarePiccolo_2_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccolo/a_snarePiccolo_2_close.wav"/>
+          <FILE id="U8LYxd" name="a_snarePiccolo_2_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccolo/a_snarePiccolo_2_oh.wav"/>
+          <FILE id="YnrEov" name="a_snarePiccolo_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccolo/a_snarePiccolo_2_room.wav"/>
+          <FILE id="OuNGOc" name="a_snarePiccolo_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccolo/a_snarePiccolo_3_bleed.wav"/>
+          <FILE id="PGkC5B" name="a_snarePiccolo_3_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccolo/a_snarePiccolo_3_close.wav"/>
+          <FILE id="JDLJAP" name="a_snarePiccolo_3_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccolo/a_snarePiccolo_3_oh.wav"/>
+          <FILE id="NPOVBf" name="a_snarePiccolo_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccolo/a_snarePiccolo_3_room.wav"/>
+          <FILE id="Wgjsmp" name="a_snarePiccolo_4_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccolo/a_snarePiccolo_4_bleed.wav"/>
+          <FILE id="w1yA04" name="a_snarePiccolo_4_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccolo/a_snarePiccolo_4_close.wav"/>
+          <FILE id="dLMwSZ" name="a_snarePiccolo_4_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccolo/a_snarePiccolo_4_oh.wav"/>
+          <FILE id="sUCkQ8" name="a_snarePiccolo_4_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccolo/a_snarePiccolo_4_room.wav"/>
+          <FILE id="emQaEa" name="a_snarePiccolo_5_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccolo/a_snarePiccolo_5_bleed.wav"/>
+          <FILE id="gQqSS8" name="a_snarePiccolo_5_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccolo/a_snarePiccolo_5_close.wav"/>
+          <FILE id="W9NYa5" name="a_snarePiccolo_5_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccolo/a_snarePiccolo_5_oh.wav"/>
+          <FILE id="McGz84" name="a_snarePiccolo_5_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccolo/a_snarePiccolo_5_room.wav"/>
+        </GROUP>
+        <GROUP id="{6472ABEC-5EC9-1416-E3A0-7BD0A4812F2E}" name="a_snarePiccoloSwirl">
+          <FILE id="MvMdne" name="a_snarePiccoloSwirl_1_bleed.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccoloSwirl/a_snarePiccoloSwirl_1_bleed.wav"/>
+          <FILE id="QrXPAv" name="a_snarePiccoloSwirl_1_close.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccoloSwirl/a_snarePiccoloSwirl_1_close.wav"/>
+          <FILE id="TTjU04" name="a_snarePiccoloSwirl_1_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccoloSwirl/a_snarePiccoloSwirl_1_oh.wav"/>
+          <FILE id="WlmWoc" name="a_snarePiccoloSwirl_1_room.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccoloSwirl/a_snarePiccoloSwirl_1_room.wav"/>
+          <FILE id="SWK8qI" name="a_snarePiccoloSwirl_2_bleed.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccoloSwirl/a_snarePiccoloSwirl_2_bleed.wav"/>
+          <FILE id="bONHii" name="a_snarePiccoloSwirl_2_close.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccoloSwirl/a_snarePiccoloSwirl_2_close.wav"/>
+          <FILE id="SwEZxv" name="a_snarePiccoloSwirl_2_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccoloSwirl/a_snarePiccoloSwirl_2_oh.wav"/>
+          <FILE id="bgPrkC" name="a_snarePiccoloSwirl_2_room.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccoloSwirl/a_snarePiccoloSwirl_2_room.wav"/>
+          <FILE id="LHGy3h" name="a_snarePiccoloSwirl_3_bleed.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccoloSwirl/a_snarePiccoloSwirl_3_bleed.wav"/>
+          <FILE id="ne32DI" name="a_snarePiccoloSwirl_3_close.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccoloSwirl/a_snarePiccoloSwirl_3_close.wav"/>
+          <FILE id="lbaUZP" name="a_snarePiccoloSwirl_3_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccoloSwirl/a_snarePiccoloSwirl_3_oh.wav"/>
+          <FILE id="jo64jE" name="a_snarePiccoloSwirl_3_room.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snarePiccoloSwirl/a_snarePiccoloSwirl_3_room.wav"/>
+        </GROUP>
+        <GROUP id="{30103A55-F332-235A-9DCC-6309BD15C499}" name="a_snareRound">
+          <FILE id="lAIAlG" name="a_snareRound_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_1_bleed.wav"/>
+          <FILE id="t3jvlW" name="a_snareRound_1_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_1_bot.wav"/>
+          <FILE id="ADMwXv" name="a_snareRound_1_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_1_oh.wav"/>
+          <FILE id="nBAaIB" name="a_snareRound_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_1_room.wav"/>
+          <FILE id="q5p8I5" name="a_snareRound_1_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_1_top.wav"/>
+          <FILE id="xdZ2F8" name="a_snareRound_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_2_bleed.wav"/>
+          <FILE id="RrYq74" name="a_snareRound_2_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_2_bot.wav"/>
+          <FILE id="KvJgSW" name="a_snareRound_2_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_2_oh.wav"/>
+          <FILE id="fFlC3N" name="a_snareRound_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_2_room.wav"/>
+          <FILE id="VTnGyS" name="a_snareRound_2_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_2_top.wav"/>
+          <FILE id="us0Uel" name="a_snareRound_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_3_bleed.wav"/>
+          <FILE id="NNqUTU" name="a_snareRound_3_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_3_bot.wav"/>
+          <FILE id="hvfqOi" name="a_snareRound_3_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_3_oh.wav"/>
+          <FILE id="uCWbx5" name="a_snareRound_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_3_room.wav"/>
+          <FILE id="lFx5hQ" name="a_snareRound_3_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_3_top.wav"/>
+          <FILE id="dRp8KE" name="a_snareRound_4_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_4_bleed.wav"/>
+          <FILE id="ff3mvW" name="a_snareRound_4_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_4_bot.wav"/>
+          <FILE id="Pbpz9i" name="a_snareRound_4_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_4_oh.wav"/>
+          <FILE id="C6s3pe" name="a_snareRound_4_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_4_room.wav"/>
+          <FILE id="ICqxW4" name="a_snareRound_4_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_4_top.wav"/>
+          <FILE id="z5No2J" name="a_snareRound_5_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_5_bleed.wav"/>
+          <FILE id="tMOcGJ" name="a_snareRound_5_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_5_bot.wav"/>
+          <FILE id="phllfF" name="a_snareRound_5_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_5_oh.wav"/>
+          <FILE id="eFvNm0" name="a_snareRound_5_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_5_room.wav"/>
+          <FILE id="ZNapeu" name="a_snareRound_5_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareRound/a_snareRound_5_top.wav"/>
+        </GROUP>
+        <GROUP id="{43C97A74-DE07-3D17-00D1-38FCFB801A8D}" name="a_snareSwirl">
+          <FILE id="aVlDzA" name="a_snareSwirl_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareSwirl/a_snareSwirl_1_bleed.wav"/>
+          <FILE id="i5tpkP" name="a_snareSwirl_1_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareSwirl/a_snareSwirl_1_bot.wav"/>
+          <FILE id="s5BNaf" name="a_snareSwirl_1_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareSwirl/a_snareSwirl_1_oh.wav"/>
+          <FILE id="e0lC5t" name="a_snareSwirl_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareSwirl/a_snareSwirl_1_room.wav"/>
+          <FILE id="nwrWvC" name="a_snareSwirl_1_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareSwirl/a_snareSwirl_1_top.wav"/>
+          <FILE id="EeuCPx" name="a_snareSwirl_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareSwirl/a_snareSwirl_2_bleed.wav"/>
+          <FILE id="RVaT1S" name="a_snareSwirl_2_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareSwirl/a_snareSwirl_2_bot.wav"/>
+          <FILE id="leZoep" name="a_snareSwirl_2_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareSwirl/a_snareSwirl_2_oh.wav"/>
+          <FILE id="F8LnbM" name="a_snareSwirl_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareSwirl/a_snareSwirl_2_room.wav"/>
+          <FILE id="AFoVwO" name="a_snareSwirl_2_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareSwirl/a_snareSwirl_2_top.wav"/>
+          <FILE id="PYAifL" name="a_snareSwirl_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareSwirl/a_snareSwirl_3_bleed.wav"/>
+          <FILE id="GagTYD" name="a_snareSwirl_3_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareSwirl/a_snareSwirl_3_bot.wav"/>
+          <FILE id="TJYCQ5" name="a_snareSwirl_3_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareSwirl/a_snareSwirl_3_oh.wav"/>
+          <FILE id="LHP9Ms" name="a_snareSwirl_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareSwirl/a_snareSwirl_3_room.wav"/>
+          <FILE id="S6rOFQ" name="a_snareSwirl_3_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareSwirl/a_snareSwirl_3_top.wav"/>
+          <FILE id="p4SrFp" name="a_snareSwirl_4_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareSwirl/a_snareSwirl_4_bleed.wav"/>
+          <FILE id="GnqH2W" name="a_snareSwirl_4_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareSwirl/a_snareSwirl_4_bot.wav"/>
+          <FILE id="h8EVAk" name="a_snareSwirl_4_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareSwirl/a_snareSwirl_4_oh.wav"/>
+          <FILE id="s2rhNz" name="a_snareSwirl_4_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareSwirl/a_snareSwirl_4_room.wav"/>
+          <FILE id="aGiMSO" name="a_snareSwirl_4_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareSwirl/a_snareSwirl_4_top.wav"/>
+        </GROUP>
+        <GROUP id="{9A6721A7-72F3-9D9F-02ED-59091A250301}" name="a_snareWireless">
+          <FILE id="jv7gJP" name="a_snareWireless_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_1_bleed.wav"/>
+          <FILE id="hpidAy" name="a_snareWireless_1_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_1_bot.wav"/>
+          <FILE id="Vutz5V" name="a_snareWireless_1_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_1_oh.wav"/>
+          <FILE id="K4q5ZQ" name="a_snareWireless_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_1_room.wav"/>
+          <FILE id="IPQg0x" name="a_snareWireless_1_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_1_top.wav"/>
+          <FILE id="ZmMAFY" name="a_snareWireless_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_2_bleed.wav"/>
+          <FILE id="CnyQvV" name="a_snareWireless_2_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_2_bot.wav"/>
+          <FILE id="nlMhiv" name="a_snareWireless_2_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_2_oh.wav"/>
+          <FILE id="BcFxDI" name="a_snareWireless_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_2_room.wav"/>
+          <FILE id="OYUi6B" name="a_snareWireless_2_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_2_top.wav"/>
+          <FILE id="EgrSBt" name="a_snareWireless_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_3_bleed.wav"/>
+          <FILE id="yF4rW4" name="a_snareWireless_3_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_3_bot.wav"/>
+          <FILE id="ONG10O" name="a_snareWireless_3_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_3_oh.wav"/>
+          <FILE id="sc81Br" name="a_snareWireless_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_3_room.wav"/>
+          <FILE id="ONh5X3" name="a_snareWireless_3_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_3_top.wav"/>
+          <FILE id="mJUhXk" name="a_snareWireless_4_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_4_bleed.wav"/>
+          <FILE id="mS3cLF" name="a_snareWireless_4_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_4_bot.wav"/>
+          <FILE id="DFQeNs" name="a_snareWireless_4_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_4_oh.wav"/>
+          <FILE id="IsNvVB" name="a_snareWireless_4_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_4_room.wav"/>
+          <FILE id="t58F2F" name="a_snareWireless_4_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_4_top.wav"/>
+          <FILE id="uiYfC5" name="a_snareWireless_5_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_5_bleed.wav"/>
+          <FILE id="rGans2" name="a_snareWireless_5_bot.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_5_bot.wav"/>
+          <FILE id="zDOjX0" name="a_snareWireless_5_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_5_oh.wav"/>
+          <FILE id="zHxCDW" name="a_snareWireless_5_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_5_room.wav"/>
+          <FILE id="ikWQuG" name="a_snareWireless_5_top.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_snareAll/a_snareWireless/a_snareWireless_5_top.wav"/>
+        </GROUP>
+        <GROUP id="{E0A71007-4F3C-724A-BCC9-2B6258492A57}" name="a_snareWirelessRound">
+          <FILE id="GlJv0I" name="a_snareWirelessRound_1_bleed.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_1_bleed.wav"/>
+          <FILE id="G0qS4U" name="a_snareWirelessRound_1_bot.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_1_bot.wav"/>
+          <FILE id="HMZ9z8" name="a_snareWirelessRound_1_oh.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_1_oh.wav"/>
+          <FILE id="sV6sNW" name="a_snareWirelessRound_1_room.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_1_room.wav"/>
+          <FILE id="ZGcqXv" name="a_snareWirelessRound_1_top.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_1_top.wav"/>
+          <FILE id="U7rqme" name="a_snareWirelessRound_2_bleed.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_2_bleed.wav"/>
+          <FILE id="L2iFd2" name="a_snareWirelessRound_2_bot.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_2_bot.wav"/>
+          <FILE id="aDS2vv" name="a_snareWirelessRound_2_oh.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_2_oh.wav"/>
+          <FILE id="N5DZkO" name="a_snareWirelessRound_2_room.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_2_room.wav"/>
+          <FILE id="refOrz" name="a_snareWirelessRound_2_top.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_2_top.wav"/>
+          <FILE id="TIKfkW" name="a_snareWirelessRound_3_bleed.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_3_bleed.wav"/>
+          <FILE id="hUIBmG" name="a_snareWirelessRound_3_bot.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_3_bot.wav"/>
+          <FILE id="dyBhHS" name="a_snareWirelessRound_3_oh.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_3_oh.wav"/>
+          <FILE id="rTViae" name="a_snareWirelessRound_3_room.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_3_room.wav"/>
+          <FILE id="hvTy3T" name="a_snareWirelessRound_3_top.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_3_top.wav"/>
+          <FILE id="Mj4dCb" name="a_snareWirelessRound_4_bleed.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_4_bleed.wav"/>
+          <FILE id="zTihSH" name="a_snareWirelessRound_4_bot.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_4_bot.wav"/>
+          <FILE id="MYjidR" name="a_snareWirelessRound_4_oh.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_4_oh.wav"/>
+          <FILE id="sGuVvS" name="a_snareWirelessRound_4_room.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_4_room.wav"/>
+          <FILE id="v3LPux" name="a_snareWirelessRound_4_top.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_4_top.wav"/>
+          <FILE id="iOXvjv" name="a_snareWirelessRound_5_bleed.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_5_bleed.wav"/>
+          <FILE id="z9TKjE" name="a_snareWirelessRound_5_bot.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_5_bot.wav"/>
+          <FILE id="SDdfsr" name="a_snareWirelessRound_5_oh.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_5_oh.wav"/>
+          <FILE id="eXpuxs" name="a_snareWirelessRound_5_room.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_5_room.wav"/>
+          <FILE id="IPofCU" name="a_snareWirelessRound_5_top.wav" compile="0"
+                resource="1" file="Source/Assets/acousticSamples/a_snareAll/a_snareWirelessRound/a_snareWirelessRound_5_top.wav"/>
+        </GROUP>
+      </GROUP>
+      <GROUP id="{6B6D6235-3732-BC08-E544-3B8752CF6894}" name="a_stackAll">
+        <GROUP id="{180ED98E-C07F-427B-B35A-E399D6F39F61}" name="a_stackClosed">
+          <FILE id="KMTXRL" name="a_stackClosed_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackClosed/a_stackClosed_1_bleed.wav"/>
+          <FILE id="wWohKM" name="a_stackClosed_1_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackClosed/a_stackClosed_1_oh.wav"/>
+          <FILE id="CgoNeU" name="a_stackClosed_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackClosed/a_stackClosed_1_room.wav"/>
+          <FILE id="TmkneP" name="a_stackClosed_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackClosed/a_stackClosed_2_bleed.wav"/>
+          <FILE id="rDGUDH" name="a_stackClosed_2_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackClosed/a_stackClosed_2_oh.wav"/>
+          <FILE id="gQfJw7" name="a_stackClosed_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackClosed/a_stackClosed_2_room.wav"/>
+          <FILE id="sCPUwv" name="a_stackClosed_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackClosed/a_stackClosed_3_bleed.wav"/>
+          <FILE id="GZl9WU" name="a_stackClosed_3_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackClosed/a_stackClosed_3_oh.wav"/>
+          <FILE id="EJBpvD" name="a_stackClosed_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackClosed/a_stackClosed_3_room.wav"/>
+          <FILE id="umgNzR" name="a_stackClosed_4_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackClosed/a_stackClosed_4_bleed.wav"/>
+          <FILE id="D5kIeX" name="a_stackClosed_4_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackClosed/a_stackClosed_4_oh.wav"/>
+          <FILE id="bueZzK" name="a_stackClosed_4_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackClosed/a_stackClosed_4_room.wav"/>
+          <FILE id="zYJ45s" name="a_stackClosed_5_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackClosed/a_stackClosed_5_bleed.wav"/>
+          <FILE id="juzY85" name="a_stackClosed_5_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackClosed/a_stackClosed_5_oh.wav"/>
+          <FILE id="CjH5P6" name="a_stackClosed_5_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackClosed/a_stackClosed_5_room.wav"/>
+        </GROUP>
+        <GROUP id="{BFA366B5-A2DF-F26E-93A4-8676BA3E2DBA}" name="a_stackOpen">
+          <FILE id="aGt10S" name="a_stackOpen_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackOpen/a_stackOpen_1_bleed.wav"/>
+          <FILE id="aQPlIj" name="a_stackOpen_1_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackOpen/a_stackOpen_1_oh.wav"/>
+          <FILE id="Hil1NS" name="a_stackOpen_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackOpen/a_stackOpen_1_room.wav"/>
+          <FILE id="EnoxoE" name="a_stackOpen_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackOpen/a_stackOpen_2_bleed.wav"/>
+          <FILE id="FUkYWO" name="a_stackOpen_2_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackOpen/a_stackOpen_2_oh.wav"/>
+          <FILE id="XmnyaB" name="a_stackOpen_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackOpen/a_stackOpen_2_room.wav"/>
+          <FILE id="HAJpbq" name="a_stackOpen_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackOpen/a_stackOpen_3_bleed.wav"/>
+          <FILE id="V1sOqX" name="a_stackOpen_3_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackOpen/a_stackOpen_3_oh.wav"/>
+          <FILE id="G47wBn" name="a_stackOpen_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackOpen/a_stackOpen_3_room.wav"/>
+          <FILE id="vHOXqI" name="a_stackOpen_4_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackOpen/a_stackOpen_4_bleed.wav"/>
+          <FILE id="F17sTC" name="a_stackOpen_4_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackOpen/a_stackOpen_4_oh.wav"/>
+          <FILE id="M9Uvby" name="a_stackOpen_4_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackOpen/a_stackOpen_4_room.wav"/>
+          <FILE id="bQhZ6s" name="a_stackOpen_5_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackOpen/a_stackOpen_5_bleed.wav"/>
+          <FILE id="YJ0y4Y" name="a_stackOpen_5_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackOpen/a_stackOpen_5_oh.wav"/>
+          <FILE id="GVmCXZ" name="a_stackOpen_5_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_stackAll/a_stackOpen/a_stackOpen_5_room.wav"/>
+        </GROUP>
+      </GROUP>
+      <GROUP id="{86703B4D-8CA3-0DCA-2814-192A2473CA06}" name="a_sticks">
+        <FILE id="exb5qk" name="a_sticks_1_bleed.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_sticks/a_sticks_1_bleed.wav"/>
+        <FILE id="iEZ6ML" name="a_sticks_1_oh.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_sticks/a_sticks_1_oh.wav"/>
+        <FILE id="IFPr3N" name="a_sticks_1_room.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_sticks/a_sticks_1_room.wav"/>
+        <FILE id="OGMGoD" name="a_sticks_2_bleed.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_sticks/a_sticks_2_bleed.wav"/>
+        <FILE id="zyxoGS" name="a_sticks_2_oh.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_sticks/a_sticks_2_oh.wav"/>
+        <FILE id="QEGU8V" name="a_sticks_2_room.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_sticks/a_sticks_2_room.wav"/>
+        <FILE id="sSuQoh" name="a_sticks_3_bleed.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_sticks/a_sticks_3_bleed.wav"/>
+        <FILE id="dSI31u" name="a_sticks_3_oh.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_sticks/a_sticks_3_oh.wav"/>
+        <FILE id="HGoIcG" name="a_sticks_3_room.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_sticks/a_sticks_3_room.wav"/>
+        <FILE id="FjaBiI" name="a_sticks_4_bleed.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_sticks/a_sticks_4_bleed.wav"/>
+        <FILE id="wmHJHz" name="a_sticks_4_oh.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_sticks/a_sticks_4_oh.wav"/>
+        <FILE id="lCQuCG" name="a_sticks_4_room.wav" compile="0" resource="1"
+              file="Source/Assets/acousticSamples/a_sticks/a_sticks_4_room.wav"/>
+      </GROUP>
+      <GROUP id="{5827CCD8-A73B-E1E0-202A-B6DD41AD064B}" name="a_tomsAll">
+        <GROUP id="{6A505D98-8C4B-0222-37F1-2795616CE18B}" name="a_ftom">
+          <FILE id="JliAbw" name="a_ftom_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftom/a_ftom_1_bleed.wav"/>
+          <FILE id="mlflF5" name="a_ftom_1_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftom/a_ftom_1_close.wav"/>
+          <FILE id="QWXkHT" name="a_ftom_1_oh.wav" compile="0" resource="1" file="Source/Assets/acousticSamples/a_tomsAll/a_ftom/a_ftom_1_oh.wav"/>
+          <FILE id="xYVadC" name="a_ftom_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftom/a_ftom_1_room.wav"/>
+          <FILE id="wU5Y0u" name="a_ftom_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftom/a_ftom_2_bleed.wav"/>
+          <FILE id="Uwc0LP" name="a_ftom_2_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftom/a_ftom_2_close.wav"/>
+          <FILE id="aAj92T" name="a_ftom_2_oh.wav" compile="0" resource="1" file="Source/Assets/acousticSamples/a_tomsAll/a_ftom/a_ftom_2_oh.wav"/>
+          <FILE id="v75i2M" name="a_ftom_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftom/a_ftom_2_room.wav"/>
+          <FILE id="pZWLhu" name="a_ftom_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftom/a_ftom_3_bleed.wav"/>
+          <FILE id="fZ2FXy" name="a_ftom_3_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftom/a_ftom_3_close.wav"/>
+          <FILE id="tEgKeU" name="a_ftom_3_oh.wav" compile="0" resource="1" file="Source/Assets/acousticSamples/a_tomsAll/a_ftom/a_ftom_3_oh.wav"/>
+          <FILE id="gIt1aS" name="a_ftom_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftom/a_ftom_3_room.wav"/>
+          <FILE id="SIjOvP" name="a_ftom_4_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftom/a_ftom_4_bleed.wav"/>
+          <FILE id="NgEEtE" name="a_ftom_4_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftom/a_ftom_4_close.wav"/>
+          <FILE id="FQapFe" name="a_ftom_4_oh.wav" compile="0" resource="1" file="Source/Assets/acousticSamples/a_tomsAll/a_ftom/a_ftom_4_oh.wav"/>
+          <FILE id="JPZ3qh" name="a_ftom_4_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftom/a_ftom_4_room.wav"/>
+          <FILE id="FZVpJZ" name="a_ftom_5_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftom/a_ftom_5_bleed.wav"/>
+          <FILE id="zyshYT" name="a_ftom_5_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftom/a_ftom_5_close.wav"/>
+          <FILE id="aVQHEt" name="a_ftom_5_oh.wav" compile="0" resource="1" file="Source/Assets/acousticSamples/a_tomsAll/a_ftom/a_ftom_5_oh.wav"/>
+          <FILE id="GrPi9k" name="a_ftom_5_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftom/a_ftom_5_room.wav"/>
+        </GROUP>
+        <GROUP id="{52540ABF-BD0F-89DB-98BF-E4C2C37CED25}" name="a_ftomFlam">
+          <FILE id="lYHiAE" name="a_ftomFlam_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftomFlam/a_ftomFlam_1_bleed.wav"/>
+          <FILE id="hZvEKd" name="a_ftomFlam_1_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftomFlam/a_ftomFlam_1_close.wav"/>
+          <FILE id="rfFvPB" name="a_ftomFlam_1_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftomFlam/a_ftomFlam_1_oh.wav"/>
+          <FILE id="c0OidT" name="a_ftomFlam_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftomFlam/a_ftomFlam_1_room.wav"/>
+          <FILE id="lsYoDK" name="a_ftomFlam_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftomFlam/a_ftomFlam_2_bleed.wav"/>
+          <FILE id="EDwwZu" name="a_ftomFlam_2_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftomFlam/a_ftomFlam_2_close.wav"/>
+          <FILE id="bYCMjY" name="a_ftomFlam_2_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftomFlam/a_ftomFlam_2_oh.wav"/>
+          <FILE id="F3VthR" name="a_ftomFlam_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftomFlam/a_ftomFlam_2_room.wav"/>
+          <FILE id="KvC9MP" name="a_ftomFlam_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftomFlam/a_ftomFlam_3_bleed.wav"/>
+          <FILE id="aIfZu1" name="a_ftomFlam_3_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftomFlam/a_ftomFlam_3_close.wav"/>
+          <FILE id="DwTbnQ" name="a_ftomFlam_3_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftomFlam/a_ftomFlam_3_oh.wav"/>
+          <FILE id="tTFO6E" name="a_ftomFlam_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftomFlam/a_ftomFlam_3_room.wav"/>
+          <FILE id="S46wOa" name="a_ftomFlam_4_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftomFlam/a_ftomFlam_4_bleed.wav"/>
+          <FILE id="kkV4F1" name="a_ftomFlam_4_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftomFlam/a_ftomFlam_4_close.wav"/>
+          <FILE id="JVepZn" name="a_ftomFlam_4_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftomFlam/a_ftomFlam_4_oh.wav"/>
+          <FILE id="Sr8C2i" name="a_ftomFlam_4_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftomFlam/a_ftomFlam_4_room.wav"/>
+          <FILE id="S0rUm3" name="a_ftomFlam_5_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftomFlam/a_ftomFlam_5_bleed.wav"/>
+          <FILE id="Gd3bmY" name="a_ftomFlam_5_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftomFlam/a_ftomFlam_5_close.wav"/>
+          <FILE id="gTyMdr" name="a_ftomFlam_5_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftomFlam/a_ftomFlam_5_oh.wav"/>
+          <FILE id="wLz9Vu" name="a_ftomFlam_5_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_ftomFlam/a_ftomFlam_5_room.wav"/>
+        </GROUP>
+        <GROUP id="{D149CBD3-2F86-2BC8-4A59-1ED2F92A1EC6}" name="a_tom">
+          <FILE id="pI5RaO" name="a_tom_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tom/a_tom_1_bleed.wav"/>
+          <FILE id="lrpvMZ" name="a_tom_1_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tom/a_tom_1_close.wav"/>
+          <FILE id="Vtl8Kc" name="a_tom_1_oh.wav" compile="0" resource="1" file="Source/Assets/acousticSamples/a_tomsAll/a_tom/a_tom_1_oh.wav"/>
+          <FILE id="rpq3GY" name="a_tom_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tom/a_tom_1_room.wav"/>
+          <FILE id="BwrmEd" name="a_tom_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tom/a_tom_2_bleed.wav"/>
+          <FILE id="KGV1qQ" name="a_tom_2_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tom/a_tom_2_close.wav"/>
+          <FILE id="ol0T3I" name="a_tom_2_oh.wav" compile="0" resource="1" file="Source/Assets/acousticSamples/a_tomsAll/a_tom/a_tom_2_oh.wav"/>
+          <FILE id="JZCtjw" name="a_tom_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tom/a_tom_2_room.wav"/>
+          <FILE id="W12jeh" name="a_tom_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tom/a_tom_3_bleed.wav"/>
+          <FILE id="DDji5M" name="a_tom_3_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tom/a_tom_3_close.wav"/>
+          <FILE id="n4dmEl" name="a_tom_3_oh.wav" compile="0" resource="1" file="Source/Assets/acousticSamples/a_tomsAll/a_tom/a_tom_3_oh.wav"/>
+          <FILE id="xxqCsd" name="a_tom_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tom/a_tom_3_room.wav"/>
+          <FILE id="uqLVWf" name="a_tom_4_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tom/a_tom_4_bleed.wav"/>
+          <FILE id="tCnbxw" name="a_tom_4_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tom/a_tom_4_close.wav"/>
+          <FILE id="DfhPBE" name="a_tom_4_oh.wav" compile="0" resource="1" file="Source/Assets/acousticSamples/a_tomsAll/a_tom/a_tom_4_oh.wav"/>
+          <FILE id="SOorIQ" name="a_tom_4_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tom/a_tom_4_room.wav"/>
+          <FILE id="MbChRY" name="a_tom_5_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tom/a_tom_5_bleed.wav"/>
+          <FILE id="Krk13o" name="a_tom_5_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tom/a_tom_5_close.wav"/>
+          <FILE id="DvelUs" name="a_tom_5_oh.wav" compile="0" resource="1" file="Source/Assets/acousticSamples/a_tomsAll/a_tom/a_tom_5_oh.wav"/>
+          <FILE id="lPQW3W" name="a_tom_5_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tom/a_tom_5_room.wav"/>
+        </GROUP>
+        <GROUP id="{1C261359-FB57-FAFF-9DAD-225DCEC9F25A}" name="a_tomFlam">
+          <FILE id="fzQU6m" name="a_tomFlam_1_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tomFlam/a_tomFlam_1_bleed.wav"/>
+          <FILE id="ydSoaE" name="a_tomFlam_1_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tomFlam/a_tomFlam_1_close.wav"/>
+          <FILE id="E0H9Ep" name="a_tomFlam_1_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tomFlam/a_tomFlam_1_oh.wav"/>
+          <FILE id="f0KFPP" name="a_tomFlam_1_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tomFlam/a_tomFlam_1_room.wav"/>
+          <FILE id="c0byf8" name="a_tomFlam_2_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tomFlam/a_tomFlam_2_bleed.wav"/>
+          <FILE id="t7c6WH" name="a_tomFlam_2_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tomFlam/a_tomFlam_2_close.wav"/>
+          <FILE id="fN4JHS" name="a_tomFlam_2_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tomFlam/a_tomFlam_2_oh.wav"/>
+          <FILE id="xl2vew" name="a_tomFlam_2_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tomFlam/a_tomFlam_2_room.wav"/>
+          <FILE id="gRnuqC" name="a_tomFlam_3_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tomFlam/a_tomFlam_3_bleed.wav"/>
+          <FILE id="y7j7de" name="a_tomFlam_3_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tomFlam/a_tomFlam_3_close.wav"/>
+          <FILE id="CDvXVT" name="a_tomFlam_3_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tomFlam/a_tomFlam_3_oh.wav"/>
+          <FILE id="HjqxNc" name="a_tomFlam_3_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tomFlam/a_tomFlam_3_room.wav"/>
+          <FILE id="f8UKDP" name="a_tomFlam_4_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tomFlam/a_tomFlam_4_bleed.wav"/>
+          <FILE id="rwfaU2" name="a_tomFlam_4_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tomFlam/a_tomFlam_4_close.wav"/>
+          <FILE id="cPT4PJ" name="a_tomFlam_4_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tomFlam/a_tomFlam_4_oh.wav"/>
+          <FILE id="LLzMOk" name="a_tomFlam_4_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tomFlam/a_tomFlam_4_room.wav"/>
+          <FILE id="yxvoBp" name="a_tomFlam_5_bleed.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tomFlam/a_tomFlam_5_bleed.wav"/>
+          <FILE id="zIyRZ4" name="a_tomFlam_5_close.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tomFlam/a_tomFlam_5_close.wav"/>
+          <FILE id="F1Tdoo" name="a_tomFlam_5_oh.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tomFlam/a_tomFlam_5_oh.wav"/>
+          <FILE id="qzNZxo" name="a_tomFlam_5_room.wav" compile="0" resource="1"
+                file="Source/Assets/acousticSamples/a_tomsAll/a_tomFlam/a_tomFlam_5_room.wav"/>
+        </GROUP>
+      </GROUP>
+    </GROUP>
     <GROUP id="{C9E608D4-0BFF-D080-B491-E0FF164E36DB}" name="electronicSamples">
       <GROUP id="{396F03B1-6E63-781D-6BD5-7F57CFDE2A97}" name="crash">
         <FILE id="iBrLuf" name="e_crash_bleed.wav" compile="0" resource="1"

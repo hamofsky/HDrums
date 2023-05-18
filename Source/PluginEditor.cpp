@@ -377,8 +377,8 @@ void HDrumsAudioProcessorEditor::paint (juce::Graphics& g)
     }
     else
     {
-        g.drawImageWithin(dryBackground, 0, 0, getWidth(), getHeight(), juce::RectanglePlacement::stretchToFit);
         dryBackground = juce::ImageCache::getFromMemory(BinaryData::dryDrumsImageWide_png, BinaryData::dryDrumsImageWide_pngSize);
+        g.drawImageWithin(dryBackground, 0, 0, getWidth(), getHeight(), juce::RectanglePlacement::stretchToFit);
     }
 }
 

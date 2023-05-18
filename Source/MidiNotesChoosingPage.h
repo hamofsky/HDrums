@@ -8,33 +8,33 @@ class MidiNotesChoosingPage : public juce::Component
 {
 public:
 	
-	juce::ComboBox kickNoteMenu;
-	juce::ComboBox snareNoteMenu;
-	juce::ComboBox snareSwirlNoteMenu;
-	juce::ComboBox snareFlamNoteMenu;
-	juce::ComboBox snareRoundNoteMenu;
-	juce::ComboBox snareWirelessNoteMenu;
-	juce::ComboBox snareWirelessRoundNoteMenu;
-	juce::ComboBox snarePiccoloNoteMenu;
-	juce::ComboBox snarePiccoloSwirlNoteMenu;
-	juce::ComboBox tomNoteMenu;
-	juce::ComboBox tomFlamNoteMenu;
-	juce::ComboBox ftomNoteMenu;
-	juce::ComboBox ftomFlamNoteMenu;
-	juce::ComboBox hhFootNoteMenu;
-	juce::ComboBox hhClosedNoteMenu;
-	juce::ComboBox hhHalfNoteMenu;
-	juce::ComboBox hhOpenNoteMenu;
-	juce::ComboBox tambNoteMenu;
-	juce::ComboBox ridePointNoteMenu;
-	juce::ComboBox rideBellNoteMenu;
-	juce::ComboBox rideOpenNoteMenu;
-	juce::ComboBox crashPointNoteMenu;
-	juce::ComboBox crashBellNoteMenu;
-	juce::ComboBox crashOpenNoteMenu;
-	juce::ComboBox stackClosedNoteMenu;
-	juce::ComboBox stackOpenNoteMenu;
-	juce::ComboBox sticksNoteMenu;
+	juce::ComboBox kickNoteMenu;	//0
+	juce::ComboBox snareNoteMenu;		//1
+	juce::ComboBox snareSwirlNoteMenu;	//2
+	juce::ComboBox snareFlamNoteMenu;	//3
+	juce::ComboBox snareRoundNoteMenu;	//4
+	juce::ComboBox snareWirelessNoteMenu;		//5
+	juce::ComboBox snareWirelessRoundNoteMenu;	//6
+	juce::ComboBox snarePiccoloNoteMenu;	  //7
+	juce::ComboBox snarePiccoloSwirlNoteMenu; //8
+	juce::ComboBox tomNoteMenu;		//9
+	juce::ComboBox tomFlamNoteMenu;	//10
+	juce::ComboBox ftomNoteMenu;	//11
+	juce::ComboBox ftomFlamNoteMenu;//12
+	juce::ComboBox hhFootNoteMenu;	//13
+	juce::ComboBox hhClosedNoteMenu;//14	
+	juce::ComboBox hhHalfNoteMenu;	//15
+	juce::ComboBox hhOpenNoteMenu;	//16
+	juce::ComboBox tambNoteMenu;	//17
+	juce::ComboBox ridePointNoteMenu;	//18
+	juce::ComboBox rideBellNoteMenu;	//19
+	juce::ComboBox rideOpenNoteMenu;	//20
+	juce::ComboBox crashPointNoteMenu;	//21
+	juce::ComboBox crashBellNoteMenu;	//22
+	juce::ComboBox crashOpenNoteMenu;	//23
+	juce::ComboBox stackClosedNoteMenu;	//24
+	juce::ComboBox stackOpenNoteMenu;	//25
+	juce::ComboBox sticksNoteMenu;	//26
 
 	MyLookAndFeel myLookAndFeel;
 
