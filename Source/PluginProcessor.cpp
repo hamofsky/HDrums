@@ -332,6 +332,7 @@ void HDrumsAudioProcessor::loadDirectory()
 
 void HDrumsAudioProcessor::loadSamples(int samplePackID)
 {
+    loadingSamples.samplePack = samplePackID;
     if (samplePackID == 1)  // Electronic Drum Kit
     {
         clearSoundsFromAllSamplers();

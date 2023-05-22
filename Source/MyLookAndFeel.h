@@ -190,19 +190,19 @@ public:
         float cornerSize = 0.2f;
 
         g.setColour(component.findColour(juce::ToggleButton::tickDisabledColourId));
-        g.drawRoundedRectangle(tickBounds, cornerSize, 1.0f);
-        g.setColour(juce::Colours::aliceblue.withAlpha(0.7f));
+        g.drawRoundedRectangle(tickBounds, cornerSize, 0.8f);
+        g.setColour(juce::Colours::cornflowerblue.withAlpha(0.5f));
         g.fillRoundedRectangle(tickBounds, cornerSize);
-        g.setColour(juce::Colours::white);
-        g.setFont(18.0f);
+        g.setColour(juce::Colours::black);
+        g.setFont(16.0f);
         g.drawText("Immersive", tickBounds, juce::Justification::centred, true);
 
         if (ticked)
         {
-            g.setColour(juce::Colours::cornflowerblue.withAlpha(0.6f));
+            g.setColour(juce::Colours::cornflowerblue.withAlpha(1.0f));
             g.fillRoundedRectangle(tickBounds, cornerSize);
             g.setColour(juce::Colours::black);
-            g.setFont(18.0f);
+            g.setFont(19.0f);
             g.drawText("Immersive", tickBounds, juce::Justification::centred, true);
         }
     }
