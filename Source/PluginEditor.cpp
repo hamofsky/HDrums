@@ -229,7 +229,7 @@ HDrumsAudioProcessorEditor::HDrumsAudioProcessorEditor(HDrumsAudioProcessor& p)
     
     addAndMakeVisible(&curveMenu);
     curveMenu.setJustificationType(juce::Justification::centred);
-    curveMenu.addItem("Logarhytmic", 1);
+    curveMenu.addItem("Natural", 1);
     curveMenu.addItem("Linear", 2);
     curveMenu.onChange = [this] { velocityCurveChanged(); };
     auto curveMenuValue = audioProcessor.treeState.getRawParameterValue(CURVE_MENU_ID);
@@ -431,9 +431,9 @@ void HDrumsAudioProcessorEditor::resized()
 void HDrumsAudioProcessorEditor::velocityCurveChanged()
 {
     if (curveMenu.getSelectedId() == 1)
-        audioProcessor.midiProcessor.logarhytmic = true;
+        audioProcessor.midiProcessor.natural = true;
     else
-        audioProcessor.midiProcessor.logarhytmic = false;
+        audioProcessor.midiProcessor.natural = false;
 }
 
 void HDrumsAudioProcessorEditor::samplePackMenuChanged()

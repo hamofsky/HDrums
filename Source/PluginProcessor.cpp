@@ -53,6 +53,8 @@ HDrumsAudioProcessor::HDrumsAudioProcessor()
     for (auto i = 0; i < 16; i++)    // i < x+1 defines how many sounds can play at the same time (x)
         samplerBinaural.addVoice(new juce::SamplerVoice());
 
+    midiProcessor.initializeCurve();
+
     loadSamples(1); // default settings for samples (samplePackMenuId)
     /*midiProcessor.newMidiNotes[0] = *treeState.getRawParameterValue(KICK_MIDI_NOTE_ID);
     midiProcessor.newMidiNotes[1] = *treeState.getRawParameterValue(SNARE_MIDI_NOTE_ID);
@@ -146,7 +148,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout HDrumsAudioProcessor::create
 
     // ==================================================================
     auto SamplePackParam = std::make_unique<juce::AudioParameterChoice>(SAMPLE_PACK_ID, SAMPLE_PACK_NAME, juce::StringArray("Electronic", "Acoustic", "Dry"), 1);
-    auto CurveMenuParam = std::make_unique<juce::AudioParameterChoice>(CURVE_MENU_ID, CURVE_MENU_NAME, juce::StringArray("Linear", "Logarhytmic"), 1);
+    auto CurveMenuParam = std::make_unique<juce::AudioParameterChoice>(CURVE_MENU_ID, CURVE_MENU_NAME, juce::StringArray("Linear", "Natural"), 1);
     params.push_back(std::move(SamplePackParam));
     params.push_back(std::move(CurveMenuParam));
     // ==================================================================
