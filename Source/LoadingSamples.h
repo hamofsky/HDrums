@@ -73,7 +73,7 @@ public:
         }
         else
         {
-            //missingSample = true;
+            missingSample = true;
         }
     }
 
@@ -562,7 +562,7 @@ public:
             addSample("Acoustic Snare 6 Binaural", snareDestination + "a_snare_6_binaural.wav", defaultMidiNotes[1], curveFor7[5], curveFor7[6] - 1, snareRelease, snareMaxLen, "Binaural", samplers, formatManager);
             addSample("Acoustic Snare 7 Binaural", snareDestination + "a_snare_7_binaural.wav", defaultMidiNotes[1], curveFor7[6], curveFor7[7] - 1, snareRelease, snareMaxLen, "Binaural", samplers, formatManager);
 
-            string snareSwirlDestination = acousticDestination + "a_snareSwirl/";
+            string snareSwirlDestination = snareAllDestination + "a_snareSwirl/";
             addSample("Acoustic Snare Swirl 1 Top", snareSwirlDestination + "a_snareSwirl_1_top.wav", defaultMidiNotes[2], curveFor4[0], curveFor4[1] - 1, snareRelease, snareMaxLen, "SnareTop", samplers, formatManager);
             addSample("Acoustic Snare Swirl 2 Top", snareSwirlDestination + "a_snareSwirl_2_top.wav", defaultMidiNotes[2], curveFor4[1], curveFor4[2] - 1, snareRelease, snareMaxLen, "SnareTop", samplers, formatManager);
             addSample("Acoustic Snare Swirl 3 Top", snareSwirlDestination + "a_snareSwirl_3_top.wav", defaultMidiNotes[2], curveFor4[2], curveFor4[3] - 1, snareRelease, snareMaxLen, "SnareTop", samplers, formatManager);

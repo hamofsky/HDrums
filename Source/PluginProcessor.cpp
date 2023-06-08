@@ -53,37 +53,7 @@ HDrumsAudioProcessor::HDrumsAudioProcessor()
     for (auto i = 0; i < 16; i++)    // i < x+1 defines how many sounds can play at the same time (x)
         samplerBinaural.addVoice(new juce::SamplerVoice());
 
-    midiProcessor.initializeCurve();
-
     loadSamples(1); // default settings for samples (samplePackMenuId)
-    /*midiProcessor.newMidiNotes[0] = *treeState.getRawParameterValue(KICK_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[1] = *treeState.getRawParameterValue(SNARE_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[2] = *treeState.getRawParameterValue(SNARE_SWIRL_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[3] = *treeState.getRawParameterValue(SNARE_FLAM_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[4] = *treeState.getRawParameterValue(SNARE_ROUND_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[5] = *treeState.getRawParameterValue(SNARE_WIRELESS_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[6] = *treeState.getRawParameterValue(SNARE_WIRELESS_ROUND_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[7] = *treeState.getRawParameterValue(SNARE_PICCOLO_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[8] = *treeState.getRawParameterValue(SNARE_PICCOLO_SWIRL_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[9] = *treeState.getRawParameterValue(TOM_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[10] = *treeState.getRawParameterValue(TOM_FLAM_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[11] = *treeState.getRawParameterValue(FTOM_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[12] = *treeState.getRawParameterValue(FTOM_FLAM_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[13] = *treeState.getRawParameterValue(HH_FOOT_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[14] = *treeState.getRawParameterValue(HH_CLOSED_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[15] = *treeState.getRawParameterValue(HH_HALF_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[16] = *treeState.getRawParameterValue(HH_OPEN_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[17] = *treeState.getRawParameterValue(TAMB_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[18] = *treeState.getRawParameterValue(RIDE_POINT_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[19] = *treeState.getRawParameterValue(RIDE_BELL_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[20] = *treeState.getRawParameterValue(RIDE_OPEN_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[21] = *treeState.getRawParameterValue(CRASH_POINT_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[22] = *treeState.getRawParameterValue(CRASH_BELL_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[23] = *treeState.getRawParameterValue(CRASH_OPEN_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[24] = *treeState.getRawParameterValue(STACK_CLOSED_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[25] = *treeState.getRawParameterValue(STACK_OPEN_MIDI_NOTE_ID);
-    midiProcessor.newMidiNotes[26] = *treeState.getRawParameterValue(STICKS_MIDI_NOTE_ID);*/
-
 }
 
 HDrumsAudioProcessor::~HDrumsAudioProcessor()
@@ -327,11 +297,6 @@ juce::AudioProcessorValueTreeState::ParameterLayout HDrumsAudioProcessor::create
 }
 //==============================================================================
 
-void HDrumsAudioProcessor::loadDirectory()
-{
-    DBG("Source was a nullptr, so you will have to choose a correct directory");
-}
-
 void HDrumsAudioProcessor::loadSamples(int samplePackID)
 {
     loadingSamples.samplePack = samplePackID;
@@ -522,9 +487,8 @@ void HDrumsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
 
     midiProcessor.process(midiMessages);
 
-    for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i) {
+    for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear(i, 0, buffer.getNumSamples());
-    }
 
     auto sliderValue = treeState.getRawParameterValue(GAIN_ID);
     auto OHsliderValue = treeState.getRawParameterValue(OH_GAIN_ID);
@@ -555,6 +519,7 @@ void HDrumsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
 
     // =================================================================
     auto binauralState = treeState.getRawParameterValue(BINAURAL_ID);
+    auto samplePackId = treeState.getRawParameterValue(SAMPLE_PACK_ID);
     
     auto closeMuteState = treeState.getRawParameterValue(CLOSE_MUTE_ID);
     auto OHMuteState = treeState.getRawParameterValue(OH_MUTE_ID);
@@ -644,11 +609,11 @@ void HDrumsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
     sampler.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
     buffer.applyGain(juce::Decibels::decibelsToGain<float>(*sliderValue));
 
-    if (*binauralState > 0.5f)
+    if (*binauralState > 0.5f && *samplePackId == 1)
     {
         samplerBinaural.renderNextBlock(bufferBinaural, midiMessages, 0, bufferBinaural.getNumSamples());
-        buffer.addFrom(0, 0, bufferBinaural, 0, 0, bufferBinaural.getNumSamples(), 1.5f);
-        buffer.addFrom(1, 0, bufferBinaural, 1, 0, bufferBinaural.getNumSamples(), 1.5f);
+        buffer.addFrom(0, 0, bufferBinaural, 0, 0, bufferBinaural.getNumSamples(), 1.5f * juce::Decibels::decibelsToGain<float>(*sliderValue));
+        buffer.addFrom(1, 0, bufferBinaural, 1, 0, bufferBinaural.getNumSamples(), 1.5f * juce::Decibels::decibelsToGain<float>(*sliderValue));
     }
     else
     {

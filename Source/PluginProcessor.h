@@ -127,8 +127,8 @@
 #define CYMBALS_BLEED_GAIN_NAME "Cymbals Bleed"
 
 // Solo buttons =====================
-#define BINAURAL_ID "binaural"
-#define BINAURAL_NAME "Binaural"
+#define BINAURAL_ID "immersive"
+#define BINAURAL_NAME "Immersive"
 
 #define CLOSE_SOLO_ID "close Solo"
 #define CLOSE_SOLO_NAME "Close Solo"
@@ -321,7 +321,6 @@ private:
 
     LoadingSamples loadingSamples;
 
-    void loadDirectory();
     void clearSoundsFromAllSamplers();
 
     //==============================================================================
